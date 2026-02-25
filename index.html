@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matias Mercado | Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio de Matias Mercado. Proyectos full-stack con foco en producto, operación y calidad de release."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-shape shape-a"></div>
+    <div class="bg-shape shape-b"></div>
+    <div class="grain"></div>
+
+    <header class="site-header">
+      <div class="container nav">
+        <span class="brand">MATIAS MERCADO</span>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav">
+          Menu
+        </button>
+        <nav id="main-nav">
+          <a href="#proyectos">Proyectos</a>
+          <a href="#skills">Skills</a>
+          <a href="#proceso">Proceso</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero container reveal">
+        <p class="kicker">FULL-STACK DEVELOPER</p>
+        <h1>
+          Construyo apps que no solo se ven bien:
+          <span>funcionan en produccion</span>.
+        </h1>
+        <p class="lead">
+          Desarrollo productos web orientados a negocio con foco en resultado,
+          estabilidad y despliegue real. React, Node.js, PostgreSQL y Socket.io.
+        </p>
+        <div class="hero-meta">
+          <span class="status-dot"></span>
+          <span>Disponible para proyectos freelance y oportunidades remotas</span>
+        </div>
+        <div class="hero-cta">
+          <a class="btn primary" href="#gymcontrol">Ver caso GymControl</a>
+          <a class="btn ghost" href="#contacto">Contactar</a>
+        </div>
+        <div class="hero-metrics">
+          <article>
+            <strong class="stat-value" data-count="100" data-suffix="%">0%</strong>
+            <span>Flujo crítico validado</span>
+          </article>
+          <article>
+            <strong class="stat-value" data-count="7" data-suffix="+">0+</strong>
+            <span>Checks de release en verde</span>
+          </article>
+          <article>
+            <strong class="stat-value" data-count="1" data-suffix="">0</strong>
+            <span>Deploy productivo activo</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="container section reveal">
+        <div class="section-head">
+          <p class="kicker">RESULTADO</p>
+          <h2>Impacto técnico tangible</h2>
+        </div>
+        <div class="impact-grid">
+          <article>
+            <h3>Realtime operativo</h3>
+            <p>
+              El staff recibe y procesa reportes en tiempo real, con estados
+              trazables de punta a punta.
+            </p>
+          </article>
+          <article>
+            <h3>Release con control</h3>
+            <p>
+              Build, e2e, backup/restore y rollback readiness ejecutados antes
+              de marcar GO.
+            </p>
+          </article>
+          <article>
+            <h3>Deploy productivo</h3>
+            <p>
+              Backend desplegado en Railway con health endpoint activo y
+              monitoreo básico.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="proyectos" class="container section reveal">
+        <div class="section-head">
+          <p class="kicker">PROYECTOS</p>
+          <h2>Trabajo reciente</h2>
+        </div>
+
+        <article id="gymcontrol" class="project-card featured reveal">
+          <div class="project-top">
+            <h3>GymControl</h3>
+            <span class="badge">Produccion (Railway)</span>
+          </div>
+          <p>
+            Plataforma de reporte de fallas para gimnasios con flujo operativo
+            de staff en tiempo real. Diseñada para reducir ruido operativo y
+            mejorar trazabilidad.
+          </p>
+          <ul class="project-points">
+            <li>Stack: React + Node.js + PostgreSQL + Socket.io + Prisma</li>
+            <li>Flujo: PENDING -> CONFIRMED -> RESOLVED</li>
+            <li>Validación: build + health + e2e + backup/restore + rollback</li>
+            <li>Deploy: Railway backend con health check activo</li>
+          </ul>
+          <div class="project-actions">
+            <a
+              class="btn primary"
+              href="https://gym-control-production.up.railway.app/api/health"
+              target="_blank"
+              rel="noreferrer"
+              >Ver health endpoint</a
+            >
+            <a class="btn ghost" href="../PORTFOLIO_CASE_STUDY.md">Ver case study</a>
+          </div>
+          <p class="project-note">
+            Código privado por acuerdo de demo. Disponible walkthrough técnico por contacto.
+          </p>
+        </article>
+      </section>
+
+      <section id="skills" class="container section reveal">
+        <div class="section-head">
+          <p class="kicker">SKILLS</p>
+          <h2>Foco técnico</h2>
+        </div>
+        <div class="skills-grid">
+          <article>
+            <h3>Frontend</h3>
+            <p>React, Vite, estado con Zustand, UX responsive.</p>
+          </article>
+          <article>
+            <h3>Backend</h3>
+            <p>Node.js, Express, APIs REST, Socket.io realtime.</p>
+          </article>
+          <article>
+            <h3>Data</h3>
+            <p>PostgreSQL, Prisma ORM, migraciones y seeds.</p>
+          </article>
+          <article>
+            <h3>Release</h3>
+            <p>Go/No-Go checklist, e2e, backup/restore, rollback.</p>
+          </article>
+        </div>
+        <div class="chips">
+          <span>React</span>
+          <span>Node.js</span>
+          <span>PostgreSQL</span>
+          <span>Socket.io</span>
+          <span>Prisma</span>
+          <span>Railway</span>
+        </div>
+      </section>
+
+      <section id="proceso" class="container section reveal">
+        <div class="section-head">
+          <p class="kicker">EXPERIENCIA DE ENTREGA</p>
+          <h2>Cómo trabajo</h2>
+        </div>
+        <ol class="timeline">
+          <li>
+            <span>01</span>
+            <div>
+              <h3>Defino objetivo de negocio</h3>
+              <p>
+                Traduzco necesidad real a flujo simple, medible y demostrable.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span>02</span>
+            <div>
+              <h3>Construyo MVP funcional</h3>
+              <p>
+                Priorizo integración end-to-end antes de sobre-optimizar capas.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span>03</span>
+            <div>
+              <h3>Cierro release con evidencia</h3>
+              <p>
+                Entrego con validaciones técnicas y readiness operativo.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section id="contacto" class="container section contact reveal">
+        <p class="kicker">CONTACTO</p>
+        <h2>Disponible para proyectos y oportunidades</h2>
+        <p>
+          Si quieres ver demos privadas o revisar arquitectura en detalle, te
+          comparto recorrido técnico y decisiones de implementación.
+        </p>
+        <div class="contact-actions">
+          <a class="btn primary" href="mailto:razzer.howa@gmail.com">Enviar email</a>
+          <button class="btn ghost" id="copy-email" type="button">
+            Copiar email
+          </button>
+          <a
+            class="btn ghost"
+            href="https://www.linkedin.com/in/matias-mercado-10882126b/"
+            target="_blank"
+            rel="noreferrer"
+            >Abrir LinkedIn</a
+          >
+        </div>
+        <p class="copy-hint" id="copy-hint" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>Matias Mercado - Portfolio <span id="year"></span></p>
+      </div>
+    </footer>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
