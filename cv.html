@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CV | Matias Mercado</title>
+    <meta
+      name="description"
+      content="Curriculum de Matias Mercado. Desarrollo Full-Stack, soporte técnico e implementación en producción."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./cv.css" />
+  </head>
+  <body>
+    <main class="cv-shell">
+      <header class="cv-header">
+        <div class="identity">
+          <p class="kicker">CURRICULUM VITAE</p>
+          <h1>Matias Mercado</h1>
+          <p class="role">Desarrollador Full-Stack | Soporte Técnico IT</p>
+          <ul class="contact">
+            <li>Córdoba Capital, Argentina</li>
+            <li>+54 3512699297</li>
+            <li>razzer.howa@gmail.com</li>
+            <li>linkedin.com/in/matias-mercado-10882126b</li>
+            <li>github.com/Mattarzu</li>
+            <li>mattmercado.up.railway.app</li>
+          </ul>
+        </div>
+        <figure class="photo-wrap">
+          <img
+            src="./assets/profile.jpg"
+            alt="Foto de perfil de Matias Mercado"
+            class="photo"
+          />
+        </figure>
+      </header>
+
+      <section class="panel">
+        <h2>Perfil Profesional</h2>
+        <p>
+          Desarrollador Full-Stack con experiencia en soporte técnico e
+          infraestructura. Construyo aplicaciones web orientadas a operación
+          real, con foco en estabilidad, despliegue productivo y calidad de
+          release.
+        </p>
+      </section>
+
+      <section class="grid">
+        <article class="panel">
+          <h2>Skills Clave</h2>
+          <div class="chips">
+            <span>JavaScript</span>
+            <span>React.js</span>
+            <span>Node.js</span>
+            <span>PostgreSQL</span>
+            <span>Socket.io</span>
+            <span>Prisma ORM</span>
+            <span>APIs REST</span>
+            <span>Testing E2E</span>
+            <span>Railway</span>
+            <span>Linux</span>
+            <span>Git</span>
+            <span>Troubleshooting</span>
+          </div>
+        </article>
+        <article class="panel">
+          <h2>Proyecto Destacado</h2>
+          <h3>GymControl (Producción)</h3>
+          <ul class="list">
+            <li>Plataforma de reportes con flujo PENDING -> CONFIRMED -> RESOLVED.</li>
+            <li>Stack: React, Node.js, PostgreSQL, Prisma y Socket.io.</li>
+            <li>Deploy en Railway con health check y validación E2E.</li>
+            <li>Checklist GO/NO-GO con backup/restore y rollback.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="panel">
+        <h2>Experiencia</h2>
+        <div class="timeline">
+          <article>
+            <div class="job-head">
+              <h3>LEMAPC</h3>
+              <p>Jun 2024 - Actualidad</p>
+            </div>
+            <p class="job-role">Técnico de Soporte y Optimización</p>
+            <ul class="list">
+              <li>Soporte técnico de hardware/software para PC y dispositivos móviles.</li>
+              <li>Instalación y optimización de sistemas operativos.</li>
+              <li>Mantenimiento preventivo y mejora de rendimiento.</li>
+            </ul>
+          </article>
+
+          <article>
+            <div class="job-head">
+              <h3>DHL Express</h3>
+              <p>Abr 2022 - Nov 2024</p>
+            </div>
+            <p class="job-role">Técnico de Equipos Electrónicos / Software</p>
+            <ul class="list">
+              <li>Configuración y optimización de equipos informáticos.</li>
+              <li>Soporte a smartphones iOS/Android en software y hardware.</li>
+              <li>Soporte operativo de servidor interno y gestión de BD regional.</li>
+            </ul>
+          </article>
+
+          <article>
+            <div class="job-head">
+              <h3>Cleaver Software</h3>
+              <p>Sep 2020 - Ene 2022</p>
+            </div>
+            <p class="job-role">Desarrollador Android (Proyecto OBD JSSCAN)</p>
+            <ul class="list">
+              <li>Desarrollo de app Android para lectura y visualización de datos OBD.</li>
+              <li>Integración con hardware y diagnóstico vehicular.</li>
+              <li>Documentación técnica y pruebas en dispositivos físicos.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <footer class="actions">
+        <a class="btn ghost" href="./index.html">Volver al Portfolio</a>
+        <button class="btn primary" type="button" onclick="window.print()">
+          Exportar PDF
+        </button>
+      </footer>
+    </main>
+  </body>
+</html>
