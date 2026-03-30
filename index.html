@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Matias Mercado | Portfolio</title>
+    <title>Matías Mercado | Full Stack Developer</title>
     <meta
       name="description"
-      content="Portfolio de Matias Mercado. Proyectos full-stack con foco en producto, operación y calidad de release."
+      content="Portfolio de Matías Mercado, Full Stack Developer. Proyectos con React, Node.js, PostgreSQL, Socket.io y despliegue productivo."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,14 +26,15 @@
 
     <header class="site-header">
       <div class="container nav">
-        <span class="brand">MATIAS MERCADO</span>
+        <span class="brand">MATÍAS MERCADO</span>
         <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav">
-          Menu
+          Menú
         </button>
         <nav id="main-nav">
+          <a href="#perfil">Perfil</a>
           <a href="#proyectos">Proyectos</a>
-          <a href="#skills">Skills</a>
-          <a href="#proceso">Proceso</a>
+          <a href="#skills">Tecnologías</a>
+          <a href="#proceso">Cómo trabajo</a>
           <a href="./cv.html">CV</a>
           <a href="#contacto">Contacto</a>
         </nav>
@@ -44,63 +45,74 @@
       <section class="hero container reveal">
         <div class="hero-layout">
           <div class="hero-copy">
-            <p class="kicker">FULL-STACK DEVELOPER</p>
+            <p class="kicker">FULL STACK DEVELOPER</p>
             <h1>
-              Desarrollo productos web
-              <span>claros, rapidos y listos para uso real</span>.
+              Matías Mercado
+              <span>Desarrollador Full Stack enfocado en productos web reales</span>
             </h1>
             <p class="lead">
-              Desarrollo productos web orientados a negocio con foco en resultado,
-              estabilidad y despliegue real. React, Node.js, PostgreSQL y Socket.io.
+              Construyo aplicaciones web con React, Node.js, PostgreSQL y Socket.io,
+              con foco en integración end-to-end, backend sólido y despliegue productivo.
+              Busco oportunidades como Full Stack Developer o Backend Developer.
             </p>
+
             <div class="hero-cta">
-              <a class="btn primary" href="#gymcontrol">Ver caso GymControl</a>
+              <a class="btn primary" href="#proyectos">Ver proyectos</a>
               <a class="btn ghost" href="./cv.html">Ver CV</a>
-              <a class="btn ghost" href="#contacto">Contactar</a>
+              <a
+                class="btn ghost"
+                href="https://github.com/Mattarzu"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub
+              </a>
+              <a class="btn ghost" href="#contacto">Contacto</a>
             </div>
+
             <div class="hero-metrics">
               <article>
+                <strong>Full Stack</strong>
+                <span>Frontend, backend y base de datos integrados</span>
+              </article>
+              <article>
                 <strong>Realtime</strong>
-                <span>Actualización operativa en tiempo real</span>
+                <span>Actualización operativa con Socket.io</span>
               </article>
               <article>
-                <strong>Release</strong>
-                <span>Build y despliegue orientados a producción</span>
-              </article>
-              <article>
-                <strong>Backend</strong>
-                <span>API y base de datos integradas</span>
+                <strong>Deploy</strong>
+                <span>Build, validación y salida a producción</span>
               </article>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="container section reveal">
+      <section id="perfil" class="container section reveal">
         <div class="section-head">
-          <p class="kicker">RESULTADO</p>
-          <h2>Impacto técnico tangible</h2>
+          <p class="kicker">PERFIL</p>
+          <h2>Desarrollo full stack con enfoque práctico</h2>
         </div>
         <div class="impact-grid">
           <article>
-            <h3>Realtime operativo</h3>
+            <h3>Producto real</h3>
             <p>
-              El staff recibe y procesa reportes en tiempo real, con estados
-              trazables de punta a punta.
+              Desarrollo aplicaciones pensadas para uso real, con foco en claridad,
+              funcionalidad y mantenibilidad.
             </p>
           </article>
           <article>
-            <h3>Release con control</h3>
+            <h3>Base técnica sólida</h3>
             <p>
-              Build, e2e, backup/restore y rollback readiness ejecutados antes
-              de marcar GO.
+              Trabajo con React, Node.js, PostgreSQL, Prisma y Socket.io para construir
+              soluciones end-to-end.
             </p>
           </article>
           <article>
-            <h3>Deploy productivo</h3>
+            <h3>Visión operativa</h3>
             <p>
-              Backend desplegado en Railway con health endpoint activo y
-              monitoreo básico.
+              Mi experiencia en soporte técnico e infraestructura me aporta criterio sobre
+              estabilidad, troubleshooting y despliegue.
             </p>
           </article>
         </div>
@@ -109,135 +121,131 @@
       <section id="proyectos" class="container section reveal">
         <div class="section-head">
           <p class="kicker">PROYECTOS</p>
-          <h2>Trabajo reciente</h2>
+          <h2>Trabajo destacado</h2>
         </div>
 
         <article id="gymcontrol" class="project-card featured reveal">
           <div class="project-top">
             <h3>GymControl</h3>
-            <span class="badge">Produccion (Railway)</span>
+            <span class="badge">Producción</span>
           </div>
+
           <p>
-            Plataforma de reporte de fallas para gimnasios con flujo operativo
-            de staff en tiempo real. Diseñada para reducir ruido operativo y
-            mejorar trazabilidad.
+            Plataforma full stack para reporte y seguimiento de fallas en máquinas de gimnasio,
+            con actualización en tiempo real para staff y trazabilidad completa del flujo operativo.
           </p>
+
           <ul class="project-points">
-            <li>Stack: React + Node.js + PostgreSQL + Socket.io + Prisma</li>
-            <li>Flujo: PENDING -> CONFIRMED -> RESOLVED</li>
-            <li>Validación: build + health + e2e + backup/restore + rollback</li>
-            <li>Deploy: Railway backend con health check activo</li>
+            <li>Stack: React, Node.js, PostgreSQL, Prisma y Socket.io</li>
+            <li>Flujo operativo: PENDING → CONFIRMED → RESOLVED</li>
+            <li>Persistencia en base de datos y validación end-to-end</li>
+            <li>Deploy con health checks, backup/restore y rollback readiness</li>
           </ul>
+
           <div class="project-actions">
-            <a class="btn primary" href="#contacto">Solicitar demo</a>
-            <a class="btn ghost" href="../PORTFOLIO_CASE_STUDY.md">Ver case study</a>
+            <a class="btn primary" href="#contacto">Solicitar walkthrough</a>
+            <!-- Reemplazar este link cuando exista una URL real -->
+            <!-- <a class="btn ghost" href="./case-study.html">Ver case study</a> -->
           </div>
+
           <p class="project-note">
-            Código privado por acuerdo de demo. Disponible walkthrough técnico por contacto.
+            Código privado. Demo funcional y explicación técnica disponibles por contacto.
           </p>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-top">
+            <h3>TaskFlow API</h3>
+            <span class="badge">Código público</span>
+          </div>
+
+          <p>
+            API REST para gestión de tareas con autenticación, validación y enfoque en buenas
+            prácticas de backend.
+          </p>
+
+          <ul class="project-points">
+            <li>Stack: Node.js, Express, PostgreSQL, Prisma</li>
+            <li>JWT, validación de inputs y rate limiting</li>
+            <li>Tests con Jest y Supertest</li>
+            <li>Docker y base para integración continua</li>
+          </ul>
+
+          <div class="project-actions">
+            <a
+              class="btn ghost"
+              href="https://github.com/Mattarzu/taskflow-api"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Ver código
+            </a>
+          </div>
         </article>
       </section>
 
       <section id="skills" class="container section reveal">
         <div class="section-head">
-          <p class="kicker">SKILLS</p>
-          <h2>Habilidades por stack</h2>
+          <p class="kicker">TECNOLOGÍAS</p>
+          <h2>Stack principal</h2>
         </div>
+
         <div class="skills-grid">
           <article class="skill-meter">
             <div class="skill-meter-head">
               <h3>Frontend</h3>
-              <strong>92%</strong>
             </div>
-            <p>React + Vite, estado global y UX responsive para flujo operativo.</p>
-            <div class="meter-track" aria-hidden="true">
-              <span class="meter-fill" style="--level: 92%"></span>
-            </div>
+            <p>React, Vite, interfaces responsive y manejo de estado para productos web.</p>
           </article>
+
           <article class="skill-meter">
             <div class="skill-meter-head">
               <h3>Backend</h3>
-              <strong>90%</strong>
             </div>
-            <p>Node.js + Express con APIs REST y Socket.io para eventos realtime.</p>
-            <div class="meter-track" aria-hidden="true">
-              <span class="meter-fill" style="--level: 90%"></span>
-            </div>
+            <p>Node.js, Express, APIs REST y eventos en tiempo real con Socket.io.</p>
           </article>
+
           <article class="skill-meter">
             <div class="skill-meter-head">
-              <h3>Servidor y Deploy</h3>
-              <strong>85%</strong>
+              <h3>Base de datos</h3>
             </div>
-            <p>Railway en producción, health endpoint, monitoreo básico y rollback.</p>
-            <div class="meter-track" aria-hidden="true">
-              <span class="meter-fill" style="--level: 85%"></span>
-            </div>
+            <p>PostgreSQL y Prisma con migraciones, seeds y persistencia confiable.</p>
           </article>
+
           <article class="skill-meter">
             <div class="skill-meter-head">
-              <h3>Database</h3>
-              <strong>88%</strong>
+              <h3>Deploy y calidad</h3>
             </div>
-            <p>PostgreSQL + Prisma ORM con migraciones, seeds y respaldos probados.</p>
-            <div class="meter-track" aria-hidden="true">
-              <span class="meter-fill" style="--level: 88%"></span>
-            </div>
+            <p>Health checks, validaciones, E2E, backup/restore y despliegue productivo.</p>
           </article>
+
           <article class="skill-meter">
             <div class="skill-meter-head">
-              <h3>Cybersecurity</h3>
-              <strong>82%</strong>
+              <h3>Herramientas</h3>
             </div>
-            <p>Hardening de API, control de acceso y manejo seguro de secretos/env.</p>
-            <div class="meter-track" aria-hidden="true">
-              <span class="meter-fill" style="--level: 82%"></span>
-            </div>
+            <p>Linux, Git, CLI, debugging técnico y flujo de trabajo orientado a entrega.</p>
           </article>
+
           <article class="skill-meter">
             <div class="skill-meter-head">
-              <h3>QA y Release</h3>
-              <strong>89%</strong>
+              <h3>Seguridad básica</h3>
             </div>
-            <p>Checklist GO/NO-GO con build, e2e, backup/restore y readiness.</p>
-            <div class="meter-track" aria-hidden="true">
-              <span class="meter-fill" style="--level: 89%"></span>
-            </div>
-          </article>
-          <article class="skill-meter">
-            <div class="skill-meter-head">
-              <h3>Observabilidad</h3>
-              <strong>80%</strong>
-            </div>
-            <p>Trazabilidad de estados y validación operativa de punta a punta.</p>
-            <div class="meter-track" aria-hidden="true">
-              <span class="meter-fill" style="--level: 80%"></span>
-            </div>
-          </article>
-          <article class="skill-meter">
-            <div class="skill-meter-head">
-              <h3>Entorno de trabajo</h3>
-              <strong>87%</strong>
-            </div>
-            <p>Linux, Git y CLI para desarrollo, soporte técnico y operación diaria.</p>
-            <div class="meter-track" aria-hidden="true">
-              <span class="meter-fill" style="--level: 87%"></span>
-            </div>
+            <p>Control de acceso, manejo de variables de entorno y hardening básico de API.</p>
           </article>
         </div>
+
         <div class="chips">
           <span>React</span>
           <span>Vite</span>
-          <span>Zustand</span>
           <span>Node.js</span>
           <span>Express</span>
           <span>PostgreSQL</span>
-          <span>Socket.io</span>
           <span>Prisma</span>
+          <span>Socket.io</span>
           <span>Railway</span>
-          <span>E2E</span>
-          <span>Backup/Restore</span>
-          <span>Rollback</span>
+          <span>Docker</span>
+          <span>Jest</span>
+          <span>Supertest</span>
           <span>Linux</span>
           <span>Git</span>
         </div>
@@ -245,34 +253,34 @@
 
       <section id="proceso" class="container section reveal">
         <div class="section-head">
-          <p class="kicker">EXPERIENCIA DE ENTREGA</p>
-          <h2>Cómo trabajo</h2>
+          <p class="kicker">CÓMO TRABAJO</p>
+          <h2>Forma de encarar proyectos</h2>
         </div>
         <ol class="timeline">
           <li>
             <span>01</span>
             <div>
-              <h3>Defino objetivo de negocio</h3>
+              <h3>Entiendo el problema</h3>
               <p>
-                Traduzco necesidad real a flujo simple, medible y demostrable.
+                Traduzco una necesidad real a un flujo claro, medible y técnicamente viable.
               </p>
             </div>
           </li>
           <li>
             <span>02</span>
             <div>
-              <h3>Construyo MVP funcional</h3>
+              <h3>Construyo una solución funcional</h3>
               <p>
-                Priorizo integración end-to-end antes de sobre-optimizar capas.
+                Priorizo integración end-to-end, estructura clara y una base mantenible.
               </p>
             </div>
           </li>
           <li>
             <span>03</span>
             <div>
-              <h3>Cierro release con evidencia</h3>
+              <h3>Valido y entrego</h3>
               <p>
-                Entrego con validaciones técnicas y readiness operativo.
+                Cierro con pruebas, revisión técnica y preparación para despliegue o demo.
               </p>
             </div>
           </li>
@@ -281,10 +289,10 @@
 
       <section id="contacto" class="container section contact reveal">
         <p class="kicker">CONTACTO</p>
-        <h2>Disponible para proyectos y oportunidades</h2>
+        <h2>Disponible para oportunidades laborales y proyectos</h2>
         <p>
-          Si quieres ver demos privadas o revisar arquitectura en detalle, te
-          comparto recorrido técnico y decisiones de implementación.
+          Puedo compartir demos privadas, arquitectura, decisiones técnicas y walkthroughs
+          de implementación.
         </p>
         <div class="contact-actions">
           <a class="btn primary" href="mailto:razzer.howa@gmail.com">Enviar email</a>
@@ -296,8 +304,17 @@
             href="https://www.linkedin.com/in/matias-mercado-10882126b/"
             target="_blank"
             rel="noreferrer"
-            >Abrir LinkedIn</a
           >
+            LinkedIn
+          </a>
+          <a
+            class="btn ghost"
+            href="https://github.com/Mattarzu"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+          </a>
         </div>
         <p class="copy-hint" id="copy-hint" aria-live="polite"></p>
       </section>
@@ -305,7 +322,7 @@
 
     <footer class="site-footer">
       <div class="container">
-        <p>Matias Mercado - Portfolio <span id="year"></span></p>
+        <p>Matías Mercado - Portfolio <span id="year"></span></p>
       </div>
     </footer>
 
