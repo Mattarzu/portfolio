@@ -373,23 +373,67 @@ h1 span {
   margin-top: 1rem;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.8rem;
+  gap: 0.9rem;
 }
 
-.skills-grid article {
+.skill-meter {
   border: 1px solid var(--line);
   border-radius: 16px;
   padding: 1rem;
   background: rgba(20, 20, 20, 0.84);
 }
 
-.skills-grid h3 {
-  margin: 0;
+.skill-meter-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.6rem;
 }
 
-.skills-grid p {
-  margin: 0.3rem 0 0;
+.skill-meter h3 {
+  margin: 0;
+  font-size: 1.02rem;
+}
+
+.skill-meter strong {
+  font-family: "IBM Plex Mono", monospace;
+  color: #ffeeb0;
+  font-size: 0.82rem;
+}
+
+.skill-meter p {
+  margin: 0.35rem 0 0.65rem;
   color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.meter-track {
+  width: 100%;
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+}
+
+.meter-fill {
+  display: block;
+  width: var(--level);
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ffd400, #ffe870);
+  box-shadow: 0 0 15px rgba(255, 212, 0, 0.45);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.reveal.visible .meter-fill {
+  animation: meterGrow 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes meterGrow {
+  to {
+    transform: scaleX(1);
+  }
 }
 
 .chips {
@@ -487,8 +531,8 @@ h1 span {
 
 .reveal {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
 .reveal.visible {

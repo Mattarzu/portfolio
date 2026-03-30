@@ -14,6 +14,9 @@
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <style>
+      html { scroll-behavior: smooth; }
+    </style>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -43,17 +46,13 @@
           <div class="hero-copy">
             <p class="kicker">FULL-STACK DEVELOPER</p>
             <h1>
-              Construyo apps que no solo se ven bien:
-              <span>funcionan en produccion</span>.
+              Desarrollo productos web
+              <span>claros, rapidos y listos para uso real</span>.
             </h1>
             <p class="lead">
               Desarrollo productos web orientados a negocio con foco en resultado,
               estabilidad y despliegue real. React, Node.js, PostgreSQL y Socket.io.
             </p>
-            <div class="hero-meta">
-              <span class="status-dot"></span>
-              <span>Disponible para proyectos freelance y oportunidades remotas</span>
-            </div>
             <div class="hero-cta">
               <a class="btn primary" href="#gymcontrol">Ver caso GymControl</a>
               <a class="btn ghost" href="./cv.html">Ver CV</a>
@@ -61,27 +60,19 @@
             </div>
             <div class="hero-metrics">
               <article>
-                <strong class="stat-value" data-count="100" data-suffix="%">0%</strong>
-                <span>Flujo crítico validado</span>
+                <strong>Realtime</strong>
+                <span>Actualización operativa en tiempo real</span>
               </article>
               <article>
-                <strong class="stat-value" data-count="7" data-suffix="+">0+</strong>
-                <span>Checks de release en verde</span>
+                <strong>Release</strong>
+                <span>Build y despliegue orientados a producción</span>
               </article>
               <article>
-                <strong class="stat-value" data-count="1" data-suffix="">0</strong>
-                <span>Deploy productivo activo</span>
+                <strong>Backend</strong>
+                <span>API y base de datos integradas</span>
               </article>
             </div>
           </div>
-          <figure class="hero-photo-wrap">
-            <img
-              class="hero-photo"
-              src="./assets/profile.jpg"
-              alt="Foto de perfil de Matias Mercado"
-              loading="eager"
-            />
-          </figure>
         </div>
       </section>
 
@@ -138,13 +129,7 @@
             <li>Deploy: Railway backend con health check activo</li>
           </ul>
           <div class="project-actions">
-            <a
-              class="btn primary"
-              href="https://gym-control-production.up.railway.app/api/health"
-              target="_blank"
-              rel="noreferrer"
-              >Ver health endpoint</a
-            >
+            <a class="btn primary" href="#contacto">Solicitar demo</a>
             <a class="btn ghost" href="../PORTFOLIO_CASE_STUDY.md">Ver case study</a>
           </div>
           <p class="project-note">
@@ -156,33 +141,105 @@
       <section id="skills" class="container section reveal">
         <div class="section-head">
           <p class="kicker">SKILLS</p>
-          <h2>Foco técnico</h2>
+          <h2>Habilidades por stack</h2>
         </div>
         <div class="skills-grid">
-          <article>
-            <h3>Frontend</h3>
-            <p>React, Vite, estado con Zustand, UX responsive.</p>
+          <article class="skill-meter">
+            <div class="skill-meter-head">
+              <h3>Frontend</h3>
+              <strong>92%</strong>
+            </div>
+            <p>React + Vite, estado global y UX responsive para flujo operativo.</p>
+            <div class="meter-track" aria-hidden="true">
+              <span class="meter-fill" style="--level: 92%"></span>
+            </div>
           </article>
-          <article>
-            <h3>Backend</h3>
-            <p>Node.js, Express, APIs REST, Socket.io realtime.</p>
+          <article class="skill-meter">
+            <div class="skill-meter-head">
+              <h3>Backend</h3>
+              <strong>90%</strong>
+            </div>
+            <p>Node.js + Express con APIs REST y Socket.io para eventos realtime.</p>
+            <div class="meter-track" aria-hidden="true">
+              <span class="meter-fill" style="--level: 90%"></span>
+            </div>
           </article>
-          <article>
-            <h3>Data</h3>
-            <p>PostgreSQL, Prisma ORM, migraciones y seeds.</p>
+          <article class="skill-meter">
+            <div class="skill-meter-head">
+              <h3>Servidor y Deploy</h3>
+              <strong>85%</strong>
+            </div>
+            <p>Railway en producción, health endpoint, monitoreo básico y rollback.</p>
+            <div class="meter-track" aria-hidden="true">
+              <span class="meter-fill" style="--level: 85%"></span>
+            </div>
           </article>
-          <article>
-            <h3>Release</h3>
-            <p>Go/No-Go checklist, e2e, backup/restore, rollback.</p>
+          <article class="skill-meter">
+            <div class="skill-meter-head">
+              <h3>Database</h3>
+              <strong>88%</strong>
+            </div>
+            <p>PostgreSQL + Prisma ORM con migraciones, seeds y respaldos probados.</p>
+            <div class="meter-track" aria-hidden="true">
+              <span class="meter-fill" style="--level: 88%"></span>
+            </div>
+          </article>
+          <article class="skill-meter">
+            <div class="skill-meter-head">
+              <h3>Cybersecurity</h3>
+              <strong>82%</strong>
+            </div>
+            <p>Hardening de API, control de acceso y manejo seguro de secretos/env.</p>
+            <div class="meter-track" aria-hidden="true">
+              <span class="meter-fill" style="--level: 82%"></span>
+            </div>
+          </article>
+          <article class="skill-meter">
+            <div class="skill-meter-head">
+              <h3>QA y Release</h3>
+              <strong>89%</strong>
+            </div>
+            <p>Checklist GO/NO-GO con build, e2e, backup/restore y readiness.</p>
+            <div class="meter-track" aria-hidden="true">
+              <span class="meter-fill" style="--level: 89%"></span>
+            </div>
+          </article>
+          <article class="skill-meter">
+            <div class="skill-meter-head">
+              <h3>Observabilidad</h3>
+              <strong>80%</strong>
+            </div>
+            <p>Trazabilidad de estados y validación operativa de punta a punta.</p>
+            <div class="meter-track" aria-hidden="true">
+              <span class="meter-fill" style="--level: 80%"></span>
+            </div>
+          </article>
+          <article class="skill-meter">
+            <div class="skill-meter-head">
+              <h3>Entorno de trabajo</h3>
+              <strong>87%</strong>
+            </div>
+            <p>Linux, Git y CLI para desarrollo, soporte técnico y operación diaria.</p>
+            <div class="meter-track" aria-hidden="true">
+              <span class="meter-fill" style="--level: 87%"></span>
+            </div>
           </article>
         </div>
         <div class="chips">
           <span>React</span>
+          <span>Vite</span>
+          <span>Zustand</span>
           <span>Node.js</span>
+          <span>Express</span>
           <span>PostgreSQL</span>
           <span>Socket.io</span>
           <span>Prisma</span>
           <span>Railway</span>
+          <span>E2E</span>
+          <span>Backup/Restore</span>
+          <span>Rollback</span>
+          <span>Linux</span>
+          <span>Git</span>
         </div>
       </section>
 
