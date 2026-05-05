@@ -3,345 +3,373 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Matías Mercado | Full Stack Developer</title>
+    <title>M M LAB | Proyectos</title>
     <meta
       name="description"
-      content="Portfolio de Matías Mercado, Full Stack Developer. Proyectos con React, Node.js, PostgreSQL, Socket.io y despliegue productivo."
+      content="M M LAB: proyectos de software, automatización, IA local, backend, frontend y herramientas propias."
     />
-    <meta property="og:title" content="Matías Mercado | Full Stack Developer" />
+
+    <meta property="og:title" content="M M LAB | Proyectos" />
     <meta
       property="og:description"
-      content="Portfolio profesional de Matías Mercado. Desarrollo, integración y resolución de problemas técnicos."
+      content="Proyectos personales de software, IA local, automatización, infraestructura y desarrollo web."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://mattarzu.github.io/portfolio/" />
     <meta property="og:image" content="https://mattarzu.github.io/portfolio/preview.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="es_AR" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Matías Mercado | Full Stack Developer" />
+    <meta name="twitter:title" content="M M LAB | Proyectos" />
     <meta
       name="twitter:description"
-      content="Portfolio profesional de Matías Mercado. Desarrollo, integración y resolución de problemas técnicos."
+      content="M M LAB: software, automatización, IA local, PolyLLM, Qwen, NeuroFleet, GymControl y herramientas propias."
     />
     <meta name="twitter:image" content="https://mattarzu.github.io/portfolio/preview.png" />
 
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      html { scroll-behavior: smooth; }
-    </style>
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body>
-    <div class="bg-shape shape-a"></div>
-    <div class="bg-shape shape-b"></div>
-    <div class="grain"></div>
 
+  <body>
     <header class="site-header">
       <div class="container nav">
-        <span class="brand">MATÍAS MERCADO</span>
-        <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav">
-          Menú
-        </button>
-        <nav id="main-nav">
-          <a href="#perfil">Perfil</a>
+        <a class="brand" href="#inicio">M M LAB</a>
+
+        <nav class="nav-links" aria-label="Navegación principal">
+          <a href="#sobre-mi">Sobre mí</a>
           <a href="#proyectos">Proyectos</a>
-          <a href="#skills">Tecnologías</a>
-          <a href="#proceso">Cómo trabajo</a>
-          <a href="./cv.html">CV</a>
-          <a href="#contacto">Contacto</a>
+          <a href="#stack">Stack</a>
+          <a href="#roadmap">Roadmap</a>
+          <a href="#contacto">GitHub</a>
         </nav>
       </div>
     </header>
 
-    <main>
-      <section class="hero container reveal">
-        <div class="hero-layout">
-          <div class="hero-copy">
-            <p class="kicker">FULL STACK DEVELOPER</p>
-<h1>
-  Matías Mercado
-  <span>Desarrollador Full Stack</span>
-</h1>
-<p class="lead">
-  Desarrollo soluciones digitales con enfoque práctico, buena base técnica
-  y capacidad para adaptarme a distintos stacks, entornos y necesidades de negocio.
-  Busco oportunidades donde pueda aportar en desarrollo, integración y resolución de problemas.
-</p>
-            <div class="hero-cta">
-              <a class="btn primary" href="#proyectos">Ver proyectos</a>
-              <a class="btn ghost" href="./cv.html">Ver CV</a>
-              <a
-                class="btn ghost"
-                href="https://github.com/Mattarzu"
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub
-              </a>
-              <a class="btn ghost" href="#contacto">Contacto</a>
-            </div>
+    <main id="inicio">
+      <section class="hero container">
+        <div class="hero-copy">
+          <p class="eyebrow">LABORATORIO</p>
+          <div class="hero-title-wrap">
+            <h1>
+              Software y
+              <span>automatización</span>
+            </h1>
 
-            <div class="hero-metrics">
-              <article>
-                <strong>Full Stack</strong>
-                <span>Frontend, backend y base de datos integrados</span>
-              </article>
-              <article>
-                <strong>Realtime</strong>
-                <span>Actualización operativa con Socket.io</span>
-              </article>
-              <article>
-                <strong>Deploy</strong>
-                <span>Build, validación y salida a producción</span>
-              </article>
-            </div>
+            
+<button class="hero-mascot panda-roamer" type="button" aria-label="M M Panda: ver proyectos">
+  <span class="hero-panda-bubble">M M Panda</span>
+
+  <span class="hero-panda-full" aria-hidden="true">
+    <span class="hero-panda-head">
+      <span class="hero-panda-ear left"></span>
+      <span class="hero-panda-ear right"></span>
+      <span class="hero-panda-eye left"></span>
+      <span class="hero-panda-eye right"></span>
+      <span class="hero-panda-nose"></span>
+      <span class="hero-panda-mouth"></span>
+    </span>
+
+    <span class="hero-panda-body">
+      <span class="hero-panda-arm left"></span>
+      <span class="hero-panda-arm right"></span>
+      <span class="hero-panda-belly"></span>
+    </span>
+
+    <span class="hero-panda-legs">
+      <span class="hero-panda-leg left"></span>
+      <span class="hero-panda-leg right"></span>
+    </span>
+  </span>
+</button>
+
+          </div>
+          <p class="lead">
+            Espacio centralizado para documentar y mostrar proyectos propios:
+            routers LLM, agentes locales, herramientas de desarrollo, sistemas
+            Linux, automatización, seguridad, backend, frontend y experimentos
+            con inteligencia artificial.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#proyectos">Ver proyectos</a>
+            <a class="btn secondary" href="#stack">Stack técnico</a>
+            <a class="btn secondary" href="https://github.com/Mattarzu" target="_blank" rel="noreferrer">GitHub</a>
           </div>
         </div>
+
+        <aside class="hero-panel" aria-label="Resumen del laboratorio">
+          <div class="metric-card">
+            <strong>IA local</strong>
+            <span>Qwen, llama.cpp, rutas híbridas y ejecución local</span>
+          </div>
+          <div class="metric-card">
+            <strong>Automatización</strong>
+            <span>Scripts, validaciones, CLI internas y flujos reproducibles</span>
+          </div>
+          <div class="metric-card">
+            <strong>Infraestructura</strong>
+            <span>Linux, red local, workers GPU y documentación operativa</span>
+          </div>
+        </aside>
       </section>
 
-            <section id="perfil" class="container section reveal">
-        <div class="section-head">
-          <p class="kicker">PERFIL</p>
-          <h2>Perfil técnico adaptable y orientado a resolución</h2>
+
+      <section id="sobre-mi" class="section container about-section">
+        <div class="section-heading">
+          <p class="eyebrow">SOBRE MÍ</p>
+          <h2>Construyo sistemas propios para resolver problemas reales</h2>
+          <p>
+            Soy desarrollador full stack con foco en automatización, IA local,
+            sistemas Linux, backend, frontend y herramientas operativas. M M LAB
+            funciona como mi espacio público para mostrar proyectos, documentar
+            avances y convertir ideas técnicas en sistemas utilizables.
+          </p>
         </div>
-        <div class="impact-grid">
+
+        <div class="about-grid">
           <article>
-            <h3>Versatilidad técnica</h3>
-            <p>
-              Trabajo en desarrollo full stack, integración, backend, frontend y resolución
-              de problemas técnicos, con capacidad de adaptación a distintos stacks y contextos.
-            </p>
+            <strong>Enfoque</strong>
+            <span>Diseño soluciones prácticas, mantenibles y verificables.</span>
           </article>
           <article>
-            <h3>Base práctica</h3>
-            <p>
-              Me enfoco en soluciones funcionales, mantenibles y aplicables a necesidades reales,
-              priorizando claridad técnica y criterio de implementación.
-            </p>
+            <strong>Forma de trabajo</strong>
+            <span>Iteración incremental, pruebas, documentación y control por Git.</span>
           </article>
           <article>
-            <h3>Visión operativa</h3>
-            <p>
-              Mi experiencia técnica también me aporta criterio para troubleshooting,
-              estabilidad y trabajo en entornos reales de uso.
-            </p>
+            <strong>Intereses</strong>
+            <span>IA local, agentes, automatización, seguridad Linux y productos web.</span>
           </article>
         </div>
       </section>
 
-            <section id="proyectos" class="container section reveal">
-        <div class="section-head">
-          <p class="kicker">PROYECTOS</p>
-          <h2>Experiencia y trabajo destacado</h2>
+      <section id="proyectos" class="section container">
+        <div class="section-heading">
+          <p class="eyebrow">PROYECTOS ACTIVOS</p>
+          <h2>Laboratorio de sistemas propios</h2>
+          <p>
+            Proyectos personales en distintas etapas: algunos ya están en uso local,
+            otros están en validación, documentación o desarrollo incremental.
+          </p>
         </div>
 
-        <article id="gymcontrol" class="project-card featured reveal">
-          <div class="project-top">
+        <div class="project-grid">
+          <article class="project-card featured">
+            <div class="project-top">
+              <span class="status active">Activo</span>
+              <span class="tag">IA local</span>
+            </div>
+            <h3>PolyLLM Router</h3>
+            <p>
+              Router local/API para coordinar modelos locales y externos. Usa Qwen
+              como ejecutor principal, planificación híbrida, perfiles de costo,
+              agentes controlados y validaciones offline.
+            </p>
+            <ul>
+              <li>Qwen local como executor final</li>
+              <li>DeepSeek/Kimi como planner opcional</li>
+              <li>Rutas híbridas, control de costo y metadata</li>
+            </ul>
+          </article>
+
+          <article class="project-card featured">
+            <div class="project-top">
+              <span class="status active">Activo</span>
+              <span class="tag">Qwen</span>
+            </div>
+            <h3>Qwen Code Core</h3>
+            <p>
+              Entorno local para trabajar con Qwen en tareas de código, chat
+              interactivo, contexto de proyecto, validación de respuestas y perfiles
+              de runtime sobre llama.cpp.
+            </p>
+            <ul>
+              <li>CLI propia para prompts de código</li>
+              <li>Contexto automático con presupuesto</li>
+              <li>Perfil large validado con contexto extendido</li>
+            </ul>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <span class="status active">Activo</span>
+              <span class="tag">Infraestructura</span>
+            </div>
+            <h3>NeuroFleet</h3>
+            <p>
+              Sistema personal para organizar entornos técnicos, validar configuraciones,
+              documentar capacidades y mantener flujos seguros de automatización
+              sin exponer detalles internos.
+            </p>
+            <ul>
+              <li>Inventario JSON validado</li>
+              <li>Workers GPU y perfiles por nodo</li>
+              <li>Dry-runs protegidos por guards</li>
+            </ul>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <span class="status stable">Estable</span>
+              <span class="tag">Web app</span>
+            </div>
             <h3>GymControl</h3>
-            <span class="badge">Proyecto full stack</span>
-          </div>
-
-          <p>
-            Plataforma para reporte y gestión de incidencias operativas, diseñada para
-            ordenar flujos de trabajo, mejorar trazabilidad y dar visibilidad en tiempo real.
-          </p>
-
-          <ul class="project-points">
-            <li>Implementación full stack con frontend, backend, base de datos y tiempo real</li>
-            <li>Estados operativos trazables: PENDING → CONFIRMED → RESOLVED</li>
-            <li>Persistencia con PostgreSQL + Prisma y validación end-to-end</li>
-            <li>Despliegue y preparación de release con health checks y respaldo operativo</li>
-          </ul>
-
-          <div class="project-actions">
-            <a class="btn primary" href="#contacto">Solicitar walkthrough</a>
-          </div>
-
-          <p class="project-note">
-            Código privado. Disponible demo funcional, explicación técnica y recorrido de arquitectura por contacto.
-          </p>
-        </article>
-
-        <article class="project-card reveal">
-          <div class="project-top">
-            <h3>TaskFlow API</h3>
-            <span class="badge">Backend público</span>
-          </div>
-
-          <p>
-            API REST orientada a gestión de tareas, con foco en autenticación, validación,
-            estructura mantenible y buenas prácticas de backend.
-          </p>
-
-          <ul class="project-points">
-            <li>Node.js, Express, PostgreSQL y Prisma</li>
-            <li>JWT, validación de entradas y rate limiting</li>
-            <li>Testing con Jest y Supertest</li>
-            <li>Preparada para ejecución con Docker e integración continua</li>
-          </ul>
-
-          <div class="project-actions">
-            <a
-              class="btn ghost"
-              href="https://github.com/Mattarzu/taskflow-api"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Ver código
-            </a>
-          </div>
-        </article>
-      </section>
-
-      <section id="skills" class="container section reveal">
-        <div class="section-head">
-          <p class="kicker">TECNOLOGÍAS</p>
-          <h2>Stack principal</h2>
-        </div>
-
-        <div class="skills-grid">
-          <article class="skill-meter">
-            <div class="skill-meter-head">
-              <h3>Frontend</h3>
-            </div>
-            <p>React, Vite, interfaces responsive y manejo de estado para productos web.</p>
+            <p>
+              Aplicación web orientada a gestión operativa. Integra frontend,
+              backend, base de datos, estados trazables y lógica de confirmación
+              para flujos reales.
+            </p>
+            <ul>
+              <li>Frontend + backend + persistencia</li>
+              <li>Estados operativos y validación</li>
+              <li>Preparación para despliegue</li>
+            </ul>
           </article>
 
-          <article class="skill-meter">
-            <div class="skill-meter-head">
-              <h3>Backend</h3>
+          <article class="project-card">
+            <div class="project-top">
+              <span class="status planned">En diseño</span>
+              <span class="tag">Seguridad</span>
             </div>
-            <p>Node.js, Express, APIs REST y eventos en tiempo real con Socket.io.</p>
+            <h3>Antivirus / Hardening Linux</h3>
+            <p>
+              Proyecto de herramientas para análisis local, escaneo, hardening,
+              monitoreo básico y documentación de seguridad en equipos Linux.
+            </p>
+            <ul>
+              <li>Escaneos locales y reportes</li>
+              <li>Checklist de hardening</li>
+              <li>Automatización de auditorías simples</li>
+            </ul>
           </article>
 
-          <article class="skill-meter">
-            <div class="skill-meter-head">
-              <h3>Base de datos</h3>
+          <article class="project-card">
+            <div class="project-top">
+              <span class="status planned">En desarrollo</span>
+              <span class="tag">IA aplicada</span>
             </div>
-            <p>PostgreSQL y Prisma con migraciones, seeds y persistencia confiable.</p>
+            <h3>Traductor IA</h3>
+            <p>
+              Traductor asistido por IA para flujos de texto, documentación,
+              prompts y adaptación de lenguaje técnico entre español e inglés.
+            </p>
+            <ul>
+              <li>Traducción técnica</li>
+              <li>Normalización de tono</li>
+              <li>Preparado para integración con modelos locales</li>
+            </ul>
           </article>
-
-          <article class="skill-meter">
-            <div class="skill-meter-head">
-              <h3>Deploy y calidad</h3>
-            </div>
-            <p>Health checks, validaciones, E2E, backup/restore y despliegue productivo.</p>
-          </article>
-
-          <article class="skill-meter">
-            <div class="skill-meter-head">
-              <h3>Herramientas</h3>
-            </div>
-            <p>Linux, Git, CLI, debugging técnico y flujo de trabajo orientado a entrega.</p>
-          </article>
-
-          <article class="skill-meter">
-            <div class="skill-meter-head">
-              <h3>Seguridad básica</h3>
-            </div>
-            <p>Control de acceso, manejo de variables de entorno y hardening básico de API.</p>
-          </article>
-        </div>
-
-        <div class="chips">
-          <span>React</span>
-          <span>Vite</span>
-          <span>Node.js</span>
-          <span>Express</span>
-          <span>PostgreSQL</span>
-          <span>Prisma</span>
-          <span>Socket.io</span>
-          <span>Railway</span>
-          <span>Docker</span>
-          <span>Jest</span>
-          <span>Supertest</span>
-          <span>Linux</span>
-          <span>Git</span>
         </div>
       </section>
 
-      <section id="proceso" class="container section reveal">
-        <div class="section-head">
-          <p class="kicker">CÓMO TRABAJO</p>
-          <h2>Forma de encarar proyectos</h2>
+      <section id="stack" class="section container">
+        <div class="section-heading">
+          <p class="eyebrow">STACK</p>
+          <h2>Tecnologías principales</h2>
         </div>
-        <ol class="timeline">
-          <li>
+
+        <div class="stack-grid">
+          <div class="stack-card">
+            <h3>IA local</h3>
+            <p>Qwen, llama.cpp, GGUF, perfiles de contexto, endpoints OpenAI-compatible.</p>
+          </div>
+
+          <div class="stack-card">
+            <h3>Backend</h3>
+            <p>Python, Node.js, APIs, validación, CLI, pruebas unitarias y automatización.</p>
+          </div>
+
+          <div class="stack-card">
+            <h3>Frontend</h3>
+            <p>HTML, CSS, JavaScript, interfaces estáticas, dashboards y documentación visual.</p>
+          </div>
+
+          <div class="stack-card">
+            <h3>Linux & Ops</h3>
+            <p>Arch/Fedora, systemd, tmux, SSH, Git, scripts reproducibles y control local.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="roadmap" class="section container">
+        <div class="section-heading">
+          <p class="eyebrow">ROADMAP</p>
+          <h2>Próximos frentes</h2>
+        </div>
+
+        <div class="timeline">
+          <article>
             <span>01</span>
             <div>
-              <h3>Entiendo el problema</h3>
-              <p>
-                Traduzco una necesidad real a un flujo claro, medible y técnicamente viable.
-              </p>
+              <h3>Convertir esta web en dashboard de proyectos</h3>
+              <p>Agregar páginas individuales por proyecto, capturas, logs de validación y enlaces a repositorios.</p>
             </div>
-          </li>
-          <li>
+          </article>
+
+          <article>
             <span>02</span>
             <div>
-              <h3>Construyo una solución funcional</h3>
-              <p>
-                Priorizo integración end-to-end, estructura clara y una base mantenible.
-              </p>
+              <h3>Documentar PolyLLM, Qwen y NeuroFleet</h3>
+              <p>Crear fichas técnicas con arquitectura, estado actual, comandos, garantías y próximos pasos.</p>
             </div>
-          </li>
-          <li>
+          </article>
+
+          <article>
             <span>03</span>
             <div>
-              <h3>Valido y entrego</h3>
-              <p>
-                Cierro con pruebas, revisión técnica y preparación para despliegue o demo.
-              </p>
+              <h3>Publicar proyectos secundarios</h3>
+              <p>Integrar GymControl, antivirus/hardening y traductor IA como módulos visibles del laboratorio.</p>
             </div>
-          </li>
-        </ol>
+          </article>
+        </div>
       </section>
 
-      <section id="contacto" class="container section contact reveal">
-        <p class="kicker">CONTACTO</p>
-        <h2>Disponible para oportunidades laborales y proyectos</h2>
+      <section id="contacto" class="section container contact-card">
+        <p class="eyebrow">REPOSITORIOS</p>
+        <h2>GitHub como base pública</h2>
         <p>
-          Puedo compartir demos privadas, arquitectura, decisiones técnicas y walkthroughs
-          de implementación.
+          Los proyectos se organizan de forma incremental: ramas de trabajo,
+          validaciones documentadas, commits pequeños y separación entre pruebas,
+          runtime real y documentación.
         </p>
-        <div class="contact-actions">
-          <a class="btn primary" href="mailto:razzer.howa@gmail.com">Enviar email</a>
-          <button class="btn ghost" id="copy-email" type="button">
-            Copiar email
-          </button>
-          <a
-            class="btn ghost"
-            href="https://www.linkedin.com/in/matias-mercado-10882126b/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            LinkedIn
-          </a>
-          <a
-            class="btn ghost"
-            href="https://github.com/Mattarzu"
-            target="_blank"
-            rel="noreferrer"
-          >
-            GitHub
-          </a>
-        </div>
-        <p class="copy-hint" id="copy-hint" aria-live="polite"></p>
+
+        <a class="btn primary" href="https://github.com/Mattarzu" target="_blank" rel="noreferrer">
+          Abrir GitHub
+        </a>
       </section>
     </main>
 
+
+    <aside class="panda-assistant" aria-label="Asistente panda de M M LAB">
+      <button class="panda-toggle" type="button" aria-expanded="false" aria-controls="panda-panel">
+        <span class="panda-face" aria-hidden="true">
+          <span class="panda-ear left"></span>
+          <span class="panda-ear right"></span>
+          <span class="panda-eye left"></span>
+          <span class="panda-eye right"></span>
+          <span class="panda-nose"></span>
+        </span>
+      </button>
+
+      <div id="panda-panel" class="panda-panel" hidden>
+        <button class="panda-close" type="button" aria-label="Cerrar asistente panda">×</button>
+        <p class="panda-kicker">M M PANDA</p>
+        <p id="panda-message" aria-live="polite">
+          Bienvenido a M M LAB. Te puedo guiar por los proyectos, el stack y el roadmap.
+        </p>
+
+        <div class="panda-actions">
+          <a href="#proyectos">Proyectos</a>
+          <a href="#stack">Stack</a>
+          <a href="#roadmap">Roadmap</a>
+        </div>
+      </div>
+    </aside>
+
+
     <footer class="site-footer">
       <div class="container">
-        <p>Matías Mercado - Portfolio <span id="year"></span></p>
+        <p>M M LAB · Software y automatización · <span id="year"></span></p>
       </div>
     </footer>
 
