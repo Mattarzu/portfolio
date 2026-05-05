@@ -1484,3 +1484,150 @@ body[data-panda-mood="github"] .panda-mode {
     display: none;
   }
 }
+
+/* ===== Hero V4: mejor equilibrio visual ===== */
+
+.hero {
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.75fr);
+  gap: clamp(32px, 5vw, 72px);
+}
+
+.hero-copy {
+  min-width: 0;
+}
+
+.hero-title-wrap {
+  max-width: 760px;
+}
+
+.hero-title-wrap h1 {
+  max-width: 760px;
+  font-size: clamp(3.4rem, 6.6vw, 6.2rem);
+  line-height: 0.94;
+  overflow-wrap: normal;
+}
+
+.hero-title-wrap h1 span {
+  display: block;
+  max-width: 100%;
+}
+
+.hero-panel {
+  align-self: center;
+  max-width: 470px;
+  justify-self: end;
+}
+
+.lead {
+  max-width: 740px;
+}
+
+@media (max-width: 1180px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-panel {
+    justify-self: stretch;
+    max-width: none;
+  }
+
+  .hero-title-wrap {
+    max-width: 900px;
+  }
+
+  .hero-title-wrap h1 {
+    max-width: 900px;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-title-wrap h1 {
+    font-size: clamp(3rem, 15vw, 4.4rem);
+  }
+}
+
+/* ===== Hero V5: corregir título superpuesto ===== */
+
+.hero {
+  grid-template-columns: minmax(0, 0.95fr) minmax(360px, 0.75fr);
+  column-gap: clamp(72px, 8vw, 150px);
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+}
+
+.hero-title-wrap {
+  max-width: 680px;
+}
+
+.hero-title {
+  display: grid;
+  gap: 0.04em;
+  max-width: 680px;
+  margin: 0;
+  font-size: clamp(3.4rem, 5.4vw, 5.8rem);
+  line-height: 0.9;
+  letter-spacing: -0.065em;
+}
+
+.title-main,
+.title-accent {
+  display: block;
+  max-width: 100%;
+}
+
+.title-main {
+  color: var(--text);
+}
+
+.title-accent {
+  color: var(--accent);
+  font-size: 0.86em;
+  letter-spacing: -0.075em;
+}
+
+.hero-panel {
+  position: relative;
+  z-index: 1;
+  max-width: 460px;
+  justify-self: end;
+}
+
+.lead {
+  max-width: 660px;
+}
+
+@media (max-width: 1180px) {
+  .hero {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
+
+  .hero-title-wrap,
+  .hero-title {
+    max-width: 900px;
+  }
+
+  .title-accent {
+    font-size: 0.9em;
+  }
+
+  .hero-panel {
+    max-width: none;
+    justify-self: stretch;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-title {
+    font-size: clamp(3rem, 14vw, 4.4rem);
+  }
+
+  .title-accent {
+    font-size: 0.82em;
+  }
+}
