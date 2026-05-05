@@ -513,10 +513,15 @@
 
           <label>
             Mensaje
-            <textarea name="message" rows="4" placeholder="Contame qué querés consultar..." required></textarea>
+            <textarea name="message" rows="4" maxlength="2000" placeholder="Contame qué querés consultar..." required></textarea>
           </label>
 
-          <button class="panda-contact-submit" type="submit">Preparar mensaje</button>
+          <label class="panda-honeypot" aria-hidden="true">
+            Website
+            <input name="website" type="text" tabindex="-1" autocomplete="off" />
+          </label>
+
+          <button class="panda-contact-submit" type="submit">Enviar mensaje</button>
         </form>
       </div>
     </aside>

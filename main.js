@@ -572,6 +572,14 @@ window.addEventListener("scroll", scheduleMove, { passive: true });
   const mode = document.getElementById("panda-mode");
   const hint = document.getElementById("panda-hint");
   const toggle = document.querySelector(".panda-toggle");
+  const submitBtn = document.querySelector(".panda-contact-submit");
+
+  const localContactEndpoint = "http://127.0.0.1:8000/contact";
+  const isLocalHost = ["127.0.0.1", "localhost"].includes(window.location.hostname);
+  const contactEndpoint =
+    window.CHAT_ENDPOINT ||
+    window.MMLAB_CONTACT_ENDPOINT ||
+    (isLocalHost ? localContactEndpoint : "");
 
   if (!openBtn || !form || !panel || !message) return;
 
@@ -610,14 +618,73 @@ window.addEventListener("scroll", scheduleMove, { passive: true });
     }
   }
 
+  function setSubmitting(isSubmitting) {
+    if (!submitBtn) return;
+    submitBtn.disabled = isSubmitting;
+    submitBtn.textContent = isSubmitting ? "Enviando..." : "Enviar mensaje";
+  }
+
+  async function sendContact(payload) {
+    if (!contactEndpoint) {
+      return { ok: false, reason: "missing-endpoint" };
+    }
+
+    try {
+      const response = await fetch(contactEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        return { ok: false, reason: `http-${response.status}` };
+      }
+
+      const data = await response.json().catch(() => null);
+      if (!data || data.ok !== true) {
+        return { ok: false, reason: "invalid-response" };
+      }
+
+      return { ok: true };
+    } catch {
+      return { ok: false, reason: "network-error" };
+    }
+  }
+
+  async function fallbackToClipboard(payload) {
+    const prepared = buildMessage(payload);
+    const copied = await copyToClipboard(prepared);
+
+    if (copied) {
+      setPandaMessage(
+        "Mensaje preparado",
+        "No encontré endpoint público de contacto, pero dejé el mensaje copiado al portapapeles.",
+        "Cuando el backend esté desplegado, el envío va a ser automático desde este mismo formulario."
+      );
+      form.reset();
+      form.hidden = true;
+      return;
+    }
+
+    setPandaMessage(
+      "Mensaje preparado",
+      "El mensaje está listo, pero el navegador no permitió copiarlo automáticamente.",
+      "Falta configurar el endpoint público del backend para envío automático."
+    );
+  }
+
   openBtn.addEventListener("click", () => {
     openPandaPanel();
     form.hidden = false;
 
     setPandaMessage(
       "Modo contacto",
-      "Completá el formulario y preparo el mensaje para Matt.",
-      "Tip: por ahora el sitio es estático; el envío automático se conecta después con backend, email o Telegram."
+      "Completá el formulario y Panda se lo envía a Matt.",
+      contactEndpoint
+        ? "El mensaje se enviará por el backend de contacto."
+        : "Todavía falta configurar el endpoint público; por ahora uso fallback al portapapeles."
     );
 
     form.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -630,7 +697,10 @@ window.addEventListener("scroll", scheduleMove, { passive: true });
     const payload = {
       name: String(formData.get("name") || "").trim(),
       contact: String(formData.get("contact") || "").trim(),
-      message: String(formData.get("message") || "").trim()
+      message: String(formData.get("message") || "").trim(),
+      page: window.location.href,
+      createdAt: new Date().toISOString(),
+      website: String(formData.get("website") || "").trim()
     };
 
     if (!payload.name || !payload.contact || !payload.message) {
@@ -642,23 +712,36 @@ window.addEventListener("scroll", scheduleMove, { passive: true });
       return;
     }
 
-    const prepared = buildMessage(payload);
-    const copied = await copyToClipboard(prepared);
+    setSubmitting(true);
+    setPandaMessage(
+      "Enviando mensaje",
+      "Panda está enviando el mensaje a Matt.",
+      "No cierres el panel hasta ver la confirmación."
+    );
 
-    if (copied) {
+    const result = await sendContact(payload);
+    setSubmitting(false);
+
+    if (result.ok) {
       setPandaMessage(
-        "Mensaje preparado",
-        "Listo. El mensaje quedó copiado al portapapeles para enviarlo a Matt.",
-        "Siguiente mejora: conectar este formulario a Telegram o email para envío automático."
+        "Mensaje enviado",
+        "Listo. Matt recibió la notificación por Telegram.",
+        "Te va a responder por el contacto que dejaste."
       );
       form.reset();
       form.hidden = true;
-    } else {
-      setPandaMessage(
-        "Mensaje preparado",
-        "El mensaje está listo, pero el navegador no permitió copiarlo automáticamente.",
-        "Copialo manualmente o conectamos backend de contacto en la siguiente fase."
-      );
+      return;
     }
+
+    if (result.reason === "missing-endpoint") {
+      await fallbackToClipboard(payload);
+      return;
+    }
+
+    setPandaMessage(
+      "No pude enviar el mensaje",
+      "El backend de contacto no respondió correctamente.",
+      "Probá de nuevo en unos minutos o copiá el mensaje manualmente."
+    );
   });
 })();
