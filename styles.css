@@ -2425,3 +2425,98 @@ body[data-panda-section="contacto"] .panda-panel::before {
     grid-template-columns: 1fr;
   }
 }
+
+/* ===== Panda controls + accessibility ===== */
+
+.panda-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  border-top: 1px solid rgba(255, 214, 10, 0.12);
+  padding-top: 12px;
+}
+
+.panda-controls button {
+  min-height: 34px;
+  border: 1px solid rgba(255, 214, 10, 0.16);
+  border-radius: 999px;
+  padding: 0 12px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.panda-controls button:hover {
+  border-color: rgba(255, 214, 10, 0.38);
+  color: var(--accent);
+}
+
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: 16px;
+  z-index: 999;
+  transform: translateY(-160%);
+  border-radius: 999px;
+  padding: 10px 14px;
+  background: var(--accent);
+  color: #111008;
+  font-weight: 900;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@media (max-width: 760px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .site-header {
+    z-index: 80;
+  }
+
+  .hero {
+    padding-top: 70px;
+  }
+
+  .hero-mascot.panda-roamer {
+    width: 118px !important;
+    height: 176px !important;
+    z-index: 42;
+    opacity: 0.9;
+  }
+
+  .hero-panda-bubble {
+    display: none;
+  }
+
+  .panda-panel {
+    z-index: 82;
+    max-height: min(280px, calc(100vh - 120px));
+    overflow: auto;
+    border-radius: 22px;
+  }
+
+  .panda-toggle {
+    z-index: 83;
+  }
+
+  .panda-actions,
+  .panda-controls {
+    gap: 6px;
+  }
+
+  .panda-actions a,
+  .panda-controls button {
+    min-height: 32px;
+    font-size: 0.8rem;
+  }
+
+  .panda-hint {
+    display: none !important;
+  }
+}

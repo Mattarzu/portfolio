@@ -5,6 +5,8 @@
   const toggle = document.querySelector(".panda-toggle");
   const panel = document.getElementById("panda-panel");
   const closeBtn = document.querySelector(".panda-close");
+  const pauseBtn = document.querySelector(".panda-pause");
+  const hideBtn = document.querySelector(".panda-hide");
   const message = document.getElementById("panda-message");
   const hint = document.getElementById("panda-hint");
   const mode = document.getElementById("panda-mode");
@@ -152,6 +154,8 @@
 
   let currentState = states.default;
   let userClosedPanel = false;
+  let pandaPaused = sessionStorage.getItem("mm-panda-paused") === "1";
+  let pandaHidden = sessionStorage.getItem("mm-panda-hidden") === "1";
   let animationFrame = null;
   let autoCloseTimer = null;
 
@@ -162,7 +166,12 @@
     }, delay);
   }
 
+  function isSmallScreen() {
+    return window.innerWidth <= 760;
+  }
+
   function setOpen(open) {
+    if (pandaHidden) open = false;
     panel.hidden = !open;
     toggle.setAttribute("aria-expanded", String(open));
   }
@@ -217,7 +226,7 @@
 
     const isSmall = vw <= 760;
 
-    if (isSmall) {
+    if (isSmall || pandaPaused) {
       return {
         x: vw - 132,
         y: vh - 210,
@@ -263,6 +272,16 @@
   function moveMascot() {
     animationFrame = null;
 
+    if (pandaHidden) {
+      heroMascot.hidden = true;
+      toggle.hidden = true;
+      panel.hidden = true;
+      return;
+    }
+
+    heroMascot.hidden = false;
+    toggle.hidden = false;
+
     const vw = window.innerWidth;
     const vh = window.innerHeight;
     const target = getMascotTarget();
@@ -298,7 +317,38 @@
     animationFrame = requestAnimationFrame(moveMascot);
   }
 
-  window.addEventListener("scroll", scheduleMove, { passive: true });
+  
+  function setPaused(nextPaused) {
+    pandaPaused = nextPaused;
+    sessionStorage.setItem("mm-panda-paused", nextPaused ? "1" : "0");
+
+    if (pauseBtn) pauseBtn.textContent = nextPaused ? "Reanudar" : "Pausar";
+
+    applyState({
+      mode: nextPaused ? "Panda pausado" : "Modo guía",
+      mood: "idle",
+      section: currentState.section || "inicio",
+      text: nextPaused
+        ? "Me quedo quieto para no tapar contenido."
+        : "Vuelvo a acompañarte por la página.",
+      hint: nextPaused
+        ? "Tip: podés reanudar el movimiento cuando quieras."
+        : "Tip: el panda se mueve por márgenes para no ocupar espacio físico."
+    });
+
+    setOpen(true);
+    autoClosePanel(4200);
+    scheduleMove();
+  }
+
+  function hidePandaForSession() {
+    pandaHidden = true;
+    sessionStorage.setItem("mm-panda-hidden", "1");
+    setOpen(false);
+    scheduleMove();
+  }
+
+window.addEventListener("scroll", scheduleMove, { passive: true });
   window.addEventListener("resize", scheduleMove);
 
   toggle.addEventListener("click", () => {
@@ -317,6 +367,17 @@
       userClosedPanel = true;
       setOpen(false);
     });
+  }
+
+  if (pauseBtn) {
+    pauseBtn.textContent = pandaPaused ? "Reanudar" : "Pausar";
+    pauseBtn.addEventListener("click", () => {
+      setPaused(!pandaPaused);
+    });
+  }
+
+  if (hideBtn) {
+    hideBtn.addEventListener("click", hidePandaForSession);
   }
 
   document.addEventListener("keydown", (event) => {
@@ -404,6 +465,11 @@
   window.addEventListener("load", () => {
     applyState("default");
     scheduleMove();
+
+    if (pandaHidden) {
+      scheduleMove();
+      return;
+    }
 
     setTimeout(() => {
       if (!sessionStorage.getItem("mm-panda-greeted")) {
