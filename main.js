@@ -12,56 +12,56 @@
   const pandaLinks = document.querySelectorAll(".panda-actions a");
   const projectCards = document.querySelectorAll(".project-card");
 
-  if (!toggle || !panel || !message) return;
+  if (!toggle || !panel || !message || !heroMascot) return;
 
   const states = {
     welcome: {
       mode: "Modo bienvenida",
       mood: "welcome",
-      text: "Hola, soy M M Panda. Bienvenido a M M LAB. Te acompaño por los proyectos, el stack y el roadmap.",
-      hint: "Tip: podés empezar por Proyectos para ver el laboratorio principal."
+      text: "Hola, soy M M Panda. Bienvenido a M M LAB.",
+      hint: "Tip: recorré proyectos, stack y roadmap para entender rápido el perfil técnico."
     },
     default: {
       mode: "Modo guía",
       mood: "idle",
-      text: "Estoy acá para guiarte por M M LAB.",
-      hint: "Tip: pasá el mouse por una tarjeta para ver contexto rápido."
+      text: "Estoy recorriendo M M LAB con vos.",
+      hint: "Tip: podés seguirme mientras navego por distintas secciones."
     },
     hero: {
       mode: "Modo inicio",
       mood: "hero",
-      text: "Este laboratorio reúne software, automatización, IA local y herramientas propias.",
-      hint: "Tip: el objetivo es mostrar sistemas reales sin exponer infraestructura privada."
+      text: "Esta portada resume software, automatización y herramientas técnicas.",
+      hint: "Tip: el hero ahora usa todo el ancho porque quitamos el panel derecho fijo."
     },
     about: {
-      mode: "Modo enfoque",
+      mode: "Modo sobre mí",
       mood: "focus",
-      text: "Esta sección resume cómo construís: iteración, pruebas, documentación y Git.",
-      hint: "Tip: esta parte le da identidad a la web sin convertirla en un CV clásico."
+      text: "Esta sección explica tu enfoque técnico sin convertir la página en un CV tradicional.",
+      hint: "Tip: conviene hablar de capacidades, no de infraestructura interna."
     },
     projects: {
       mode: "Modo proyectos",
       mood: "build",
-      text: "Estos son los proyectos principales del laboratorio.",
-      hint: "Tip: Los proyectos principales muestran IA aplicada, automatización y herramientas técnicas."
+      text: "Acá están las soluciones y proyectos técnicos principales.",
+      hint: "Tip: los nombres públicos venden mejor que los nombres internos."
     },
     stack: {
       mode: "Modo stack",
       mood: "stack",
-      text: "Este bloque resume las tecnologías base del laboratorio.",
-      hint: "Tip: mantené esta sección corta; sirve como lectura rápida para visitantes."
+      text: "Esta parte resume las tecnologías y áreas principales.",
+      hint: "Tip: mantené esta sección compacta y clara."
     },
     roadmap: {
       mode: "Modo roadmap",
       mood: "roadmap",
-      text: "El roadmap ordena los próximos frentes de M M LAB.",
-      hint: "Tip: un roadmap público ayuda a mostrar evolución y dirección técnica."
+      text: "El roadmap muestra evolución y próximos pasos.",
+      hint: "Tip: una hoja de ruta da sensación de proyecto vivo."
     },
     contact: {
-      mode: "Modo repositorios",
+      mode: "Modo GitHub",
       mood: "github",
-      text: "GitHub es la base pública donde se organizan los proyectos.",
-      hint: "Tip: los repos deberían mostrar README, validaciones y estado actual."
+      text: "GitHub es la base pública de tus proyectos.",
+      hint: "Tip: siempre conviene acompañar con README claros."
     }
   };
 
@@ -71,26 +71,26 @@
       {
         mode: "Proyecto IA",
         mood: "build",
-        text: "El Router LLM híbrido coordina modelos, planificación asistida, ejecución controlada y control de costo.",
-        hint: "Tip: agregale después una ficha técnica con arquitectura general y flujo de decisión."
+        text: "Este proyecto coordina modelos, rutas híbridas y validación técnica.",
+        hint: "Tip: describilo por función, no por nombre interno."
       }
     ],
     [
       "asistente local de código",
       {
-        mode: "Proyecto Qwen",
+        mode: "Proyecto código",
         mood: "focus",
-        text: "El Asistente local de código concentra ayuda técnica, contexto de proyecto y validación de respuestas.",
-        hint: "Tip: conviene mostrar ejemplos de uso sin exponer rutas, tokens ni infraestructura."
+        text: "Esta herramienta se enfoca en ayuda técnica, contexto y validación.",
+        hint: "Tip: podés mostrar ejemplos de uso o capturas."
       }
     ],
     [
       "orquestador de entornos técnicos",
       {
-        mode: "Proyecto infra",
+        mode: "Proyecto entornos",
         mood: "stack",
-        text: "El Orquestador de entornos técnicos organiza configuraciones, validaciones y flujos de automatización sin exponer datos sensibles.",
-        hint: "Tip: mantené esta descripción pública y abstracta, sin detalles internos."
+        text: "Este proyecto organiza configuraciones, validaciones y automatización.",
+        hint: "Tip: mantenelo abstracto y público, sin detalles internos."
       }
     ],
     [
@@ -98,8 +98,8 @@
       {
         mode: "Proyecto web",
         mood: "build",
-        text: "GymControl muestra una app web con frontend, backend, persistencia y estados operativos.",
-        hint: "Tip: este proyecto puede tener una demo visual o capturas del flujo."
+        text: "GymControl representa una línea más de aplicación web operativa.",
+        hint: "Tip: una demo o flujo visual lo haría más fuerte."
       }
     ],
     [
@@ -107,8 +107,8 @@
       {
         mode: "Proyecto seguridad",
         mood: "roadmap",
-        text: "El proyecto de antivirus/hardening apunta a auditoría local, escaneo y reportes de seguridad.",
-        hint: "Tip: separá seguridad defensiva, hardening y monitoreo en módulos."
+        text: "Este frente apunta a seguridad, hardening y auditoría básica.",
+        hint: "Tip: separar módulos defensivos ayuda mucho."
       }
     ],
     [
@@ -116,14 +116,11 @@
       {
         mode: "Proyecto IA aplicada",
         mood: "github",
-        text: "El Traductor IA puede servir para traducción técnica, documentación y adaptación de tono.",
-        hint: "Tip: una demo con español ↔ inglés técnico puede hacerlo más claro."
+        text: "Este proyecto puede convertirse en una utilidad muy clara para usuarios finales.",
+        hint: "Tip: una mini demo español ↔ inglés técnico lo haría más tangible."
       }
     ]
   ]);
-
-  let userInteracted = false;
-  let greetingShown = false;
 
   function setOpen(open) {
     panel.hidden = !open;
@@ -134,16 +131,51 @@
     const next = typeof state === "string" ? states[state] : state;
     if (!next) return;
 
-    message.textContent = next.text;
-
     if (mode) mode.textContent = next.mode;
+    if (message) message.textContent = next.text;
     if (hint) hint.textContent = next.hint;
 
     document.body.dataset.pandaMood = next.mood || "idle";
   }
 
+  // === Movimiento del panda ===
+  function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+  }
+
+  function movePanda() {
+    const doc = document.documentElement;
+    const scrollTop = window.scrollY || doc.scrollTop;
+    const maxScroll = Math.max(doc.scrollHeight - window.innerHeight, 1);
+    const progress = scrollTop / maxScroll;
+
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    const pandaX = clamp(40 + (vw - 240) * (0.15 + 0.7 * Math.abs(Math.sin(progress * Math.PI * 1.35))), 24, vw - 200);
+    const pandaY = clamp(110 + (vh - 300) * (0.1 + 0.75 * progress), 90, vh - 250);
+
+    heroMascot.style.transform = `translate3d(${pandaX}px, ${pandaY}px, 0)`;
+
+    const panelOffsetX = pandaX + 120;
+    const panelOffsetY = pandaY + 40;
+
+    const panelX = clamp(panelOffsetX, 16, vw - 340);
+    const panelY = clamp(panelOffsetY, 16, vh - 260);
+
+    panel.style.transform = `translate3d(${panelX}px, ${panelY}px, 0)`;
+
+    const toggleX = clamp(pandaX + 112, 8, vw - 76);
+    const toggleY = clamp(pandaY + 150, 8, vh - 76);
+
+    toggle.style.transform = `translate3d(${toggleX}px, ${toggleY}px, 0)`;
+    toggle.style.position = "fixed";
+  }
+
+  window.addEventListener("scroll", movePanda, { passive: true });
+  window.addEventListener("resize", movePanda);
+
   toggle.addEventListener("click", () => {
-    userInteracted = true;
     const open = panel.hidden;
     setOpen(open);
     if (open) applyState("default");
@@ -152,38 +184,31 @@
   if (closeBtn) {
     closeBtn.addEventListener("click", (event) => {
       event.stopPropagation();
-      userInteracted = true;
       setOpen(false);
     });
   }
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && !panel.hidden) {
-      userInteracted = true;
       setOpen(false);
     }
   });
 
-  if (heroMascot) {
-    heroMascot.addEventListener("click", () => {
-      userInteracted = true;
-      const target = document.getElementById("proyectos");
-      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
-      setOpen(true);
-      applyState("projects");
-    });
+  heroMascot.addEventListener("click", () => {
+    const target = document.getElementById("proyectos");
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    setOpen(true);
+    applyState("projects");
+  });
 
-    heroMascot.addEventListener("mouseenter", () => {
-      setOpen(true);
-      applyState("hero");
-    });
-  }
+  heroMascot.addEventListener("mouseenter", () => {
+    setOpen(true);
+    applyState("hero");
+  });
 
   pandaLinks.forEach((link) => {
     link.addEventListener("click", () => {
-      userInteracted = true;
       const href = (link.getAttribute("href") || "").replace("#", "");
-
       if (href === "proyectos") applyState("projects");
       else if (href === "stack") applyState("stack");
       else if (href === "roadmap") applyState("roadmap");
@@ -195,16 +220,17 @@
     const title = card.querySelector("h3")?.textContent?.trim().toLowerCase();
     if (!title) return;
 
-    const projectState = projectMessages.get(title);
-    if (!projectState) return;
+    const state = projectMessages.get(title);
+    if (!state) return;
 
     card.addEventListener("mouseenter", () => {
       setOpen(true);
-      applyState(projectState);
+      applyState(state);
     });
   });
 
   const sectionStates = new Map([
+    ["inicio", "hero"],
     ["sobre-mi", "about"],
     ["proyectos", "projects"],
     ["stack", "stack"],
@@ -233,20 +259,18 @@
 
   window.addEventListener("load", () => {
     applyState("default");
-
-    if (greetingShown) return;
+    movePanda();
 
     setTimeout(() => {
       if (!sessionStorage.getItem("mm-panda-greeted")) {
-        greetingShown = true;
         setOpen(true);
         applyState("welcome");
         sessionStorage.setItem("mm-panda-greeted", "1");
 
         setTimeout(() => {
-          if (!userInteracted) setOpen(false);
-        }, 6500);
+          setOpen(false);
+        }, 5000);
       }
-    }, 900);
+    }, 700);
   });
 })();
