@@ -11,7 +11,6 @@ python3 -m http.server 8081
 
 Abrir:
 - http://127.0.0.1:8081
-- http://127.0.0.1:8081/cv.html
 
 ## Publicar rapido
 Opciones recomendadas:

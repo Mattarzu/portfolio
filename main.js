@@ -1,77 +1,747 @@
-const revealNodes = document.querySelectorAll(".reveal");
-const statNodes = document.querySelectorAll(".stat-value");
-const navToggle = document.querySelector(".nav-toggle");
-const mainNav = document.querySelector("#main-nav");
-const copyBtn = document.querySelector("#copy-email");
-const copyHint = document.querySelector("#copy-hint");
-const yearNode = document.querySelector("#year");
+(() => {
+  const year = document.getElementById("year");
+  if (year) year.textContent = new Date().getFullYear();
 
-function animateStat(node) {
-  const target = Number.parseInt(node.dataset.count || "0", 10);
-  const suffix = node.dataset.suffix || "";
-  const duration = 850;
-  const start = performance.now();
+  const toggle = document.querySelector(".panda-toggle");
+  const panel = document.getElementById("panda-panel");
+  const closeBtn = document.querySelector(".panda-close");
+  const pauseBtn = document.querySelector(".panda-pause");
+  const hideBtn = document.querySelector(".panda-hide");
+  const message = document.getElementById("panda-message");
+  const hint = document.getElementById("panda-hint");
+  const mode = document.getElementById("panda-mode");
+  const heroMascot = document.querySelector(".hero-mascot");
+  const pandaLinks = document.querySelectorAll(".panda-actions a");
+  const projectCards = document.querySelectorAll(".project-card");
 
-  function frame(now) {
-    const elapsed = now - start;
-    const progress = Math.min(elapsed / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    const current = Math.round(target * eased);
-    node.textContent = `${current}${suffix}`;
-    if (progress < 1) requestAnimationFrame(frame);
+  if (!toggle || !panel || !message || !heroMascot) return;
+
+  heroMascot.hidden = false;
+  toggle.hidden = false;
+  heroMascot.removeAttribute("hidden");
+  toggle.removeAttribute("hidden");
+  sessionStorage.removeItem("mm-panda-hidden");
+
+  const states = {
+    welcome: {
+      mode: "Modo bienvenida",
+      mood: "welcome",
+      section: "inicio",
+      text: "Hola, soy M M Panda. Te acompaño por M M LAB: software, automatización e IA aplicada.",
+      hint: "Tip: la web muestra capacidades, proyectos y método de trabajo sin exponer detalles privados."
+    },
+    default: {
+      mode: "Modo guía",
+      mood: "idle",
+      section: "inicio",
+      text: "Estoy recorriendo M M LAB con vos.",
+      hint: "Tip: pasá por las tarjetas para ver contexto rápido."
+    },
+    hero: {
+      mode: "Modo inicio",
+      mood: "hero",
+      section: "inicio",
+      text: "Esta portada resume el enfoque: software, automatización e IA aplicada.",
+      hint: "Tip: el hero queda limpio porque el panda no ocupa una columna fija."
+    },
+    about: {
+      mode: "Modo sobre mí",
+      mood: "focus",
+      section: "sobre-mi",
+      text: "Esta sección resume el enfoque técnico sin convertir la página en un CV clásico.",
+      hint: "Tip: es mejor mostrar criterio, método y capacidades que datos privados."
+    },
+    projects: {
+      mode: "Modo proyectos",
+      mood: "build",
+      section: "proyectos",
+      text: "Acá están las soluciones, productos y prototipos principales.",
+      hint: "Tip: la descripción pública debe explicar valor y función, no detalles internos."
+    },
+    method: {
+      mode: "Modo método",
+      mood: "focus",
+      section: "metodo",
+      text: "Esta sección muestra cómo trabajás: diseño, validación, automatización y documentación.",
+      hint: "Tip: el método comunica criterio de ingeniería, no solo tecnologías."
+    },
+    capabilities: {
+      mode: "Modo capacidades",
+      mood: "stack",
+      section: "capacidades",
+      text: "Acá se resumen las áreas técnicas principales: software, automatización, IA aplicada y operaciones.",
+      hint: "Tip: esta sección ayuda a entender qué podés construir sin revisar todos los proyectos."
+    },
+    stack: {
+      mode: "Modo stack",
+      mood: "stack",
+      section: "stack",
+      text: "Esta parte resume las tecnologías y áreas principales.",
+      hint: "Tip: mantené el stack corto, legible y orientado a capacidades."
+    },
+    roadmap: {
+      mode: "Modo roadmap",
+      mood: "roadmap",
+      section: "roadmap",
+      text: "El roadmap muestra evolución y próximos pasos.",
+      hint: "Tip: una hoja de ruta hace que el proyecto se perciba vivo."
+    },
+    contact: {
+      mode: "Modo GitHub",
+      mood: "github",
+      section: "contacto",
+      text: "GitHub es la base pública de los proyectos.",
+      hint: "Tip: cada repo debería tener README claro, estado actual y comandos reproducibles."
+    }
+  };
+
+  const projectMessages = new Map([
+    [
+      "router llm híbrido",
+      {
+        mode: "Proyecto IA",
+        mood: "build",
+        section: "proyectos",
+        text: "Este proyecto coordina modelos, rutas híbridas y validación técnica.",
+        hint: "Tip: describilo por función y arquitectura general, no por nombres internos."
+      }
+    ],
+    [
+      "asistente local de código",
+      {
+        mode: "Proyecto código",
+        mood: "focus",
+        section: "proyectos",
+        text: "Esta herramienta se enfoca en ayuda técnica, contexto y validación.",
+        hint: "Tip: podés mostrar ejemplos de uso sin rutas locales ni tokens."
+      }
+    ],
+    [
+      "orquestador de entornos técnicos",
+      {
+        mode: "Proyecto entornos",
+        mood: "stack",
+        section: "proyectos",
+        text: "Este proyecto organiza configuraciones, validaciones y automatización.",
+        hint: "Tip: mantenelo abstracto y público, sin hostnames ni detalles internos."
+      }
+    ],
+    [
+      "gymcontrol",
+      {
+        mode: "Proyecto web",
+        mood: "build",
+        section: "proyectos",
+        text: "GymControl representa una aplicación web operativa.",
+        hint: "Tip: una demo visual o capturas del flujo lo harían más fuerte."
+      }
+    ],
+    [
+      "antivirus / hardening linux",
+      {
+        mode: "Proyecto seguridad",
+        mood: "roadmap",
+        section: "proyectos",
+        text: "Este frente apunta a seguridad, hardening y auditoría básica.",
+        hint: "Tip: separá seguridad defensiva, hardening y monitoreo en módulos."
+      }
+    ],
+    [
+      "traductor ia",
+      {
+        mode: "Proyecto IA aplicada",
+        mood: "github",
+        section: "proyectos",
+        text: "Este proyecto puede convertirse en una utilidad clara para usuarios finales.",
+        hint: "Tip: una mini demo español ↔ inglés técnico lo haría más tangible."
+      }
+    ]
+  ]);
+
+  let currentState = states.default;
+  let userClosedPanel = false;
+  let pandaPaused = sessionStorage.getItem("mm-panda-paused") === "1";
+  let pandaHidden = false;
+  sessionStorage.removeItem("mm-panda-hidden");
+  let animationFrame = null;
+  let autoCloseTimer = null;
+
+  function autoClosePanel(delay = 5200) {
+    clearTimeout(autoCloseTimer);
+    autoCloseTimer = setTimeout(() => {
+      setOpen(false);
+    }, delay);
   }
 
-  requestAnimationFrame(frame);
-}
+  function isSmallScreen() {
+    return window.innerWidth <= 760;
+  }
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
+  function setOpen(open) {
+    if (pandaHidden) open = false;
+    panel.hidden = !open;
+    toggle.setAttribute("aria-expanded", String(open));
+  }
 
-      entry.target.classList.add("visible");
-      if (entry.target.classList.contains("stat-value")) {
-        animateStat(entry.target);
-      }
-      observer.unobserve(entry.target);
+  function applyState(state) {
+    const next = typeof state === "string" ? states[state] : state;
+    if (!next) return;
+
+    currentState = next;
+
+    if (mode) mode.textContent = next.mode;
+    if (message) message.textContent = next.text;
+    if (hint) hint.textContent = next.hint;
+
+    document.body.dataset.pandaMood = next.mood || "idle";
+    document.body.dataset.pandaSection = next.section || "inicio";
+
+    scheduleMove();
+  }
+
+  function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+  }
+
+  function getSectionProgress() {
+    const doc = document.documentElement;
+    const scrollTop = window.scrollY || doc.scrollTop;
+    const maxScroll = Math.max(doc.scrollHeight - window.innerHeight, 1);
+    return scrollTop / maxScroll;
+  }
+
+  function getSectionPosition(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (!section) return null;
+
+    const rect = section.getBoundingClientRect();
+    return {
+      top: rect.top,
+      bottom: rect.bottom,
+      height: rect.height,
+      center: rect.top + rect.height / 2
+    };
+  }
+
+  function getMascotTarget() {
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    const section = currentState.section || "inicio";
+    const sectionPos = getSectionPosition(section);
+    const progress = getSectionProgress();
+
+    const isSmall = vw <= 760;
+
+    if (isSmall || pandaPaused) {
+      return {
+        x: vw - 132,
+        y: vh - 210,
+        side: "right"
+      };
+    }
+
+    const sideBySection = {
+      inicio: "right",
+      "sobre-mi": "right",
+      capacidades: "left",
+      proyectos: "right",
+      stack: "left",
+      roadmap: "right",
+      contacto: "left"
+    };
+
+    const side = sideBySection[section] || "right";
+
+    const margin = 42;
+    const safeTop = 96;
+    const safeBottom = 34;
+    const mascotWidth = 170;
+    const mascotHeight = 230;
+
+    const x =
+      side === "left"
+        ? margin
+        : vw - mascotWidth - margin;
+
+    let y;
+
+    if (sectionPos && sectionPos.top < vh && sectionPos.bottom > 0) {
+      y = clamp(sectionPos.center - mascotHeight * 0.5, safeTop, vh - mascotHeight - safeBottom);
+    } else {
+      const wave = Math.sin(progress * Math.PI * 2) * 42;
+      y = clamp(120 + progress * (vh - 330) + wave, safeTop, vh - mascotHeight - safeBottom);
+    }
+
+    return { x, y, side };
+  }
+
+  function moveMascot() {
+    animationFrame = null;
+
+    if (pandaHidden) {
+      pandaHidden = false;
+      sessionStorage.removeItem("mm-panda-hidden");
+    }
+
+    heroMascot.hidden = false;
+    toggle.hidden = false;
+
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const target = getMascotTarget();
+
+    heroMascot.style.transform = `translate3d(${target.x}px, ${target.y}px, 0)`;
+    heroMascot.dataset.side = target.side;
+
+    toggle.style.position = "fixed";
+    toggle.style.left = "0";
+    toggle.style.top = "0";
+    toggle.style.transform = `translate3d(${target.x + 102}px, ${target.y + 156}px, 0)`;
+
+    const panelWidth = Math.min(340, vw - 32);
+    const panelHeight = 275;
+
+    let panelX =
+      target.side === "left"
+        ? target.x + 150
+        : target.x - panelWidth + 20;
+
+    let panelY = target.y + 30;
+
+    panelX = clamp(panelX, 16, vw - panelWidth - 16);
+    panelY = clamp(panelY, 16, vh - panelHeight - 16);
+
+    panel.style.setProperty("--panda-panel-side", target.side);
+    panel.style.width = `${panelWidth}px`;
+    panel.style.transform = `translate3d(${panelX}px, ${panelY}px, 0)`;
+  }
+
+  function scheduleMove() {
+    if (animationFrame) return;
+    animationFrame = requestAnimationFrame(moveMascot);
+  }
+
+  
+  function setPaused(nextPaused) {
+    pandaPaused = nextPaused;
+    sessionStorage.setItem("mm-panda-paused", nextPaused ? "1" : "0");
+
+    if (pauseBtn) pauseBtn.textContent = nextPaused ? "Reanudar" : "Pausar";
+
+    applyState({
+      mode: nextPaused ? "Panda pausado" : "Modo guía",
+      mood: "idle",
+      section: currentState.section || "inicio",
+      text: nextPaused
+        ? "Me quedo quieto para no tapar contenido."
+        : "Vuelvo a acompañarte por la página.",
+      hint: nextPaused
+        ? "Tip: podés reanudar el movimiento cuando quieras."
+        : "Tip: el panda se mueve por márgenes para no ocupar espacio físico."
     });
-  },
-  { threshold: 0.15 }
-);
 
-revealNodes.forEach((node) => observer.observe(node));
-statNodes.forEach((node) => observer.observe(node));
+    setOpen(true);
+    autoClosePanel(4200);
+    scheduleMove();
+  }
 
-if (navToggle && mainNav) {
-  navToggle.addEventListener("click", () => {
-    const isOpen = mainNav.classList.toggle("open");
-    navToggle.setAttribute("aria-expanded", String(isOpen));
+  function hidePandaForSession() {
+    userClosedPanel = true;
+    setOpen(false);
+  }
+
+window.addEventListener("scroll", scheduleMove, { passive: true });
+  window.addEventListener("resize", scheduleMove);
+
+  toggle.addEventListener("click", () => {
+    userClosedPanel = false;
+    const open = panel.hidden;
+    setOpen(open);
+    if (open) {
+      applyState("default");
+      autoClosePanel();
+    }
   });
 
-  mainNav.querySelectorAll("a").forEach((link) => {
+  if (closeBtn) {
+    closeBtn.addEventListener("click", (event) => {
+      event.stopPropagation();
+      userClosedPanel = true;
+      setOpen(false);
+    });
+  }
+
+  if (pauseBtn) {
+    pauseBtn.textContent = pandaPaused ? "Reanudar" : "Pausar";
+    pauseBtn.addEventListener("click", () => {
+      setPaused(!pandaPaused);
+    });
+  }
+
+  if (hideBtn) {
+    hideBtn.addEventListener("click", hidePandaForSession);
+  }
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !panel.hidden) {
+      userClosedPanel = true;
+      setOpen(false);
+    }
+  });
+
+  heroMascot.addEventListener("click", () => {
+    userClosedPanel = false;
+    const target = document.getElementById("proyectos");
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    setOpen(true);
+    applyState("projects");
+    autoClosePanel();
+  });
+
+  heroMascot.addEventListener("mouseenter", () => {
+    if (!userClosedPanel) {
+      setOpen(true);
+      applyState("hero");
+      autoClosePanel(4200);
+    }
+  });
+
+  pandaLinks.forEach((link) => {
     link.addEventListener("click", () => {
-      mainNav.classList.remove("open");
-      navToggle.setAttribute("aria-expanded", "false");
+      userClosedPanel = false;
+      const href = (link.getAttribute("href") || "").replace("#", "");
+
+      if (href === "proyectos") applyState("projects");
+      else if (href === "stack") applyState("stack");
+      else if (href === "roadmap") applyState("roadmap");
+      else applyState("default");
     });
   });
-}
 
-if (copyBtn && copyHint) {
-  copyBtn.addEventListener("click", async () => {
-    const email = "razzer.howa@gmail.com";
-    try {
-      await navigator.clipboard.writeText(email);
-      copyHint.textContent = "Email copiado al portapapeles.";
-    } catch {
-      copyHint.textContent = `No se pudo copiar. Escribe a: ${email}`;
+  projectCards.forEach((card) => {
+    const title = card.querySelector("h3")?.textContent?.trim().toLowerCase();
+    if (!title) return;
+
+    const state = projectMessages.get(title);
+    if (!state) return;
+
+    card.addEventListener("mouseenter", () => {
+      if (!userClosedPanel) {
+        setOpen(true);
+        applyState(state);
+        autoClosePanel(4800);
+      }
+    });
+  });
+
+  const sectionStates = new Map([
+    ["inicio", "hero"],
+    ["sobre-mi", "about"],
+    ["proyectos", "projects"],
+    ["metodo", "method"],
+    ["capacidades", "capabilities"],
+    ["stack", "stack"],
+    ["roadmap", "roadmap"],
+    ["contacto", "contact"]
+  ]);
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (!visible) return;
+
+      const key = sectionStates.get(visible.target.id);
+      if (key) applyState(key);
+    },
+    { threshold: [0.28, 0.45, 0.7] }
+  );
+
+  sectionStates.forEach((_, id) => {
+    const section = document.getElementById(id);
+    if (section) observer.observe(section);
+  });
+
+  window.addEventListener("load", () => {
+    applyState("default");
+    scheduleMove();
+
+    if (pandaHidden) {
+      scheduleMove();
+      return;
     }
 
     setTimeout(() => {
-      copyHint.textContent = "";
-    }, 2200);
-  });
-}
+      if (!sessionStorage.getItem("mm-panda-greeted")) {
+        userClosedPanel = false;
+        setOpen(true);
+        applyState("welcome");
+        sessionStorage.setItem("mm-panda-greeted", "1");
 
-if (yearNode) {
-  yearNode.textContent = String(new Date().getFullYear());
-}
+        autoClosePanel(5200);
+      }
+    }, 700);
+  });
+})();
+
+(() => {
+  const toggle = document.querySelector(".nav-toggle");
+  const nav = document.getElementById("main-nav");
+  const links = Array.from(document.querySelectorAll(".nav-links a"));
+
+  if (!nav) return;
+
+  function closeMenu() {
+    if (!toggle) return;
+    nav.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+  }
+
+  if (toggle) {
+    toggle.addEventListener("click", () => {
+      const nextOpen = !nav.classList.contains("is-open");
+      nav.classList.toggle("is-open", nextOpen);
+      toggle.setAttribute("aria-expanded", String(nextOpen));
+    });
+  }
+
+  links.forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMenu();
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!toggle || !nav.classList.contains("is-open")) return;
+
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+
+    if (!nav.contains(target) && !toggle.contains(target)) {
+      closeMenu();
+    }
+  });
+
+  const sections = links
+    .map((link) => {
+      const href = link.getAttribute("href") || "";
+      if (!href.startsWith("#")) return null;
+
+      const id = href.replace("#", "");
+      const section = id ? document.getElementById(id) : null;
+      return section ? { id, section, link } : null;
+    })
+    .filter(Boolean);
+
+  if (!sections.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (!visible) return;
+
+      const active = sections.find((item) => item.section === visible.target);
+      if (!active) return;
+
+      sections.forEach((item) => {
+        item.link.classList.toggle("is-active", item.id === active.id);
+      });
+    },
+    {
+      rootMargin: "-22% 0px -58% 0px",
+      threshold: [0.15, 0.35, 0.6]
+    }
+  );
+
+  sections.forEach((item) => observer.observe(item.section));
+})();
+
+(() => {
+  const openBtn = document.querySelector(".panda-contact-open");
+  const form = document.querySelector(".panda-contact-form");
+  const panel = document.getElementById("panda-panel");
+  const message = document.getElementById("panda-message");
+  const mode = document.getElementById("panda-mode");
+  const hint = document.getElementById("panda-hint");
+  const toggle = document.querySelector(".panda-toggle");
+  const submitBtn = document.querySelector(".panda-contact-submit");
+
+  const localContactEndpoint = "http://127.0.0.1:8000/contact";
+  const isLocalHost = ["127.0.0.1", "localhost"].includes(window.location.hostname);
+  const contactEndpoint =
+    window.CHAT_ENDPOINT ||
+    window.MMLAB_CONTACT_ENDPOINT ||
+    (isLocalHost ? localContactEndpoint : "");
+
+  if (!openBtn || !form || !panel || !message) return;
+
+  function openPandaPanel() {
+    panel.hidden = false;
+    if (toggle) toggle.setAttribute("aria-expanded", "true");
+  }
+
+  function setPandaMessage(nextMode, nextMessage, nextHint) {
+    if (mode) mode.textContent = nextMode;
+    message.textContent = nextMessage;
+    if (hint) hint.textContent = nextHint;
+  }
+
+  function buildMessage(data) {
+    return [
+      "Nuevo mensaje desde M M LAB",
+      "",
+      `Nombre: ${data.name}`,
+      `Contacto: ${data.contact}`,
+      "",
+      "Mensaje:",
+      data.message,
+      "",
+      `Página: ${location.href}`,
+      `Fecha: ${new Date().toISOString()}`
+    ].join("\n");
+  }
+
+  async function copyToClipboard(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  function setSubmitting(isSubmitting) {
+    if (!submitBtn) return;
+    submitBtn.disabled = isSubmitting;
+    submitBtn.textContent = isSubmitting ? "Enviando..." : "Enviar mensaje";
+  }
+
+  async function sendContact(payload) {
+    if (!contactEndpoint) {
+      return { ok: false, reason: "missing-endpoint" };
+    }
+
+    try {
+      const response = await fetch(contactEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        return { ok: false, reason: `http-${response.status}` };
+      }
+
+      const data = await response.json().catch(() => null);
+      if (!data || data.ok !== true) {
+        return { ok: false, reason: "invalid-response" };
+      }
+
+      return { ok: true };
+    } catch {
+      return { ok: false, reason: "network-error" };
+    }
+  }
+
+  async function fallbackToClipboard(payload) {
+    const prepared = buildMessage(payload);
+    const copied = await copyToClipboard(prepared);
+
+    if (copied) {
+      setPandaMessage(
+        "Mensaje preparado",
+        "No encontré endpoint público de contacto, pero dejé el mensaje copiado al portapapeles.",
+        "Cuando el backend esté desplegado, el envío va a ser automático desde este mismo formulario."
+      );
+      form.reset();
+      form.hidden = true;
+      return;
+    }
+
+    setPandaMessage(
+      "Mensaje preparado",
+      "El mensaje está listo, pero el navegador no permitió copiarlo automáticamente.",
+      "Falta configurar el endpoint público del backend para envío automático."
+    );
+  }
+
+  openBtn.addEventListener("click", () => {
+    openPandaPanel();
+    form.hidden = false;
+
+    setPandaMessage(
+      "Modo contacto",
+      "Completá el formulario y Panda se lo envía a Matt.",
+      contactEndpoint
+        ? "El mensaje se enviará por el backend de contacto."
+        : "Todavía falta configurar el endpoint público; por ahora uso fallback al portapapeles."
+    );
+
+    form.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const payload = {
+      name: String(formData.get("name") || "").trim(),
+      contact: String(formData.get("contact") || "").trim(),
+      message: String(formData.get("message") || "").trim(),
+      page: window.location.href,
+      createdAt: new Date().toISOString(),
+      website: String(formData.get("website") || "").trim()
+    };
+
+    if (!payload.name || !payload.contact || !payload.message) {
+      setPandaMessage(
+        "Modo contacto",
+        "Faltan datos. Completá nombre, contacto y mensaje.",
+        "Tip: el contacto puede ser email, Telegram u otra forma de respuesta."
+      );
+      return;
+    }
+
+    setSubmitting(true);
+    setPandaMessage(
+      "Enviando mensaje",
+      "Panda está enviando el mensaje a Matt.",
+      "No cierres el panel hasta ver la confirmación."
+    );
+
+    const result = await sendContact(payload);
+    setSubmitting(false);
+
+    if (result.ok) {
+      setPandaMessage(
+        "Mensaje enviado",
+        "Listo. Matt recibió la notificación por Telegram.",
+        "Te va a responder por el contacto que dejaste."
+      );
+      form.reset();
+      form.hidden = true;
+      return;
+    }
+
+    if (result.reason === "missing-endpoint") {
+      await fallbackToClipboard(payload);
+      return;
+    }
+
+    setPandaMessage(
+      "No pude enviar el mensaje",
+      "El backend de contacto no respondió correctamente.",
+      "Probá de nuevo en unos minutos o copiá el mensaje manualmente."
+    );
+  });
+})();

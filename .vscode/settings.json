@@ -1,0 +1,10 @@
+{
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "liveServer.settings.port": 3000,
+  "liveServer.settings.host": "127.0.0.1",
+  "liveServer.settings.root": "/",
+  "liveServer.settings.NoBrowser": false
+}
