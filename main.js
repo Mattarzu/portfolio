@@ -57,6 +57,13 @@
       text: "Esta sección muestra cómo trabajás: diseño, validación, automatización y documentación.",
       hint: "Tip: el método comunica criterio de ingeniería, no solo tecnologías."
     },
+    capabilities: {
+      mode: "Modo capacidades",
+      mood: "stack",
+      section: "capacidades",
+      text: "Acá se resumen las áreas técnicas principales: software, automatización, IA aplicada y operaciones.",
+      hint: "Tip: esta sección ayuda a entender qué podés construir sin revisar todos los proyectos."
+    },
     stack: {
       mode: "Modo stack",
       mood: "stack",
@@ -221,6 +228,7 @@
     const sideBySection = {
       inicio: "right",
       "sobre-mi": "right",
+      capacidades: "left",
       proyectos: "right",
       stack: "left",
       roadmap: "right",
@@ -368,6 +376,7 @@
     ["sobre-mi", "about"],
     ["proyectos", "projects"],
     ["metodo", "method"],
+    ["capacidades", "capabilities"],
     ["stack", "stack"],
     ["roadmap", "roadmap"],
     ["contacto", "contact"]
