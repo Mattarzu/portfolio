@@ -2970,3 +2970,54 @@ body[data-panda-section="contacto"] .panda-panel::before {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* ===== Panda mobile panel polish ===== */
+@media (max-width: 760px) {
+  .panda-panel:not([hidden]) {
+    position: fixed !important;
+    left: 12px !important;
+    right: 12px !important;
+    bottom: 82px !important;
+    top: auto !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: min(560px, calc(100dvh - 128px));
+    transform: none !important;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .panda-panel::before {
+    display: none;
+  }
+
+  .panda-actions,
+  .panda-controls,
+  .panda-contact-actions {
+    gap: 8px;
+  }
+
+  .panda-actions a,
+  .panda-controls button,
+  .panda-contact-open,
+  .panda-contact-submit {
+    min-height: 42px;
+    padding-inline: 14px;
+  }
+
+  .panda-contact-form {
+    gap: 10px;
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+
+  .panda-contact-form input,
+  .panda-contact-form textarea {
+    min-height: 42px;
+    font-size: 16px;
+  }
+
+  .panda-contact-form textarea {
+    min-height: 104px;
+  }
+}
