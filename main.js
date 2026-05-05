@@ -43,7 +43,7 @@
       mode: "Modo proyectos",
       mood: "build",
       text: "Estos son los proyectos principales del laboratorio.",
-      hint: "Tip: PolyLLM, Qwen y NeuroFleet forman el núcleo de IA y automatización."
+      hint: "Tip: Los proyectos principales muestran IA aplicada, automatización y herramientas técnicas."
     },
     stack: {
       mode: "Modo stack",
@@ -67,30 +67,30 @@
 
   const projectMessages = new Map([
     [
-      "polyllm router",
+      "router llm híbrido",
       {
         mode: "Proyecto IA",
         mood: "build",
-        text: "PolyLLM Router coordina modelos locales y externos con control de costo, planner y executor local.",
-        hint: "Tip: agregale después una ficha técnica con arquitectura y flujo planner → executor."
+        text: "El Router LLM híbrido coordina modelos, planificación asistida, ejecución controlada y control de costo.",
+        hint: "Tip: agregale después una ficha técnica con arquitectura general y flujo de decisión."
       }
     ],
     [
-      "qwen code core",
+      "asistente local de código",
       {
         mode: "Proyecto Qwen",
         mood: "focus",
-        text: "Qwen Code Core concentra el runtime local, chat de código, contexto de proyecto y validación.",
-        hint: "Tip: conviene mostrar capturas o ejemplos de prompts de código."
+        text: "El Asistente local de código concentra ayuda técnica, contexto de proyecto y validación de respuestas.",
+        hint: "Tip: conviene mostrar ejemplos de uso sin exponer rutas, tokens ni infraestructura."
       }
     ],
     [
-      "neurofleet",
+      "orquestador de entornos técnicos",
       {
         mode: "Proyecto infra",
         mood: "stack",
-        text: "NeuroFleet organiza capacidades y flujos técnicos sin publicar datos sensibles de máquinas.",
-        hint: "Tip: mantené la descripción pública abstracta, sin hostnames ni rutas internas."
+        text: "El Orquestador de entornos técnicos organiza configuraciones, validaciones y flujos de automatización sin exponer datos sensibles.",
+        hint: "Tip: mantené esta descripción pública y abstracta, sin detalles internos."
       }
     ],
     [
