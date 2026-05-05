@@ -491,19 +491,35 @@
           <a href="#roadmap">Roadmap</a>
         </div>
 
+        <div class="panda-contact-actions">
+          <button class="panda-contact-open" type="button">Hablar con Matt</button>
+        </div>
+
         <div class="panda-controls">
           <button class="panda-pause" type="button">Pausar</button>
           <button class="panda-hide" type="button">Ocultar</button>
         </div>
+      
+        <form class="panda-contact-form" hidden>
+          <label>
+            Nombre
+            <input name="name" type="text" autocomplete="name" placeholder="Tu nombre" required />
+          </label>
+
+          <label>
+            Contacto
+            <input name="contact" type="text" autocomplete="email" placeholder="Email, Telegram o contacto" required />
+          </label>
+
+          <label>
+            Mensaje
+            <textarea name="message" rows="4" placeholder="Contame qué querés consultar..." required></textarea>
+          </label>
+
+          <button class="panda-contact-submit" type="submit">Preparar mensaje</button>
+        </form>
       </div>
     </aside>
-
-
-    <footer class="site-footer">
-      <div class="container">
-        <p>M M LAB · Software y automatización · <span id="year"></span></p>
-      </div>
-    </footer>
 
     <script src="./main.js"></script>
   </body>

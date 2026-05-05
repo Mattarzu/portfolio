@@ -2582,3 +2582,351 @@ body[data-panda-section="contacto"] .panda-panel::before {
   display: flex;
   flex-wrap: wrap;
 }
+
+/* ===== Contact chat widget ===== */
+
+.contact-chat {
+  position: fixed;
+  left: 22px;
+  bottom: 22px;
+  z-index: 90;
+  font-family: inherit;
+}
+
+.contact-chat-toggle {
+  min-height: 48px;
+  border: 1px solid rgba(255, 214, 10, 0.34);
+  border-radius: 999px;
+  padding: 0 18px;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255, 214, 10, 0.18), transparent 42%),
+    rgba(8, 8, 7, 0.94);
+  color: var(--accent);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+.contact-chat-toggle:hover {
+  border-color: var(--accent);
+}
+
+.contact-chat-panel {
+  position: absolute;
+  left: 0;
+  bottom: 62px;
+  width: min(380px, calc(100vw - 44px));
+  max-height: min(620px, calc(100vh - 120px));
+  display: grid;
+  grid-template-rows: auto minmax(120px, 1fr) auto auto;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 16px;
+  background: rgba(8, 8, 7, 0.96);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.contact-chat-panel[hidden] {
+  display: none;
+}
+
+.contact-chat-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  border-bottom: 1px solid rgba(255, 214, 10, 0.12);
+  padding-bottom: 12px;
+}
+
+.contact-chat-header p {
+  margin-bottom: 4px;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+}
+
+.contact-chat-header strong {
+  color: var(--text);
+}
+
+.contact-chat-close {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 214, 10, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.contact-chat-close:hover {
+  color: var(--accent);
+}
+
+.contact-chat-messages {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 2px;
+  scrollbar-width: none;
+}
+
+.contact-chat-messages::-webkit-scrollbar {
+  display: none;
+}
+
+.chat-message {
+  width: fit-content;
+  max-width: 92%;
+  margin: 0;
+  border-radius: 18px;
+  padding: 10px 12px;
+  font-size: 0.94rem;
+}
+
+.chat-message.bot {
+  background: rgba(255, 214, 10, 0.08);
+  color: var(--muted);
+  border: 1px solid rgba(255, 214, 10, 0.12);
+}
+
+.chat-message.user {
+  justify-self: end;
+  background: rgba(255, 214, 10, 0.95);
+  color: #111008;
+  font-weight: 800;
+}
+
+.chat-action-link {
+  width: fit-content;
+  border-radius: 999px;
+  padding: 9px 12px;
+  background: rgba(255, 214, 10, 0.13);
+  color: var(--accent);
+  font-weight: 900;
+}
+
+.contact-chat-quick,
+.panda-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.contact-chat-quick button {
+  min-height: 34px;
+  border: 1px solid rgba(255, 214, 10, 0.16);
+  border-radius: 999px;
+  padding: 0 12px;
+  background: rgba(255, 214, 10, 0.08);
+  color: var(--accent);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.contact-chat-quick button:hover {
+  background: var(--accent);
+  color: #111008;
+}
+
+.contact-chat-form {
+  display: grid;
+  gap: 10px;
+  border-top: 1px solid rgba(255, 214, 10, 0.12);
+  padding-top: 12px;
+}
+
+.contact-chat-form[hidden] {
+  display: none;
+}
+
+.contact-chat-form label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.contact-chat-form input,
+.contact-chat-form textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 214, 10, 0.16);
+  border-radius: 14px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font: inherit;
+}
+
+.contact-chat-form textarea {
+  resize: vertical;
+}
+
+.contact-chat-form input:focus,
+.contact-chat-form textarea:focus {
+  outline: 2px solid rgba(255, 214, 10, 0.34);
+  border-color: rgba(255, 214, 10, 0.4);
+}
+
+.contact-chat-submit {
+  min-height: 42px;
+  border: none;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #111008;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+@media (max-width: 760px) {
+  .contact-chat {
+    left: 14px;
+    bottom: 14px;
+    z-index: 91;
+  }
+
+  .contact-chat-panel {
+    width: calc(100vw - 28px);
+    max-height: min(620px, calc(100vh - 94px));
+    bottom: 58px;
+  }
+
+  .contact-chat-toggle {
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-mascot.panda-roamer {
+    opacity: 0.72;
+  }
+
+  .contact-chat-panel:not([hidden]) ~ * {
+    pointer-events: auto;
+  }
+}
+
+/* ===== Panda recovery: never stay visually hidden ===== */
+
+.hero-mascot.panda-roamer {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.hero-mascot.panda-roamer[hidden],
+.panda-toggle[hidden] {
+  display: block !important;
+}
+
+.panda-toggle {
+  visibility: visible !important;
+}
+
+
+/* ===== Remove standalone contact chat ===== */
+
+.contact-chat,
+.contact-chat-toggle,
+.contact-chat-panel {
+  display: none !important;
+}
+
+/* ===== Integrated Panda contact form ===== */
+
+.panda-contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.panda-contact-open {
+  min-height: 34px;
+  border: 1px solid rgba(255, 214, 10, 0.16);
+  border-radius: 999px;
+  padding: 0 12px;
+  background: rgba(255, 214, 10, 0.1);
+  color: var(--accent);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.panda-contact-open:hover {
+  background: var(--accent);
+  color: #111008;
+}
+
+.panda-contact-form {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+  border-top: 1px solid rgba(255, 214, 10, 0.12);
+  padding-top: 12px;
+}
+
+.panda-contact-form[hidden] {
+  display: none;
+}
+
+.panda-contact-form label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.panda-contact-form input,
+.panda-contact-form textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 214, 10, 0.16);
+  border-radius: 14px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font: inherit;
+}
+
+.panda-contact-form textarea {
+  resize: vertical;
+}
+
+.panda-contact-form input:focus,
+.panda-contact-form textarea:focus {
+  outline: 2px solid rgba(255, 214, 10, 0.34);
+  border-color: rgba(255, 214, 10, 0.4);
+}
+
+.panda-contact-submit {
+  min-height: 38px;
+  border: none;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #111008;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+@media (max-width: 760px) {
+  .panda-contact-form {
+    gap: 8px;
+  }
+
+  .panda-contact-form input,
+  .panda-contact-form textarea {
+    padding: 9px 10px;
+  }
+}

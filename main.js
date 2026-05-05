@@ -16,6 +16,12 @@
 
   if (!toggle || !panel || !message || !heroMascot) return;
 
+  heroMascot.hidden = false;
+  toggle.hidden = false;
+  heroMascot.removeAttribute("hidden");
+  toggle.removeAttribute("hidden");
+  sessionStorage.removeItem("mm-panda-hidden");
+
   const states = {
     welcome: {
       mode: "Modo bienvenida",
@@ -155,7 +161,8 @@
   let currentState = states.default;
   let userClosedPanel = false;
   let pandaPaused = sessionStorage.getItem("mm-panda-paused") === "1";
-  let pandaHidden = sessionStorage.getItem("mm-panda-hidden") === "1";
+  let pandaHidden = false;
+  sessionStorage.removeItem("mm-panda-hidden");
   let animationFrame = null;
   let autoCloseTimer = null;
 
@@ -273,10 +280,8 @@
     animationFrame = null;
 
     if (pandaHidden) {
-      heroMascot.hidden = true;
-      toggle.hidden = true;
-      panel.hidden = true;
-      return;
+      pandaHidden = false;
+      sessionStorage.removeItem("mm-panda-hidden");
     }
 
     heroMascot.hidden = false;
@@ -342,10 +347,8 @@
   }
 
   function hidePandaForSession() {
-    pandaHidden = true;
-    sessionStorage.setItem("mm-panda-hidden", "1");
+    userClosedPanel = true;
     setOpen(false);
-    scheduleMove();
   }
 
 window.addEventListener("scroll", scheduleMove, { passive: true });
@@ -559,4 +562,103 @@ window.addEventListener("scroll", scheduleMove, { passive: true });
   );
 
   sections.forEach((item) => observer.observe(item.section));
+})();
+
+(() => {
+  const openBtn = document.querySelector(".panda-contact-open");
+  const form = document.querySelector(".panda-contact-form");
+  const panel = document.getElementById("panda-panel");
+  const message = document.getElementById("panda-message");
+  const mode = document.getElementById("panda-mode");
+  const hint = document.getElementById("panda-hint");
+  const toggle = document.querySelector(".panda-toggle");
+
+  if (!openBtn || !form || !panel || !message) return;
+
+  function openPandaPanel() {
+    panel.hidden = false;
+    if (toggle) toggle.setAttribute("aria-expanded", "true");
+  }
+
+  function setPandaMessage(nextMode, nextMessage, nextHint) {
+    if (mode) mode.textContent = nextMode;
+    message.textContent = nextMessage;
+    if (hint) hint.textContent = nextHint;
+  }
+
+  function buildMessage(data) {
+    return [
+      "Nuevo mensaje desde M M LAB",
+      "",
+      `Nombre: ${data.name}`,
+      `Contacto: ${data.contact}`,
+      "",
+      "Mensaje:",
+      data.message,
+      "",
+      `Página: ${location.href}`,
+      `Fecha: ${new Date().toISOString()}`
+    ].join("\n");
+  }
+
+  async function copyToClipboard(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  openBtn.addEventListener("click", () => {
+    openPandaPanel();
+    form.hidden = false;
+
+    setPandaMessage(
+      "Modo contacto",
+      "Completá el formulario y preparo el mensaje para Matt.",
+      "Tip: por ahora el sitio es estático; el envío automático se conecta después con backend, email o Telegram."
+    );
+
+    form.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const payload = {
+      name: String(formData.get("name") || "").trim(),
+      contact: String(formData.get("contact") || "").trim(),
+      message: String(formData.get("message") || "").trim()
+    };
+
+    if (!payload.name || !payload.contact || !payload.message) {
+      setPandaMessage(
+        "Modo contacto",
+        "Faltan datos. Completá nombre, contacto y mensaje.",
+        "Tip: el contacto puede ser email, Telegram u otra forma de respuesta."
+      );
+      return;
+    }
+
+    const prepared = buildMessage(payload);
+    const copied = await copyToClipboard(prepared);
+
+    if (copied) {
+      setPandaMessage(
+        "Mensaje preparado",
+        "Listo. El mensaje quedó copiado al portapapeles para enviarlo a Matt.",
+        "Siguiente mejora: conectar este formulario a Telegram o email para envío automático."
+      );
+      form.reset();
+      form.hidden = true;
+    } else {
+      setPandaMessage(
+        "Mensaje preparado",
+        "El mensaje está listo, pero el navegador no permitió copiarlo automáticamente.",
+        "Copialo manualmente o conectamos backend de contacto en la siguiente fase."
+      );
+    }
+  });
 })();
