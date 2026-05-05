@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-AR" data-i18n-page="error.404">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,15 +15,20 @@
   <body>
     <main class="error-page container">
       <p class="eyebrow">404</p>
-      <h1>Página no encontrada</h1>
-      <p class="lead">
+      <h1 data-i18n="error.404.title">Página no encontrada</h1>
+      <p class="lead" data-i18n="error.404.lead">
         El recurso que buscás no existe, fue movido o todavía no está publicado.
       </p>
 
       <div class="hero-actions">
-        <a class="btn primary" href="./index.html">Volver al inicio</a>
-        <a class="btn secondary" href="./projects/index.html">Ver proyectos</a>
+        <a class="btn primary" href="./index.html" data-i18n="error.404.home">Volver al inicio</a>
+        <a class="btn secondary" href="./projects/index.html" data-i18n="error.404.projects">Ver proyectos</a>
       </div>
     </main>
+    <script src="./assets/i18n/translations.js"></script>
+    <script src="./assets/i18n/landing-translations.js"></script>
+    <script src="./assets/i18n/project-pages-translations.js"></script>
+    <script src="./assets/i18n/zh-cn-overrides.js"></script>
+    <script src="./assets/js/i18n.js"></script>
   </body>
 </html>

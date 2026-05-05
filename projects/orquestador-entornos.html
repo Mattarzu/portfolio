@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-AR" data-i18n-page="page.environments">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,40 +27,46 @@
       <div class="container nav">
         <a class="brand" href="../index.html#inicio">M M LAB</a>
 
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-i18n="nav.menu">
           Menú
         </button>
 
-        <nav id="main-nav" class="nav-links" aria-label="Navegación principal">
-          <a href="../index.html#inicio">Inicio</a>
-          <a href="../index.html#sobre-mi">Sobre mí</a>
-          <a href="../index.html#metodo">Método</a>
-          <a href="../index.html#proyectos">Proyectos</a>
-          <a href="../index.html#stack">Stack</a>
-          <a href="../index.html#roadmap">Roadmap</a>
+        <nav id="main-nav" class="nav-links" aria-label="Navegación principal" data-i18n-attr="aria-label:nav.aria">
+          <a href="../index.html#inicio" data-i18n="nav.home">Inicio</a>
+          <a href="../index.html#sobre-mi" data-i18n="nav.about">Sobre mí</a>
+          <a href="../index.html#metodo" data-i18n="nav.method">Método</a>
+          <a href="../index.html#proyectos" data-i18n="nav.projects">Proyectos</a>
+          <a href="../index.html#stack" data-i18n="nav.stack">Stack</a>
+          <a href="../index.html#roadmap" data-i18n="nav.roadmap">Roadmap</a>
           <a href="https://github.com/Mattarzu" target="_blank" rel="noreferrer">GitHub</a>
+          <label class="language-switcher" aria-label="Seleccionar idioma" data-i18n-attr="aria-label:language.selectorLabel">
+            <span class="sr-only" data-i18n="language.selector">Idioma</span>
+            <select data-language-selector>
+              <option value="es-AR">Español AR</option>
+            </select>
+          </label>
         </nav>
       </div>
     </header>
 
     <main>
       <section class="project-detail-hero container">
-        <a class="back-link" href="../index.html#proyectos">← Volver a proyectos</a>
+        <a class="back-link" href="../index.html#proyectos" data-i18n="project.back">← Volver a proyectos</a>
 
         <div class="detail-hero-grid">
           <div>
-            <p class="eyebrow">AUTOMATIZACIÓN</p>
-            <h1>Orquestador de entornos técnicos</h1>
-            <p class="lead">Sistema para organizar entornos técnicos, validar configuraciones, documentar capacidades generales y mantener flujos seguros de automatización.</p>
+            <p class="eyebrow" data-i18n="projects.index.automation">AUTOMATIZACIÓN</p>
+            <h1 data-i18n="project.environments.title">Orquestador de entornos técnicos</h1>
+            <p class="lead" data-i18n="project.environments.body">Sistema para organizar entornos técnicos, validar configuraciones, documentar capacidades generales y mantener flujos seguros de automatización.</p>
           </div>
 
-          <aside class="detail-side-card" aria-label="Estado público del proyecto">
-            <span class="detail-status">Activo</span>
-            <h2>Estado público</h2>
+          <aside class="detail-side-card" aria-label="Estado público del proyecto" data-i18n-attr="aria-label:project.statusAria">
+            <span class="detail-status" data-i18n="status.active">Activo</span>
+            <h2 data-i18n="project.statusPublic">Estado público</h2>
             <ul>
-              <li>Automatización defensiva</li>
-              <li>Validaciones antes de ejecución</li>
-              <li>Separación entre datos públicos e internos</li>
+              <li data-i18n="detail.environments.status1">Automatización defensiva</li>
+              <li data-i18n="detail.environments.status2">Validaciones antes de ejecución</li>
+              <li data-i18n="detail.environments.status3">Separación entre datos públicos e internos</li>
             </ul>
           </aside>
         </div>
@@ -68,69 +74,75 @@
 
       <section class="project-detail-grid container">
         <article class="detail-card">
-          <p class="eyebrow">PROBLEMA</p>
-          <h2>Qué resuelve</h2>
-          <p>Cuando hay varios entornos, herramientas y configuraciones, es fácil perder trazabilidad o ejecutar acciones sin suficiente control.</p>
+          <p class="eyebrow" data-i18n="project.detail.problem.eyebrow">PROBLEMA</p>
+          <h2 data-i18n="project.detail.problem.title">Qué resuelve</h2>
+          <p data-i18n="detail.environments.problem">Cuando hay varios entornos, herramientas y configuraciones, es fácil perder trazabilidad o ejecutar acciones sin suficiente control.</p>
         </article>
 
         <article class="detail-card">
-          <p class="eyebrow">SOLUCIÓN</p>
-          <h2>Enfoque técnico</h2>
-          <p>Una capa de inventario, validación y automatización con enfoque defensivo: primero documentar, luego simular, después ejecutar solo cuando hay controles claros.</p>
+          <p class="eyebrow" data-i18n="project.detail.solution.eyebrow">SOLUCIÓN</p>
+          <h2 data-i18n="project.detail.solution.title">Enfoque técnico</h2>
+          <p data-i18n="detail.environments.solution">Una capa de inventario, validación y automatización con enfoque defensivo: primero documentar, luego simular, después ejecutar solo cuando hay controles claros.</p>
         </article>
       </section>
 
       <section class="project-detail-grid container">
         <article class="detail-card">
-          <p class="eyebrow">STACK</p>
-          <h2>Tecnologías y áreas</h2>
+          <p class="eyebrow" data-i18n="project.detail.stack.eyebrow">STACK</p>
+          <h2 data-i18n="project.detail.stack.title">Tecnologías y áreas</h2>
           <ul class="detail-list">
-            <li>JSON</li>
-            <li>Python</li>
-            <li>Shell</li>
-            <li>Git</li>
-            <li>Dry-runs</li>
-            <li>Documentación técnica</li>
+            <li data-i18n="tech.json">JSON</li>
+            <li data-i18n="tech.python">Python</li>
+            <li data-i18n="tech.shell">Shell</li>
+            <li data-i18n="tech.git">Git</li>
+            <li data-i18n="tech.dryRuns">Dry-runs</li>
+            <li data-i18n="tech.techDocs">Documentación técnica</li>
           </ul>
         </article>
 
         <article class="detail-card">
-          <p class="eyebrow">ROADMAP</p>
-          <h2>Próximos pasos</h2>
+          <p class="eyebrow" data-i18n="project.detail.roadmap.eyebrow">ROADMAP</p>
+          <h2 data-i18n="project.detail.roadmap.title">Próximos pasos</h2>
           <ul class="detail-list">
-            <li>Agregar ficha de seguridad</li>
-            <li>Crear diagrama de flujo dry-run</li>
-            <li>Separar capacidades públicas de internas</li>
+            <li data-i18n="detail.environments.roadmap1">Agregar ficha de seguridad</li>
+            <li data-i18n="detail.environments.roadmap2">Crear diagrama de flujo dry-run</li>
+            <li data-i18n="detail.environments.roadmap3">Separar capacidades públicas de internas</li>
           </ul>
         </article>
       </section>
 
       <section class="detail-note container">
-        <p>
+        <p data-i18n="project.detail.note">
           Esta ficha muestra una descripción pública del proyecto. Los detalles internos,
           rutas locales, nombres de máquinas, tokens, endpoints privados e infraestructura
           sensible no se publican.
         </p>
       </section>
 
-      <nav class="project-pager container" aria-label="Navegación entre proyectos">
+      <nav class="project-pager container" aria-label="Navegación entre proyectos" data-i18n-attr="aria-label:project.pager.aria">
         <a href="./asistente-codigo.html">
-          <span>Anterior</span>
-          <strong>Asistente local de código</strong>
+          <span data-i18n="project.pager.previous">Anterior</span>
+          <strong data-i18n="project.code.title">Asistente local de código</strong>
         </a>
 
         <a href="./index.html">
-          <span>Índice</span>
-          <strong>Todos los proyectos</strong>
+          <span data-i18n="project.pager.index">Índice</span>
+          <strong data-i18n="project.pager.all">Todos los proyectos</strong>
         </a>
 
         <a href="./gymcontrol.html">
-          <span>Siguiente</span>
-          <strong>GymControl</strong>
+          <span data-i18n="project.pager.next">Siguiente</span>
+          <strong data-i18n="project.gymcontrol.title">GymControl</strong>
         </a>
       </nav>
     </main>
 
+    <script src="../assets/i18n/translations.js"></script>
+    <script src="../assets/i18n/panda-runtime-translations.js"></script>
+    <script src="../assets/i18n/landing-translations.js"></script>
+    <script src="../assets/i18n/project-pages-translations.js"></script>
+    <script src="../assets/i18n/zh-cn-overrides.js"></script>
+    <script src="../assets/js/i18n.js"></script>
     <script src="../main.js"></script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-AR" data-i18n-page="page.gymcontrol">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,40 +27,46 @@
       <div class="container nav">
         <a class="brand" href="../index.html#inicio">M M LAB</a>
 
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-i18n="nav.menu">
           Menú
         </button>
 
-        <nav id="main-nav" class="nav-links" aria-label="Navegación principal">
-          <a href="../index.html#inicio">Inicio</a>
-          <a href="../index.html#sobre-mi">Sobre mí</a>
-          <a href="../index.html#metodo">Método</a>
-          <a href="../index.html#proyectos">Proyectos</a>
-          <a href="../index.html#stack">Stack</a>
-          <a href="../index.html#roadmap">Roadmap</a>
+        <nav id="main-nav" class="nav-links" aria-label="Navegación principal" data-i18n-attr="aria-label:nav.aria">
+          <a href="../index.html#inicio" data-i18n="nav.home">Inicio</a>
+          <a href="../index.html#sobre-mi" data-i18n="nav.about">Sobre mí</a>
+          <a href="../index.html#metodo" data-i18n="nav.method">Método</a>
+          <a href="../index.html#proyectos" data-i18n="nav.projects">Proyectos</a>
+          <a href="../index.html#stack" data-i18n="nav.stack">Stack</a>
+          <a href="../index.html#roadmap" data-i18n="nav.roadmap">Roadmap</a>
           <a href="https://github.com/Mattarzu" target="_blank" rel="noreferrer">GitHub</a>
+          <label class="language-switcher" aria-label="Seleccionar idioma" data-i18n-attr="aria-label:language.selectorLabel">
+            <span class="sr-only" data-i18n="language.selector">Idioma</span>
+            <select data-language-selector>
+              <option value="es-AR">Español AR</option>
+            </select>
+          </label>
         </nav>
       </div>
     </header>
 
     <main>
       <section class="project-detail-hero container">
-        <a class="back-link" href="../index.html#proyectos">← Volver a proyectos</a>
+        <a class="back-link" href="../index.html#proyectos" data-i18n="project.back">← Volver a proyectos</a>
 
         <div class="detail-hero-grid">
           <div>
-            <p class="eyebrow">WEB APP</p>
-            <h1>GymControl</h1>
-            <p class="lead">Aplicación web orientada a gestión operativa, con frontend, backend, persistencia y estados trazables.</p>
+            <p class="eyebrow" data-i18n="projects.index.webapp">WEB APP</p>
+            <h1 data-i18n="project.gymcontrol.title">GymControl</h1>
+            <p class="lead" data-i18n="detail.gymcontrol.lead">Aplicación web orientada a gestión operativa, con frontend, backend, persistencia y estados trazables.</p>
           </div>
 
-          <aside class="detail-side-card" aria-label="Estado público del proyecto">
-            <span class="detail-status">Estable</span>
-            <h2>Estado público</h2>
+          <aside class="detail-side-card" aria-label="Estado público del proyecto" data-i18n-attr="aria-label:project.statusAria">
+            <span class="detail-status" data-i18n="status.stable">Estable</span>
+            <h2 data-i18n="project.statusPublic">Estado público</h2>
             <ul>
-              <li>Aplicación web funcional</li>
-              <li>Flujo operativo definido</li>
-              <li>Preparado para mostrar capturas o demo</li>
+              <li data-i18n="detail.gymcontrol.status1">Aplicación web funcional</li>
+              <li data-i18n="detail.gymcontrol.status2">Flujo operativo definido</li>
+              <li data-i18n="detail.gymcontrol.status3">Preparado para mostrar capturas o demo</li>
             </ul>
           </aside>
         </div>
@@ -68,69 +74,75 @@
 
       <section class="project-detail-grid container">
         <article class="detail-card">
-          <p class="eyebrow">PROBLEMA</p>
-          <h2>Qué resuelve</h2>
-          <p>La gestión operativa necesita estados claros, trazabilidad y una interfaz simple para registrar, confirmar y resolver acciones.</p>
+          <p class="eyebrow" data-i18n="project.detail.problem.eyebrow">PROBLEMA</p>
+          <h2 data-i18n="project.detail.problem.title">Qué resuelve</h2>
+          <p data-i18n="detail.gymcontrol.problem">La gestión operativa necesita estados claros, trazabilidad y una interfaz simple para registrar, confirmar y resolver acciones.</p>
         </article>
 
         <article class="detail-card">
-          <p class="eyebrow">SOLUCIÓN</p>
-          <h2>Enfoque técnico</h2>
-          <p>Una aplicación web con flujo estructurado, persistencia y validaciones. El foco está en convertir operaciones reales en estados claros y controlables.</p>
+          <p class="eyebrow" data-i18n="project.detail.solution.eyebrow">SOLUCIÓN</p>
+          <h2 data-i18n="project.detail.solution.title">Enfoque técnico</h2>
+          <p data-i18n="detail.gymcontrol.solution">Una aplicación web con flujo estructurado, persistencia y validaciones. El foco está en convertir operaciones reales en estados claros y controlables.</p>
         </article>
       </section>
 
       <section class="project-detail-grid container">
         <article class="detail-card">
-          <p class="eyebrow">STACK</p>
-          <h2>Tecnologías y áreas</h2>
+          <p class="eyebrow" data-i18n="project.detail.stack.eyebrow">STACK</p>
+          <h2 data-i18n="project.detail.stack.title">Tecnologías y áreas</h2>
           <ul class="detail-list">
-            <li>Frontend</li>
-            <li>Backend</li>
-            <li>Base de datos</li>
-            <li>Estados operativos</li>
-            <li>Validación</li>
-            <li>Deploy</li>
+            <li data-i18n="tech.frontend">Frontend</li>
+            <li data-i18n="tech.backend">Backend</li>
+            <li data-i18n="tech.database">Base de datos</li>
+            <li data-i18n="tech.operationalStates">Estados operativos</li>
+            <li data-i18n="tech.validation">Validación</li>
+            <li data-i18n="tech.deploy">Deploy</li>
           </ul>
         </article>
 
         <article class="detail-card">
-          <p class="eyebrow">ROADMAP</p>
-          <h2>Próximos pasos</h2>
+          <p class="eyebrow" data-i18n="project.detail.roadmap.eyebrow">ROADMAP</p>
+          <h2 data-i18n="project.detail.roadmap.title">Próximos pasos</h2>
           <ul class="detail-list">
-            <li>Agregar capturas</li>
-            <li>Documentar flujo principal</li>
-            <li>Publicar demo si corresponde</li>
+            <li data-i18n="detail.gymcontrol.roadmap1">Agregar capturas</li>
+            <li data-i18n="detail.gymcontrol.roadmap2">Documentar flujo principal</li>
+            <li data-i18n="detail.gymcontrol.roadmap3">Publicar demo si corresponde</li>
           </ul>
         </article>
       </section>
 
       <section class="detail-note container">
-        <p>
+        <p data-i18n="project.detail.note">
           Esta ficha muestra una descripción pública del proyecto. Los detalles internos,
           rutas locales, nombres de máquinas, tokens, endpoints privados e infraestructura
           sensible no se publican.
         </p>
       </section>
 
-      <nav class="project-pager container" aria-label="Navegación entre proyectos">
+      <nav class="project-pager container" aria-label="Navegación entre proyectos" data-i18n-attr="aria-label:project.pager.aria">
         <a href="./orquestador-entornos.html">
-          <span>Anterior</span>
-          <strong>Orquestador de entornos técnicos</strong>
+          <span data-i18n="project.pager.previous">Anterior</span>
+          <strong data-i18n="project.environments.title">Orquestador de entornos técnicos</strong>
         </a>
 
         <a href="./index.html">
-          <span>Índice</span>
-          <strong>Todos los proyectos</strong>
+          <span data-i18n="project.pager.index">Índice</span>
+          <strong data-i18n="project.pager.all">Todos los proyectos</strong>
         </a>
 
         <a href="./hardening-linux.html">
-          <span>Siguiente</span>
-          <strong>Antivirus / Hardening Linux</strong>
+          <span data-i18n="project.pager.next">Siguiente</span>
+          <strong data-i18n="project.hardening.title">Antivirus / Hardening Linux</strong>
         </a>
       </nav>
     </main>
 
+    <script src="../assets/i18n/translations.js"></script>
+    <script src="../assets/i18n/panda-runtime-translations.js"></script>
+    <script src="../assets/i18n/landing-translations.js"></script>
+    <script src="../assets/i18n/project-pages-translations.js"></script>
+    <script src="../assets/i18n/zh-cn-overrides.js"></script>
+    <script src="../assets/js/i18n.js"></script>
     <script src="../main.js"></script>
   </body>
 </html>

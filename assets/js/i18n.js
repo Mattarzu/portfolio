@@ -106,9 +106,29 @@
     });
   }
 
+  function getPageKey() {
+    return (
+      document.documentElement.getAttribute("data-i18n-page") ||
+      document.body?.getAttribute("data-i18n-page") ||
+      ""
+    );
+  }
+
   function setMeta(dictionary, fallbackDictionary) {
-    const title = dictionary["meta.title"] || fallbackDictionary["meta.title"];
-    const description = dictionary["meta.description"] || fallbackDictionary["meta.description"];
+    const pageKey = getPageKey();
+    const pagePrefix = pageKey ? `${pageKey}.` : "";
+    const title =
+      dictionary[`${pagePrefix}meta.title`] ||
+      fallbackDictionary[`${pagePrefix}meta.title`] ||
+      dictionary["meta.title"] ||
+      fallbackDictionary["meta.title"];
+
+    const description =
+      dictionary[`${pagePrefix}meta.description`] ||
+      fallbackDictionary[`${pagePrefix}meta.description`] ||
+      dictionary["meta.description"] ||
+      fallbackDictionary["meta.description"];
+
     const ogLocale = dictionary["meta.ogLocale"] || fallbackDictionary["meta.ogLocale"];
 
     if (title) {
@@ -127,7 +147,6 @@
       setMetaAttribute("meta[property='og:locale']", "content", ogLocale);
     }
   }
-
   function setMetaAttribute(selector, attr, value) {
     const node = document.querySelector(selector);
 

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-AR" data-i18n-page="projects.index">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,28 +30,34 @@
       <div class="container nav">
         <a class="brand" href="../index.html#inicio">M M LAB</a>
 
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-i18n="nav.menu">
           Menú
         </button>
 
-        <nav id="main-nav" class="nav-links" aria-label="Navegación principal">
-          <a href="../index.html#inicio">Inicio</a>
-          <a href="../index.html#sobre-mi">Sobre mí</a>
-          <a href="../index.html#metodo">Método</a>
-          <a href="../index.html#proyectos">Proyectos</a>
-          <a href="../index.html#stack">Stack</a>
-          <a href="../index.html#roadmap">Roadmap</a>
+        <nav id="main-nav" class="nav-links" aria-label="Navegación principal" data-i18n-attr="aria-label:nav.aria">
+          <a href="../index.html#inicio" data-i18n="nav.home">Inicio</a>
+          <a href="../index.html#sobre-mi" data-i18n="nav.about">Sobre mí</a>
+          <a href="../index.html#metodo" data-i18n="nav.method">Método</a>
+          <a href="../index.html#proyectos" data-i18n="nav.projects">Proyectos</a>
+          <a href="../index.html#stack" data-i18n="nav.stack">Stack</a>
+          <a href="../index.html#roadmap" data-i18n="nav.roadmap">Roadmap</a>
           <a href="https://github.com/Mattarzu" target="_blank" rel="noreferrer">GitHub</a>
+          <label class="language-switcher" aria-label="Seleccionar idioma" data-i18n-attr="aria-label:language.selectorLabel">
+            <span class="sr-only" data-i18n="language.selector">Idioma</span>
+            <select data-language-selector>
+              <option value="es-AR">Español AR</option>
+            </select>
+          </label>
         </nav>
       </div>
     </header>
 
     <main>
       <section class="projects-index-hero container">
-        <a class="back-link" href="../index.html#proyectos">← Volver a la home</a>
-        <p class="eyebrow">ÍNDICE DE PROYECTOS</p>
-        <h1>Soluciones, productos y prototipos</h1>
-        <p class="lead">
+        <a class="back-link" href="../index.html#proyectos" data-i18n="projects.index.backHome">← Volver a la home</a>
+        <p class="eyebrow" data-i18n="projects.index.eyebrow">ÍNDICE DE PROYECTOS</p>
+        <h1 data-i18n="projects.index.title">Soluciones, productos y prototipos</h1>
+        <p class="lead" data-i18n="projects.index.lead">
           Vista pública de proyectos técnicos en distintas etapas: activos,
           estables, en desarrollo o en diseño. Cada ficha resume problema,
           enfoque, stack, estado y próximos pasos.
@@ -60,55 +66,61 @@
 
       <section class="projects-index-grid container" aria-label="Listado de proyectos">
         <article class="project-index-card">
-          <span class="status active">Activo</span>
-          <p class="eyebrow">IA APLICADA</p>
-          <h2>Router LLM híbrido</h2>
-          <p>Sistema para coordinar modelos de lenguaje, planificación asistida, ejecución controlada y perfiles de costo.</p>
-          <a class="project-link" href="./router-llm.html">Ver ficha</a>
+          <span class="status active" data-i18n="status.active">Activo</span>
+          <p class="eyebrow" data-i18n="tag.appliedAi">IA APLICADA</p>
+          <h2 data-i18n="project.router.title">Router LLM híbrido</h2>
+          <p data-i18n="project.router.indexBody">Sistema para coordinar modelos de lenguaje, planificación asistida, ejecución controlada y perfiles de costo.</p>
+          <a class="project-link" href="./router-llm.html" data-i18n="projects.index.viewSheet">Ver ficha</a>
         </article>
 
         <article class="project-index-card">
-          <span class="status active">Activo</span>
-          <p class="eyebrow">HERRAMIENTAS DE DESARROLLO</p>
-          <h2>Asistente local de código</h2>
-          <p>Herramienta orientada a tareas de código, contexto de proyecto, validación de respuestas y ejecución controlada.</p>
-          <a class="project-link" href="./asistente-codigo.html">Ver ficha</a>
+          <span class="status active" data-i18n="status.active">Activo</span>
+          <p class="eyebrow" data-i18n="projects.index.devtools">HERRAMIENTAS DE DESARROLLO</p>
+          <h2 data-i18n="project.code.title">Asistente local de código</h2>
+          <p data-i18n="project.code.body">Herramienta orientada a tareas de código, contexto de proyecto, validación de respuestas y ejecución controlada.</p>
+          <a class="project-link" href="./asistente-codigo.html" data-i18n="projects.index.viewSheet">Ver ficha</a>
         </article>
 
         <article class="project-index-card">
-          <span class="status active">Activo</span>
-          <p class="eyebrow">AUTOMATIZACIÓN</p>
-          <h2>Orquestador de entornos técnicos</h2>
-          <p>Sistema para organizar configuraciones, validaciones y flujos seguros de automatización.</p>
-          <a class="project-link" href="./orquestador-entornos.html">Ver ficha</a>
+          <span class="status active" data-i18n="status.active">Activo</span>
+          <p class="eyebrow" data-i18n="projects.index.automation">AUTOMATIZACIÓN</p>
+          <h2 data-i18n="project.environments.title">Orquestador de entornos técnicos</h2>
+          <p data-i18n="project.environments.body">Sistema para organizar configuraciones, validaciones y flujos seguros de automatización.</p>
+          <a class="project-link" href="./orquestador-entornos.html" data-i18n="projects.index.viewSheet">Ver ficha</a>
         </article>
 
         <article class="project-index-card">
-          <span class="status stable">Estable</span>
-          <p class="eyebrow">WEB APP</p>
-          <h2>GymControl</h2>
-          <p>Aplicación web orientada a gestión operativa, estados trazables, frontend, backend y persistencia.</p>
-          <a class="project-link" href="./gymcontrol.html">Ver ficha</a>
+          <span class="status stable" data-i18n="status.stable">Estable</span>
+          <p class="eyebrow" data-i18n="projects.index.webapp">WEB APP</p>
+          <h2 data-i18n="project.gymcontrol.title">GymControl</h2>
+          <p data-i18n="detail.gymcontrol.lead">Aplicación web orientada a gestión operativa, estados trazables, frontend, backend y persistencia.</p>
+          <a class="project-link" href="./gymcontrol.html" data-i18n="projects.index.viewSheet">Ver ficha</a>
         </article>
 
         <article class="project-index-card">
-          <span class="status planned">En diseño</span>
-          <p class="eyebrow">SEGURIDAD</p>
-          <h2>Antivirus / Hardening Linux</h2>
-          <p>Proyecto de herramientas para análisis local, hardening, monitoreo básico y reportes defensivos.</p>
-          <a class="project-link" href="./hardening-linux.html">Ver ficha</a>
+          <span class="status planned" data-i18n="status.design">En diseño</span>
+          <p class="eyebrow" data-i18n="projects.index.security">SEGURIDAD</p>
+          <h2 data-i18n="project.hardening.title">Antivirus / Hardening Linux</h2>
+          <p data-i18n="project.hardening.body">Proyecto de herramientas para análisis local, hardening, monitoreo básico y reportes defensivos.</p>
+          <a class="project-link" href="./hardening-linux.html" data-i18n="projects.index.viewSheet">Ver ficha</a>
         </article>
 
         <article class="project-index-card">
-          <span class="status planned">En desarrollo</span>
-          <p class="eyebrow">IA APLICADA</p>
-          <h2>Traductor IA</h2>
-          <p>Traductor asistido por IA para documentación, prompts y adaptación de lenguaje técnico español/inglés.</p>
-          <a class="project-link" href="./traductor-ia.html">Ver ficha</a>
+          <span class="status planned" data-i18n="status.development">En desarrollo</span>
+          <p class="eyebrow" data-i18n="tag.appliedAi">IA APLICADA</p>
+          <h2 data-i18n="project.translator.title">Traductor IA</h2>
+          <p data-i18n="project.translator.body">Traductor asistido por IA para documentación, prompts y adaptación de lenguaje técnico español/inglés.</p>
+          <a class="project-link" href="./traductor-ia.html" data-i18n="projects.index.viewSheet">Ver ficha</a>
         </article>
       </section>
     </main>
 
+    <script src="../assets/i18n/translations.js"></script>
+    <script src="../assets/i18n/panda-runtime-translations.js"></script>
+    <script src="../assets/i18n/landing-translations.js"></script>
+    <script src="../assets/i18n/project-pages-translations.js"></script>
+    <script src="../assets/i18n/zh-cn-overrides.js"></script>
+    <script src="../assets/js/i18n.js"></script>
     <script src="../main.js"></script>
   </body>
 </html>
