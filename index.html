@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-AR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,6 +28,16 @@
     <meta name="twitter:image" content="https://mattarzu.github.io/portfolio/preview.png" />
 
     <link rel="canonical" href="https://mattarzu.github.io/portfolio/" />
+    <link rel="alternate" hreflang="es-AR" href="https://mattarzu.github.io/portfolio/" />
+    <link rel="alternate" hreflang="en-GB" href="https://mattarzu.github.io/portfolio/?lang=en-GB" />
+    <link rel="alternate" hreflang="es-ES" href="https://mattarzu.github.io/portfolio/?lang=es-ES" />
+    <link rel="alternate" hreflang="ca" href="https://mattarzu.github.io/portfolio/?lang=ca" />
+    <link rel="alternate" hreflang="it" href="https://mattarzu.github.io/portfolio/?lang=it" />
+    <link rel="alternate" hreflang="pt" href="https://mattarzu.github.io/portfolio/?lang=pt" />
+    <link rel="alternate" hreflang="fr" href="https://mattarzu.github.io/portfolio/?lang=fr" />
+    <link rel="alternate" hreflang="ru" href="https://mattarzu.github.io/portfolio/?lang=ru" />
+    <link rel="alternate" hreflang="zh-CN" href="https://mattarzu.github.io/portfolio/?lang=zh-CN" />
+    <link rel="alternate" hreflang="x-default" href="https://mattarzu.github.io/portfolio/" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="manifest" href="./site.webmanifest" />
     <meta name="theme-color" content="#0f172a" />
@@ -116,25 +126,31 @@
   </head>
 
   <body>
-    <a class="skip-link" href="#inicio">Saltar al contenido</a>
+    <a class="skip-link" href="#inicio" data-i18n="skip.content">Saltar al contenido</a>
     <header class="site-header">
       <div class="container nav">
         <a class="brand" href="#inicio">M M LAB</a>
 
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-i18n="nav.menu">
           Menú
         </button>
 
-        <nav id="main-nav" class="nav-links" aria-label="Navegación principal">
-          <a href="#inicio">Inicio</a>
-          <a href="#sobre-mi">Sobre mí</a>
-          <a href="#metodo">Método</a>
-          <a href="#capacidades">Servicios</a>
-          <a href="#proyectos">Proyectos</a>
-          <a href="#stack">Stack</a>
-          <a href="#roadmap">Roadmap</a>
-          <a href="#contacto">Contacto</a>
+        <nav id="main-nav" class="nav-links" aria-label="Navegación principal" data-i18n-attr="aria-label:nav.aria">
+          <a href="#inicio" data-i18n="nav.home">Inicio</a>
+          <a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a>
+          <a href="#metodo" data-i18n="nav.method">Método</a>
+          <a href="#capacidades" data-i18n="nav.services">Servicios</a>
+          <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
+          <a href="#stack" data-i18n="nav.stack">Stack</a>
+          <a href="#roadmap" data-i18n="nav.roadmap">Roadmap</a>
+          <a href="#contacto" data-i18n="nav.contact">Contacto</a>
           <a href="https://github.com/Mattarzu" target="_blank" rel="noreferrer">GitHub</a>
+          <label class="language-switcher" aria-label="Seleccionar idioma" data-i18n-attr="aria-label:language.selectorLabel">
+            <span class="sr-only" data-i18n="language.selector">Idioma</span>
+            <select data-language-selector>
+              <option value="es-AR">Español AR</option>
+            </select>
+          </label>
         </nav>
       </div>
     </header>
@@ -142,15 +158,15 @@
     <main id="inicio">
       <section class="hero container">
         <div class="hero-copy">
-          <p class="eyebrow">SOFTWARE · AUTOMATIZACIÓN · IA</p>
+          <p class="eyebrow" data-i18n="hero.eyebrow">SOFTWARE · AUTOMATIZACIÓN · IA</p>
           <div class="hero-title-wrap">
             <h1 class="hero-title">
-              <span class="title-main">Software</span>
-              <span class="title-accent">y automatización</span>
+              <span class="title-main" data-i18n="hero.titleMain">Software</span>
+              <span class="title-accent" data-i18n="hero.titleAccent">y automatización</span>
             </h1>
 
             
-<button class="hero-mascot panda-roamer" type="button" aria-label="M M Panda: ver proyectos">
+<button class="hero-mascot panda-roamer" type="button" aria-label="M M Panda: ver proyectos" data-i18n-attr="aria-label:hero.mascotAria">
   <span class="hero-panda-bubble">M M Panda</span>
 
   <span class="hero-panda-full" aria-hidden="true">
@@ -177,31 +193,31 @@
 </button>
 
           </div>
-          <p class="lead">
+          <p class="lead" data-i18n="hero.lead">
             Diseño y construyo soluciones web, automatizaciones e integraciones
             con inteligencia artificial para convertir procesos técnicos o ideas
             de negocio en sistemas utilizables, mantenibles y documentados.
           </p>
 
           <div class="hero-actions">
-            <a class="btn primary" href="#contacto">Consultar una solución</a>
-            <a class="btn secondary" href="#proyectos">Ver proyectos</a>
-            <a class="btn secondary" href="#capacidades">Servicios</a>
+            <a class="btn primary" href="#contacto" data-i18n="hero.ctaPrimary">Consultar una solución</a>
+            <a class="btn secondary" href="#proyectos" data-i18n="hero.ctaProjects">Ver proyectos</a>
+            <a class="btn secondary" href="#capacidades" data-i18n="hero.ctaServices">Servicios</a>
           </div>
         </div>
 
-        <aside class="hero-panel" aria-label="Resumen del laboratorio">
+        <aside class="hero-panel" aria-label="Resumen del laboratorio" data-i18n-attr="aria-label:hero.panelAria">
           <div class="metric-card">
-            <strong>IA local</strong>
-            <span>Modelos locales, rutas híbridas y ejecución controlada</span>
+            <strong data-i18n="hero.metricAiTitle">IA local</strong>
+            <span data-i18n="hero.metricAiText">Modelos locales, rutas híbridas y ejecución controlada</span>
           </div>
           <div class="metric-card">
-            <strong>Automatización</strong>
-            <span>Scripts, validaciones, CLI propias y flujos reproducibles</span>
+            <strong data-i18n="hero.metricAutomationTitle">Automatización</strong>
+            <span data-i18n="hero.metricAutomationText">Scripts, validaciones, CLI propias y flujos reproducibles</span>
           </div>
           <div class="metric-card">
-            <strong>Infraestructura</strong>
-            <span>Linux, automatización, documentación y operaciones reproducibles</span>
+            <strong data-i18n="hero.metricInfraTitle">Infraestructura</strong>
+            <span data-i18n="hero.metricInfraText">Linux, automatización, documentación y operaciones reproducibles</span>
           </div>
         </aside>
       </section>
@@ -209,9 +225,9 @@
 
       <section id="sobre-mi" class="section container about-section">
         <div class="section-heading">
-          <p class="eyebrow">SOBRE MÍ</p>
-          <h2>Ingeniería práctica para productos web, automatización e IA</h2>
-          <p>
+          <p class="eyebrow" data-i18n="about.eyebrow">SOBRE MÍ</p>
+          <h2 data-i18n="about.title">Ingeniería práctica para productos web, automatización e IA</h2>
+          <p data-i18n="about.body">
             Trabajo en el diseño y construcción de soluciones de software,
             automatización e inteligencia artificial aplicada. M M LAB funciona
             como una muestra pública de capacidades técnicas, proyectos,
@@ -221,16 +237,16 @@
 
         <div class="about-grid">
           <article>
-            <strong>Enfoque</strong>
-            <span>Diseño soluciones prácticas, mantenibles y verificables.</span>
+            <strong data-i18n="about.focus.title">Enfoque</strong>
+            <span data-i18n="about.focus.text">Diseño soluciones prácticas, mantenibles y verificables.</span>
           </article>
           <article>
-            <strong>Forma de trabajo</strong>
-            <span>Iteración incremental, pruebas, documentación y control por Git.</span>
+            <strong data-i18n="about.workflow.title">Forma de trabajo</strong>
+            <span data-i18n="about.workflow.text">Iteración incremental, pruebas, documentación y control por Git.</span>
           </article>
           <article>
-            <strong>Intereses</strong>
-            <span>IA aplicada, automatización, seguridad, productos web y herramientas técnicas.</span>
+            <strong data-i18n="about.interests.title">Intereses</strong>
+            <span data-i18n="about.interests.text">IA aplicada, automatización, seguridad, productos web y herramientas técnicas.</span>
           </article>
         </div>
       </section>
@@ -238,9 +254,9 @@
 
       <section id="metodo" class="section container method-section">
         <div class="section-heading">
-          <p class="eyebrow">MÉTODO DE TRABAJO</p>
-          <h2>Construcción incremental, validable y documentada</h2>
-          <p>
+          <p class="eyebrow" data-i18n="method.eyebrow">MÉTODO DE TRABAJO</p>
+          <h2 data-i18n="method.title">Construcción incremental, validable y documentada</h2>
+          <p data-i18n="method.body">
             Cada proyecto se trabaja como un sistema evolutivo: primero se define
             el problema, después se valida el enfoque, se automatiza lo repetible
             y se documenta lo necesario para poder mantenerlo o escalarlo.
@@ -250,26 +266,26 @@
         <div class="method-grid">
           <article>
             <span>01</span>
-            <h3>Diseñar</h3>
-            <p>Definir objetivo, restricciones, arquitectura inicial y alcance público.</p>
+            <h3 data-i18n="method.design.title">Diseñar</h3>
+            <p data-i18n="method.design.text">Definir objetivo, restricciones, arquitectura inicial y alcance público.</p>
           </article>
 
           <article>
             <span>02</span>
-            <h3>Validar</h3>
-            <p>Probar comportamiento, revisar seguridad, detectar errores y medir límites.</p>
+            <h3 data-i18n="method.validate.title">Validar</h3>
+            <p data-i18n="method.validate.text">Probar comportamiento, revisar seguridad, detectar errores y medir límites.</p>
           </article>
 
           <article>
             <span>03</span>
-            <h3>Automatizar</h3>
-            <p>Convertir procesos repetibles en scripts, comandos, CLI o flujos controlados.</p>
+            <h3 data-i18n="method.automate.title">Automatizar</h3>
+            <p data-i18n="method.automate.text">Convertir procesos repetibles en scripts, comandos, CLI o flujos controlados.</p>
           </article>
 
           <article>
             <span>04</span>
-            <h3>Documentar</h3>
-            <p>Registrar decisiones, estado actual, próximos pasos y comandos reproducibles.</p>
+            <h3 data-i18n="method.document.title">Documentar</h3>
+            <p data-i18n="method.document.text">Registrar decisiones, estado actual, próximos pasos y comandos reproducibles.</p>
           </article>
         </div>
       </section>
@@ -277,9 +293,9 @@
 
       <section id="capacidades" class="section container capabilities-section">
         <div class="section-heading">
-          <p class="eyebrow">SERVICIOS</p>
-          <h2>Áreas donde puedo ayudarte a construir o mejorar sistemas</h2>
-          <p>
+          <p class="eyebrow" data-i18n="services.eyebrow">SERVICIOS</p>
+          <h2 data-i18n="services.title">Áreas donde puedo ayudarte a construir o mejorar sistemas</h2>
+          <p data-i18n="services.body">
             M M LAB resume una forma de trabajo orientada a construir soluciones
             técnicas con control, documentación, validación y mejora continua.
           </p>
@@ -288,8 +304,8 @@
         <div class="capabilities-grid">
           <article>
             <span>01</span>
-            <h3>Software y productos web</h3>
-            <p>
+            <h3 data-i18n="services.web.title">Software y productos web</h3>
+            <p data-i18n="services.web.text">
               Desarrollo interfaces, flujos, APIs, persistencia y lógica de negocio
               para convertir necesidades concretas en productos funcionales.
             </p>
@@ -297,8 +313,8 @@
 
           <article>
             <span>02</span>
-            <h3>Automatización y herramientas</h3>
-            <p>
+            <h3 data-i18n="services.automation.title">Automatización y herramientas</h3>
+            <p data-i18n="services.automation.text">
               Diseño scripts, CLI, validaciones y procesos reproducibles para reducir
               trabajo manual y mejorar trazabilidad.
             </p>
@@ -306,8 +322,8 @@
 
           <article>
             <span>03</span>
-            <h3>IA aplicada</h3>
-            <p>
+            <h3 data-i18n="services.ai.title">IA aplicada</h3>
+            <p data-i18n="services.ai.text">
               Integro modelos, asistentes técnicos, procesamiento de texto y flujos
               de decisión para mejorar productividad y análisis.
             </p>
@@ -315,8 +331,8 @@
 
           <article>
             <span>04</span>
-            <h3>Linux, seguridad y operaciones</h3>
-            <p>
+            <h3 data-i18n="services.ops.title">Linux, seguridad y operaciones</h3>
+            <p data-i18n="services.ops.text">
               Trabajo sobre entornos Linux, hardening defensivo, diagnóstico,
               documentación operativa y mantenimiento técnico.
             </p>
@@ -326,9 +342,9 @@
 
       <section id="proyectos" class="section container">
         <div class="section-heading">
-          <p class="eyebrow">PROYECTOS ACTIVOS</p>
-          <h2>Soluciones, productos y prototipos</h2>
-          <p>
+          <p class="eyebrow" data-i18n="projects.eyebrow">PROYECTOS ACTIVOS</p>
+          <h2 data-i18n="projects.title">Soluciones, productos y prototipos</h2>
+          <p data-i18n="projects.body">
             Selección de proyectos y productos técnicos en distintas etapas:
             desarrollo, validación, documentación, mejora continua o preparación
             para publicación.
@@ -336,131 +352,131 @@
         </div>
 
         <div class="section-actions">
-          <a class="btn secondary" href="./projects/index.html">Ver todos los proyectos</a>
+          <a class="btn secondary" href="./projects/index.html" data-i18n="projects.viewAll">Ver todos los proyectos</a>
         </div>
 
         <div class="project-grid">
-          <article class="project-card featured">
+          <article class="project-card featured" data-panda-project="router">
             <div class="project-top">
-              <span class="status active">Activo</span>
-              <span class="tag">IA local</span>
+              <span class="status active" data-i18n="status.active">Activo</span>
+              <span class="tag" data-i18n="tag.aiLocal">IA local</span>
             </div>
-            <h3>Router LLM híbrido</h3>
-            <p>
+            <h3 data-i18n="project.router.title">Router LLM híbrido</h3>
+            <p data-i18n="project.router.body">
               Sistema para coordinar modelos de lenguaje, planificación asistida,
               ejecución controlada, perfiles de costo y validaciones técnicas
               sin depender de un único proveedor.
             </p>
             <ul>
-              <li>Ejecución local controlada</li>
-              <li>Planificación asistida opcional</li>
-              <li>Rutas híbridas, control de costo y trazabilidad</li>
+              <li data-i18n="project.router.item1">Ejecución local controlada</li>
+              <li data-i18n="project.router.item2">Planificación asistida opcional</li>
+              <li data-i18n="project.router.item3">Rutas híbridas, control de costo y trazabilidad</li>
             </ul>
             <div class="project-actions">
-              <a class="project-link" href="projects/router-llm.html">Ver detalle</a>
+              <a class="project-link" href="projects/router-llm.html" data-i18n="projects.detail">Ver detalle</a>
             </div>
           </article>
 
-          <article class="project-card featured">
+          <article class="project-card featured" data-panda-project="code">
             <div class="project-top">
-              <span class="status active">Activo</span>
-              <span class="tag">Qwen</span>
+              <span class="status active" data-i18n="status.active">Activo</span>
+              <span class="tag" data-i18n="tag.qwen">Qwen</span>
             </div>
-            <h3>Asistente local de código</h3>
-            <p>
+            <h3 data-i18n="project.code.title">Asistente local de código</h3>
+            <p data-i18n="project.code.body">
               Herramienta orientada a tareas de código, asistencia interactiva,
               contexto de proyecto, validación de respuestas y ejecución controlada
               con modelos locales.
             </p>
             <ul>
-              <li>CLI para tareas de código</li>
-              <li>Gestión de contexto y presupuesto</li>
-              <li>Perfiles de ejecución y validación</li>
+              <li data-i18n="project.code.item1">CLI para tareas de código</li>
+              <li data-i18n="project.code.item2">Gestión de contexto y presupuesto</li>
+              <li data-i18n="project.code.item3">Perfiles de ejecución y validación</li>
             </ul>
             <div class="project-actions">
-              <a class="project-link" href="projects/asistente-codigo.html">Ver detalle</a>
+              <a class="project-link" href="projects/asistente-codigo.html" data-i18n="projects.detail">Ver detalle</a>
             </div>
           </article>
 
-          <article class="project-card">
+          <article class="project-card" data-panda-project="environments">
             <div class="project-top">
-              <span class="status active">Activo</span>
-              <span class="tag">Infraestructura</span>
+              <span class="status active" data-i18n="status.active">Activo</span>
+              <span class="tag" data-i18n="tag.infrastructure">Infraestructura</span>
             </div>
-            <h3>Orquestador de entornos técnicos</h3>
-            <p>
+            <h3 data-i18n="project.environments.title">Orquestador de entornos técnicos</h3>
+            <p data-i18n="project.environments.body">
               Sistema para organizar entornos técnicos, validar configuraciones,
               documentar capacidades generales y mantener flujos seguros de
               automatización.
             </p>
             <ul>
-              <li>Inventario técnico validado</li>
-              <li>Perfiles de entorno y capacidades</li>
-              <li>Validaciones protegidas por controles</li>
+              <li data-i18n="project.environments.item1">Inventario técnico validado</li>
+              <li data-i18n="project.environments.item2">Perfiles de entorno y capacidades</li>
+              <li data-i18n="project.environments.item3">Validaciones protegidas por controles</li>
             </ul>
             <div class="project-actions">
-              <a class="project-link" href="projects/orquestador-entornos.html">Ver detalle</a>
+              <a class="project-link" href="projects/orquestador-entornos.html" data-i18n="projects.detail">Ver detalle</a>
             </div>
           </article>
 
-          <article class="project-card">
+          <article class="project-card" data-panda-project="gymcontrol">
             <div class="project-top">
-              <span class="status stable">Estable</span>
-              <span class="tag">Web app</span>
+              <span class="status stable" data-i18n="status.stable">Estable</span>
+              <span class="tag" data-i18n="tag.webApp">Web app</span>
             </div>
-            <h3>GymControl</h3>
-            <p>
+            <h3 data-i18n="project.gymcontrol.title">GymControl</h3>
+            <p data-i18n="project.gymcontrol.body">
               Aplicación web orientada a gestión operativa. Integra frontend,
               backend, base de datos, estados trazables y lógica de confirmación
               para flujos reales.
             </p>
             <ul>
-              <li>Frontend + backend + persistencia</li>
-              <li>Estados operativos y validación</li>
-              <li>Preparación para despliegue</li>
+              <li data-i18n="project.gymcontrol.item1">Frontend + backend + persistencia</li>
+              <li data-i18n="project.gymcontrol.item2">Estados operativos y validación</li>
+              <li data-i18n="project.gymcontrol.item3">Preparación para despliegue</li>
             </ul>
             <div class="project-actions">
-              <a class="project-link" href="projects/gymcontrol.html">Ver detalle</a>
+              <a class="project-link" href="projects/gymcontrol.html" data-i18n="projects.detail">Ver detalle</a>
             </div>
           </article>
 
-          <article class="project-card">
+          <article class="project-card" data-panda-project="hardening">
             <div class="project-top">
-              <span class="status planned">En diseño</span>
-              <span class="tag">Seguridad</span>
+              <span class="status planned" data-i18n="status.design">En diseño</span>
+              <span class="tag" data-i18n="tag.security">Seguridad</span>
             </div>
-            <h3>Antivirus / Hardening Linux</h3>
-            <p>
+            <h3 data-i18n="project.hardening.title">Antivirus / Hardening Linux</h3>
+            <p data-i18n="project.hardening.body">
               Proyecto de herramientas para análisis local, escaneo, hardening,
               monitoreo básico y documentación de seguridad en equipos Linux.
             </p>
             <ul>
-              <li>Escaneos locales y reportes</li>
-              <li>Checklist de hardening</li>
-              <li>Automatización de auditorías simples</li>
+              <li data-i18n="project.hardening.item1">Escaneos locales y reportes</li>
+              <li data-i18n="project.hardening.item2">Checklist de hardening</li>
+              <li data-i18n="project.hardening.item3">Automatización de auditorías simples</li>
             </ul>
             <div class="project-actions">
-              <a class="project-link" href="projects/hardening-linux.html">Ver detalle</a>
+              <a class="project-link" href="projects/hardening-linux.html" data-i18n="projects.detail">Ver detalle</a>
             </div>
           </article>
 
-          <article class="project-card">
+          <article class="project-card" data-panda-project="translator">
             <div class="project-top">
-              <span class="status planned">En desarrollo</span>
-              <span class="tag">IA aplicada</span>
+              <span class="status planned" data-i18n="status.development">En desarrollo</span>
+              <span class="tag" data-i18n="tag.appliedAi">IA aplicada</span>
             </div>
-            <h3>Traductor IA</h3>
-            <p>
+            <h3 data-i18n="project.translator.title">Traductor IA</h3>
+            <p data-i18n="project.translator.body">
               Traductor asistido por IA para flujos de texto, documentación,
               prompts y adaptación de lenguaje técnico entre español e inglés.
             </p>
             <ul>
-              <li>Traducción técnica</li>
-              <li>Normalización de tono</li>
-              <li>Preparado para integración con modelos locales</li>
+              <li data-i18n="project.translator.item1">Traducción técnica</li>
+              <li data-i18n="project.translator.item2">Normalización de tono</li>
+              <li data-i18n="project.translator.item3">Preparado para integración con modelos locales</li>
             </ul>
             <div class="project-actions">
-              <a class="project-link" href="projects/traductor-ia.html">Ver detalle</a>
+              <a class="project-link" href="projects/traductor-ia.html" data-i18n="projects.detail">Ver detalle</a>
             </div>
           </article>
         </div>
@@ -468,70 +484,70 @@
 
       <section id="stack" class="section container">
         <div class="section-heading">
-          <p class="eyebrow">STACK</p>
-          <h2>Tecnologías principales</h2>
+          <p class="eyebrow" data-i18n="stack.eyebrow">STACK</p>
+          <h2 data-i18n="stack.title">Tecnologías principales</h2>
         </div>
 
         <div class="stack-grid">
           <div class="stack-card">
-            <h3>IA local</h3>
-            <p>Qwen, llama.cpp, GGUF, perfiles de contexto, endpoints OpenAI-compatible.</p>
+            <h3 data-i18n="stack.ai.title">IA local</h3>
+            <p data-i18n="stack.ai.text">Qwen, llama.cpp, GGUF, perfiles de contexto, endpoints OpenAI-compatible.</p>
           </div>
 
           <div class="stack-card">
-            <h3>Backend</h3>
-            <p>Python, Node.js, APIs, validación, CLI, pruebas unitarias y automatización.</p>
+            <h3 data-i18n="stack.backend.title">Backend</h3>
+            <p data-i18n="stack.backend.text">Python, Node.js, APIs, validación, CLI, pruebas unitarias y automatización.</p>
           </div>
 
           <div class="stack-card">
-            <h3>Frontend</h3>
-            <p>HTML, CSS, JavaScript, interfaces estáticas, dashboards y documentación visual.</p>
+            <h3 data-i18n="stack.frontend.title">Frontend</h3>
+            <p data-i18n="stack.frontend.text">HTML, CSS, JavaScript, interfaces estáticas, dashboards y documentación visual.</p>
           </div>
 
           <div class="stack-card">
-            <h3>Linux & Ops</h3>
-            <p>Arch/Fedora, systemd, tmux, SSH, Git, scripts reproducibles y control local.</p>
+            <h3 data-i18n="stack.ops.title">Linux & Ops</h3>
+            <p data-i18n="stack.ops.text">Arch/Fedora, systemd, tmux, SSH, Git, scripts reproducibles y control local.</p>
           </div>
         </div>
       </section>
 
       <section id="roadmap" class="section container">
         <div class="section-heading">
-          <p class="eyebrow">ROADMAP</p>
-          <h2>Próximos frentes</h2>
+          <p class="eyebrow" data-i18n="roadmap.eyebrow">ROADMAP</p>
+          <h2 data-i18n="roadmap.title">Próximos frentes</h2>
         </div>
 
         <div class="timeline">
           <article>
             <span>01</span>
             <div>
-              <h3>Convertir esta web en dashboard de proyectos</h3>
-              <p>Agregar páginas individuales por proyecto, capturas, logs de validación y enlaces a repositorios.</p>
+              <h3 data-i18n="roadmap.dashboard.title">Convertir esta web en dashboard de proyectos</h3>
+              <p data-i18n="roadmap.dashboard.text">Agregar páginas individuales por proyecto, capturas, logs de validación y enlaces a repositorios.</p>
             </div>
           </article>
 
           <article>
             <span>02</span>
             <div>
-              <h3>Documentar proyectos de IA, asistentes de código y orquestación técnica</h3>
-              <p>Crear fichas técnicas con arquitectura, estado actual, comandos, garantías y próximos pasos.</p>
+              <h3 data-i18n="roadmap.docs.title">Documentar proyectos de IA, asistentes de código y orquestación técnica</h3>
+              <p data-i18n="roadmap.docs.text">Crear fichas técnicas con arquitectura, estado actual, comandos, garantías y próximos pasos.</p>
             </div>
           </article>
 
           <article>
             <span>03</span>
             <div>
-              <h3>Publicar proyectos secundarios</h3>
-              <p>Integrar GymControl, antivirus/hardening y traductor IA como módulos visibles del laboratorio.</p>
+              <h3 data-i18n="roadmap.publish.title">Publicar proyectos secundarios</h3>
+              <p data-i18n="roadmap.publish.text">Integrar GymControl, antivirus/hardening y traductor IA como módulos visibles del laboratorio.</p>
             </div>
           </article>
         </div>
       </section>
 
       <section id="contacto" class="section container contact-card">
-        <p class="eyebrow">CONTACTO</p>
-        <h2>Hablemos de una solución concreta</h2>
-        <p>
+        <p class="eyebrow" data-i18n="contact.eyebrow">CONTACTO</p>
+        <h2 data-i18n="contact.title">Hablemos de una solución concreta</h2>
+        <p data-i18n="contact.body">
           Si necesitás una web profesional, una automatización, una integración
           con APIs, un bot de contacto, una herramienta interna o una solución
           con IA aplicada, podés escribirme desde Panda y dejar el contexto
@@ -539,8 +555,8 @@
         </p>
 
         <div class="hero-actions">
-          <a class="btn primary" href="#inicio">Abrir Panda</a>
-          <a class="btn secondary" href="https://github.com/Mattarzu" target="_blank" rel="noreferrer">
+          <a class="btn primary" href="#inicio" data-i18n="contact.openPanda">Abrir Panda</a>
+          <a class="btn secondary" href="https://github.com/Mattarzu" target="_blank" rel="noreferrer" data-i18n="contact.github">
             Ver GitHub
           </a>
         </div>
@@ -548,8 +564,8 @@
     </main>
 
 
-    <aside class="panda-assistant" aria-label="Asistente panda de M M LAB">
-      <button class="panda-toggle" type="button" aria-expanded="false" aria-controls="panda-panel" aria-label="Abrir asistente Panda">
+    <aside class="panda-assistant" aria-label="Asistente panda de M M LAB" data-i18n-attr="aria-label:panda.assistantAria">
+      <button class="panda-toggle" type="button" aria-expanded="false" aria-controls="panda-panel" aria-label="Abrir asistente Panda" data-i18n-attr="aria-label:panda.toggleAria">
         <span class="panda-face" aria-hidden="true">
           <span class="panda-ear left"></span>
           <span class="panda-ear right"></span>
@@ -560,47 +576,47 @@
       </button>
 
       <div id="panda-panel" class="panda-panel" hidden>
-        <button class="panda-close" type="button" aria-label="Cerrar asistente panda">×</button>
-        <p class="panda-kicker">M M PANDA</p>
-        <div id="panda-mode" class="panda-mode">Modo guía</div>
-        <p id="panda-message" role="status" aria-live="polite" aria-atomic="true">
+        <button class="panda-close" type="button" aria-label="Cerrar asistente panda" data-i18n-attr="aria-label:panda.closeAria">×</button>
+        <p class="panda-kicker" data-i18n="panda.kicker">M M PANDA</p>
+        <div id="panda-mode" class="panda-mode" data-i18n="panda.modeGuide">Modo guía</div>
+        <p id="panda-message" role="status" aria-live="polite" aria-atomic="true" data-i18n="panda.message">
           Bienvenido a M M LAB. Te puedo guiar por los proyectos, el stack y el roadmap.
         </p>
-        <p id="panda-hint" class="panda-hint">
+        <p id="panda-hint" class="panda-hint" data-i18n="panda.hint">
           Tip: pasá por los proyectos para ver una descripción rápida.
         </p>
 
         <div class="panda-actions">
-          <a href="#capacidades">Capacidades</a>
-          <a href="#proyectos">Proyectos</a>
-          <a href="#metodo">Método</a>
-          <a href="#stack">Stack</a>
-          <a href="#roadmap">Roadmap</a>
+          <a href="#capacidades" data-i18n="panda.capabilities">Capacidades</a>
+          <a href="#proyectos" data-i18n="panda.projects">Proyectos</a>
+          <a href="#metodo" data-i18n="panda.method">Método</a>
+          <a href="#stack" data-i18n="panda.stack">Stack</a>
+          <a href="#roadmap" data-i18n="panda.roadmap">Roadmap</a>
         </div>
 
         <div class="panda-contact-actions">
-          <button class="panda-contact-open" type="button" aria-controls="panda-panel">Hablar con Matt</button>
+          <button class="panda-contact-open" type="button" aria-controls="panda-panel" data-i18n="panda.contactOpen">Hablar con Matt</button>
         </div>
 
         <div class="panda-controls">
-          <button class="panda-pause" type="button" aria-label="Pausar movimiento del asistente Panda">Pausar</button>
-          <button class="panda-hide" type="button" aria-label="Ocultar asistente Panda durante esta sesión">Ocultar</button>
+          <button class="panda-pause" type="button" aria-label="Pausar movimiento del asistente Panda" data-i18n="panda.pause" data-i18n-attr="aria-label:panda.pauseAria">Pausar</button>
+          <button class="panda-hide" type="button" aria-label="Ocultar asistente Panda durante esta sesión" data-i18n="panda.hide" data-i18n-attr="aria-label:panda.hideAria">Ocultar</button>
         </div>
       
         <form class="panda-contact-form" aria-describedby="panda-message panda-hint" hidden>
           <label>
-            Nombre
-            <input name="name" type="text" autocomplete="name" placeholder="Tu nombre" required />
+            <span data-i18n="panda.formName">Nombre</span>
+            <input name="name" type="text" autocomplete="name" placeholder="Tu nombre" data-i18n-attr="placeholder:panda.formNamePlaceholder" required />
           </label>
 
           <label>
-            Contacto
-            <input name="contact" type="text" autocomplete="email" placeholder="Email, Telegram o contacto" required />
+            <span data-i18n="panda.formContact">Contacto</span>
+            <input name="contact" type="text" autocomplete="email" placeholder="Email, Telegram o contacto" data-i18n-attr="placeholder:panda.formContactPlaceholder" required />
           </label>
 
           <label>
-            Mensaje
-            <textarea name="message" rows="4" maxlength="2000" placeholder="Contame qué querés consultar..." required></textarea>
+            <span data-i18n="panda.formMessage">Mensaje</span>
+            <textarea name="message" rows="4" maxlength="2000" placeholder="Contame qué querés consultar..." data-i18n-attr="placeholder:panda.formMessagePlaceholder" required></textarea>
           </label>
 
           <label class="panda-honeypot" aria-hidden="true">
@@ -608,12 +624,17 @@
             <input name="website" type="text" tabindex="-1" autocomplete="off" />
           </label>
 
-          <button class="panda-contact-submit" type="submit">Enviar mensaje</button>
+          <button class="panda-contact-submit" type="submit" data-i18n="panda.formSubmit">Enviar mensaje</button>
         </form>
       </div>
     </aside>
 
     <script src="./contact-config.js"></script>
+    <script src="./assets/i18n/translations.js"></script>
+    <script src="./assets/i18n/panda-runtime-translations.js"></script>
+    <script src="./assets/i18n/landing-translations.js"></script>
+    <script src="./assets/i18n/zh-cn-overrides.js"></script>
+    <script src="./assets/js/i18n.js"></script>
     <script src="./main.js"></script>
   </body>
 </html>

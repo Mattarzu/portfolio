@@ -2,6 +2,16 @@ const mmLabPrefersReducedMotion = () =>
   window.matchMedia &&
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+const mmLabTranslate = (key) => {
+  const api = window.MMLAB_I18N;
+  if (api && typeof api.translate === "function") {
+    const value = api.translate(key);
+    if (value && value !== key) return value;
+  }
+
+  return key;
+};
+
 (() => {
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
@@ -20,6 +30,19 @@ const mmLabPrefersReducedMotion = () =>
 
   if (!toggle || !panel || !message || !heroMascot) return;
 
+  const t = mmLabTranslate;
+
+  function updateToggleLabel() {
+    toggle.setAttribute(
+      "aria-label",
+      panel.hidden ? t("panda.toggleOpenAria") : t("panda.toggleCloseAria")
+    );
+  }
+
+  function updatePauseLabel() {
+    if (pauseBtn) pauseBtn.textContent = pandaPaused ? t("panda.resume") : t("panda.pause");
+  }
+
   heroMascot.hidden = false;
   toggle.hidden = false;
   heroMascot.removeAttribute("hidden");
@@ -28,140 +51,139 @@ const mmLabPrefersReducedMotion = () =>
 
   const states = {
     welcome: {
-      mode: "Modo bienvenida",
+      modeKey: "panda.state.welcome.mode",
       mood: "welcome",
       section: "inicio",
-      text: "Hola, soy M M Panda. Te acompaño por M M LAB: software, automatización e IA aplicada.",
-      hint: "Tip: la web muestra capacidades, proyectos y método de trabajo sin exponer detalles privados."
+      textKey: "panda.state.welcome.text",
+      hintKey: "panda.state.welcome.hint"
     },
     default: {
-      mode: "Modo guía",
+      modeKey: "panda.state.default.mode",
       mood: "idle",
       section: "inicio",
-      text: "Estoy recorriendo M M LAB con vos.",
-      hint: "Tip: pasá por las tarjetas para ver contexto rápido."
+      textKey: "panda.state.default.text",
+      hintKey: "panda.state.default.hint"
     },
     hero: {
-      mode: "Modo inicio",
+      modeKey: "panda.state.hero.mode",
       mood: "hero",
       section: "inicio",
-      text: "Esta portada resume el enfoque: software, automatización e IA aplicada.",
-      hint: "Tip: el hero queda limpio porque el panda no ocupa una columna fija."
+      textKey: "panda.state.hero.text",
+      hintKey: "panda.state.hero.hint"
     },
     about: {
-      mode: "Modo sobre mí",
+      modeKey: "panda.state.about.mode",
       mood: "focus",
       section: "sobre-mi",
-      text: "Esta sección resume el enfoque técnico sin convertir la página en un CV clásico.",
-      hint: "Tip: es mejor mostrar criterio, método y capacidades que datos privados."
+      textKey: "panda.state.about.text",
+      hintKey: "panda.state.about.hint"
     },
     projects: {
-      mode: "Modo proyectos",
+      modeKey: "panda.state.projects.mode",
       mood: "build",
       section: "proyectos",
-      text: "Acá están las soluciones, productos y prototipos principales.",
-      hint: "Tip: la descripción pública debe explicar valor y función, no detalles internos."
+      textKey: "panda.state.projects.text",
+      hintKey: "panda.state.projects.hint"
     },
     method: {
-      mode: "Modo método",
+      modeKey: "panda.state.method.mode",
       mood: "focus",
       section: "metodo",
-      text: "Esta sección muestra cómo trabajás: diseño, validación, automatización y documentación.",
-      hint: "Tip: el método comunica criterio de ingeniería, no solo tecnologías."
+      textKey: "panda.state.method.text",
+      hintKey: "panda.state.method.hint"
     },
     capabilities: {
-      mode: "Modo capacidades",
+      modeKey: "panda.state.capabilities.mode",
       mood: "stack",
       section: "capacidades",
-      text: "Acá se resumen las áreas técnicas principales: software, automatización, IA aplicada y operaciones.",
-      hint: "Tip: esta sección ayuda a entender qué podés construir sin revisar todos los proyectos."
+      textKey: "panda.state.capabilities.text",
+      hintKey: "panda.state.capabilities.hint"
     },
     stack: {
-      mode: "Modo stack",
+      modeKey: "panda.state.stack.mode",
       mood: "stack",
       section: "stack",
-      text: "Esta parte resume las tecnologías y áreas principales.",
-      hint: "Tip: mantené el stack corto, legible y orientado a capacidades."
+      textKey: "panda.state.stack.text",
+      hintKey: "panda.state.stack.hint"
     },
     roadmap: {
-      mode: "Modo roadmap",
+      modeKey: "panda.state.roadmap.mode",
       mood: "roadmap",
       section: "roadmap",
-      text: "El roadmap muestra evolución y próximos pasos.",
-      hint: "Tip: una hoja de ruta hace que el proyecto se perciba vivo."
+      textKey: "panda.state.roadmap.text",
+      hintKey: "panda.state.roadmap.hint"
     },
     contact: {
-      mode: "Modo GitHub",
+      modeKey: "panda.state.contact.mode",
       mood: "github",
       section: "contacto",
-      text: "GitHub es la base pública de los proyectos.",
-      hint: "Tip: cada repo debería tener README claro, estado actual y comandos reproducibles."
+      textKey: "panda.state.contact.text",
+      hintKey: "panda.state.contact.hint"
     }
   };
 
   const projectMessages = new Map([
     [
-      "router llm híbrido",
+      "router",
       {
-        mode: "Proyecto IA",
+        modeKey: "panda.project.router.mode",
         mood: "build",
         section: "proyectos",
-        text: "Este proyecto coordina modelos, rutas híbridas y validación técnica.",
-        hint: "Tip: describilo por función y arquitectura general, no por nombres internos."
+        textKey: "panda.project.router.text",
+        hintKey: "panda.project.router.hint"
       }
     ],
     [
-      "asistente local de código",
+      "code",
       {
-        mode: "Proyecto código",
+        modeKey: "panda.project.code.mode",
         mood: "focus",
         section: "proyectos",
-        text: "Esta herramienta se enfoca en ayuda técnica, contexto y validación.",
-        hint: "Tip: podés mostrar ejemplos de uso sin rutas locales ni tokens."
+        textKey: "panda.project.code.text",
+        hintKey: "panda.project.code.hint"
       }
     ],
     [
-      "orquestador de entornos técnicos",
+      "environments",
       {
-        mode: "Proyecto entornos",
+        modeKey: "panda.project.environments.mode",
         mood: "stack",
         section: "proyectos",
-        text: "Este proyecto organiza configuraciones, validaciones y automatización.",
-        hint: "Tip: mantenelo abstracto y público, sin hostnames ni detalles internos."
+        textKey: "panda.project.environments.text",
+        hintKey: "panda.project.environments.hint"
       }
     ],
     [
       "gymcontrol",
       {
-        mode: "Proyecto web",
+        modeKey: "panda.project.gymcontrol.mode",
         mood: "build",
         section: "proyectos",
-        text: "GymControl representa una aplicación web operativa.",
-        hint: "Tip: una demo visual o capturas del flujo lo harían más fuerte."
+        textKey: "panda.project.gymcontrol.text",
+        hintKey: "panda.project.gymcontrol.hint"
       }
     ],
     [
-      "antivirus / hardening linux",
+      "hardening",
       {
-        mode: "Proyecto seguridad",
+        modeKey: "panda.project.hardening.mode",
         mood: "roadmap",
         section: "proyectos",
-        text: "Este frente apunta a seguridad, hardening y auditoría básica.",
-        hint: "Tip: separá seguridad defensiva, hardening y monitoreo en módulos."
+        textKey: "panda.project.hardening.text",
+        hintKey: "panda.project.hardening.hint"
       }
     ],
     [
-      "traductor ia",
+      "translator",
       {
-        mode: "Proyecto IA aplicada",
+        modeKey: "panda.project.translator.mode",
         mood: "github",
         section: "proyectos",
-        text: "Este proyecto puede convertirse en una utilidad clara para usuarios finales.",
-        hint: "Tip: una mini demo español ↔ inglés técnico lo haría más tangible."
+        textKey: "panda.project.translator.text",
+        hintKey: "panda.project.translator.hint"
       }
     ]
   ]);
-
   let currentState = states.default;
   let userClosedPanel = false;
   let pandaPaused = sessionStorage.getItem("mm-panda-paused") === "1";
@@ -185,7 +207,7 @@ const mmLabPrefersReducedMotion = () =>
     if (pandaHidden) open = false;
     panel.hidden = !open;
     toggle.setAttribute("aria-expanded", String(open));
-    toggle.setAttribute("aria-label", open ? "Cerrar asistente Panda" : "Abrir asistente Panda");
+    updateToggleLabel();
   }
 
   function applyState(state) {
@@ -194,9 +216,9 @@ const mmLabPrefersReducedMotion = () =>
 
     currentState = next;
 
-    if (mode) mode.textContent = next.mode;
-    if (message) message.textContent = next.text;
-    if (hint) hint.textContent = next.hint;
+    if (mode) mode.textContent = t(next.modeKey);
+    if (message) message.textContent = t(next.textKey);
+    if (hint) hint.textContent = t(next.hintKey);
 
     document.body.dataset.pandaMood = next.mood || "idle";
     document.body.dataset.pandaSection = next.section || "inicio";
@@ -332,18 +354,14 @@ const mmLabPrefersReducedMotion = () =>
     pandaPaused = nextPaused;
     sessionStorage.setItem("mm-panda-paused", nextPaused ? "1" : "0");
 
-    if (pauseBtn) pauseBtn.textContent = nextPaused ? "Reanudar" : "Pausar";
+    updatePauseLabel();
 
     applyState({
-      mode: nextPaused ? "Panda pausado" : "Modo guía",
+      modeKey: nextPaused ? "panda.state.paused.mode" : "panda.state.resumed.mode",
       mood: "idle",
       section: currentState.section || "inicio",
-      text: nextPaused
-        ? "Me quedo quieto para no tapar contenido."
-        : "Vuelvo a acompañarte por la página.",
-      hint: nextPaused
-        ? "Tip: podés reanudar el movimiento cuando quieras."
-        : "Tip: el panda se mueve por márgenes para no ocupar espacio físico."
+      textKey: nextPaused ? "panda.state.paused.text" : "panda.state.resumed.text",
+      hintKey: nextPaused ? "panda.state.paused.hint" : "panda.state.resumed.hint"
     });
 
     setOpen(true);
@@ -388,6 +406,12 @@ window.addEventListener("scroll", scheduleMove, { passive: true });
     hideBtn.addEventListener("click", hidePandaForSession);
   }
 
+  window.addEventListener("mmlab:languagechange", () => {
+    updateToggleLabel();
+    updatePauseLabel();
+    applyState(currentState);
+  });
+
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && !panel.hidden) {
       userClosedPanel = true;
@@ -425,10 +449,10 @@ window.addEventListener("scroll", scheduleMove, { passive: true });
   });
 
   projectCards.forEach((card) => {
-    const title = card.querySelector("h3")?.textContent?.trim().toLowerCase();
-    if (!title) return;
+    const projectKey = card.dataset.pandaProject || "";
+    if (!projectKey) return;
 
-    const state = projectMessages.get(title);
+    const state = projectMessages.get(projectKey);
     if (!state) return;
 
     card.addEventListener("mouseenter", () => {
@@ -570,6 +594,7 @@ window.addEventListener("scroll", scheduleMove, { passive: true });
 })();
 
 (() => {
+  const t = mmLabTranslate;
   const openBtn = document.querySelector(".panda-contact-open");
   const form = document.querySelector(".panda-contact-form");
   const panel = document.getElementById("panda-panel");
@@ -596,10 +621,10 @@ window.addEventListener("scroll", scheduleMove, { passive: true });
     }
   }
 
-  function setPandaMessage(nextMode, nextMessage, nextHint) {
-    if (mode) mode.textContent = nextMode;
-    message.textContent = nextMessage;
-    if (hint) hint.textContent = nextHint;
+  function setPandaMessage(nextModeKey, nextMessageKey, nextHintKey) {
+    if (mode) mode.textContent = t(nextModeKey);
+    message.textContent = t(nextMessageKey);
+    if (hint) hint.textContent = t(nextHintKey);
   }
 
   function buildMessage(data) {
@@ -629,7 +654,7 @@ window.addEventListener("scroll", scheduleMove, { passive: true });
   function setSubmitting(isSubmitting) {
     if (!submitBtn) return;
     submitBtn.disabled = isSubmitting;
-    submitBtn.textContent = isSubmitting ? "Enviando..." : "Enviar mensaje";
+    submitBtn.textContent = isSubmitting ? t("panda.submitSending") : t("panda.formSubmit");
   }
 
   async function sendContact(payload) {
@@ -667,9 +692,9 @@ window.addEventListener("scroll", scheduleMove, { passive: true });
 
     if (copied) {
       setPandaMessage(
-        "Mensaje preparado",
-        "No encontré endpoint público de contacto, pero dejé el mensaje copiado al portapapeles.",
-        "Cuando el backend esté desplegado, el envío va a ser automático desde este mismo formulario."
+        "panda.form.preparedMode",
+        "panda.form.noEndpointCopied",
+        "panda.form.noEndpointCopiedHint"
       );
       form.reset();
       form.hidden = true;
@@ -677,9 +702,9 @@ window.addEventListener("scroll", scheduleMove, { passive: true });
     }
 
     setPandaMessage(
-      "Mensaje preparado",
-      "El mensaje está listo, pero el navegador no permitió copiarlo automáticamente.",
-      "Falta configurar el endpoint público del backend para envío automático."
+      "panda.form.preparedMode",
+      "panda.form.clipboardBlocked",
+      "panda.form.clipboardBlockedHint"
     );
   }
 
@@ -688,11 +713,11 @@ window.addEventListener("scroll", scheduleMove, { passive: true });
     form.hidden = false;
 
     setPandaMessage(
-      "Modo contacto",
-      "Completá el formulario y Panda se lo envía a Matt.",
+      "panda.form.contactMode",
+      "panda.form.openMessage",
       contactEndpoint
-        ? "El mensaje se enviará por el backend de contacto."
-        : "Todavía falta configurar el endpoint público; por ahora uso fallback al portapapeles."
+        ? "panda.form.openBackendHint"
+        : "panda.form.openFallbackHint"
     );
 
     form.scrollIntoView({ behavior: mmLabPrefersReducedMotion() ? "auto" : "smooth", block: "nearest" });
@@ -713,18 +738,18 @@ window.addEventListener("scroll", scheduleMove, { passive: true });
 
     if (!payload.name || !payload.contact || !payload.message) {
       setPandaMessage(
-        "Modo contacto",
-        "Faltan datos. Completá nombre, contacto y mensaje.",
-        "Tip: el contacto puede ser email, Telegram u otra forma de respuesta."
+        "panda.form.contactMode",
+        "panda.form.validationMessage",
+        "panda.form.validationHint"
       );
       return;
     }
 
     setSubmitting(true);
     setPandaMessage(
-      "Enviando mensaje",
-      "Panda está enviando el mensaje a Matt.",
-      "No cierres el panel hasta ver la confirmación."
+      "panda.form.sendingMode",
+      "panda.form.sendingMessage",
+      "panda.form.sendingHint"
     );
 
     const result = await sendContact(payload);
@@ -732,9 +757,9 @@ window.addEventListener("scroll", scheduleMove, { passive: true });
 
     if (result.ok) {
       setPandaMessage(
-        "Mensaje enviado",
-        "Listo. Matt recibió la notificación por Telegram.",
-        "Te va a responder por el contacto que dejaste."
+        "panda.form.successMode",
+        "panda.form.successMessage",
+        "panda.form.successHint"
       );
       form.reset();
       form.hidden = true;
@@ -747,9 +772,9 @@ window.addEventListener("scroll", scheduleMove, { passive: true });
     }
 
     setPandaMessage(
-      "No pude enviar el mensaje",
-      "El backend de contacto no respondió correctamente.",
-      "Probá de nuevo en unos minutos o copiá el mensaje manualmente."
+      "panda.form.failureMode",
+      "panda.form.failureMessage",
+      "panda.form.failureHint"
     );
   });
 })();
