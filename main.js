@@ -412,7 +412,7 @@
 (() => {
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.getElementById("main-nav");
-  const links = Array.from(document.querySelectorAll(".nav-links a[href^='#']"));
+  const links = Array.from(document.querySelectorAll(".nav-links a"));
 
   if (!nav) return;
 
@@ -451,7 +451,10 @@
 
   const sections = links
     .map((link) => {
-      const id = link.getAttribute("href")?.replace("#", "");
+      const href = link.getAttribute("href") || "";
+      if (!href.startsWith("#")) return null;
+
+      const id = href.replace("#", "");
       const section = id ? document.getElementById(id) : null;
       return section ? { id, section, link } : null;
     })

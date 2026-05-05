@@ -14,8 +14,14 @@
       <div class="container nav">
         <a class="brand" href="../index.html#inicio">M M LAB</a>
 
-        <nav class="nav-links" aria-label="Navegación principal">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+          Menú
+        </button>
+
+        <nav id="main-nav" class="nav-links" aria-label="Navegación principal">
+          <a href="../index.html#inicio">Inicio</a>
           <a href="../index.html#sobre-mi">Sobre mí</a>
+          <a href="../index.html#metodo">Método</a>
           <a href="../index.html#proyectos">Proyectos</a>
           <a href="../index.html#stack">Stack</a>
           <a href="../index.html#roadmap">Roadmap</a>
@@ -27,10 +33,24 @@
     <main>
       <section class="project-detail-hero container">
         <a class="back-link" href="../index.html#proyectos">← Volver a proyectos</a>
-        <p class="eyebrow">HERRAMIENTAS DE DESARROLLO</p>
-        <h1>Asistente local de código</h1>
-        <p class="lead">Herramienta orientada a tareas de código, asistencia interactiva, contexto de proyecto, validación de respuestas y ejecución controlada con modelos locales.</p>
-        <span class="detail-status">Activo</span>
+
+        <div class="detail-hero-grid">
+          <div>
+            <p class="eyebrow">HERRAMIENTAS DE DESARROLLO</p>
+            <h1>Asistente local de código</h1>
+            <p class="lead">Herramienta orientada a tareas de código, asistencia interactiva, contexto de proyecto, validación de respuestas y ejecución controlada con modelos locales.</p>
+          </div>
+
+          <aside class="detail-side-card" aria-label="Estado público del proyecto">
+            <span class="detail-status">Activo</span>
+            <h2>Estado público</h2>
+            <ul>
+              <li>Uso orientado a tareas de código</li>
+              <li>Validación de respuestas</li>
+              <li>Contexto de proyecto controlado</li>
+            </ul>
+          </aside>
+        </div>
       </section>
 
       <section class="project-detail-grid container">
@@ -79,6 +99,23 @@
           sensible no se publican.
         </p>
       </section>
+
+      <nav class="project-pager container" aria-label="Navegación entre proyectos">
+        <a href="./router-llm.html">
+          <span>Anterior</span>
+          <strong>Router LLM híbrido</strong>
+        </a>
+
+        <a href="../index.html#proyectos">
+          <span>Índice</span>
+          <strong>Todos los proyectos</strong>
+        </a>
+
+        <a href="./orquestador-entornos.html">
+          <span>Siguiente</span>
+          <strong>Orquestador de entornos técnicos</strong>
+        </a>
+      </nav>
     </main>
 
     <footer class="site-footer">
