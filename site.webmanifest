@@ -1,0 +1,19 @@
+{
+  "name": "M M LAB",
+  "short_name": "M M LAB",
+  "description": "Software, automatización e inteligencia artificial aplicada.",
+  "lang": "es-AR",
+  "start_url": "/portfolio/",
+  "scope": "/portfolio/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "/portfolio/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
