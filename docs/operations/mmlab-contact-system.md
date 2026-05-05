@@ -54,7 +54,7 @@ contact-config.js
 Valor productivo:
 
 ```js
-window.MMLAB_CONTACT_ENDPOINT = "https://mmlab-contact-api.mattm2.workers.dev/contact";
+window.MMLAB_CONTACT_ENDPOINT = "<contact-worker-url>/contact";
 ```
 
 El frontend no contiene secretos. Solo conoce el endpoint público del Worker.
@@ -76,7 +76,7 @@ mmlab-contact-worker/
 URL pública:
 
 ```txt
-https://mmlab-contact-api.mattm2.workers.dev
+<contact-worker-url>
 ```
 
 Endpoints:
@@ -109,7 +109,7 @@ TELEGRAM_BOT_TOKEN
 Chat ID usado:
 
 ```txt
-TELEGRAM_CHAT_ID=1463839709
+TELEGRAM_CHAT_ID=<private-chat-id>
 ```
 
 CORS productivo:
@@ -188,7 +188,7 @@ wrangler secret put TELEGRAM_BOT_TOKEN
 Health check:
 
 ```bash
-curl -sS https://mmlab-contact-api.mattm2.workers.dev/health
+curl -sS <contact-worker-url>/health
 ```
 
 Respuesta esperada:
@@ -204,7 +204,7 @@ curl -i -sS \
   -H 'Origin: https://mattarzu.github.io' \
   -H 'Access-Control-Request-Method: POST' \
   -X OPTIONS \
-  https://mmlab-contact-api.mattm2.workers.dev/contact
+  <contact-worker-url>/contact
 ```
 
 Header esperado:
@@ -220,7 +220,7 @@ curl -i -sS \
   -H 'Origin: https://mattarzu.github.io' \
   -H 'Content-Type: application/json' \
   -d '{"name":"Test","contact":"test@example.com","message":"Mensaje de prueba"}' \
-  https://mmlab-contact-api.mattm2.workers.dev/contact
+  <contact-worker-url>/contact
 ```
 
 Respuesta esperada:

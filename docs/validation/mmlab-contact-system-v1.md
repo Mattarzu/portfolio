@@ -33,19 +33,19 @@ GitHub Pages
 Worker público:
 
 ```txt
-https://mmlab-contact-api.mattm2.workers.dev
+<contact-worker-url>
 ```
 
 Endpoint de salud:
 
 ```txt
-https://mmlab-contact-api.mattm2.workers.dev/health
+<contact-worker-url>/health
 ```
 
 Endpoint de contacto:
 
 ```txt
-https://mmlab-contact-api.mattm2.workers.dev/contact
+<contact-worker-url>/contact
 ```
 
 ## Configuración frontend validada
@@ -59,7 +59,7 @@ contact-config.js
 Valor esperado:
 
 ```js
-window.MMLAB_CONTACT_ENDPOINT = "https://mmlab-contact-api.mattm2.workers.dev/contact";
+window.MMLAB_CONTACT_ENDPOINT = "<contact-worker-url>/contact";
 ```
 
 ## CORS validado
@@ -137,7 +137,7 @@ bot token real en archivos trackeados
 Comando:
 
 ```bash
-curl -sS https://mmlab-contact-api.mattm2.workers.dev/health
+curl -sS <contact-worker-url>/health
 ```
 
 Resultado esperado:
@@ -161,7 +161,7 @@ curl -i -sS \
   -H 'Origin: https://mattarzu.github.io' \
   -H 'Content-Type: application/json' \
   -d '{"name":"Test","contact":"test@example.com","message":"Mensaje de prueba"}' \
-  https://mmlab-contact-api.mattm2.workers.dev/contact
+  <contact-worker-url>/contact
 ```
 
 Resultado esperado:
@@ -201,7 +201,7 @@ curl -i -sS \
   -H 'Origin: https://mattarzu.github.io' \
   -H 'Access-Control-Request-Method: POST' \
   -X OPTIONS \
-  https://mmlab-contact-api.mattm2.workers.dev/contact
+  <contact-worker-url>/contact
 ```
 
 Resultado esperado:
@@ -227,7 +227,7 @@ TELEGRAM_BOT_TOKEN
 Variables operativas:
 
 ```txt
-TELEGRAM_CHAT_ID=1463839709
+TELEGRAM_CHAT_ID=<private-chat-id>
 ALLOWED_ORIGIN=https://mattarzu.github.io
 ```
 
