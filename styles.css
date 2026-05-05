@@ -2534,3 +2534,51 @@ body[data-panda-section="contacto"] .panda-panel::before {
   max-width: 920px;
   font-size: clamp(3.4rem, 8vw, 7rem);
 }
+
+/* ===== Panda panel scrollbar cleanup ===== */
+
+.panda-panel {
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;      /* Firefox */
+  -ms-overflow-style: none;   /* IE/Edge viejo */
+}
+
+.panda-panel::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+.panda-panel * {
+  max-width: 100%;
+}
+
+.panda-actions,
+.panda-controls {
+  overflow: hidden;
+}
+
+.panda-panel p,
+.panda-panel a,
+.panda-panel button {
+  word-break: break-word;
+}
+
+@media (max-width: 760px) {
+  .panda-panel {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: min(260px, calc(100vh - 120px));
+  }
+}
+
+.panda-panel {
+  box-sizing: border-box;
+}
+
+.panda-actions,
+.panda-controls {
+  display: flex;
+  flex-wrap: wrap;
+}
