@@ -19,8 +19,8 @@
       mode: "Modo bienvenida",
       mood: "welcome",
       section: "inicio",
-      text: "Hola, soy M M Panda. Te acompaño por M M LAB.",
-      hint: "Tip: la web muestra capacidades, proyectos y líneas técnicas sin exponer infraestructura privada."
+      text: "Hola, soy M M Panda. Te acompaño por M M LAB: software, automatización e IA aplicada.",
+      hint: "Tip: la web muestra capacidades, proyectos y método de trabajo sin exponer detalles privados."
     },
     default: {
       mode: "Modo guía",
@@ -33,22 +33,29 @@
       mode: "Modo inicio",
       mood: "hero",
       section: "inicio",
-      text: "Esta portada resume software, automatización e IA aplicada.",
+      text: "Esta portada resume el enfoque: software, automatización e IA aplicada.",
       hint: "Tip: el hero queda limpio porque el panda no ocupa una columna fija."
     },
     about: {
       mode: "Modo sobre mí",
       mood: "focus",
       section: "sobre-mi",
-      text: "Esta sección explica tu enfoque técnico sin transformarlo en un CV clásico.",
+      text: "Esta sección resume el enfoque técnico sin convertir la página en un CV clásico.",
       hint: "Tip: es mejor mostrar criterio, método y capacidades que datos privados."
     },
     projects: {
       mode: "Modo proyectos",
       mood: "build",
       section: "proyectos",
-      text: "Acá están las soluciones técnicas principales.",
-      hint: "Tip: los nombres públicos son más claros que los nombres internos."
+      text: "Acá están las soluciones, productos y prototipos principales.",
+      hint: "Tip: la descripción pública debe explicar valor y función, no detalles internos."
+    },
+    method: {
+      mode: "Modo método",
+      mood: "focus",
+      section: "metodo",
+      text: "Esta sección muestra cómo trabajás: diseño, validación, automatización y documentación.",
+      hint: "Tip: el método comunica criterio de ingeniería, no solo tecnologías."
     },
     stack: {
       mode: "Modo stack",
@@ -360,6 +367,7 @@
     ["inicio", "hero"],
     ["sobre-mi", "about"],
     ["proyectos", "projects"],
+    ["metodo", "method"],
     ["stack", "stack"],
     ["roadmap", "roadmap"],
     ["contacto", "contact"]
