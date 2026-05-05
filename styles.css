@@ -2520,3 +2520,17 @@ body[data-panda-section="contacto"] .panda-panel::before {
     display: none !important;
   }
 }
+
+/* ===== 404 page ===== */
+
+.error-page {
+  min-height: 100vh;
+  display: grid;
+  align-content: center;
+  padding: 96px 0;
+}
+
+.error-page h1 {
+  max-width: 920px;
+  font-size: clamp(3.4rem, 8vw, 7rem);
+}
