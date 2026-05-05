@@ -1,0 +1,10 @@
+name = "mmlab-contact-api"
+main = "src/worker.js"
+compatibility_date = "2026-05-05"
+workers_dev = true
+preview_urls = false
+
+[vars]
+TELEGRAM_CHAT_ID = "1463839709"
+ALLOWED_ORIGIN = "https://mattarzu.github.io"
+RATE_LIMIT_PER_MINUTE = "5"
