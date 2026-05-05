@@ -1,3 +1,7 @@
+const mmLabPrefersReducedMotion = () =>
+  window.matchMedia &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 (() => {
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
@@ -181,6 +185,7 @@
     if (pandaHidden) open = false;
     panel.hidden = !open;
     toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Cerrar asistente Panda" : "Abrir asistente Panda");
   }
 
   function applyState(state) {
@@ -585,7 +590,10 @@ window.addEventListener("scroll", scheduleMove, { passive: true });
 
   function openPandaPanel() {
     panel.hidden = false;
-    if (toggle) toggle.setAttribute("aria-expanded", "true");
+    if (toggle) {
+      toggle.setAttribute("aria-expanded", "true");
+      toggle.setAttribute("aria-label", "Cerrar asistente Panda");
+    }
   }
 
   function setPandaMessage(nextMode, nextMessage, nextHint) {
@@ -687,7 +695,7 @@ window.addEventListener("scroll", scheduleMove, { passive: true });
         : "Todavía falta configurar el endpoint público; por ahora uso fallback al portapapeles."
     );
 
-    form.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    form.scrollIntoView({ behavior: mmLabPrefersReducedMotion() ? "auto" : "smooth", block: "nearest" });
   });
 
   form.addEventListener("submit", async (event) => {

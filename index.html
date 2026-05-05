@@ -545,7 +545,7 @@
 
 
     <aside class="panda-assistant" aria-label="Asistente panda de M M LAB">
-      <button class="panda-toggle" type="button" aria-expanded="false" aria-controls="panda-panel">
+      <button class="panda-toggle" type="button" aria-expanded="false" aria-controls="panda-panel" aria-label="Abrir asistente Panda">
         <span class="panda-face" aria-hidden="true">
           <span class="panda-ear left"></span>
           <span class="panda-ear right"></span>
@@ -559,7 +559,7 @@
         <button class="panda-close" type="button" aria-label="Cerrar asistente panda">×</button>
         <p class="panda-kicker">M M PANDA</p>
         <div id="panda-mode" class="panda-mode">Modo guía</div>
-        <p id="panda-message" aria-live="polite">
+        <p id="panda-message" role="status" aria-live="polite" aria-atomic="true">
           Bienvenido a M M LAB. Te puedo guiar por los proyectos, el stack y el roadmap.
         </p>
         <p id="panda-hint" class="panda-hint">
@@ -575,15 +575,15 @@
         </div>
 
         <div class="panda-contact-actions">
-          <button class="panda-contact-open" type="button">Hablar con Matt</button>
+          <button class="panda-contact-open" type="button" aria-controls="panda-panel">Hablar con Matt</button>
         </div>
 
         <div class="panda-controls">
-          <button class="panda-pause" type="button">Pausar</button>
-          <button class="panda-hide" type="button">Ocultar</button>
+          <button class="panda-pause" type="button" aria-label="Pausar movimiento del asistente Panda">Pausar</button>
+          <button class="panda-hide" type="button" aria-label="Ocultar asistente Panda durante esta sesión">Ocultar</button>
         </div>
       
-        <form class="panda-contact-form" hidden>
+        <form class="panda-contact-form" aria-describedby="panda-message panda-hint" hidden>
           <label>
             Nombre
             <input name="name" type="text" autocomplete="name" placeholder="Tu nombre" required />
