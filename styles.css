@@ -1756,3 +1756,209 @@ body[data-panda-mood="github"] .panda-mode {
     width: min(280px, calc(100vw - 20px));
   }
 }
+
+/* ===== V7: panda inteligente por márgenes + globo de diálogo ===== */
+
+.hero-mascot.panda-roamer {
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  right: auto !important;
+  width: 170px;
+  height: 230px;
+  z-index: 48;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  overflow: visible;
+  pointer-events: auto;
+  will-change: transform;
+  transition:
+    transform 760ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 180ms ease;
+}
+
+.hero-mascot.panda-roamer:hover {
+  filter: brightness(1.08);
+}
+
+.hero-mascot.panda-roamer[data-side="left"] .hero-panda-full {
+  transform: translateX(-50%) scaleX(-1);
+}
+
+.hero-mascot.panda-roamer[data-side="left"] .hero-panda-bubble {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.panda-assistant {
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  right: auto !important;
+  bottom: auto !important;
+  z-index: 49;
+  pointer-events: none;
+}
+
+.panda-toggle {
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.panda-panel {
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  z-index: 49;
+  max-width: calc(100vw - 32px);
+  border-radius: 28px;
+  pointer-events: auto;
+  transform-origin: bottom center;
+  transition:
+    transform 760ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.panda-panel::before {
+  content: "";
+  position: absolute;
+  top: 64px;
+  width: 18px;
+  height: 18px;
+  background: inherit;
+  border: inherit;
+  border-right: none;
+  border-bottom: none;
+  transform: rotate(-45deg);
+}
+
+body:not([data-panda-section]) .panda-panel::before,
+body[data-panda-section="inicio"] .panda-panel::before,
+body[data-panda-section="sobre-mi"] .panda-panel::before,
+body[data-panda-section="proyectos"] .panda-panel::before,
+body[data-panda-section="roadmap"] .panda-panel::before {
+  right: -10px;
+}
+
+body[data-panda-section="stack"] .panda-panel::before,
+body[data-panda-section="contacto"] .panda-panel::before {
+  left: -10px;
+  transform: rotate(135deg);
+}
+
+.panda-panel[hidden] {
+  display: none !important;
+}
+
+.hero-panda-full {
+  transition: transform 260ms ease;
+}
+
+.hero-panda-arm.right {
+  animation: panda-wave-v7 3.2s ease-in-out infinite;
+}
+
+.hero-panda-leg.left {
+  animation: panda-step-left 2.4s ease-in-out infinite;
+}
+
+.hero-panda-leg.right {
+  animation: panda-step-right 2.4s ease-in-out infinite;
+}
+
+@keyframes panda-wave-v7 {
+  0%, 100% {
+    transform: rotate(-18deg);
+  }
+
+  50% {
+    transform: rotate(-38deg);
+  }
+}
+
+@keyframes panda-step-left {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes panda-step-right {
+  0%, 100% {
+    transform: translateY(-5px);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-mascot.panda-roamer {
+    width: 128px;
+    height: 188px;
+  }
+
+  .panda-panel {
+    width: min(290px, calc(100vw - 24px)) !important;
+  }
+
+  .panda-panel::before {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-mascot.panda-roamer,
+  .panda-panel,
+  .hero-panda-arm.right,
+  .hero-panda-leg.left,
+  .hero-panda-leg.right {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ===== V7.1: corrección de panda cortado + panel autocerrable ===== */
+
+.hero-mascot.panda-roamer {
+  animation: none !important;
+  overflow: visible !important;
+  padding-top: 24px;
+}
+
+.hero-panda-full {
+  top: 34px !important;
+}
+
+.hero-panda-bubble {
+  top: 2px !important;
+}
+
+.hero-mascot.panda-roamer,
+.hero-panda-full {
+  will-change: transform;
+}
+
+.panda-panel {
+  max-height: min(340px, calc(100vh - 32px));
+  overflow: auto;
+}
+
+@media (max-width: 760px) {
+  .hero-mascot.panda-roamer {
+    padding-top: 18px;
+  }
+
+  .hero-panda-full {
+    top: 28px !important;
+  }
+}

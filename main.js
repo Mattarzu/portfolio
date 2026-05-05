@@ -18,50 +18,58 @@
     welcome: {
       mode: "Modo bienvenida",
       mood: "welcome",
-      text: "Hola, soy M M Panda. Bienvenido a M M LAB.",
-      hint: "Tip: recorré proyectos, stack y roadmap para entender rápido el perfil técnico."
+      section: "inicio",
+      text: "Hola, soy M M Panda. Te acompaño por M M LAB.",
+      hint: "Tip: la web muestra capacidades, proyectos y líneas técnicas sin exponer infraestructura privada."
     },
     default: {
       mode: "Modo guía",
       mood: "idle",
+      section: "inicio",
       text: "Estoy recorriendo M M LAB con vos.",
-      hint: "Tip: podés seguirme mientras navego por distintas secciones."
+      hint: "Tip: pasá por las tarjetas para ver contexto rápido."
     },
     hero: {
       mode: "Modo inicio",
       mood: "hero",
-      text: "Esta portada resume software, automatización y herramientas técnicas.",
-      hint: "Tip: el hero ahora usa todo el ancho porque quitamos el panel derecho fijo."
+      section: "inicio",
+      text: "Esta portada resume software, automatización e IA aplicada.",
+      hint: "Tip: el hero queda limpio porque el panda no ocupa una columna fija."
     },
     about: {
       mode: "Modo sobre mí",
       mood: "focus",
-      text: "Esta sección explica tu enfoque técnico sin convertir la página en un CV tradicional.",
-      hint: "Tip: conviene hablar de capacidades, no de infraestructura interna."
+      section: "sobre-mi",
+      text: "Esta sección explica tu enfoque técnico sin transformarlo en un CV clásico.",
+      hint: "Tip: es mejor mostrar criterio, método y capacidades que datos privados."
     },
     projects: {
       mode: "Modo proyectos",
       mood: "build",
-      text: "Acá están las soluciones y proyectos técnicos principales.",
-      hint: "Tip: los nombres públicos venden mejor que los nombres internos."
+      section: "proyectos",
+      text: "Acá están las soluciones técnicas principales.",
+      hint: "Tip: los nombres públicos son más claros que los nombres internos."
     },
     stack: {
       mode: "Modo stack",
       mood: "stack",
+      section: "stack",
       text: "Esta parte resume las tecnologías y áreas principales.",
-      hint: "Tip: mantené esta sección compacta y clara."
+      hint: "Tip: mantené el stack corto, legible y orientado a capacidades."
     },
     roadmap: {
       mode: "Modo roadmap",
       mood: "roadmap",
+      section: "roadmap",
       text: "El roadmap muestra evolución y próximos pasos.",
-      hint: "Tip: una hoja de ruta da sensación de proyecto vivo."
+      hint: "Tip: una hoja de ruta hace que el proyecto se perciba vivo."
     },
     contact: {
       mode: "Modo GitHub",
       mood: "github",
-      text: "GitHub es la base pública de tus proyectos.",
-      hint: "Tip: siempre conviene acompañar con README claros."
+      section: "contacto",
+      text: "GitHub es la base pública de los proyectos.",
+      hint: "Tip: cada repo debería tener README claro, estado actual y comandos reproducibles."
     }
   };
 
@@ -71,8 +79,9 @@
       {
         mode: "Proyecto IA",
         mood: "build",
+        section: "proyectos",
         text: "Este proyecto coordina modelos, rutas híbridas y validación técnica.",
-        hint: "Tip: describilo por función, no por nombre interno."
+        hint: "Tip: describilo por función y arquitectura general, no por nombres internos."
       }
     ],
     [
@@ -80,8 +89,9 @@
       {
         mode: "Proyecto código",
         mood: "focus",
+        section: "proyectos",
         text: "Esta herramienta se enfoca en ayuda técnica, contexto y validación.",
-        hint: "Tip: podés mostrar ejemplos de uso o capturas."
+        hint: "Tip: podés mostrar ejemplos de uso sin rutas locales ni tokens."
       }
     ],
     [
@@ -89,8 +99,9 @@
       {
         mode: "Proyecto entornos",
         mood: "stack",
+        section: "proyectos",
         text: "Este proyecto organiza configuraciones, validaciones y automatización.",
-        hint: "Tip: mantenelo abstracto y público, sin detalles internos."
+        hint: "Tip: mantenelo abstracto y público, sin hostnames ni detalles internos."
       }
     ],
     [
@@ -98,8 +109,9 @@
       {
         mode: "Proyecto web",
         mood: "build",
-        text: "GymControl representa una línea más de aplicación web operativa.",
-        hint: "Tip: una demo o flujo visual lo haría más fuerte."
+        section: "proyectos",
+        text: "GymControl representa una aplicación web operativa.",
+        hint: "Tip: una demo visual o capturas del flujo lo harían más fuerte."
       }
     ],
     [
@@ -107,8 +119,9 @@
       {
         mode: "Proyecto seguridad",
         mood: "roadmap",
+        section: "proyectos",
         text: "Este frente apunta a seguridad, hardening y auditoría básica.",
-        hint: "Tip: separar módulos defensivos ayuda mucho."
+        hint: "Tip: separá seguridad defensiva, hardening y monitoreo en módulos."
       }
     ],
     [
@@ -116,11 +129,24 @@
       {
         mode: "Proyecto IA aplicada",
         mood: "github",
-        text: "Este proyecto puede convertirse en una utilidad muy clara para usuarios finales.",
+        section: "proyectos",
+        text: "Este proyecto puede convertirse en una utilidad clara para usuarios finales.",
         hint: "Tip: una mini demo español ↔ inglés técnico lo haría más tangible."
       }
     ]
   ]);
+
+  let currentState = states.default;
+  let userClosedPanel = false;
+  let animationFrame = null;
+  let autoCloseTimer = null;
+
+  function autoClosePanel(delay = 5200) {
+    clearTimeout(autoCloseTimer);
+    autoCloseTimer = setTimeout(() => {
+      setOpen(false);
+    }, delay);
+  }
 
   function setOpen(open) {
     panel.hidden = !open;
@@ -131,84 +157,182 @@
     const next = typeof state === "string" ? states[state] : state;
     if (!next) return;
 
+    currentState = next;
+
     if (mode) mode.textContent = next.mode;
     if (message) message.textContent = next.text;
     if (hint) hint.textContent = next.hint;
 
     document.body.dataset.pandaMood = next.mood || "idle";
+    document.body.dataset.pandaSection = next.section || "inicio";
+
+    scheduleMove();
   }
 
-  // === Movimiento del panda ===
   function clamp(value, min, max) {
     return Math.min(Math.max(value, min), max);
   }
 
-  function movePanda() {
+  function getSectionProgress() {
     const doc = document.documentElement;
     const scrollTop = window.scrollY || doc.scrollTop;
     const maxScroll = Math.max(doc.scrollHeight - window.innerHeight, 1);
-    const progress = scrollTop / maxScroll;
+    return scrollTop / maxScroll;
+  }
 
+  function getSectionPosition(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (!section) return null;
+
+    const rect = section.getBoundingClientRect();
+    return {
+      top: rect.top,
+      bottom: rect.bottom,
+      height: rect.height,
+      center: rect.top + rect.height / 2
+    };
+  }
+
+  function getMascotTarget() {
     const vw = window.innerWidth;
     const vh = window.innerHeight;
 
-    const pandaX = clamp(40 + (vw - 240) * (0.15 + 0.7 * Math.abs(Math.sin(progress * Math.PI * 1.35))), 24, vw - 200);
-    const pandaY = clamp(110 + (vh - 300) * (0.1 + 0.75 * progress), 90, vh - 250);
+    const section = currentState.section || "inicio";
+    const sectionPos = getSectionPosition(section);
+    const progress = getSectionProgress();
 
-    heroMascot.style.transform = `translate3d(${pandaX}px, ${pandaY}px, 0)`;
+    const isSmall = vw <= 760;
 
-    const panelOffsetX = pandaX + 120;
-    const panelOffsetY = pandaY + 40;
+    if (isSmall) {
+      return {
+        x: vw - 132,
+        y: vh - 210,
+        side: "right"
+      };
+    }
 
-    const panelX = clamp(panelOffsetX, 16, vw - 340);
-    const panelY = clamp(panelOffsetY, 16, vh - 260);
+    const sideBySection = {
+      inicio: "right",
+      "sobre-mi": "right",
+      proyectos: "right",
+      stack: "left",
+      roadmap: "right",
+      contacto: "left"
+    };
 
-    panel.style.transform = `translate3d(${panelX}px, ${panelY}px, 0)`;
+    const side = sideBySection[section] || "right";
 
-    const toggleX = clamp(pandaX + 112, 8, vw - 76);
-    const toggleY = clamp(pandaY + 150, 8, vh - 76);
+    const margin = 42;
+    const safeTop = 96;
+    const safeBottom = 34;
+    const mascotWidth = 170;
+    const mascotHeight = 230;
 
-    toggle.style.transform = `translate3d(${toggleX}px, ${toggleY}px, 0)`;
-    toggle.style.position = "fixed";
+    const x =
+      side === "left"
+        ? margin
+        : vw - mascotWidth - margin;
+
+    let y;
+
+    if (sectionPos && sectionPos.top < vh && sectionPos.bottom > 0) {
+      y = clamp(sectionPos.center - mascotHeight * 0.5, safeTop, vh - mascotHeight - safeBottom);
+    } else {
+      const wave = Math.sin(progress * Math.PI * 2) * 42;
+      y = clamp(120 + progress * (vh - 330) + wave, safeTop, vh - mascotHeight - safeBottom);
+    }
+
+    return { x, y, side };
   }
 
-  window.addEventListener("scroll", movePanda, { passive: true });
-  window.addEventListener("resize", movePanda);
+  function moveMascot() {
+    animationFrame = null;
+
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const target = getMascotTarget();
+
+    heroMascot.style.transform = `translate3d(${target.x}px, ${target.y}px, 0)`;
+    heroMascot.dataset.side = target.side;
+
+    toggle.style.position = "fixed";
+    toggle.style.left = "0";
+    toggle.style.top = "0";
+    toggle.style.transform = `translate3d(${target.x + 102}px, ${target.y + 156}px, 0)`;
+
+    const panelWidth = Math.min(340, vw - 32);
+    const panelHeight = 275;
+
+    let panelX =
+      target.side === "left"
+        ? target.x + 150
+        : target.x - panelWidth + 20;
+
+    let panelY = target.y + 30;
+
+    panelX = clamp(panelX, 16, vw - panelWidth - 16);
+    panelY = clamp(panelY, 16, vh - panelHeight - 16);
+
+    panel.style.setProperty("--panda-panel-side", target.side);
+    panel.style.width = `${panelWidth}px`;
+    panel.style.transform = `translate3d(${panelX}px, ${panelY}px, 0)`;
+  }
+
+  function scheduleMove() {
+    if (animationFrame) return;
+    animationFrame = requestAnimationFrame(moveMascot);
+  }
+
+  window.addEventListener("scroll", scheduleMove, { passive: true });
+  window.addEventListener("resize", scheduleMove);
 
   toggle.addEventListener("click", () => {
+    userClosedPanel = false;
     const open = panel.hidden;
     setOpen(open);
-    if (open) applyState("default");
+    if (open) {
+      applyState("default");
+      autoClosePanel();
+    }
   });
 
   if (closeBtn) {
     closeBtn.addEventListener("click", (event) => {
       event.stopPropagation();
+      userClosedPanel = true;
       setOpen(false);
     });
   }
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && !panel.hidden) {
+      userClosedPanel = true;
       setOpen(false);
     }
   });
 
   heroMascot.addEventListener("click", () => {
+    userClosedPanel = false;
     const target = document.getElementById("proyectos");
     if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
     setOpen(true);
     applyState("projects");
+    autoClosePanel();
   });
 
   heroMascot.addEventListener("mouseenter", () => {
-    setOpen(true);
-    applyState("hero");
+    if (!userClosedPanel) {
+      setOpen(true);
+      applyState("hero");
+      autoClosePanel(4200);
+    }
   });
 
   pandaLinks.forEach((link) => {
     link.addEventListener("click", () => {
+      userClosedPanel = false;
       const href = (link.getAttribute("href") || "").replace("#", "");
+
       if (href === "proyectos") applyState("projects");
       else if (href === "stack") applyState("stack");
       else if (href === "roadmap") applyState("roadmap");
@@ -224,8 +348,11 @@
     if (!state) return;
 
     card.addEventListener("mouseenter", () => {
-      setOpen(true);
-      applyState(state);
+      if (!userClosedPanel) {
+        setOpen(true);
+        applyState(state);
+        autoClosePanel(4800);
+      }
     });
   });
 
@@ -244,12 +371,12 @@
         .filter((entry) => entry.isIntersecting)
         .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
-      if (!visible || panel.hidden) return;
+      if (!visible) return;
 
       const key = sectionStates.get(visible.target.id);
       if (key) applyState(key);
     },
-    { threshold: [0.25, 0.45, 0.7] }
+    { threshold: [0.28, 0.45, 0.7] }
   );
 
   sectionStates.forEach((_, id) => {
@@ -259,17 +386,16 @@
 
   window.addEventListener("load", () => {
     applyState("default");
-    movePanda();
+    scheduleMove();
 
     setTimeout(() => {
       if (!sessionStorage.getItem("mm-panda-greeted")) {
+        userClosedPanel = false;
         setOpen(true);
         applyState("welcome");
         sessionStorage.setItem("mm-panda-greeted", "1");
 
-        setTimeout(() => {
-          setOpen(false);
-        }, 5000);
+        autoClosePanel(5200);
       }
     }, 700);
   });
