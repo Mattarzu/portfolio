@@ -424,7 +424,7 @@
               <span class="status stable" data-i18n="status.stable">Estable</span>
               <span class="tag" data-i18n="tag.webApp">Web app</span>
             </div>
-            <h3 data-i18n="project.gymcontrol.title">GymControl</h3>
+            <h3 data-i18n="project.gymcontrol.title">Gym Control / Qivox Gym Demo</h3>
             <p data-i18n="project.gymcontrol.body">
               Aplicación web orientada a gestión operativa. Integra frontend,
               backend, base de datos, estados trazables y lógica de confirmación
@@ -482,6 +482,36 @@
         </div>
       </section>
 
+      
+<!-- REDWATCH_ISOLATED_PANEL_START -->
+<section id="redwatch-panel" class="section container redwatch-isolated-section" data-redwatch-panel>
+  <div class="section-heading">
+    <p class="eyebrow">SEGURIDAD · ARCH LINUX · RUST</p>
+    <h2>Redwatch Security Panel</h2>
+    <p>
+      Panel read-only separado de Panda. Muestra métricas sanitizadas de un agente local
+      con ClamAV, historial SQLite y export público seguro para portfolio.
+    </p>
+  </div>
+
+  <div class="redwatch-isolated-status"><span data-rw-status>Cargando estado…</span></div>
+
+  <div class="redwatch-isolated-grid">
+    <article class="redwatch-isolated-card"><p>Archivos escaneados</p><strong data-rw-files>—</strong></article>
+    <article class="redwatch-isolated-card"><p>Detecciones</p><strong data-rw-infected>—</strong></article>
+    <article class="redwatch-isolated-card"><p>Cuarentena</p><strong data-rw-quarantined>—</strong></article>
+    <article class="redwatch-isolated-card"><p>Scans exportados</p><strong data-rw-scans>—</strong></article>
+  </div>
+
+  <div class="redwatch-isolated-footer">
+    <p data-rw-last>Cargando último escaneo…</p>
+    <p data-rw-privacy>El export público no incluye rutas reales, hashes, nombres originales ni rutas de cuarentena.</p>
+    <a class="btn secondary" href="./panels/redwatch.html">Abrir panel Redwatch</a>
+  </div>
+</section>
+<!-- REDWATCH_ISOLATED_PANEL_END -->
+
+
       <section id="stack" class="section container">
         <div class="section-heading">
           <p class="eyebrow" data-i18n="stack.eyebrow">STACK</p>
@@ -538,7 +568,7 @@
             <span>03</span>
             <div>
               <h3 data-i18n="roadmap.publish.title">Publicar proyectos secundarios</h3>
-              <p data-i18n="roadmap.publish.text">Integrar GymControl, antivirus/hardening y traductor IA como módulos visibles del laboratorio.</p>
+              <p data-i18n="roadmap.publish.text">Integrar Gym Control / Qivox Gym Demo, antivirus/hardening y traductor IA como módulos visibles del laboratorio.</p>
             </div>
           </article>
         </div>
@@ -635,6 +665,7 @@
     <script src="./assets/i18n/landing-translations.js"></script>
     <script src="./assets/i18n/zh-cn-overrides.js"></script>
     <script src="./assets/js/i18n.js"></script>
+    <script src="./assets/js/redwatch-panel.js"></script>
     <script src="./main.js"></script>
   </body>
 </html>

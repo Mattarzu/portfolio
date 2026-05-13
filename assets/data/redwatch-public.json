@@ -1,0 +1,94 @@
+{
+  "engine": "ClamAV",
+  "generated_unix": 1778710745,
+  "host_label": "mattm2",
+  "kind": "redwatch-public-export",
+  "os": "Arch Linux",
+  "privacy": {
+    "hashes_included": false,
+    "original_file_names_included": false,
+    "paths_sanitized": true,
+    "quarantine_paths_included": false
+  },
+  "recent_scans": [
+    {
+      "engine": "clamscan",
+      "files_scanned": 41,
+      "findings": [],
+      "findings_count": 0,
+      "finished_at": "2026-05-13T22:19:05Z",
+      "infected_count": 0,
+      "profile": "quick",
+      "quarantined_count": 0,
+      "started_at": "2026-05-13T22:18:53Z",
+      "status": "completed",
+      "target_label": "Downloads"
+    },
+    {
+      "engine": "clamscan",
+      "files_scanned": 41,
+      "findings": [],
+      "findings_count": 0,
+      "finished_at": "2026-05-13T22:12:20Z",
+      "infected_count": 0,
+      "profile": "quick",
+      "quarantined_count": 0,
+      "started_at": "2026-05-13T22:12:08Z",
+      "status": "completed",
+      "target_label": "Downloads"
+    },
+    {
+      "engine": "clamscan",
+      "files_scanned": 41,
+      "findings": [],
+      "findings_count": 0,
+      "finished_at": "2026-05-13T22:06:56Z",
+      "infected_count": 0,
+      "profile": "quick",
+      "quarantined_count": 0,
+      "started_at": "2026-05-13T22:06:45Z",
+      "status": "completed",
+      "target_label": "Downloads"
+    },
+    {
+      "engine": "clamscan",
+      "files_scanned": 41,
+      "findings": [],
+      "findings_count": 0,
+      "finished_at": "2026-05-13T22:05:45Z",
+      "infected_count": 0,
+      "profile": "quick",
+      "quarantined_count": 0,
+      "started_at": "2026-05-13T22:05:34Z",
+      "status": "completed",
+      "target_label": "Downloads"
+    },
+    {
+      "engine": "clamscan",
+      "files_scanned": 41,
+      "findings": [],
+      "findings_count": 0,
+      "finished_at": "2026-05-13T21:18:43Z",
+      "infected_count": 0,
+      "profile": "custom",
+      "quarantined_count": 0,
+      "started_at": "2026-05-13T21:18:32Z",
+      "status": "completed",
+      "target_label": "Downloads"
+    }
+  ],
+  "status": "ok",
+  "summary": {
+    "last_scan_files_scanned": 41,
+    "last_scan_infected_count": 0,
+    "last_scan_profile": "quick",
+    "last_scan_quarantined_count": 0,
+    "last_scan_started_at": "2026-05-13T22:18:53Z",
+    "last_scan_status": "completed",
+    "total_files_scanned": 205,
+    "total_infected_count": 0,
+    "total_quarantined_count": 0,
+    "total_scans_exported": 5
+  },
+  "version": 1
+}

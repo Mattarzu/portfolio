@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redwatch Security Panel | M M LAB</title>
+    <meta name="description" content="Panel público read-only de Redwatch para Arch Linux con Rust, ClamAV, SQLite y export sanitizado." />
+    <link rel="canonical" href="https://mattarzu.github.io/portfolio/panels/redwatch.html" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="../index.html#inicio">M M LAB</a>
+        <nav id="main-nav" class="nav-links" aria-label="Navegación principal">
+          <a href="../index.html#inicio">Inicio</a>
+          <a href="../index.html#redwatch-panel">Redwatch</a>
+          <a href="../index.html#proyectos">Proyectos</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="section container redwatch-isolated-page" data-redwatch-panel data-redwatch-source="../assets/data/redwatch-public.json">
+        <div class="section-heading">
+          <p class="eyebrow">SEGURIDAD · ARCH LINUX · RUST</p>
+          <h1>Redwatch Security Panel</h1>
+          <p>Panel read-only alimentado por un agente local en Rust. Usa ClamAV, SQLite y un export público sanitizado.</p>
+        </div>
+
+        <div class="redwatch-isolated-status"><span data-rw-status>Cargando estado…</span></div>
+
+        <div class="redwatch-isolated-grid">
+          <article class="redwatch-isolated-card"><p>Archivos escaneados</p><strong data-rw-files>—</strong></article>
+          <article class="redwatch-isolated-card"><p>Detecciones</p><strong data-rw-infected>—</strong></article>
+          <article class="redwatch-isolated-card"><p>Cuarentena</p><strong data-rw-quarantined>—</strong></article>
+          <article class="redwatch-isolated-card"><p>Scans exportados</p><strong data-rw-scans>—</strong></article>
+        </div>
+
+        <article class="detail-card redwatch-isolated-note">
+          <h2>Último escaneo</h2>
+          <p data-rw-last>Cargando último escaneo…</p>
+        </article>
+
+        <article class="detail-card redwatch-isolated-note">
+          <h2>Privacidad</h2>
+          <p data-rw-privacy>El export público no incluye rutas reales, hashes, nombres originales ni rutas de cuarentena.</p>
+        </article>
+
+        <div class="section-actions">
+          <a class="btn secondary" href="../assets/data/redwatch-public.json">Ver JSON público</a>
+          <a class="btn primary" href="../index.html#redwatch-panel">Volver a la home</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="../assets/js/redwatch-panel.js"></script>
+  </body>
+</html>
