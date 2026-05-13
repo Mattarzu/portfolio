@@ -1,6 +1,6 @@
 {
   "engine": "ClamAV",
-  "generated_unix": 1778710745,
+  "generated_unix": 1778712084,
   "host_label": "mattm2",
   "kind": "redwatch-public-export",
   "os": "Arch Linux",
@@ -11,6 +11,19 @@
     "quarantine_paths_included": false
   },
   "recent_scans": [
+    {
+      "engine": "clamscan",
+      "files_scanned": 41,
+      "findings": [],
+      "findings_count": 0,
+      "finished_at": "2026-05-13T22:41:24Z",
+      "infected_count": 0,
+      "profile": "quick",
+      "quarantined_count": 0,
+      "started_at": "2026-05-13T22:41:13Z",
+      "status": "completed",
+      "target_label": "Downloads"
+    },
     {
       "engine": "clamscan",
       "files_scanned": 41,
@@ -83,12 +96,12 @@
     "last_scan_infected_count": 0,
     "last_scan_profile": "quick",
     "last_scan_quarantined_count": 0,
-    "last_scan_started_at": "2026-05-13T22:18:53Z",
+    "last_scan_started_at": "2026-05-13T22:41:13Z",
     "last_scan_status": "completed",
-    "total_files_scanned": 205,
+    "total_files_scanned": 246,
     "total_infected_count": 0,
     "total_quarantined_count": 0,
-    "total_scans_exported": 5
+    "total_scans_exported": 6
   },
   "version": 1
 }
