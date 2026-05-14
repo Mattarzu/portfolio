@@ -3214,3 +3214,50 @@ html[lang="zh-CN"] h3 {
     grid-template-columns: 1fr;
   }
 }
+
+/* ===== Panda AI chat integration ===== */
+.panda-ai-open,
+.panda-ai-submit {
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.panda-ai-open {
+  background: rgba(255, 255, 255, 0.12);
+  color: inherit;
+  padding: 0.7rem 0.95rem;
+}
+
+.panda-ai-open:hover,
+.panda-ai-open:focus-visible {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.panda-ai-form {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 0.9rem;
+}
+
+.panda-ai-form[hidden] {
+  display: none;
+}
+
+.panda-ai-form label {
+  font-size: 0.86rem;
+  opacity: 0.86;
+}
+
+.panda-ai-form textarea {
+  width: 100%;
+  min-height: 6rem;
+  resize: vertical;
+}
+
+.panda-ai-submit {
+  justify-self: start;
+  padding: 0.72rem 1rem;
+}
+\n
