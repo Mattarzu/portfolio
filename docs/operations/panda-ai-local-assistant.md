@@ -1,56 +1,72 @@
-# Panda IA local assistant
 
-## Estado
+Panda AI local assistant
+Estado
 
-Panda IA quedó integrado como asistente local-first para M M LAB.
+Panda IA local quedó integrado como asistente local del portfolio M M LAB.
 
-En local:
+Funciona en desarrollo local usando Qwen vía llama-server y un Worker local como capa intermedia.
 
-```text
+Componentes
+Qwen local
+  -> llama-server
+  -> 127.0.0.1:8080
+Cloudflare Worker local
+  -> 127.0.0.1:8787
+  -> /ai-chat
 Portfolio local
-  -> Cloudflare Worker local /ai-chat
-  -> Qwen local vía llama-server
-En producción:
+  -> assets/js/panda-stable.js
+  -> assets/css/panda-stable.css
+Flujo local
+Usuario
+  -> Panda UI
+  -> /ai-chat
+  -> Worker local
+  -> llama-server
+  -> Qwen local
+Archivos principales
+assets/js/panda-stable.js
+assets/css/panda-stable.css
+mmlab-contact-worker/src/worker.js
+Producción
 
-GitHub Pages
-  -> Panda estable
-  -> Contacto productivo
-  -> IA deshabilitada por seguridad
-Motivo de seguridad
-
-La IA no queda habilitada en producción porque todavía no existe un dominio gestionado en Cloudflare para publicar Qwen local mediante Cloudflare Tunnel nombrado y Cloudflare Access.
-
-Hasta tener ese frente completo, producción mantiene:
+La IA local queda deshabilitada en producción:
 
 window.MMLAB_AI_ENABLED = false;
-Backend productivo
 
-El backend productivo actual es:
+Motivo:
 
-mmlab-contact-worker/
+evitar exposición pública del modelo local;
+evitar abuso del endpoint;
+evitar publicar infraestructura doméstica sin autenticación;
+mantener GitHub Pages seguro.
+Requisito para habilitar IA en producción
 
-Endpoints:
+No habilitar Panda IA pública hasta tener:
 
-GET  /health
-POST /contact
-POST /ai-chat
+Dominio propio
+  -> Cloudflare Tunnel nombrado
+  -> Cloudflare Access
+  -> Service Token
+  -> Worker validando acceso
+  -> Qwen local protegido
+Regla operativa
 
-/ai-chat está listo para usar upstreams compatibles con OpenAI Chat Completions y soporta headers opcionales de Cloudflare Access:
+Panda puede estar visible como UI estable, pero el modo IA debe quedar cerrado en producción hasta que exista una ruta autenticada.
 
-CF-Access-Client-Id
-CF-Access-Client-Secret
-Pendiente para IA en producción
+Validación local básica
+curl -fsS http://127.0.0.1:8787/health
+curl -fsS \
+  -X POST http://127.0.0.1:8787/ai-chat \
+  -H 'Content-Type: application/json' \
+  -d '{"message":"respondé exactamente: panda-ok"}'
+Validación frontend
 
-Para habilitar IA pública falta:
+Revisar que el navegador cargue:
 
-Agregar un dominio a Cloudflare.
-Crear túnel nombrado hacia Qwen local.
-Proteger el hostname con Cloudflare Access.
-Crear Service Token.
-Cargar secrets en el Worker:
-AI_BASE_URL
-AI_API_KEY
-AI_MODEL
-AI_ACCESS_CLIENT_ID
-AI_ACCESS_CLIENT_SECRET
-Cambiar window.MMLAB_AI_ENABLED = true.
+assets/js/panda-stable.js
+assets/css/panda-stable.css
+
+Y que producción mantenga:
+
+window.MMLAB_AI_ENABLED = false;
+

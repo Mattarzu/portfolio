@@ -16,8 +16,9 @@ GitHub Pages
   -> Cloudflare Worker
   -> Telegram Bot API
 
-Por eso, para producción se prioriza Cloudflare Worker:
+Por eso, para producción se prioriza Cloudflare Worker.
 
+Endpoints productivos actuales
 GET  /health
 POST /contact
 POST /ai-chat
@@ -27,17 +28,18 @@ Este backend FastAPI no debe considerarse la fuente productiva.
 
 Puede servir como:
 
-referencia histórica,
-laboratorio local,
-respaldo conceptual,
+referencia histórica;
+laboratorio local;
+respaldo conceptual;
 comparación de implementación.
 No guardar secretos
 
 No guardar tokens ni credenciales en este directorio.
 
-Los secretos productivos pertenecen a Cloudflare Worker mediante:
+Los secretos productivos pertenecen a Cloudflare Worker mediante Wrangler:
 
-npx wrangler secret put <SECRET_NAME>
+npx wrangler secret put TELEGRAM_BOT_TOKEN
+npx wrangler secret put TELEGRAM_CHAT_ID
 Decisión vigente
 
 Backend productivo:
@@ -48,3 +50,4 @@ Backend legacy:
 
 mmlab-contact-api/
 
+Los cambios productivos de contacto o IA deben implementarse primero en el Worker.
