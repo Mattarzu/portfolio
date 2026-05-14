@@ -196,14 +196,24 @@ async function askAi(payload, env) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 12000);
 
+  const headers = {
+    "Authorization": `Bearer ${apiKey}`,
+    "Content-Type": "application/json"
+  };
+
+  const accessClientId = cleanText(env.AI_ACCESS_CLIENT_ID);
+  const accessClientSecret = cleanText(env.AI_ACCESS_CLIENT_SECRET);
+
+  if (accessClientId && accessClientSecret) {
+    headers["CF-Access-Client-Id"] = accessClientId;
+    headers["CF-Access-Client-Secret"] = accessClientSecret;
+  }
+
   try {
     const response = await fetch(baseUrl, {
       method: "POST",
       signal: controller.signal,
-      headers: {
-        "Authorization": `Bearer ${apiKey}`,
-        "Content-Type": "application/json"
-      },
+      headers,
       body: JSON.stringify({
         model,
         temperature: 0.35,
