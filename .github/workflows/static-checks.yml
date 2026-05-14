@@ -1,0 +1,71 @@
+name: static checks
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  static-checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Check JavaScript syntax
+        run: |
+          node --check main.js
+          node --check assets/js/panda-stable.js
+          node --check mmlab-contact-worker/src/worker.js
+          node --check assets/js/i18n.js
+          node --check assets/js/redwatch-panel.js
+
+      - name: Check whitespace
+        run: git diff --check
+
+      - name: Check Markdown fences
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          files = [
+              Path("mmlab-contact-api/README.md"),
+              Path("docs/operations/mmlab-backend-architecture.md"),
+              Path("docs/operations/panda-ai-local-assistant.md"),
+              Path("docs/operations/current-architecture-checklist.md"),
+          ]
+
+          ok = True
+
+          for path in files:
+              if not path.exists():
+                  continue
+
+              text = path.read_text()
+              fences = text.count("```")
+              print(f"{path}: fences={fences}")
+
+              if fences % 2 != 0:
+                  ok = False
+                  print(f"ERROR: odd number of markdown fences in {path}")
+
+          if not ok:
+              raise SystemExit(1)
+          PY
+
+      - name: Guard Panda ownership
+        run: |
+          if grep -nE 'panda|Panda|panda-ai|panda-contact|mm-panda|MMLAB_AI_ENABLED|ai-chat|roadmap' main.js; then
+            echo "ERROR: Panda legacy logic should not live in main.js"
+            exit 1
+          fi
+
+          grep -q 'panda-stable' index.html
+          grep -q 'assets/js/panda-stable.js' index.html
