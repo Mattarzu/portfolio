@@ -128,7 +128,6 @@
       "llm.router.tag": "Proyecto propio",
       "llm.router.title": "PolyLLM Router",
       "llm.router.text": "Router para seleccionar modelo según tarea, costo, contexto y disponibilidad. Permite usar Kimi y DeepSeek en flujos de optimización de tokens, fallback y ejecución híbrida local/remota.",
-      "roadmap.publish.text": "Integrar GymControl, antivirus/hardening y traductor IA como módulos visibles del laboratorio."
     },
 
     "en-GB": {
@@ -257,7 +256,6 @@
       "llm.router.tag": "Own project",
       "llm.router.title": "PolyLLM Router",
       "llm.router.text": "Router for selecting a model based on task, cost, context and availability. It enables Kimi and DeepSeek in token optimisation, fallback and local/remote hybrid execution flows.",
-      "roadmap.publish.text": "Integrate GymControl, antivirus/hardening and AI translator as visible lab modules."
     },
 
     "es-ES": {
@@ -372,7 +370,6 @@
       "llm.router.tag": "Proyecto propio",
       "llm.router.title": "PolyLLM Router",
       "llm.router.text": "Router para seleccionar modelo según tarea, coste, contexto y disponibilidad. Permite usar Kimi y DeepSeek en flujos de optimización de tokens, fallback y ejecución híbrida local/remota.",
-      "roadmap.publish.text": "Integrar GymControl, antivirus/hardening y traductor IA como módulos visibles del laboratorio."
     },
 
     "ca": {
@@ -487,7 +484,6 @@
       "llm.router.tag": "Own project",
       "llm.router.title": "PolyLLM Router",
       "llm.router.text": "Router for selecting a model based on task, cost, context and availability. It enables Kimi and DeepSeek in token optimisation, fallback and local/remote hybrid execution flows.",
-      "roadmap.publish.text": "Integrar GymControl, antivirus/hardening i traductor IA com a mòduls visibles del laboratori."
     }
   };
 

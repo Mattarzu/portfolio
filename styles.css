@@ -1827,8 +1827,7 @@ body[data-panda-mood="github"] .panda-mode {
 body:not([data-panda-section]) .panda-panel::before,
 body[data-panda-section="inicio"] .panda-panel::before,
 body[data-panda-section="sobre-mi"] .panda-panel::before,
-body[data-panda-section="proyectos"] .panda-panel::before,
-body[data-panda-section="roadmap"] .panda-panel::before {
+body[data-panda-section="proyectos"] .panda-panel::before {
   right: -10px;
 }
 
