@@ -39,7 +39,9 @@ No guardar tokens ni credenciales en este directorio.
 Los secretos productivos pertenecen a Cloudflare Worker mediante Wrangler:
 
 npx wrangler secret put TELEGRAM_BOT_TOKEN
-npx wrangler secret put TELEGRAM_CHAT_ID
+
+TELEGRAM_CHAT_ID, ALLOWED_ORIGIN y RATE_LIMIT_PER_MINUTE se gestionan como variables públicas del Worker cuando corresponda.
+
 Decisión vigente
 
 Backend productivo:
