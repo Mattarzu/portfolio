@@ -795,7 +795,9 @@ window.addEventListener("scroll", scheduleMove, { passive: true });
 
   const localAiEndpoint = "http://127.0.0.1:8787/ai-chat";
   const isLocalHost = ["127.0.0.1", "localhost"].includes(window.location.hostname);
-  const aiEndpoint = window.MMLAB_AI_CHAT_ENDPOINT || (isLocalHost ? localAiEndpoint : "");
+  const aiEndpoint = isLocalHost
+    ? localAiEndpoint
+    : window.MMLAB_AI_CHAT_ENDPOINT || "";
 
   if (!openBtn || !form || !panel || !message || !textarea) return;
 
