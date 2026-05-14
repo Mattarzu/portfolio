@@ -7,3 +7,6 @@ mmlab-contact-api/.env
 mmlab-contact-api/.venv/
 mmlab-contact-worker/.env
 mmlab-contact-worker/.venv/
+
+# Cloudflare Worker local secrets
+mmlab-contact-worker/.dev.vars

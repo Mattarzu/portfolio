@@ -603,6 +603,7 @@ window.addEventListener("scroll", scheduleMove, { passive: true });
   const hint = document.getElementById("panda-hint");
   const toggle = document.querySelector(".panda-toggle");
   const submitBtn = document.querySelector(".panda-contact-submit");
+  const aiForm = document.querySelector(".panda-ai-form");
 
   const localContactEndpoint = "http://127.0.0.1:8000/contact";
   const isLocalHost = ["127.0.0.1", "localhost"].includes(window.location.hostname);
@@ -775,6 +776,139 @@ window.addEventListener("scroll", scheduleMove, { passive: true });
       "panda.form.failureMode",
       "panda.form.failureMessage",
       "panda.form.failureHint"
+    );
+  });
+})();
+
+/* panda-ai-chat-controller */
+(() => {
+  const openBtn = document.querySelector(".panda-ai-open");
+  const form = document.querySelector(".panda-ai-form");
+  const contactForm = document.querySelector(".panda-contact-form");
+  const panel = document.getElementById("panda-panel");
+  const message = document.getElementById("panda-message");
+  const mode = document.getElementById("panda-mode");
+  const hint = document.getElementById("panda-hint");
+  const toggle = document.querySelector(".panda-toggle");
+  const submitBtn = document.querySelector(".panda-ai-submit");
+  const textarea = document.getElementById("panda-ai-message");
+
+  const localAiEndpoint = "http://127.0.0.1:8787/ai-chat";
+  const isLocalHost = ["127.0.0.1", "localhost"].includes(window.location.hostname);
+  const aiEndpoint = window.MMLAB_AI_CHAT_ENDPOINT || (isLocalHost ? localAiEndpoint : "");
+
+  if (!openBtn || !form || !panel || !message || !textarea) return;
+
+  function openPandaPanel() {
+    panel.hidden = false;
+    if (toggle) {
+      toggle.setAttribute("aria-expanded", "true");
+      toggle.setAttribute("aria-label", "Cerrar asistente Panda");
+    }
+  }
+
+  function setRawPandaMessage(nextMode, nextMessage, nextHint) {
+    if (mode) mode.textContent = nextMode;
+    message.textContent = nextMessage;
+    if (hint) hint.textContent = nextHint;
+  }
+
+  function setSubmitting(isSubmitting) {
+    if (!submitBtn) return;
+    submitBtn.disabled = isSubmitting;
+    submitBtn.textContent = isSubmitting ? "Pensando..." : "Preguntar";
+  }
+
+  async function sendAiMessage(payload) {
+    if (!aiEndpoint) {
+      return { ok: false, reason: "missing-endpoint" };
+    }
+
+    try {
+      const response = await fetch(aiEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        return { ok: false, reason: data?.detail || `http-${response.status}` };
+      }
+
+      if (!data || data.ok !== true || typeof data.reply !== "string") {
+        return { ok: false, reason: "invalid-response" };
+      }
+
+      return { ok: true, reply: data.reply };
+    } catch {
+      return { ok: false, reason: "network-error" };
+    }
+  }
+
+  openBtn.addEventListener("click", () => {
+    openPandaPanel();
+    if (contactForm) contactForm.hidden = true;
+    form.hidden = false;
+
+    setRawPandaMessage(
+      "Panda IA",
+      "Preguntame sobre desarrollo web, automatización, backend, IA aplicada o cómo trabajar con Matt.",
+      aiEndpoint
+        ? "La consulta pasa por el Worker, sin exponer credenciales en el navegador."
+        : "Falta configurar el endpoint de IA."
+    );
+
+    form.scrollIntoView({ behavior: mmLabPrefersReducedMotion() ? "auto" : "smooth", block: "nearest" });
+  });
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const payload = {
+      message: String(formData.get("message") || "").trim(),
+      page: window.location.href,
+      locale: document.documentElement.lang || navigator.language || "es",
+      website: String(formData.get("website") || "").trim()
+    };
+
+    if (!payload.message) {
+      setRawPandaMessage(
+        "Panda IA",
+        "Escribí una pregunta para poder responder.",
+        "Ejemplo: necesito una web para mi negocio, ¿por dónde empiezo?"
+      );
+      return;
+    }
+
+    setSubmitting(true);
+    setRawPandaMessage(
+      "Panda IA",
+      "Estoy analizando tu consulta.",
+      "Si querés contacto directo, usá Hablar con Matt."
+    );
+
+    const result = await sendAiMessage(payload);
+    setSubmitting(false);
+
+    if (result.ok) {
+      setRawPandaMessage(
+        "Panda IA",
+        result.reply,
+        "Para avanzar con una consulta real, usá Hablar con Matt y dejá tus datos."
+      );
+      textarea.value = "";
+      return;
+    }
+
+    setRawPandaMessage(
+      "Panda IA no disponible",
+      "No pude responder con IA en este momento.",
+      "El formulario Hablar con Matt sigue disponible."
     );
   });
 })();
