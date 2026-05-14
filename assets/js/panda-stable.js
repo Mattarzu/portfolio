@@ -10,9 +10,13 @@
   ready(() => {
     const isLocalHost = ["127.0.0.1", "localhost"].includes(window.location.hostname);
 
-    const aiEndpoint = isLocalHost
-      ? "http://127.0.0.1:8787/ai-chat"
-      : window.MMLAB_AI_CHAT_ENDPOINT || "";
+    const aiEnabled = isLocalHost || window.MMLAB_AI_ENABLED === true;
+
+    const aiEndpoint = aiEnabled
+      ? (isLocalHost
+        ? "http://127.0.0.1:8787/ai-chat"
+        : window.MMLAB_AI_CHAT_ENDPOINT || "")
+      : "";
 
     const contactEndpoint =
       window.CHAT_ENDPOINT ||
@@ -51,6 +55,11 @@
     let busy = false;
 
     function ensureAiButton() {
+      if (!aiEnabled) {
+        if (aiOpen) aiOpen.hidden = true;
+        return null;
+      }
+
       if (aiOpen) return aiOpen;
 
       aiOpen = document.createElement("button");
@@ -392,7 +401,7 @@
       contactOpen.addEventListener("click", () => setMode("contact"));
     }
 
-    if (aiOpen) {
+    if (aiOpen && aiEnabled) {
       aiOpen.addEventListener("click", () => setMode("ai"));
     }
 
