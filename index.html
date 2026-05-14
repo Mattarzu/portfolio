@@ -143,6 +143,7 @@
           <a href="#capacidades" data-i18n="nav.services">Servicios</a>
           <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
           <a href="#stack" data-i18n="nav.stack">Stack</a>
+          <a href="#llm-stack">LLM stack</a>
           <a href="#roadmap" data-i18n="nav.roadmap">Roadmap</a>
           <a href="#contacto" data-i18n="nav.contact">Contacto</a>
           <a href="https://github.com/Mattarzu" target="_blank" rel="noreferrer">GitHub</a>
@@ -541,6 +542,75 @@
           </div>
         </div>
       </section>
+
+    <section id="llm-stack" class="section container llm-stack-section">
+      <div class="section-heading">
+        <p class="section-eyebrow">LLM stack</p>
+        <h2>Modelos LLM que manejo</h2>
+        <p>
+          Trabajo con modelos locales y externos para asistencia técnica, automatización,
+          análisis de código, ruteo inteligente y optimización de tokens.
+        </p>
+      </div>
+
+      <div class="llm-grid" aria-label="Modelos LLM que manejo">
+        <article class="llm-card">
+          <span class="llm-tag">Local / Coding</span>
+          <h3>Qwen</h3>
+          <p>
+            Modelo principal para asistencia local, desarrollo, análisis técnico y flujos
+            conectados a Panda IA mediante <code>llama-server</code>.
+          </p>
+        </article>
+
+        <article class="llm-card">
+          <span class="llm-tag">Reasoning / Code</span>
+          <h3>DeepSeek</h3>
+          <p>
+            Uso orientado a razonamiento, revisión de código, análisis backend y soporte
+            dentro de estrategias de ruteo por costo/calidad.
+          </p>
+        </article>
+
+        <article class="llm-card">
+          <span class="llm-tag">Long context</span>
+          <h3>Kimi</h3>
+          <p>
+            Aplicado en flujos donde conviene procesar más contexto, sintetizar información
+            y reducir consumo innecesario de tokens antes de escalar a otro modelo.
+          </p>
+        </article>
+
+        <article class="llm-card">
+          <span class="llm-tag">Instruction tuned</span>
+          <h3>Hermes</h3>
+          <p>
+            Útil para agentes, instrucciones estructuradas, respuestas consistentes y pruebas
+            de comportamiento en pipelines locales.
+          </p>
+        </article>
+
+        <article class="llm-card">
+          <span class="llm-tag">Lightweight / Local</span>
+          <h3>Gemma</h3>
+          <p>
+            Modelo liviano para pruebas locales, prototipos, comparación de rendimiento y
+            escenarios donde importa eficiencia sobre tamaño.
+          </p>
+        </article>
+
+        <article class="llm-card llm-card-featured">
+          <span class="llm-tag">Proyecto propio</span>
+          <h3>PolyLLM Router</h3>
+          <p>
+            Router para seleccionar modelo según tarea, costo, contexto y disponibilidad.
+            Permite usar Kimi y DeepSeek en flujos de optimización de tokens, fallback y
+            ejecución híbrida local/remota.
+          </p>
+        </article>
+      </div>
+    </section>
+
 
       <section id="roadmap" class="section container">
         <div class="section-heading">
