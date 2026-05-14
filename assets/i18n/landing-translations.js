@@ -128,14 +128,6 @@
       "llm.router.tag": "Proyecto propio",
       "llm.router.title": "PolyLLM Router",
       "llm.router.text": "Router para seleccionar modelo según tarea, costo, contexto y disponibilidad. Permite usar Kimi y DeepSeek en flujos de optimización de tokens, fallback y ejecución híbrida local/remota.",
-
-      "roadmap.eyebrow": "ROADMAP",
-      "roadmap.title": "Próximos frentes",
-      "roadmap.dashboard.title": "Convertir esta web en dashboard de proyectos",
-      "roadmap.dashboard.text": "Agregar páginas individuales por proyecto, capturas, logs de validación y enlaces a repositorios.",
-      "roadmap.docs.title": "Documentar proyectos de IA, asistentes de código y orquestación técnica",
-      "roadmap.docs.text": "Crear fichas técnicas con arquitectura, estado actual, comandos, garantías y próximos pasos.",
-      "roadmap.publish.title": "Publicar proyectos secundarios",
       "roadmap.publish.text": "Integrar GymControl, antivirus/hardening y traductor IA como módulos visibles del laboratorio."
     },
 
@@ -265,14 +257,6 @@
       "llm.router.tag": "Own project",
       "llm.router.title": "PolyLLM Router",
       "llm.router.text": "Router for selecting a model based on task, cost, context and availability. It enables Kimi and DeepSeek in token optimisation, fallback and local/remote hybrid execution flows.",
-
-      "roadmap.eyebrow": "ROADMAP",
-      "roadmap.title": "Next fronts",
-      "roadmap.dashboard.title": "Turn this website into a project dashboard",
-      "roadmap.dashboard.text": "Add individual project pages, screenshots, validation logs and repository links.",
-      "roadmap.docs.title": "Document AI projects, coding assistants and technical orchestration",
-      "roadmap.docs.text": "Create technical sheets with architecture, current state, commands, guarantees and next steps.",
-      "roadmap.publish.title": "Publish secondary projects",
       "roadmap.publish.text": "Integrate GymControl, antivirus/hardening and AI translator as visible lab modules."
     },
 
@@ -388,14 +372,6 @@
       "llm.router.tag": "Proyecto propio",
       "llm.router.title": "PolyLLM Router",
       "llm.router.text": "Router para seleccionar modelo según tarea, coste, contexto y disponibilidad. Permite usar Kimi y DeepSeek en flujos de optimización de tokens, fallback y ejecución híbrida local/remota.",
-
-      "roadmap.eyebrow": "ROADMAP",
-      "roadmap.title": "Próximos frentes",
-      "roadmap.dashboard.title": "Convertir esta web en dashboard de proyectos",
-      "roadmap.dashboard.text": "Agregar páginas individuales por proyecto, capturas, logs de validación y enlaces a repositorios.",
-      "roadmap.docs.title": "Documentar proyectos de IA, asistentes de código y orquestación técnica",
-      "roadmap.docs.text": "Crear fichas técnicas con arquitectura, estado actual, comandos, garantías y próximos pasos.",
-      "roadmap.publish.title": "Publicar proyectos secundarios",
       "roadmap.publish.text": "Integrar GymControl, antivirus/hardening y traductor IA como módulos visibles del laboratorio."
     },
 
@@ -511,14 +487,6 @@
       "llm.router.tag": "Own project",
       "llm.router.title": "PolyLLM Router",
       "llm.router.text": "Router for selecting a model based on task, cost, context and availability. It enables Kimi and DeepSeek in token optimisation, fallback and local/remote hybrid execution flows.",
-
-      "roadmap.eyebrow": "ROADMAP",
-      "roadmap.title": "Propers fronts",
-      "roadmap.dashboard.title": "Convertir aquesta web en dashboard de projectes",
-      "roadmap.dashboard.text": "Afegir pàgines individuals per projecte, captures, logs de validació i enllaços a repositoris.",
-      "roadmap.docs.title": "Documentar projectes d’IA, assistents de codi i orquestració tècnica",
-      "roadmap.docs.text": "Crear fitxes tècniques amb arquitectura, estat actual, ordres, garanties i propers passos.",
-      "roadmap.publish.title": "Publicar projectes secundaris",
       "roadmap.publish.text": "Integrar GymControl, antivirus/hardening i traductor IA com a mòduls visibles del laboratori."
     }
   };

@@ -1398,9 +1398,6 @@ body[data-panda-mood="focus"] .panda-panel {
   border-color: rgba(116, 192, 252, 0.36);
 }
 
-body[data-panda-mood="roadmap"] .panda-panel {
-  border-color: rgba(255, 169, 77, 0.36);
-}
 
 body[data-panda-mood="github"] .panda-panel {
   border-color: rgba(180, 136, 255, 0.36);
@@ -1416,10 +1413,6 @@ body[data-panda-mood="focus"] .hero-panda-eye::after {
   background: var(--blue);
 }
 
-body[data-panda-mood="roadmap"] .panda-eye::after,
-body[data-panda-mood="roadmap"] .hero-panda-eye::after {
-  background: var(--orange);
-}
 
 body[data-panda-mood="github"] .panda-eye::after,
 body[data-panda-mood="github"] .hero-panda-eye::after {
@@ -1465,12 +1458,6 @@ body[data-panda-mood="focus"] .panda-mode {
   background: rgba(116, 192, 252, 0.1);
 }
 
-body[data-panda-mood="roadmap"] .hero-panda-bubble,
-body[data-panda-mood="roadmap"] .panda-mode {
-  color: var(--orange);
-  border-color: rgba(255, 169, 77, 0.24);
-  background: rgba(255, 169, 77, 0.1);
-}
 
 body[data-panda-mood="github"] .hero-panda-bubble,
 body[data-panda-mood="github"] .panda-mode {
