@@ -6,5 +6,5 @@ preview_urls = false
 
 [vars]
 TELEGRAM_CHAT_ID = "1463839709"
-ALLOWED_ORIGIN = "https://mattarzu.github.io"
+ALLOWED_ORIGIN = "https://mattarzu.github.io,http://127.0.0.1:3000,http://localhost:3000,http://127.0.0.1:3001,http://localhost:3001"
 RATE_LIMIT_PER_MINUTE = "5"
