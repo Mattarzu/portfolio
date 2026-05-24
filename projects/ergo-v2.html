@@ -234,6 +234,62 @@
       margin-top: 18px;
     }
 
+
+    /* MM-LAB-ERGO-PREVIEW-CSS */
+    .preview-shell {
+      margin-top: 28px;
+      padding: clamp(18px, 3vw, 24px);
+    }
+
+    .browser-frame {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(2, 6, 23, 0.78);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+    }
+
+    .browser-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(15, 23, 42, 0.92);
+    }
+
+    .browser-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.65);
+    }
+
+    .browser-url {
+      margin-left: 10px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .project-shot {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #020617;
+    }
+
+    .preview-caption {
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 14px 4px 0;
+      font-size: 0.95rem;
+    }
+
+
     @media (max-width: 820px) {
       .hero {
         grid-template-columns: 1fr;
@@ -304,6 +360,34 @@
         </div>
       </aside>
     </section>
+
+
+    <!-- MM-LAB-ERGO-PREVIEW:START -->
+    <section class="card preview-shell" aria-label="Vista previa de ERGO CLUB">
+      <h2>Vista del producto</h2>
+
+      <div class="browser-frame">
+        <div class="browser-bar" aria-hidden="true">
+          <span class="browser-dot"></span>
+          <span class="browser-dot"></span>
+          <span class="browser-dot"></span>
+          <span class="browser-url">https://ergo-club-web.pages.dev</span>
+        </div>
+
+        <img
+          class="project-shot"
+          src="../assets/projects/ergo-v2/ergo-club-web.png"
+          alt="Captura de la web pública de ERGO CLUB"
+          loading="lazy"
+        >
+      </div>
+
+      <p class="preview-caption">
+        Captura real del despliegue público de ERGO CLUB, integrado como proyecto dentro de MM LAB PANDA.
+      </p>
+    </section>
+    <!-- MM-LAB-ERGO-PREVIEW:END -->
+
 
     <section class="card section">
       <h2>Qué resuelve</h2>
