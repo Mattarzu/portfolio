@@ -223,6 +223,47 @@
     }
   </style>
 
+
+  <style id="MM-LAB-SCROLL-REVEAL-CSS">
+    .mm-reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition:
+        opacity 520ms ease,
+        transform 520ms ease,
+        filter 520ms ease;
+      filter: blur(2px);
+      will-change: opacity, transform, filter;
+    }
+
+    .mm-reveal.mm-visible {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    .mm-reveal-delay-1 {
+      transition-delay: 70ms;
+    }
+
+    .mm-reveal-delay-2 {
+      transition-delay: 140ms;
+    }
+
+    .mm-reveal-delay-3 {
+      transition-delay: 210ms;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mm-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+
 </head>
 
   <body>
@@ -887,5 +928,65 @@
     <script src="./assets/js/redwatch-panel.js"></script>
     <script src="./main.js"></script>
     <script src="./assets/js/panda-stable.js"></script>
-  </body>
+  
+  <script id="MM-LAB-SCROLL-REVEAL-JS">
+    (() => {
+      const revealSelector = [
+        'section',
+        '.project-card',
+        '.ergo-home-card',
+        '.ergo-v2-card',
+        '.card',
+        '.item',
+        '.metric',
+        '.surface-card',
+        '.status-card',
+        '.arch-node',
+        '.arch-note',
+        '.roadmap-item',
+        '.tech-card',
+        '.service-card',
+        '.redwatch-isolated-card'
+      ].join(',')
+
+      const prepareReveal = () => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+        const nodes = Array
+          .from(document.querySelectorAll(revealSelector))
+          .filter((node) => {
+            if (node.closest('[data-no-reveal]')) return false
+            if (node.classList.contains('mm-reveal')) return false
+            return true
+          })
+
+        nodes.forEach((node, index) => {
+          node.classList.add('mm-reveal')
+          node.classList.add(`mm-reveal-delay-${index % 4}`)
+        })
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return
+            entry.target.classList.add('mm-visible')
+            observer.unobserve(entry.target)
+          })
+        }, {
+          root: null,
+          threshold: 0.12,
+          rootMargin: '0px 0px -8% 0px'
+        })
+
+        nodes.forEach((node) => observer.observe(node))
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', prepareReveal)
+      } else {
+        prepareReveal()
+      }
+    })()
+  </script>
+
+</body>
 </html>
