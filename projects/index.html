@@ -23,7 +23,106 @@
     <meta name="twitter:image" content="https://mattarzu.github.io/portfolio/preview.png" />
 <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
     <link rel="stylesheet" href="../styles.css" />
-  </head>
+  
+  <style id="MM-LAB-VISUAL-POLISH">
+    :root {
+      --mm-accent: #e6c979;
+      --mm-accent-light: #f3e2b2;
+      --mm-accent-soft: rgba(230, 201, 121, 0.14);
+      --mm-panel-dark: rgba(17, 17, 17, 0.82);
+      --mm-panel-line: rgba(230, 201, 121, 0.18);
+      --mm-text-soft: #f7f2e8;
+      --mm-muted: rgba(247, 242, 232, 0.68);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .project-card,
+    .ergo-home-card,
+    .ergo-v2-card,
+    .redwatch-isolated-card,
+    .tech-card,
+    .service-card {
+      transition:
+        transform 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease,
+        background 180ms ease;
+    }
+
+    .project-card:hover,
+    .ergo-home-card:hover,
+    .ergo-v2-card:hover,
+    .redwatch-isolated-card:hover,
+    .tech-card:hover,
+    .service-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--mm-panel-line) !important;
+      box-shadow:
+        0 24px 80px rgba(0, 0, 0, 0.34),
+        0 0 0 1px rgba(230, 201, 121, 0.06) !important;
+    }
+
+    .ergo-home-card,
+    .ergo-v2-card {
+      background:
+        radial-gradient(circle at 15% 10%, rgba(230, 201, 121, 0.16), transparent 20rem),
+        radial-gradient(circle at 85% 20%, rgba(243, 226, 178, 0.08), transparent 18rem),
+        var(--mm-panel-dark) !important;
+      border-color: var(--mm-panel-line) !important;
+    }
+
+    .ergo-home-card p:first-child,
+    .ergo-v2-card p:first-child {
+      color: var(--mm-accent) !important;
+    }
+
+    .ergo-home-card a[href="./projects/ergo-v2.html"],
+    .ergo-v2-card a[href="./ergo-v2.html"] {
+      background: linear-gradient(135deg, var(--mm-accent-light), var(--mm-accent)) !important;
+      color: #111111 !important;
+      border: 0 !important;
+      box-shadow: 0 14px 38px rgba(230, 201, 121, 0.22);
+    }
+
+    .ergo-home-card a[href*="ergo-club-web.pages.dev"],
+    .ergo-v2-card a[href*="ergo-club-web.pages.dev"] {
+      background: rgba(17, 17, 17, 0.68) !important;
+      color: var(--mm-text-soft) !important;
+      border: 1px solid rgba(230, 201, 121, 0.28) !important;
+    }
+
+    .ergo-home-card img,
+    .ergo-v2-card img,
+    .project-shot {
+      transition: transform 260ms ease, filter 260ms ease;
+    }
+
+    .ergo-home-card:hover img,
+    .ergo-v2-card:hover img,
+    .browser-frame:hover .project-shot {
+      transform: scale(1.015);
+      filter: saturate(1.04) contrast(1.03);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+
+</head>
 
   <body>
     <header class="site-header">
