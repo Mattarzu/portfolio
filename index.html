@@ -366,6 +366,161 @@
     }
   </style>
 
+
+  <style id="MM-LAB-REDWATCH-PANEL-POLISH">
+    #redwatch-panel,
+    .redwatch-isolated-section {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(230, 201, 121, 0.16);
+      border-radius: 32px;
+      margin-top: 48px;
+      margin-bottom: 48px;
+      padding: clamp(24px, 4vw, 40px) !important;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(230, 201, 121, 0.16), transparent 24rem),
+        radial-gradient(circle at 88% 18%, rgba(243, 226, 178, 0.07), transparent 22rem),
+        rgba(17, 17, 17, 0.82) !important;
+      box-shadow:
+        0 28px 90px rgba(0, 0, 0, 0.34),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      isolation: isolate;
+    }
+
+    #redwatch-panel::before,
+    .redwatch-isolated-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.045), transparent 42%),
+        radial-gradient(circle at 50% 100%, rgba(230,201,121,0.08), transparent 28rem);
+    }
+
+    #redwatch-panel h2,
+    .redwatch-isolated-section h2 {
+      margin-top: 0;
+      color: #f7f2e8 !important;
+      letter-spacing: -0.045em;
+    }
+
+    #redwatch-panel p,
+    .redwatch-isolated-section p {
+      color: rgba(247, 242, 232, 0.68) !important;
+    }
+
+    .redwatch-isolated-status {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 12px;
+      border: 1px solid rgba(230, 201, 121, 0.22) !important;
+      border-radius: 999px;
+      background: rgba(230, 201, 121, 0.10) !important;
+      color: #f3e2b2 !important;
+      font-weight: 800;
+      font-size: 0.88rem;
+      margin: 12px 0 18px;
+    }
+
+    .redwatch-isolated-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .redwatch-isolated-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(230, 201, 121, 0.16) !important;
+      border-radius: 22px !important;
+      padding: 18px !important;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(230, 201, 121, 0.12), transparent 16rem),
+        rgba(8, 8, 8, 0.58) !important;
+      box-shadow: none !important;
+    }
+
+    .redwatch-isolated-card p {
+      margin: 0 0 8px !important;
+      color: rgba(247, 242, 232, 0.58) !important;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .redwatch-isolated-card strong {
+      display: block;
+      color: #f7f2e8 !important;
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      line-height: 1;
+      letter-spacing: -0.045em;
+    }
+
+    .redwatch-isolated-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(230, 201, 121, 0.12);
+    }
+
+    .redwatch-isolated-footer .btn,
+    #redwatch-panel .btn {
+      border-color: rgba(230, 201, 121, 0.28) !important;
+      background: rgba(17, 17, 17, 0.72) !important;
+      color: #f7f2e8 !important;
+      transition:
+        transform 160ms ease,
+        border-color 160ms ease,
+        background 160ms ease,
+        box-shadow 160ms ease;
+    }
+
+    .redwatch-isolated-footer .btn:hover,
+    #redwatch-panel .btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(230, 201, 121, 0.48) !important;
+      background: rgba(230, 201, 121, 0.10) !important;
+      box-shadow: 0 14px 38px rgba(0, 0, 0, 0.24);
+    }
+
+    @media (max-width: 980px) {
+      .redwatch-isolated-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      #redwatch-panel,
+      .redwatch-isolated-section {
+        border-radius: 24px;
+        padding: 20px !important;
+      }
+
+      .redwatch-isolated-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .redwatch-isolated-footer {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .redwatch-isolated-footer .btn,
+      #redwatch-panel .btn {
+        width: 100%;
+      }
+    }
+  </style>
+
 </head>
 
   <body>
