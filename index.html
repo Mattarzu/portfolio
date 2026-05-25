@@ -521,6 +521,100 @@
     }
   </style>
 
+  <style id="MM-LAB-LLM-STACK-POLISH">
+    #llm-stack {
+      --llm-accent: #e6c979;
+      --llm-accent-light: #f3e2b2;
+      --llm-line: rgba(230, 201, 121, 0.18);
+      --llm-muted: rgba(247, 242, 232, 0.68);
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+    }
+
+    #llm-stack .section-eyebrow,
+    #llm-stack .eyebrow,
+    #llm-stack .kicker {
+      color: var(--llm-accent) !important;
+    }
+
+    #llm-stack h2,
+    #llm-stack h3,
+    #llm-stack strong {
+      color: #f7f2e8 !important;
+    }
+
+    #llm-stack p,
+    #llm-stack li {
+      color: var(--llm-muted) !important;
+    }
+
+    #llm-stack article,
+    #llm-stack .card,
+    #llm-stack [class*="card" i],
+    #llm-stack [class*="panel" i],
+    #llm-stack [class*="node" i] {
+      border-color: rgba(230, 201, 121, 0.16) !important;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(230, 201, 121, 0.10), transparent 16rem),
+        rgba(8, 8, 8, 0.54) !important;
+      box-shadow:
+        0 18px 56px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.035) !important;
+      transition:
+        transform 160ms ease,
+        border-color 160ms ease,
+        box-shadow 160ms ease,
+        background 160ms ease;
+    }
+
+    #llm-stack article:hover,
+    #llm-stack .card:hover,
+    #llm-stack [class*="card" i]:hover {
+      transform: translateY(-2px);
+      border-color: rgba(230, 201, 121, 0.32) !important;
+      box-shadow:
+        0 22px 70px rgba(0, 0, 0, 0.26),
+        0 0 0 1px rgba(230, 201, 121, 0.05) !important;
+    }
+
+    #llm-stack .badge,
+    #llm-stack .pill,
+    #llm-stack [class*="badge" i],
+    #llm-stack [class*="pill" i],
+    #llm-stack [class*="tag" i] {
+      border-color: rgba(230, 201, 121, 0.24) !important;
+      background: rgba(230, 201, 121, 0.10) !important;
+      color: var(--llm-accent-light) !important;
+    }
+
+    #llm-stack a,
+    #llm-stack button,
+    #llm-stack .btn {
+      border-color: rgba(230, 201, 121, 0.28) !important;
+      color: #f7f2e8 !important;
+    }
+
+    #llm-stack .btn.primary,
+    #llm-stack .btn-primary,
+    #llm-stack a.primary,
+    #llm-stack button.primary {
+      background: linear-gradient(135deg, var(--llm-accent-light), var(--llm-accent)) !important;
+      color: #111111 !important;
+      border: 0 !important;
+      box-shadow: 0 14px 38px rgba(230, 201, 121, 0.20);
+    }
+
+    #llm-stack [style*="#38bdf8"],
+    #llm-stack [style*="#60a5fa"],
+    #llm-stack [style*="#22c55e"],
+    #llm-stack [style*="56, 189, 248"],
+    #llm-stack [style*="34, 197, 94"] {
+      color: var(--llm-accent-light) !important;
+      border-color: rgba(230, 201, 121, 0.24) !important;
+    }
+  </style>
+
 </head>
 
   <body>
