@@ -264,6 +264,108 @@
     }
   </style>
 
+
+  <style id="MM-LAB-PROJECT-CARDS-NORMALIZE">
+    #proyectos .project-card,
+    #proyectos .ergo-home-card {
+      position: relative;
+      display: flex !important;
+      flex-direction: column !important;
+      min-height: 360px;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    #proyectos .project-card::before,
+    #proyectos .ergo-home-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(230, 201, 121, 0.10), transparent 18rem),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 42%);
+      opacity: 0.9;
+    }
+
+    #proyectos .project-card h3,
+    #proyectos .ergo-home-card h3 {
+      min-height: 2.2em;
+    }
+
+    #proyectos .project-card p,
+    #proyectos .ergo-home-card p {
+      max-width: 760px;
+    }
+
+    #proyectos .project-card ul,
+    #proyectos .ergo-home-card ul {
+      margin-top: 0.25rem !important;
+      margin-bottom: 1.25rem !important;
+    }
+
+    #proyectos .project-card > div:last-child,
+    #proyectos .ergo-home-card > div:last-child {
+      margin-top: auto !important;
+      padding-top: 1rem;
+    }
+
+    #proyectos .project-card a,
+    #proyectos .ergo-home-card a {
+      transition:
+        transform 160ms ease,
+        box-shadow 160ms ease,
+        border-color 160ms ease,
+        background 160ms ease;
+    }
+
+    #proyectos .project-card a:hover,
+    #proyectos .ergo-home-card a:hover {
+      transform: translateY(-1px);
+    }
+
+    #proyectos .ergo-home-card {
+      min-height: 410px;
+    }
+
+    #proyectos .ergo-home-card ul li {
+      margin-bottom: 0.15rem;
+    }
+
+    @media (min-width: 900px) {
+      #proyectos .projects-grid,
+      #proyectos .project-grid,
+      #proyectos .cards-grid {
+        align-items: stretch;
+      }
+    }
+
+    @media (max-width: 720px) {
+      #proyectos .project-card,
+      #proyectos .ergo-home-card {
+        min-height: auto;
+        padding: 20px !important;
+      }
+
+      #proyectos .project-card h3,
+      #proyectos .ergo-home-card h3 {
+        min-height: auto;
+      }
+
+      #proyectos .project-card > div:last-child,
+      #proyectos .ergo-home-card > div:last-child {
+        display: grid !important;
+        grid-template-columns: 1fr;
+      }
+
+      #proyectos .project-card a,
+      #proyectos .ergo-home-card a {
+        width: 100%;
+      }
+    }
+  </style>
+
 </head>
 
   <body>
