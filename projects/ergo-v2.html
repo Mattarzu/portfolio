@@ -664,6 +664,173 @@
     }
   </style>
 
+
+  <style id="ALLFICTION-PROJECT-PAGES-GOLD-POLISH-CSS">
+    /*
+      Neutralización de azules en páginas internas.
+      Mantiene identidad Allfiction: negro, dorado, gris técnico.
+    */
+
+    :root {
+      --af-bg: #020617;
+      --af-surface: rgba(15, 23, 42, .78);
+      --af-surface-strong: rgba(8, 13, 26, .92);
+      --af-border: rgba(250, 204, 21, .16);
+      --af-border-strong: rgba(250, 204, 21, .28);
+      --af-gold: #facc15;
+      --af-gold-soft: #fde68a;
+      --af-muted: #cbd5e1;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 12% 8%, rgba(250, 204, 21, .075), transparent 28%),
+        radial-gradient(circle at 86% 14%, rgba(250, 204, 21, .040), transparent 30%),
+        linear-gradient(180deg, #020617 0%, #030712 48%, #020617 100%) !important;
+    }
+
+    .eyebrow,
+    .section-eyebrow {
+      color: var(--af-gold) !important;
+      letter-spacing: .14em;
+    }
+
+    main .card,
+    main section.card,
+    .project-detail-card,
+    .project-mini-card,
+    .project-index-card,
+    .stack-card,
+    .surface-card,
+    .status-card,
+    .arch-card,
+    .preview-shell,
+    [class*="surface"],
+    [class*="status-card"],
+    [class*="arch-card"] {
+      border-color: rgba(250, 204, 21, .15) !important;
+      background:
+        radial-gradient(circle at top right, rgba(250, 204, 21, .105), transparent 34%),
+        linear-gradient(145deg, rgba(15, 23, 42, .88), rgba(2, 6, 23, .74)) !important;
+      box-shadow:
+        0 22px 64px rgba(0, 0, 0, .32),
+        inset 0 0 0 1px rgba(255, 255, 255, .022) !important;
+      contain: layout paint;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+    }
+
+    .pill,
+    .tag,
+    .status,
+    .project-detail-meta span,
+    .project-mini-card strong {
+      border-color: rgba(250, 204, 21, .18) !important;
+      background: rgba(2, 6, 23, .56) !important;
+      color: #fde68a !important;
+    }
+
+    a,
+    .project-link,
+    .back-link {
+      color: var(--af-gold) !important;
+    }
+
+    a:hover,
+    .project-link:hover,
+    .back-link:hover {
+      color: var(--af-gold-soft) !important;
+    }
+
+    .project-detail-card h1,
+    .project-detail-section h2,
+    main h1,
+    main h2,
+    main h3 {
+      text-wrap: balance;
+    }
+
+    @media (min-width: 900px) {
+      main section,
+      main article.card {
+        content-visibility: auto;
+        contain-intrinsic-size: 780px;
+      }
+
+      .project-detail-hero,
+      .projects-index-hero {
+        content-visibility: visible;
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      main .card,
+      .project-detail-card,
+      .project-mini-card,
+      .project-index-card,
+      .stack-card,
+      .surface-card,
+      .status-card,
+      .arch-card {
+        transition:
+          transform .18s ease,
+          border-color .18s ease,
+          box-shadow .18s ease,
+          background .18s ease;
+      }
+
+      main .card:hover,
+      .project-detail-card:hover,
+      .project-mini-card:hover,
+      .project-index-card:hover,
+      .stack-card:hover,
+      .surface-card:hover,
+      .status-card:hover,
+      .arch-card:hover {
+        transform: translate3d(0, -3px, 0);
+      }
+    }
+  </style>
+
+
+  <style id="ALLFICTION-HARD-GOLD-OVERRIDE-CSS">
+    /*
+      Override final anti-blue.
+      Debe quedar al final del <head> para ganar la cascada.
+    */
+
+    [style*="#38bdf8"],
+    [style*="#60a5fa"],
+    [style*="#3b82f6"],
+    [style*="#2563eb"],
+    [style*="rgba(56,189,248"],
+    [style*="rgba(96,165,250"],
+    [style*="rgba(37,99,235"] {
+      color: #facc15 !important;
+      border-color: rgba(250, 204, 21, .22) !important;
+    }
+
+    [style*="linear-gradient(135deg,#38bdf8,#22c55e)"],
+    [style*="linear-gradient(135deg, #38bdf8, #22c55e)"] {
+      background: linear-gradient(135deg, #facc15, #a16207) !important;
+    }
+
+    .accent-line,
+    .project-shot-accent,
+    .ergo-v2-card [style*="linear-gradient"],
+    [class*="accent"] {
+      border-color: rgba(250, 204, 21, .24) !important;
+    }
+
+    .pill,
+    .tag,
+    .status,
+    .project-index-card .eyebrow,
+    .project-card .eyebrow {
+      color: #fde68a !important;
+    }
+  </style>
+
 </head>
 
 <body>

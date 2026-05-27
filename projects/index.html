@@ -3,23 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Proyectos | M M LAB</title>
+    <title>Proyectos | Allfiction Software</title>
     <meta
       name="description"
-      content="Índice público de proyectos de M M LAB: software, automatización, inteligencia artificial aplicada, productos web y herramientas técnicas."
+      content="Catálogo de proyectos de Allfiction Software: productos web, automatización, inteligencia artificial aplicada, herramientas técnicas y laboratorios de software."
     />
     <link rel="canonical" href="https://mattarzu.github.io/portfolio/projects/" />
 
-    <meta property="og:title" content="Proyectos | M M LAB" />
-    <meta property="og:description" content="Índice público de proyectos de M M LAB: software, automatización, inteligencia artificial aplicada, productos web y herramientas técnicas." />
+    <meta property="og:title" content="Proyectos | Allfiction Software" />
+    <meta property="og:description" content="Catálogo de proyectos de Allfiction Software: productos web, automatización, inteligencia artificial aplicada, herramientas técnicas y laboratorios de software." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://mattarzu.github.io/portfolio/projects/" />
     <meta property="og:image" content="https://mattarzu.github.io/portfolio/preview.png" />
     <meta property="og:locale" content="es_AR" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Proyectos | M M LAB" />
-    <meta name="twitter:description" content="Índice público de proyectos de M M LAB: software, automatización, inteligencia artificial aplicada, productos web y herramientas técnicas." />
+    <meta name="twitter:title" content="Proyectos | Allfiction Software" />
+    <meta name="twitter:description" content="Catálogo de proyectos de Allfiction Software: productos web, automatización, inteligencia artificial aplicada, herramientas técnicas y laboratorios de software." />
     <meta name="twitter:image" content="https://mattarzu.github.io/portfolio/preview.png" />
 <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
     <link rel="stylesheet" href="../styles.css" />
@@ -163,12 +163,328 @@
     }
   </style>
 
+
+  <style id="ALLFICTION-PROJECTS-CATALOG-CSS">
+    .projects-index-hero {
+      padding-top: 96px;
+      padding-bottom: 38px;
+    }
+
+    .projects-index-hero h1 {
+      max-width: 980px;
+      font-size: clamp(3rem, 7vw, 6.8rem);
+      line-height: .94;
+      letter-spacing: -.07em;
+    }
+
+    .projects-index-hero .lead {
+      max-width: 840px;
+      color: #d6d3d1;
+      line-height: 1.72;
+    }
+
+    .projects-catalog-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .projects-catalog-chips span {
+      border: 1px solid rgba(250, 204, 21, .18);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(2, 6, 23, .58);
+      color: #f8fafc;
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+
+    .projects-index-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+      padding-bottom: 52px;
+    }
+
+    .project-index-card {
+      position: relative;
+      min-height: 245px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 22px;
+      border-radius: 26px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, .18);
+      background:
+        radial-gradient(circle at top right, rgba(250, 204, 21, .12), transparent 34%),
+        linear-gradient(145deg, rgba(15, 23, 42, .90), rgba(2, 6, 23, .70));
+      box-shadow:
+        0 22px 62px rgba(0, 0, 0, .30),
+        inset 0 0 0 1px rgba(255, 255, 255, .025);
+      transition:
+        transform .22s ease,
+        border-color .22s ease,
+        box-shadow .22s ease;
+    }
+
+    .project-index-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(250, 204, 21, .30);
+      box-shadow:
+        0 30px 78px rgba(0, 0, 0, .42),
+        0 0 42px rgba(250, 204, 21, .06);
+    }
+
+    .project-index-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, .04), transparent 24%, transparent 76%, rgba(250, 204, 21, .05));
+      opacity: .72;
+    }
+
+    .project-index-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-index-card .status {
+      width: fit-content;
+      margin-bottom: 12px;
+    }
+
+    .project-index-card .eyebrow {
+      color: #fde68a;
+      margin-bottom: 10px;
+    }
+
+    .project-index-card h2 {
+      margin: 0 0 10px;
+      color: #f8fafc;
+      font-size: 1.35rem;
+      line-height: 1.15;
+      letter-spacing: -.025em;
+    }
+
+    .project-index-card p:not(.eyebrow) {
+      margin: 0;
+      color: #cbd5e1;
+      line-height: 1.62;
+    }
+
+    .project-index-card .project-link {
+      margin-top: auto;
+      width: fit-content;
+      color: #facc15;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .project-index-card .project-link:hover {
+      color: #fde68a;
+    }
+
+    @media (max-width: 1100px) {
+      .projects-index-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .projects-index-hero {
+        padding-top: 78px;
+      }
+
+      .projects-index-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-index-card {
+        min-height: auto;
+      }
+    }
+  </style>
+
+
+  <style id="ALLFICTION-PROJECT-PAGES-GOLD-POLISH-CSS">
+    /*
+      Neutralización de azules en páginas internas.
+      Mantiene identidad Allfiction: negro, dorado, gris técnico.
+    */
+
+    :root {
+      --af-bg: #020617;
+      --af-surface: rgba(15, 23, 42, .78);
+      --af-surface-strong: rgba(8, 13, 26, .92);
+      --af-border: rgba(250, 204, 21, .16);
+      --af-border-strong: rgba(250, 204, 21, .28);
+      --af-gold: #facc15;
+      --af-gold-soft: #fde68a;
+      --af-muted: #cbd5e1;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 12% 8%, rgba(250, 204, 21, .075), transparent 28%),
+        radial-gradient(circle at 86% 14%, rgba(250, 204, 21, .040), transparent 30%),
+        linear-gradient(180deg, #020617 0%, #030712 48%, #020617 100%) !important;
+    }
+
+    .eyebrow,
+    .section-eyebrow {
+      color: var(--af-gold) !important;
+      letter-spacing: .14em;
+    }
+
+    main .card,
+    main section.card,
+    .project-detail-card,
+    .project-mini-card,
+    .project-index-card,
+    .stack-card,
+    .surface-card,
+    .status-card,
+    .arch-card,
+    .preview-shell,
+    [class*="surface"],
+    [class*="status-card"],
+    [class*="arch-card"] {
+      border-color: rgba(250, 204, 21, .15) !important;
+      background:
+        radial-gradient(circle at top right, rgba(250, 204, 21, .105), transparent 34%),
+        linear-gradient(145deg, rgba(15, 23, 42, .88), rgba(2, 6, 23, .74)) !important;
+      box-shadow:
+        0 22px 64px rgba(0, 0, 0, .32),
+        inset 0 0 0 1px rgba(255, 255, 255, .022) !important;
+      contain: layout paint;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+    }
+
+    .pill,
+    .tag,
+    .status,
+    .project-detail-meta span,
+    .project-mini-card strong {
+      border-color: rgba(250, 204, 21, .18) !important;
+      background: rgba(2, 6, 23, .56) !important;
+      color: #fde68a !important;
+    }
+
+    a,
+    .project-link,
+    .back-link {
+      color: var(--af-gold) !important;
+    }
+
+    a:hover,
+    .project-link:hover,
+    .back-link:hover {
+      color: var(--af-gold-soft) !important;
+    }
+
+    .project-detail-card h1,
+    .project-detail-section h2,
+    main h1,
+    main h2,
+    main h3 {
+      text-wrap: balance;
+    }
+
+    @media (min-width: 900px) {
+      main section,
+      main article.card {
+        content-visibility: auto;
+        contain-intrinsic-size: 780px;
+      }
+
+      .project-detail-hero,
+      .projects-index-hero {
+        content-visibility: visible;
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      main .card,
+      .project-detail-card,
+      .project-mini-card,
+      .project-index-card,
+      .stack-card,
+      .surface-card,
+      .status-card,
+      .arch-card {
+        transition:
+          transform .18s ease,
+          border-color .18s ease,
+          box-shadow .18s ease,
+          background .18s ease;
+      }
+
+      main .card:hover,
+      .project-detail-card:hover,
+      .project-mini-card:hover,
+      .project-index-card:hover,
+      .stack-card:hover,
+      .surface-card:hover,
+      .status-card:hover,
+      .arch-card:hover {
+        transform: translate3d(0, -3px, 0);
+      }
+    }
+  </style>
+
+
+  <style id="ALLFICTION-HARD-GOLD-OVERRIDE-CSS">
+    /*
+      Override final anti-blue.
+      Debe quedar al final del <head> para ganar la cascada.
+    */
+
+    [style*="#38bdf8"],
+    [style*="#60a5fa"],
+    [style*="#3b82f6"],
+    [style*="#2563eb"],
+    [style*="rgba(56,189,248"],
+    [style*="rgba(96,165,250"],
+    [style*="rgba(37,99,235"] {
+      color: #facc15 !important;
+      border-color: rgba(250, 204, 21, .22) !important;
+    }
+
+    [style*="linear-gradient(135deg,#38bdf8,#22c55e)"],
+    [style*="linear-gradient(135deg, #38bdf8, #22c55e)"] {
+      background: linear-gradient(135deg, #facc15, #a16207) !important;
+    }
+
+    .accent-line,
+    .project-shot-accent,
+    .ergo-v2-card [style*="linear-gradient"],
+    [class*="accent"] {
+      border-color: rgba(250, 204, 21, .24) !important;
+    }
+
+    .pill,
+    .tag,
+    .status,
+    .project-index-card .eyebrow,
+    .project-card .eyebrow {
+      color: #fde68a !important;
+    }
+  </style>
+
 </head>
 
   <body>
     <header class="site-header">
       <div class="container nav">
-        <a class="brand" href="../index.html#inicio">M M LAB</a>
+        <a class="brand" href="../index.html#inicio">ALLFICTION SOFTWARE</a>
 
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-i18n="nav.menu">
           Menú
@@ -195,13 +511,22 @@
     <main>
       <section class="projects-index-hero container">
         <a class="back-link" href="../index.html#proyectos" data-i18n="projects.index.backHome">← Volver a la home</a>
-        <p class="eyebrow" data-i18n="projects.index.eyebrow">ÍNDICE DE PROYECTOS</p>
-        <h1 data-i18n="projects.index.title">Soluciones, productos y prototipos</h1>
+        <p class="eyebrow" data-i18n="projects.index.eyebrow">CATÁLOGO DE SOFTWARE</p>
+        <h1 data-i18n="projects.index.title">Productos, herramientas y laboratorios</h1>
         <p class="lead" data-i18n="projects.index.lead">
-          Vista pública de proyectos técnicos en distintas etapas: activos,
-          estables, en desarrollo o en diseño. Cada ficha resume problema,
-          enfoque, stack, estado y próximos pasos.
+          Catálogo de proyectos construidos desde Allfiction Software: plataformas web,
+          automatización, IA aplicada, herramientas internas, seguridad local y experimentos técnicos.
         </p>
+
+        <div class="projects-catalog-chips" aria-label="Categorías de proyectos">
+          <span>Productos web</span>
+          <span>IA aplicada</span>
+          <span>Automatización</span>
+          <span>Serverless</span>
+          <span>Seguridad</span>
+          <span>Laboratorio</span>
+        </div>
+
       </section>
 
       <section class="projects-index-grid container" aria-label="Listado de proyectos">
@@ -264,7 +589,7 @@
   padding:22px;
   margin:28px 0;
   background:
-    radial-gradient(circle at 15% 10%, rgba(56,189,248,.16), transparent 20rem),
+    radial-gradient(circle at 15% 10%, rgba(250,204,21,.10), transparent 20rem),
     radial-gradient(circle at 85% 20%, rgba(34,197,94,.12), transparent 18rem),
     rgba(15,23,42,.76);
   box-shadow:0 24px 80px rgba(0,0,0,.30);
@@ -274,7 +599,7 @@
     <div>
       <p style="
         margin:0 0 10px;
-        color:#38bdf8;
+        color:#facc15;
         font-weight:800;
         letter-spacing:.10em;
         text-transform:uppercase;
@@ -319,7 +644,7 @@
         min-height:44px;
         padding:0 17px;
         border-radius:999px;
-        background:linear-gradient(135deg,#38bdf8,#22c55e);
+        background:linear-gradient(135deg,#facc15,#22c55e);
         color:#020617;
         text-decoration:none;
         font-weight:800;
