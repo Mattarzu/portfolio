@@ -8,8 +8,7 @@
     <link rel="canonical" href="https://mattarzu.github.io/portfolio/projects/local-translator.html" />
     <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
     <link rel="stylesheet" href="../styles.css" />
-
-    <style>
+<style>
       .project-detail-hero {
         padding: 96px 0 48px;
       }
@@ -124,10 +123,8 @@
         }
       }
     </style>
-
-  
   <style id="ALLFICTION-PROJECT-PAGES-GOLD-POLISH-CSS">
-    /*
+/*
       Neutralización de azules en páginas internas.
       Mantiene identidad Allfiction: negro, dorado, gris técnico.
     */
@@ -176,7 +173,6 @@
       box-shadow:
         0 22px 64px rgba(0, 0, 0, .32),
         inset 0 0 0 1px rgba(255, 255, 255, .022) !important;
-      contain: layout paint;
       backface-visibility: hidden;
       transform: translateZ(0);
     }
@@ -214,13 +210,10 @@
     @media (min-width: 900px) {
       main section,
       main article.card {
-        content-visibility: auto;
-        contain-intrinsic-size: 780px;
       }
 
       .project-detail-hero,
       .projects-index-hero {
-        content-visibility: visible;
       }
     }
 
@@ -252,7 +245,43 @@
       }
     }
   </style>
+  <style id="ALLFICTION-HARD-GOLD-OVERRIDE-CSS">
+/*
+      Override final anti-blue.
+      Debe quedar al final del <head> para ganar la cascada.
+    */
 
+    [style*="#38bdf8"],
+    [style*="#60a5fa"],
+    [style*="#3b82f6"],
+    [style*="#2563eb"],
+    [style*="rgba(56,189,248"],
+    [style*="rgba(96,165,250"],
+    [style*="rgba(37,99,235"] {
+      color: #facc15 !important;
+      border-color: rgba(250, 204, 21, .22) !important;
+    }
+
+    [style*="linear-gradient(135deg,#38bdf8,#22c55e)"],
+    [style*="linear-gradient(135deg, #38bdf8, #22c55e)"] {
+      background: linear-gradient(135deg, #facc15, #a16207) !important;
+    }
+
+    .accent-line,
+    .project-shot-accent,
+    .ergo-v2-card [style*="linear-gradient"],
+    [class*="accent"] {
+      border-color: rgba(250, 204, 21, .24) !important;
+    }
+
+    .pill,
+    .tag,
+    .status,
+    .project-index-card .eyebrow,
+    .project-card .eyebrow {
+      color: #fde68a !important;
+    }
+  </style>
 </head>
   <body>
     <a class="skip-link" href="#inicio">Saltar al contenido</a>
