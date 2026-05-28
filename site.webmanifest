@@ -1,18 +1,31 @@
 {
-  "name": "M M LAB",
-  "short_name": "M M LAB",
-  "description": "Software, automatización e inteligencia artificial aplicada.",
-  "lang": "es-AR",
+  "name": "Allfiction Software",
+  "short_name": "Allfiction",
+  "description": "Productos web, automatización, integraciones con APIs, herramientas internas e inteligencia artificial aplicada.",
   "start_url": "/portfolio/",
   "scope": "/portfolio/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "orientation": "portrait-primary",
+  "lang": "es-AR",
+  "categories": [
+    "business",
+    "productivity",
+    "developer",
+    "utilities"
+  ],
   "icons": [
     {
-      "src": "favicon.svg",
+      "src": "/portfolio/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/portfolio/assets/brand/allfiction-software-main.png",
+      "sizes": "1536x1024",
+      "type": "image/png",
       "purpose": "any"
     }
   ]
