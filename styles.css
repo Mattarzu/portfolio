@@ -8,7 +8,7 @@
   --accent: #ffd60a;
   --accent-2: #f5c400;
   --green: #69db7c;
-  --blue: #74c0fc;
+  --blue: #facc15;
   --orange: #ffa94d;
   --shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
 }
@@ -258,7 +258,7 @@ h3 {
 }
 
 .status.stable {
-  color: var(--blue);
+  color: var(--gold);
   background: rgba(116, 192, 252, 0.1);
 }
 
@@ -1410,7 +1410,7 @@ body[data-panda-mood="build"] .hero-panda-eye::after {
 
 body[data-panda-mood="focus"] .panda-eye::after,
 body[data-panda-mood="focus"] .hero-panda-eye::after {
-  background: var(--blue);
+  background: var(--gold);
 }
 
 
@@ -1453,7 +1453,7 @@ body[data-panda-mood="build"] .panda-mode {
 
 body[data-panda-mood="focus"] .hero-panda-bubble,
 body[data-panda-mood="focus"] .panda-mode {
-  color: var(--blue);
+  color: var(--gold);
   border-color: rgba(116, 192, 252, 0.24);
   background: rgba(116, 192, 252, 0.1);
 }
@@ -3291,8 +3291,8 @@ html[lang="zh-CN"] h3 {
   width: fit-content;
   border-radius: 999px;
   padding: 0.25rem 0.65rem;
-  border: 1px solid rgba(96, 165, 250, 0.28);
-  background: rgba(37, 99, 235, 0.12);
+  border: 1px solid rgba(250, 204, 21, 0.20);
+  background: rgba(250, 204, 21, 0.09);
   color: var(--accent);
   font-size: 0.78rem;
   font-weight: 700;
