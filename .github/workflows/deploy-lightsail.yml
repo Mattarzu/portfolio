@@ -1,0 +1,83 @@
+name: Deploy portfolio to AWS Lightsail
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy production
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Configure restricted SSH key
+        shell: bash
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          set -Eeuo pipefail
+
+          test -n "$DEPLOY_SSH_KEY"
+          test -n "$DEPLOY_KNOWN_HOSTS"
+
+          install -d -m 700 "$HOME/.ssh"
+
+          printf '%s\n' "$DEPLOY_SSH_KEY" > "$HOME/.ssh/portfolio-deploy"
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
+
+          chmod 600 "$HOME/.ssh/portfolio-deploy" "$HOME/.ssh/known_hosts"
+          ssh-keygen -y -f "$HOME/.ssh/portfolio-deploy" >/dev/null
+
+      - name: Deploy portfolio
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          ssh \
+            -i "$HOME/.ssh/portfolio-deploy" \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+            -o ConnectTimeout=15 \
+            ubuntu@56.126.148.93 \
+            deploy
+
+      - name: Verify public deployment
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          URL="https://allfiction.56-126-148-93.sslip.io"
+
+          for attempt in {1..5}; do
+            if curl \
+              --fail \
+              --silent \
+              --show-error \
+              --location \
+              --max-time 20 \
+              "$URL/" \
+              | grep -qi '<title>Allfiction Software'
+            then
+              echo "Deployment verified: $URL"
+              exit 0
+            fi
+
+            echo "Verification attempt $attempt failed."
+            sleep 5
+          done
+
+          echo "Public deployment verification failed."
+          exit 1
