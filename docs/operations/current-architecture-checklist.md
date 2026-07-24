@@ -1,44 +1,52 @@
+# ALLFICTION — checklist de arquitectura actual
 
-M M LAB current architecture checklist
-Frontend estático
- Portfolio estático.
- Producción en GitHub Pages.
- Sin backend propio dentro del frontend.
- Sin secretos en archivos públicos.
-Panda estable
- UI estable separada.
- JavaScript principal: assets/js/panda-stable.js.
- CSS principal: assets/css/panda-stable.css.
- Panda visible sin depender de IA productiva.
-Backend productivo
- Backend real en Cloudflare Worker.
- Directorio productivo: mmlab-contact-worker/.
- Archivo principal: mmlab-contact-worker/src/worker.js.
- Worker público desplegado.
-Contacto
- Endpoint /contact.
- Honeypot validado.
- Telegram Bot API como destino final.
- Secretos gestionados en Cloudflare.
-IA local
- Qwen local vía llama-server.
- llama-server local en 127.0.0.1:8080.
- Worker local en 127.0.0.1:8787.
- Endpoint /ai-chat probado localmente.
- Producción con window.MMLAB_AI_ENABLED = false.
-Producción segura
- Panda IA no expuesta públicamente.
- GitHub Pages no llama al modelo local.
- No hay túnel público sin Access.
- No hay tokens productivos en Git.
-Legacy
- FastAPI conservado como legacy.
- Directorio legacy: mmlab-contact-api/.
- No se usa como backend productivo.
- Documentado como referencia histórica/local.
-Próximos frentes posibles
- Limpiar main.js y restos de Panda legacy.
- Agregar CI mínima para node --check y git diff --check.
- Preparar dominio Cloudflare.
- Diseñar Cloudflare Tunnel protegido con Access.
- Mejorar documentación pública del portfolio.
+## Frontend
+
+- Portfolio V3 estático.
+- Producción en AWS Lightsail.
+- Caddy administra HTTPS y reverse proxy.
+- GitHub Actions despliega desde `main`.
+- No existen secretos en HTML, CSS ni JavaScript público.
+
+## AF Intelligence
+
+- UI productiva en `assets/js/home-v3.js`.
+- Endpoint productivo en `mmlab-contact-worker/src/worker.js`.
+- Recuperación desde `mmlab-contact-worker/src/portfolio-context.js`.
+- OpenAI Responses API como proveedor generativo.
+- `gpt-5.4-nano-2026-03-17` fijado para comportamiento estable.
+- Preguntas fuera de alcance no consumen tokens.
+- Respuestas generativas incluyen enlaces de evidencia.
+- Fallback guiado disponible en Worker y frontend.
+- Clave configurada sólo como secreto de Wrangler.
+
+## Límites
+
+- 500 caracteres de entrada.
+- 220 tokens máximos de salida.
+- Cinco consultas cada quince minutos por IP.
+- Cincuenta llamadas generativas diarias.
+- Proyecto de OpenAI separado con límite mensual de US$2 pendiente de verificación
+  al momento de activar la clave.
+
+## Backend dinámico
+
+- Cloudflare Worker para `/contact`, `/ai-chat` y `/health`.
+- CORS limitado a orígenes explícitos.
+- Telegram Bot API como destino de contactos.
+- FastAPI en `mmlab-contact-api/` conservado únicamente como implementación legacy.
+
+## Validación
+
+- Tests unitarios de recuperación, CORS, límites, fallback y contrato de OpenAI.
+- Validación de sintaxis JavaScript.
+- Contratos de HTML, assets, canonical y presupuestos de tamaño.
+- Smoke test público del frontend después de cada deploy.
+
+## Reglas operativas
+
+- Nunca guardar `OPENAI_API_KEY` ni `TELEGRAM_BOT_TOKEN` en Git.
+- No activar IA real antes de configurar el límite del proyecto de OpenAI.
+- No reutilizar una clave general de desarrollo.
+- No eliminar el modo guiado.
+- No habilitar tools, web search o agentes para este caso de uso.

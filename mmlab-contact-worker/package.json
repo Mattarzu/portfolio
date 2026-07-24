@@ -1,0 +1,9 @@
+{
+  "name": "allfiction-portfolio-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check src/worker.js && node --check src/portfolio-context.js",
+    "test": "node --test"
+  }
+}

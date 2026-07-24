@@ -1,4 +1,7 @@
 
+> Documento histórico del asistente local anterior. AF Intelligence productivo se
+> documenta en `docs/operations/af-intelligence.md`.
+
 Panda AI local assistant
 Estado
 
@@ -69,4 +72,3 @@ assets/css/panda-stable.css
 Y que producción mantenga:
 
 window.MMLAB_AI_ENABLED = false;
-

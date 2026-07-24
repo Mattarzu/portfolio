@@ -3,9 +3,9 @@
 Portfolio estático orientado a evidencia técnica: productos full stack, IA aplicada,
 automatización, infraestructura y sistemas reales en producción.
 
-La portada V3 incorpora AF Intelligence, un asistente de portfolio con conocimiento
-verificado y fallback guiado. La activación generativa requiere un endpoint de servidor
-con su credencial configurada; ninguna clave se expone en el navegador.
+La portada V3 incorpora AF Intelligence, un asistente híbrido con recuperación de
+contexto verificado, IA generativa real, enlaces de evidencia y fallback guiado.
+La credencial del proveedor existe únicamente en el Worker; nunca se expone al navegador.
 
 ## Producción
 
@@ -13,6 +13,8 @@ con su credencial configurada; ninguna clave se expone en el navegador.
 - Hosting: AWS Lightsail
 - HTTPS y reverse proxy: Caddy
 - Despliegue: GitHub Actions desde `main`
+- API dinámica: Cloudflare Worker
+- IA: OpenAI Responses API con límites y fallback
 
 ## Ejecutar localmente
 
@@ -28,6 +30,7 @@ Abrir <http://127.0.0.1:8081/>.
 
 ```bash
 node --check assets/js/home-v3.js
+npm test --prefix mmlab-contact-worker
 node scripts/check-site.mjs
 git diff --check
 ```
@@ -42,6 +45,9 @@ branding, manifest y presupuestos básicos de tamaño.
 - `projects/crypto-risk-engine.html`: caso de estudio principal.
 - `assets/css/home-v3.css`: sistema visual negro/dorado de la portada V3.
 - `assets/js/home-v3.js`: navegación, idioma, microinteracciones y AF Intelligence.
+- `mmlab-contact-worker/src/worker.js`: contacto y endpoint protegido de IA.
+- `mmlab-contact-worker/src/portfolio-context.js`: conocimiento verificable y recuperación.
+- `docs/operations/af-intelligence.md`: contrato operativo y control de costo.
 - `.github/workflows/static-checks.yml`: quality gate.
 - `.github/workflows/deploy-lightsail.yml`: despliegue y smoke tests públicos.
 

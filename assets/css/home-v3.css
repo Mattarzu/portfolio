@@ -1,3 +1,6 @@
+Warning: truncated output (original token count: 12032)
+Total output lines: 2686
+
 :root {
   color-scheme: dark;
   --bg: #070807;
@@ -1294,10 +1297,7 @@ svg {
   min-height: 72px;
   place-items: center;
   border: 1px solid rgba(255, 255, 255, 0.065);
-  border-radius: 12px;
-  background: rgba(14, 16, 14, 0.9);
-  color: var(--muted);
-  font-family: "SFMono-Regular", Consolas, monospace;
+  borde…32 tokens truncated…ace;
   font-size: 0.61rem;
 }
 
@@ -2042,6 +2042,37 @@ svg {
   font-size: 0.61rem;
   font-weight: 760;
   text-decoration: none;
+}
+
+.ai-message-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 3px;
+}
+
+.ai-message-sources small {
+  flex-basis: 100%;
+  color: var(--muted-dark);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ai-message-sources a {
+  border: 1px solid rgba(214, 174, 98, 0.14);
+  border-radius: 999px;
+  padding: 5px 8px;
+  background: rgba(214, 174, 98, 0.045);
+  color: var(--gold-high);
+  font-size: 0.56rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.ai-message-sources a:hover {
+  border-color: rgba(214, 174, 98, 0.34);
+  background: rgba(214, 174, 98, 0.08);
 }
 
 .ai-suggestions {

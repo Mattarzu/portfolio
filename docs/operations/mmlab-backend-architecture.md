@@ -1,4 +1,8 @@
 
+> Documento histórico. La arquitectura productiva vigente está en
+> `docs/operations/af-intelligence.md` y
+> `docs/operations/current-architecture-checklist.md`.
+
 M M LAB backend architecture
 Resumen
 
