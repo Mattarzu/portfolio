@@ -27,6 +27,7 @@
 }
 
 html {
+  overflow-x: clip;
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--af-header-height) + 24px);
 }
