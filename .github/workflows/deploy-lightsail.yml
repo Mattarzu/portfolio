@@ -74,9 +74,12 @@ jobs:
             )"
 
             if grep -q 'Crypto Risk Engine' <<<"$HOME_HTML" \
-              && grep -q 'assets/js/home-v2.js' <<<"$HOME_HTML" \
+              && grep -q 'AF Intelligence' <<<"$HOME_HTML" \
+              && grep -q 'assets/js/home-v3.js' <<<"$HOME_HTML" \
               && curl --fail --silent --show-error --max-time 20 \
-                "$URL/assets/css/home-v2.css" >/dev/null \
+                "$URL/assets/css/home-v3.css" >/dev/null \
+              && curl --fail --silent --show-error --max-time 20 \
+                "$URL/assets/js/home-v3.js" >/dev/null \
               && curl --fail --silent --show-error --max-time 20 \
                 "$URL/assets/brand/allfiction-software-hero-960.webp" >/dev/null \
               && curl --fail --silent --show-error --max-time 20 \

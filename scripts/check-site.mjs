@@ -80,7 +80,13 @@ for (const htmlPath of collectFiles(root, ".html")) {
 }
 
 const home = readFileSync(join(root, "index.html"), "utf8");
-for (const marker of ["Crypto Risk Engine", "Qivox Gym", "PolyLLM Router", "home-v2.js"]) {
+for (const marker of [
+  "Crypto Risk Engine",
+  "Qivox Gym",
+  "PolyLLM Router",
+  "AF Intelligence",
+  "home-v3.js"
+]) {
   if (!home.includes(marker)) report(`index.html: falta marcador requerido "${marker}"`);
 }
 
@@ -91,8 +97,8 @@ if (manifest.start_url !== "/" || manifest.scope !== "/") {
 
 const budgets = [
   ["index.html", 80_000],
-  ["assets/css/home-v2.css", 60_000],
-  ["assets/js/home-v2.js", 20_000],
+  ["assets/css/home-v3.css", 60_000],
+  ["assets/js/home-v3.js", 30_000],
   ["assets/brand/allfiction-software-hero-960.webp", 100_000],
   ["assets/brand/allfiction-icon-512.png", 120_000],
   ["preview.png", 250_000]

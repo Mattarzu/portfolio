@@ -1,31 +1,32 @@
 <!doctype html>
 <html
   lang="es-AR"
-  data-title-es="ALLFICTION Software | Sistemas completos y evidencia real"
-  data-title-en="ALLFICTION Software | Complete systems and real evidence"
-  data-description-es="ALLFICTION diseña, construye y opera productos full stack, IA aplicada, automatización e infraestructura. Proyectos reales en producción."
-  data-description-en="ALLFICTION designs, builds and operates full-stack products, applied AI, automation and infrastructure. Real projects in production."
+  data-title-es="ALLFICTION Software | Ingeniería full stack e IA aplicada"
+  data-title-en="ALLFICTION Software | Full-stack engineering and applied AI"
+  data-description-es="ALLFICTION diseña, construye y opera productos full stack, sistemas de IA e infraestructura. Casos reales, decisiones técnicas y software en producción."
+  data-description-en="ALLFICTION designs, builds and operates full-stack products, AI systems and infrastructure. Real cases, engineering decisions and production software."
 >
   <head>
-    <meta charset="UTF-8" />
+  <meta charset="UTF-8" />
+  <meta name="codex-preview" content="development" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="ALLFICTION diseña, construye y opera productos full stack, IA aplicada, automatización e infraestructura. Proyectos reales en producción."
+      content="ALLFICTION diseña, construye y opera productos full stack, sistemas de IA e infraestructura. Casos reales, decisiones técnicas y software en producción."
     />
-    <meta name="theme-color" content="#050505" />
+    <meta name="theme-color" content="#080808" />
     <meta name="color-scheme" content="dark" />
 
-    <title>ALLFICTION Software | Sistemas completos y evidencia real</title>
+    <title>ALLFICTION Software | Ingeniería full stack e IA aplicada</title>
     <link rel="canonical" href="https://allfiction.56-126-148-93.sslip.io/" />
     <link rel="alternate" hreflang="es-AR" href="https://allfiction.56-126-148-93.sslip.io/" />
     <link rel="alternate" hreflang="en" href="https://allfiction.56-126-148-93.sslip.io/?lang=en" />
     <link rel="alternate" hreflang="x-default" href="https://allfiction.56-126-148-93.sslip.io/" />
 
-    <meta property="og:title" content="ALLFICTION Software | Sistemas completos y evidencia real" />
+    <meta property="og:title" content="ALLFICTION Software | Ingeniería full stack e IA aplicada" />
     <meta
       property="og:description"
-      content="Productos full stack, IA aplicada e infraestructura demostrados con sistemas reales en producción."
+      content="Productos, IA e infraestructura respaldados por sistemas reales en producción."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://allfiction.56-126-148-93.sslip.io/" />
@@ -36,10 +37,10 @@
     <meta property="og:site_name" content="ALLFICTION Software" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="ALLFICTION Software | Sistemas completos y evidencia real" />
+    <meta name="twitter:title" content="ALLFICTION Software | Ingeniería full stack e IA aplicada" />
     <meta
       name="twitter:description"
-      content="Productos full stack, IA aplicada e infraestructura demostrados con sistemas reales en producción."
+      content="Productos, IA e infraestructura respaldados por sistemas reales en producción."
     />
     <meta name="twitter:image" content="https://allfiction.56-126-148-93.sslip.io/preview.png" />
 
@@ -52,7 +53,7 @@
             "@id": "https://allfiction.56-126-148-93.sslip.io/#organization",
             "name": "ALLFICTION Software",
             "url": "https://allfiction.56-126-148-93.sslip.io/",
-            "logo": "https://allfiction.56-126-148-93.sslip.io/assets/brand/allfiction-software-hero-960.webp",
+            "logo": "https://allfiction.56-126-148-93.sslip.io/assets/brand/allfiction-icon-512.png",
             "founder": {
               "@type": "Person",
               "name": "Matías Mercado",
@@ -75,8 +76,7 @@
           },
           {
             "@type": "ItemList",
-            "@id": "https://allfiction.56-126-148-93.sslip.io/#featured-projects",
-            "name": "Proyectos destacados de ALLFICTION Software",
+            "name": "Casos de ingeniería destacados",
             "itemListElement": [
               {
                 "@type": "ListItem",
@@ -104,19 +104,7 @@
 
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="manifest" href="./site.webmanifest" />
-    <link
-      rel="preload"
-      as="image"
-      type="image/webp"
-      href="./assets/brand/allfiction-software-hero-960.webp"
-      imagesrcset="
-        ./assets/brand/allfiction-software-hero-640.webp 640w,
-        ./assets/brand/allfiction-software-hero-960.webp 960w
-      "
-      imagesizes="(max-width: 980px) 100vw, 48vw"
-      fetchpriority="high"
-    />
-    <link rel="stylesheet" href="./assets/css/home-v2.css" />
+    <link rel="stylesheet" href="./assets/css/home-v3.css" />
   </head>
   <body>
     <a class="skip-link" href="#contenido">
@@ -124,30 +112,29 @@
       <span data-lang="en">Skip to content</span>
     </a>
 
-    <header class="site-header">
-      <div class="container header-inner">
+    <header class="site-header" data-header>
+      <div class="shell header-inner">
         <a class="brand" href="#inicio" aria-label="ALLFICTION Software — inicio">
-          <span class="brand-mark" aria-hidden="true">AF</span>
-          <span>ALLFICTION SOFTWARE</span>
+          <img src="./favicon.svg" width="40" height="40" alt="" aria-hidden="true" />
+          <span class="brand-copy">
+            <strong>ALLFICTION</strong>
+            <small>SOFTWARE</small>
+          </span>
         </a>
 
-        <div class="nav-shell">
-          <nav id="main-navigation" class="nav-links" aria-label="Navegación principal" data-nav>
-            <a href="#inicio">
-              <span data-lang="es">Inicio</span>
-              <span data-lang="en">Home</span>
+        <div class="nav-cluster">
+          <nav id="main-navigation" class="main-nav" aria-label="Navegación principal" data-nav>
+            <a href="#trabajo">
+              <span data-lang="es">Trabajo</span>
+              <span data-lang="en">Work</span>
             </a>
-            <a href="#proyectos">
-              <span data-lang="es">Proyectos</span>
-              <span data-lang="en">Projects</span>
+            <a href="#capacidades">
+              <span data-lang="es">Capacidades</span>
+              <span data-lang="en">Capabilities</span>
             </a>
-            <a href="#soluciones">
-              <span data-lang="es">Soluciones</span>
-              <span data-lang="en">Solutions</span>
-            </a>
-            <a href="#proceso">
-              <span data-lang="es">Proceso</span>
-              <span data-lang="en">Process</span>
+            <a href="#metodo">
+              <span data-lang="es">Método</span>
+              <span data-lang="en">Method</span>
             </a>
             <a href="#contacto">
               <span data-lang="es">Contacto</span>
@@ -160,6 +147,12 @@
             <button type="button" data-language="en-GB" aria-pressed="false">EN</button>
           </div>
 
+          <button class="ai-nav-button" type="button" data-ai-open>
+            <span class="ai-spark" aria-hidden="true"></span>
+            <span data-lang="es">Consultar IA</span>
+            <span data-lang="en">Ask AI</span>
+          </button>
+
           <button
             class="nav-toggle"
             type="button"
@@ -168,768 +161,653 @@
             aria-expanded="false"
             data-nav-toggle
           >
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span>
           </button>
         </div>
       </div>
     </header>
 
     <main id="contenido">
-      <section id="inicio" class="container hero">
+      <section id="inicio" class="hero shell">
         <div class="hero-copy">
-          <p class="eyebrow">
-            <span data-lang="es">Ingeniería de software · Córdoba, Argentina</span>
-            <span data-lang="en">Software engineering · Córdoba, Argentina</span>
+          <p class="overline">
+            <span class="live-dot" aria-hidden="true"></span>
+            <span data-lang="es">Ingeniería full stack · IA aplicada · Córdoba</span>
+            <span data-lang="en">Full-stack engineering · Applied AI · Córdoba</span>
           </p>
+
           <h1>
-            <span data-lang="es">Sistemas completos.<br /><span class="accent">Evidencia real.</span></span>
-            <span data-lang="en">Complete systems.<br /><span class="accent">Real evidence.</span></span>
-          </h1>
-          <p class="hero-summary">
             <span data-lang="es">
-              ALLFICTION diseña, construye y opera productos full stack, IA aplicada e
-              infraestructura. Del problema al sistema funcionando.
+              Ingeniería que llega<br />
+              <em>a producción.</em>
             </span>
             <span data-lang="en">
-              ALLFICTION designs, builds and operates full-stack products, applied AI and
-              infrastructure. From the problem to the working system.
+              Engineering that reaches<br />
+              <em>production.</em>
+            </span>
+          </h1>
+
+          <p class="hero-lead">
+            <span data-lang="es">
+              Diseño productos, sistemas de IA e infraestructura de punta a punta:
+              arquitectura, código, validación y operación real.
+            </span>
+            <span data-lang="en">
+              I design products, AI systems and infrastructure end to end:
+              architecture, code, validation and real operation.
             </span>
           </p>
+
           <div class="hero-actions">
-            <a class="button primary" href="#proyectos">
-              <span data-lang="es">Explorar proyectos</span>
-              <span data-lang="en">Explore projects</span>
+            <a class="button button-primary" href="#trabajo">
+              <span data-lang="es">Ver casos de ingeniería</span>
+              <span data-lang="en">See engineering cases</span>
               <span aria-hidden="true">↘</span>
             </a>
-            <a class="button" href="#contacto">
-              <span data-lang="es">Plantear una solución</span>
-              <span data-lang="en">Discuss a solution</span>
-            </a>
+            <button class="button button-ghost" type="button" data-ai-open>
+              <span class="ai-spark" aria-hidden="true"></span>
+              <span data-lang="es">Preguntarle a AF Intelligence</span>
+              <span data-lang="en">Ask AF Intelligence</span>
+            </button>
           </div>
+
+          <ul class="hero-trust" aria-label="Especialidades">
+            <li>React / Node / Python</li>
+            <li>Cloud &amp; Linux</li>
+            <li>LLM systems</li>
+          </ul>
         </div>
 
-        <div class="hero-visual">
-          <figure class="hero-logo">
-            <picture>
-              <source
-                type="image/webp"
-                srcset="
-                  ./assets/brand/allfiction-software-hero-640.webp 640w,
-                  ./assets/brand/allfiction-software-hero-960.webp 960w
-                "
-                sizes="(max-width: 980px) 100vw, 48vw"
-              />
-              <img
-                src="./assets/brand/allfiction-software-hero.png"
-                width="1672"
-                height="941"
-                alt="ALLFICTION Software"
-                decoding="async"
-                fetchpriority="high"
-              />
-            </picture>
-          </figure>
-          <div class="hero-proof">
-            <strong>
-              <span data-lang="es">Arquitectura → código → producción</span>
-              <span data-lang="en">Architecture → code → production</span>
-            </strong>
-            <span data-lang="es">Productos desplegados y validaciones reproducibles.</span>
-            <span data-lang="en">Deployed products and reproducible validation.</span>
+        <div class="hero-stage" role="img" aria-label="Sistema visual de ALLFICTION">
+          <div class="stage-grid" aria-hidden="true"></div>
+          <div class="stage-topbar">
+            <span>AF / SYSTEMS STUDIO</span>
+            <span class="stage-online"><i></i> ONLINE</span>
+          </div>
+
+          <div class="stage-core">
+            <div class="monogram">
+              <img src="./assets/brand/allfiction-icon-512.png" width="512" height="512" alt="Monograma AF" />
+            </div>
+            <div class="stage-label">
+              <small>ALLFICTION SOFTWARE</small>
+              <strong>
+                <span data-lang="es">Producto · IA · Infraestructura</span>
+                <span data-lang="en">Product · AI · Infrastructure</span>
+              </strong>
+            </div>
+          </div>
+
+          <div class="stage-lines" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+
+          <div class="stage-modules">
+            <div>
+              <small>01 / BUILD</small>
+              <strong>Full stack</strong>
+            </div>
+            <div>
+              <small>02 / THINK</small>
+              <strong>Applied AI</strong>
+            </div>
+            <div>
+              <small>03 / RUN</small>
+              <strong>Production</strong>
+            </div>
+          </div>
+
+          <button class="stage-ai-card" type="button" data-ai-open>
+            <span class="ai-orb" aria-hidden="true"></span>
+            <span>
+              <small>AF INTELLIGENCE</small>
+              <strong>
+                <span data-lang="es">Conocé el portfolio conversando</span>
+                <span data-lang="en">Explore the portfolio by chatting</span>
+              </strong>
+            </span>
+            <b aria-hidden="true">↗</b>
+          </button>
+        </div>
+      </section>
+
+      <section class="signal-bar" aria-label="Evidencia resumida">
+        <div class="shell signal-grid">
+          <div>
+            <strong>3</strong>
+            <span data-lang="es">sistemas públicos</span>
+            <span data-lang="en">public systems</span>
+          </div>
+          <div>
+            <strong>24/7</strong>
+            <span data-lang="es">infraestructura operativa</span>
+            <span data-lang="en">operational infrastructure</span>
+          </div>
+          <div>
+            <strong>CI/CD</strong>
+            <span data-lang="es">entregas verificadas</span>
+            <span data-lang="en">verified deliveries</span>
+          </div>
+          <div>
+            <strong>AI</strong>
+            <span data-lang="es">local-first + cloud</span>
+            <span data-lang="en">local-first + cloud</span>
           </div>
         </div>
       </section>
 
-      <div class="proof-strip">
-        <div class="proof-item">Full Stack</div>
-        <div class="proof-item">
-          <span data-lang="es">IA aplicada</span>
-          <span data-lang="en">Applied AI</span>
-        </div>
-        <div class="proof-item">
-          <span data-lang="es">Sistemas en producción</span>
-          <span data-lang="en">Production systems</span>
-        </div>
-        <div class="proof-item">Cloud &amp; Linux</div>
-      </div>
-
-      <section id="proyectos" class="section container">
-        <header class="section-header reveal">
-          <div class="section-header-copy">
-            <p class="section-kicker">
-              <span data-lang="es">Proyectos destacados</span>
-              <span data-lang="en">Featured projects</span>
-            </p>
+      <section id="trabajo" class="section shell">
+        <header class="section-heading reveal">
+          <div>
+            <p class="overline">01 / <span data-lang="es">Trabajo seleccionado</span><span data-lang="en">Selected work</span></p>
             <h2>
-              <span data-lang="es">No son conceptos.<br />Son sistemas verificables.</span>
-              <span data-lang="en">Not concepts.<br />Verifiable systems.</span>
+              <span data-lang="es">Casos que demuestran criterio,<br />no solo tecnologías.</span>
+              <span data-lang="en">Cases that prove judgement,<br />not just technologies.</span>
             </h2>
-            <p class="section-intro">
-              <span data-lang="es">
-                Tres proyectos muestran el recorrido completo: arquitectura, implementación,
-                validación, despliegue y operación.
-              </span>
-              <span data-lang="en">
-                Three projects show the complete journey: architecture, implementation,
-                validation, deployment and operation.
-              </span>
-            </p>
           </div>
-          <a class="button compact" href="./projects/">
-            <span data-lang="es">Ver catálogo completo</span>
-            <span data-lang="en">View full catalogue</span>
-          </a>
+          <p class="section-intro">
+            <span data-lang="es">
+              Cada caso conecta una necesidad real con decisiones de arquitectura,
+              validaciones y un resultado operable.
+            </span>
+            <span data-lang="en">
+              Each case connects a real need with architecture decisions,
+              validation and an operable result.
+            </span>
+          </p>
         </header>
 
-        <div class="featured-stack">
-          <article class="featured-card reveal">
-            <div class="featured-copy">
-              <span class="status">
-                <span data-lang="es">En producción · AWS</span>
-                <span data-lang="en">In production · AWS</span>
-              </span>
+        <div class="case-list">
+          <article class="case-card case-risk reveal">
+            <div class="case-copy">
+              <div class="case-meta">
+                <span class="project-logo">CR</span>
+                <span class="status-pill status-live"><i></i>
+                  <span data-lang="es">Producción · AWS</span>
+                  <span data-lang="en">Production · AWS</span>
+                </span>
+                <span class="case-index">CASE 01</span>
+              </div>
               <h3>Crypto Risk Engine</h3>
               <p>
                 <span data-lang="es">
-                  Motor institucional de riesgo para posiciones colateralizadas. Procesa
-                  precios en tiempo real, calcula seguridad determinística, coordina
-                  liquidaciones y conserva un ledger auditable.
+                  Motor de riesgo para posiciones colateralizadas: ingesta de mercado,
+                  cálculo determinístico, liquidaciones idempotentes y auditoría reproducible.
                 </span>
                 <span data-lang="en">
-                  Institutional risk engine for collateralised positions. It processes
-                  real-time prices, computes deterministic safety, coordinates liquidations
-                  and keeps an auditable ledger.
+                  Risk engine for collateralised positions: market ingestion, deterministic
+                  calculation, idempotent liquidations and reproducible audit.
                 </span>
               </p>
-
-              <div class="metric-list">
-                <div class="metric">
-                  <strong>12 tests</strong>
-                  <span data-lang="es">integración crítica</span>
-                  <span data-lang="en">critical integration</span>
-                </div>
-                <div class="metric">
-                  <strong>2 E2E</strong>
-                  <span>flash crash + stale oracle</span>
-                </div>
-                <div class="metric">
-                  <strong>≈320 MiB</strong>
-                  <span data-lang="es">servicios observados</span>
-                  <span data-lang="en">observed services</span>
-                </div>
-                <div class="metric">
-                  <strong>Redis Streams</strong>
-                  <span data-lang="es">recovery + idempotencia</span>
-                  <span data-lang="en">recovery + idempotency</span>
-                </div>
-              </div>
-
-              <ul class="chip-list" aria-label="Tecnologías">
-                <li>FastAPI</li>
-                <li>PostgreSQL</li>
-                <li>Redis Streams</li>
-                <li>Docker</li>
-                <li>Pydantic</li>
-                <li>AWS</li>
+              <ul class="outcomes">
+                <li><b>Redis Streams</b><span>PEL recovery + dead letters</span></li>
+                <li><b>12 + 2</b><span data-lang="es">tests de integración y E2E</span><span data-lang="en">integration and E2E tests</span></li>
+                <li><b>≈320 MiB</b><span data-lang="es">stack observado</span><span data-lang="en">observed stack</span></li>
               </ul>
-
-              <div class="card-actions">
-                <a class="button primary compact" href="./projects/crypto-risk-engine.html">
-                  <span data-lang="es">Ver caso de estudio</span>
-                  <span data-lang="en">View case study</span>
+              <div class="case-actions">
+                <a class="text-link" href="./projects/crypto-risk-engine.html">
+                  <span data-lang="es">Explorar caso</span><span data-lang="en">Explore case</span> <span>↗</span>
                 </a>
-                <a
-                  class="button compact"
-                  href="https://crypto-risk.56-126-148-93.sslip.io/health/live"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Health live ↗
-                </a>
-                <a
-                  class="button compact"
-                  href="https://crypto-risk.56-126-148-93.sslip.io/health/ready"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Health ready ↗
-                </a>
+                <a class="subtle-link" href="https://crypto-risk.56-126-148-93.sslip.io/health/ready" target="_blank" rel="noopener noreferrer">Healthcheck</a>
               </div>
             </div>
 
-            <div class="featured-visual">
-              <div class="system-map">
-                <div class="system-node">
-                  <strong>Market ingestion</strong>
-                  <span>BTC / ETH · WebSocket · validación de ticks</span>
+            <div class="case-preview risk-console" role="img" aria-label="Vista conceptual del motor de riesgo">
+              <div class="preview-toolbar">
+                <span><i></i><i></i><i></i></span>
+                <small>risk-engine / operations</small>
+                <b>LIVE</b>
+              </div>
+              <div class="risk-summary">
+                <div>
+                  <small>ORACLE</small><strong><i></i> HEALTHY</strong>
                 </div>
-                <div class="system-node highlight">
-                  <strong>Redis Streams</strong>
-                  <span>grupos de consumo · PEL recovery · dead letters</span>
+                <div>
+                  <small>STREAM</small><strong>0 PENDING</strong>
                 </div>
-                <div class="system-node">
-                  <strong>Fast safety worker</strong>
-                  <span>Decimal determinístico · health factor por tick</span>
-                </div>
-                <div class="system-node">
-                  <strong>Liquidator + audit ledger</strong>
-                  <span>decisión idempotente · hash reproducible</span>
+                <div>
+                  <small>MODE</small><strong>DRY_RUN</strong>
                 </div>
               </div>
+              <div class="risk-chart">
+                <div class="chart-label"><span>HEALTH FACTOR</span><b>1.84</b></div>
+                <svg viewBox="0 0 520 180" role="img" aria-label="Tendencia estable de health factor">
+                  <defs>
+                    <linearGradient id="riskFill" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#d6ae62" stop-opacity=".28" />
+                      <stop offset="1" stop-color="#d6ae62" stop-opacity="0" />
+                    </linearGradient>
+                  </defs>
+                  <path class="chart-fill" d="M0 145 C60 128 86 138 130 106 S205 92 250 105 S325 58 370 76 S450 48 520 24 V180 H0Z" />
+                  <path class="chart-line" d="M0 145 C60 128 86 138 130 106 S205 92 250 105 S325 58 370 76 S450 48 520 24" />
+                </svg>
+              </div>
+              <div class="event-row"><span><i class="event-safe"></i> position/evaluated</span><b>SAFE</b><time>12 ms</time></div>
+              <div class="event-row"><span><i></i> audit/hash</span><b>VERIFIED</b><time>4 ms</time></div>
             </div>
           </article>
 
-          <article class="featured-card reveal">
-            <div class="featured-copy">
-              <span class="status">
-                <span data-lang="es">Demo pública · AWS</span>
-                <span data-lang="en">Public demo · AWS</span>
-              </span>
-              <h3>Qivox Gym <span class="accent">/ ERGO V2</span></h3>
+          <article class="case-card case-ergo reveal">
+            <div class="case-copy">
+              <div class="case-meta">
+                <span class="project-logo qivox">QX</span>
+                <span class="status-pill status-live"><i></i>
+                  <span data-lang="es">Demo pública · AWS</span>
+                  <span data-lang="en">Public demo · AWS</span>
+                </span>
+                <span class="case-index">CASE 02</span>
+              </div>
+              <h3>Qivox Gym <em>/ ERGO V2</em></h3>
               <p>
                 <span data-lang="es">
-                  Plataforma de gestión multi-sede para clubes y gimnasios: experiencia web,
-                  administración, membresías, operaciones en tiempo real y backend con datos
-                  persistentes.
+                  Plataforma multi-sede para clubes y gimnasios con experiencia pública,
+                  administración, membresías, operaciones en tiempo real y datos persistentes.
                 </span>
                 <span data-lang="en">
-                  Multi-site management platform for clubs and gyms: public web experience,
-                  administration, memberships, real-time operations and a persistent backend.
+                  Multi-site platform for clubs and gyms with a public experience,
+                  administration, memberships, real-time operations and persistent data.
                 </span>
               </p>
-
-              <div class="metric-list">
-                <div class="metric">
-                  <strong>Multi-sede</strong>
-                  <span data-lang="es">Colón + Bv. Illia</span>
-                  <span data-lang="en">Colón + Bv. Illia</span>
-                </div>
-                <div class="metric">
-                  <strong>Full stack</strong>
-                  <span>React · Express · PostgreSQL</span>
-                </div>
-                <div class="metric">
-                  <strong>Realtime</strong>
-                  <span>Socket.IO</span>
-                </div>
-                <div class="metric">
-                  <strong>CI/CD</strong>
-                  <span data-lang="es">despliegue verificable</span>
-                  <span data-lang="en">verifiable deployment</span>
-                </div>
-              </div>
-
-              <ul class="chip-list" aria-label="Tecnologías">
-                <li>React</li>
-                <li>Vite</li>
-                <li>Node.js</li>
-                <li>Prisma</li>
-                <li>PostgreSQL</li>
-                <li>Socket.IO</li>
+              <ul class="outcomes">
+                <li><b>Multi-sede</b><span>Colón + Bv. Illia</span></li>
+                <li><b>Full stack</b><span>React · Express · PostgreSQL</span></li>
+                <li><b>Realtime</b><span>Socket.IO + Prisma</span></li>
               </ul>
-
-              <div class="card-actions">
-                <a class="button primary compact" href="./projects/ergo-v2.html">
-                  <span data-lang="es">Ver caso técnico</span>
-                  <span data-lang="en">View technical case</span>
+              <div class="case-actions">
+                <a class="text-link" href="./projects/ergo-v2.html">
+                  <span data-lang="es">Explorar caso</span><span data-lang="en">Explore case</span> <span>↗</span>
                 </a>
-                <a
-                  class="button compact"
-                  href="https://ergo.56-126-148-93.sslip.io"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span data-lang="es">Abrir demo</span>
-                  <span data-lang="en">Open demo</span>
-                  ↗
+                <a class="subtle-link" href="https://ergo.56-126-148-93.sslip.io" target="_blank" rel="noopener noreferrer">
+                  <span data-lang="es">Abrir demo</span><span data-lang="en">Open demo</span>
                 </a>
               </div>
             </div>
 
-            <div class="featured-visual">
-              <figure class="browser-shot">
-                <div class="browser-bar" aria-hidden="true">
-                  <span class="browser-dots"><i></i><i></i><i></i></span>
-                  <span class="browser-url">ergo.56-126-148-93.sslip.io</span>
+            <div class="case-preview product-preview" role="group" aria-label="Vistas de Qivox Gym">
+              <figure class="desktop-frame">
+                <div class="preview-toolbar">
+                  <span><i></i><i></i><i></i></span>
+                  <small>qivox / club experience</small>
                 </div>
                 <img
-                  src="./assets/projects/ergo-v2/ergo-club-web.png"
-                  width="1536"
-                  height="1024"
+                  src="./assets/projects/ergo-v2/ergo-club-web.webp"
+                  width="1440"
+                  height="1200"
                   loading="lazy"
                   decoding="async"
-                  alt="Vista pública de Qivox Gym / ERGO V2"
+                  alt="Interfaz web de Qivox Gym"
+                />
+              </figure>
+              <figure class="phone-frame">
+                <span aria-hidden="true"></span>
+                <img
+                  src="./assets/projects/ergo-v2/ergo-club-app.webp"
+                  width="430"
+                  height="932"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Aplicación móvil de Qivox Gym"
                 />
               </figure>
             </div>
           </article>
 
-          <article class="featured-card reveal">
-            <div class="featured-copy">
-              <span class="status local">Local-first · IA híbrida</span>
+          <article class="case-card case-llm reveal">
+            <div class="case-copy">
+              <div class="case-meta">
+                <span class="project-logo llm">AI</span>
+                <span class="status-pill status-local"><i></i> Local-first</span>
+                <span class="case-index">CASE 03</span>
+              </div>
               <h3>PolyLLM Router</h3>
               <p>
                 <span data-lang="es">
-                  Orquestador de modelos que prioriza inferencia local y habilita proveedores
-                  externos sólo cuando la tarea lo necesita. Control explícito de rutas,
-                  costos y trazabilidad.
+                  Orquestador híbrido que prioriza inferencia local y habilita proveedores
+                  externos solo cuando la tarea lo necesita, con presupuesto y trazabilidad.
                 </span>
                 <span data-lang="en">
-                  Model orchestrator that prioritises local inference and enables external
-                  providers only when the task requires it. Explicit routing, cost and
-                  traceability controls.
+                  Hybrid orchestrator that prioritises local inference and enables external
+                  providers only when the task needs them, with budget and traceability.
                 </span>
               </p>
-
-              <div class="metric-list">
-                <div class="metric">
-                  <strong>Local-first</strong>
-                  <span data-lang="es">sin API por defecto</span>
-                  <span data-lang="en">no API by default</span>
-                </div>
-                <div class="metric">
-                  <strong>5 rutas</strong>
-                  <span>local · dqwen · kqwen · cloud · auto</span>
-                </div>
-                <div class="metric">
-                  <strong>Budget</strong>
-                  <span data-lang="es">límite diario explícito</span>
-                  <span data-lang="en">explicit daily limit</span>
-                </div>
-                <div class="metric">
-                  <strong>Doctor</strong>
-                  <span data-lang="es">diagnóstico operativo</span>
-                  <span data-lang="en">operational diagnostics</span>
-                </div>
-              </div>
-
-              <ul class="chip-list" aria-label="Tecnologías">
-                <li>Python</li>
-                <li>Qwen</li>
-                <li>Ollama</li>
-                <li>llama.cpp</li>
-                <li>FastAPI</li>
-                <li>Routing híbrido</li>
+              <ul class="outcomes">
+                <li><b>5 rutas</b><span>local · dqwen · kqwen · cloud · auto</span></li>
+                <li><b>Local-first</b><span data-lang="es">sin API por defecto</span><span data-lang="en">no API by default</span></li>
+                <li><b>Budget</b><span data-lang="es">control diario explícito</span><span data-lang="en">explicit daily control</span></li>
               </ul>
-
-              <div class="card-actions">
-                <a class="button primary compact" href="./projects/router-llm.html">
-                  <span data-lang="es">Ver arquitectura</span>
-                  <span data-lang="en">View architecture</span>
+              <div class="case-actions">
+                <a class="text-link" href="./projects/router-llm.html">
+                  <span data-lang="es">Explorar arquitectura</span><span data-lang="en">Explore architecture</span> <span>↗</span>
                 </a>
               </div>
             </div>
 
-            <div class="featured-visual">
-              <div
-                class="terminal-card"
-                role="img"
-                aria-label="Ejemplo de enrutamiento local-first"
-              >
-                <div class="terminal-bar" aria-hidden="true"><i></i><i></i><i></i></div>
-                <div class="terminal-body">
-                  <p><span class="prompt">$</span> polyllm /doctor</p>
-                  <p><span class="ok">✓</span> local model ready</p>
-                  <p><span class="ok">✓</span> qwen endpoint healthy</p>
-                  <p><span class="ok">✓</span> external budget protected</p>
-                  <p><span class="prompt">route:</span> local</p>
-                  <p><span class="prompt">fallback:</span> explicit only</p>
-                  <p><span class="prompt">trace:</span> enabled</p>
+            <div class="case-preview router-console" role="img" aria-label="Consola conceptual de PolyLLM Router">
+              <div class="preview-toolbar">
+                <span><i></i><i></i><i></i></span>
+                <small>polyllm / router</small>
+                <b>LOCAL</b>
+              </div>
+              <div class="router-body">
+                <div class="route-flow">
+                  <span class="route-user">request</span><i></i>
+                  <span class="route-core">router</span><i></i>
+                  <span class="route-model">Qwen local</span>
+                </div>
+                <div class="terminal-output">
+                  <p><b>$</b> polyllm /doctor</p>
+                  <p><i>✓</i> local model ready <span>12.4 GB VRAM</span></p>
+                  <p><i>✓</i> qwen endpoint healthy <span>8080</span></p>
+                  <p><i>✓</i> external budget protected <span>$0.00</span></p>
+                  <p class="terminal-result"><b>route</b> local <em>confidence 0.94</em></p>
+                </div>
+                <div class="router-stats">
+                  <span><small>LATENCY</small><b>42 ms</b></span>
+                  <span><small>COST</small><b>$0.00</b></span>
+                  <span><small>TRACE</small><b>enabled</b></span>
                 </div>
               </div>
             </div>
           </article>
         </div>
-      </section>
 
-      <section id="soluciones" class="section container">
-        <header class="section-header reveal">
-          <div class="section-header-copy">
-            <p class="section-kicker">
-              <span data-lang="es">Soluciones</span>
-              <span data-lang="en">Solutions</span>
-            </p>
-            <h2>
-              <span data-lang="es">Ingeniería aplicada a problemas concretos.</span>
-              <span data-lang="en">Engineering applied to concrete problems.</span>
-            </h2>
-          </div>
-        </header>
-
-        <div class="solutions-grid">
-          <article class="info-card reveal">
-            <span class="card-index">01</span>
-            <h3>
-              <span data-lang="es">Productos y plataformas</span>
-              <span data-lang="en">Products and platforms</span>
-            </h3>
-            <p>
-              <span data-lang="es">
-                Frontend, backend, datos, autenticación, tiempo real y operación integrados en
-                un producto coherente.
-              </span>
-              <span data-lang="en">
-                Frontend, backend, data, authentication, real time and operations integrated
-                into one coherent product.
-              </span>
-            </p>
-          </article>
-          <article class="info-card reveal">
-            <span class="card-index">02</span>
-            <h3>
-              <span data-lang="es">Automatización y sistemas</span>
-              <span data-lang="en">Automation and systems</span>
-            </h3>
-            <p>
-              <span data-lang="es">
-                Workers, eventos, integraciones, procesos idempotentes y herramientas que
-                reducen trabajo manual.
-              </span>
-              <span data-lang="en">
-                Workers, events, integrations, idempotent processes and tools that reduce
-                manual work.
-              </span>
-            </p>
-          </article>
-          <article class="info-card reveal">
-            <span class="card-index">03</span>
-            <h3>
-              <span data-lang="es">IA aplicada y local-first</span>
-              <span data-lang="en">Applied AI and local-first</span>
-            </h3>
-            <p>
-              <span data-lang="es">
-                LLMs, OCR, routing híbrido y asistentes con privacidad, costo y observabilidad
-                como restricciones de diseño.
-              </span>
-              <span data-lang="en">
-                LLMs, OCR, hybrid routing and assistants with privacy, cost and observability
-                as design constraints.
-              </span>
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section id="proceso" class="section container">
-        <header class="section-header reveal">
-          <div class="section-header-copy">
-            <p class="section-kicker">
-              <span data-lang="es">Proceso de trabajo</span>
-              <span data-lang="en">Working process</span>
-            </p>
-            <h2>
-              <span data-lang="es">Del estado real a una entrega operable.</span>
-              <span data-lang="en">From real state to an operable delivery.</span>
-            </h2>
-          </div>
-        </header>
-
-        <div class="process-grid">
-          <article class="process-card reveal">
-            <span class="card-index">01</span>
-            <h3>
-              <span data-lang="es">Descubrir</span>
-              <span data-lang="en">Discover</span>
-            </h3>
-            <p>
-              <span data-lang="es">Problema, usuario, restricciones y baseline verificable.</span>
-              <span data-lang="en">Problem, user, constraints and a verifiable baseline.</span>
-            </p>
-          </article>
-          <article class="process-card reveal">
-            <span class="card-index">02</span>
-            <h3>
-              <span data-lang="es">Diseñar</span>
-              <span data-lang="en">Design</span>
-            </h3>
-            <p>
-              <span data-lang="es">Contratos, datos, arquitectura, riesgos y criterios de aceptación.</span>
-              <span data-lang="en">Contracts, data, architecture, risks and acceptance criteria.</span>
-            </p>
-          </article>
-          <article class="process-card reveal">
-            <span class="card-index">03</span>
-            <h3>
-              <span data-lang="es">Construir y validar</span>
-              <span data-lang="en">Build and validate</span>
-            </h3>
-            <p>
-              <span data-lang="es">Slices pequeños, pruebas reproducibles y evidencia por requisito.</span>
-              <span data-lang="en">Small slices, reproducible tests and evidence per requirement.</span>
-            </p>
-          </article>
-          <article class="process-card reveal">
-            <span class="card-index">04</span>
-            <h3>
-              <span data-lang="es">Operar</span>
-              <span data-lang="en">Operate</span>
-            </h3>
-            <p>
-              <span data-lang="es">CI/CD, healthchecks, observabilidad, backups y rollback.</span>
-              <span data-lang="en">CI/CD, health checks, observability, backups and rollback.</span>
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section id="evidencia" class="section container">
-        <header class="section-header reveal">
-          <div class="section-header-copy">
-            <p class="section-kicker">
-              <span data-lang="es">Evidencia técnica</span>
-              <span data-lang="en">Technical evidence</span>
-            </p>
-            <h2>
-              <span data-lang="es">Lo que respalda el código.</span>
-              <span data-lang="en">What stands behind the code.</span>
-            </h2>
-          </div>
-        </header>
-
-        <div class="evidence-grid">
-          <article class="evidence-card reveal">
-            <strong>3</strong>
-            <h3>
-              <span data-lang="es">Sistemas públicos</span>
-              <span data-lang="en">Public systems</span>
-            </h3>
-            <p>
-              <span data-lang="es">Portfolio, Qivox Gym y Crypto Risk desplegados en AWS.</span>
-              <span data-lang="en">Portfolio, Qivox Gym and Crypto Risk deployed on AWS.</span>
-            </p>
-          </article>
-          <article class="evidence-card reveal">
-            <strong>CI/CD</strong>
-            <h3>
-              <span data-lang="es">Despliegue controlado</span>
-              <span data-lang="en">Controlled deployment</span>
-            </h3>
-            <p>
-              <span data-lang="es">Validación estática, despliegue automático y smoke test público.</span>
-              <span data-lang="en">Static validation, automated deployment and public smoke test.</span>
-            </p>
-          </article>
-          <article class="evidence-card reveal">
-            <strong>TLS</strong>
-            <h3>
-              <span data-lang="es">Operación segura</span>
-              <span data-lang="en">Secure operation</span>
-            </h3>
-            <p>
-              <span data-lang="es">Caddy, HTTPS, redes internas y exposición deliberada de puertos.</span>
-              <span data-lang="en">Caddy, HTTPS, internal networks and deliberate port exposure.</span>
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section container">
-        <header class="section-header reveal">
-          <div class="section-header-copy">
-            <p class="section-kicker">
-              <span data-lang="es">Laboratorio ALLFICTION</span>
-              <span data-lang="en">ALLFICTION Lab</span>
-            </p>
-            <h2>
-              <span data-lang="es">Más herramientas y experimentos útiles.</span>
-              <span data-lang="en">More useful tools and experiments.</span>
-            </h2>
-          </div>
-          <a class="button compact" href="./projects/">
-            <span data-lang="es">Explorar todos</span>
-            <span data-lang="en">Explore all</span>
+        <div class="catalog-link reveal">
+          <p>
+            <span data-lang="es">También: Local Translator, Redwatch, 100Hires Sandbox y herramientas de automatización.</span>
+            <span data-lang="en">Also: Local Translator, Redwatch, 100Hires Sandbox and automation tools.</span>
+          </p>
+          <a class="text-link" href="./projects/">
+            <span data-lang="es">Ver catálogo completo</span><span data-lang="en">View full catalogue</span> <span>↗</span>
           </a>
-        </header>
-
-        <div class="catalog-grid">
-          <article class="catalog-card reveal">
-            <span class="status local">Offline-first</span>
-            <h3>Local Translator</h3>
-            <p>
-              <span data-lang="es">
-                Traducción EN↔ES, OCR, captura de región y portapapeles con procesamiento
-                local.
-              </span>
-              <span data-lang="en">
-                EN↔ES translation, OCR, region capture and clipboard automation with local
-                processing.
-              </span>
-            </p>
-            <div class="card-actions">
-              <a class="button compact" href="./projects/local-translator.html">
-                <span data-lang="es">Ver proyecto</span>
-                <span data-lang="en">View project</span>
-              </a>
-            </div>
-          </article>
-          <article class="catalog-card reveal">
-            <span class="status local">
-              <span data-lang="es">Seguridad defensiva</span>
-              <span data-lang="en">Defensive security</span>
-            </span>
-            <h3>Redwatch</h3>
-            <p>
-              <span data-lang="es">
-                Panel público de señales de seguridad, hardening y observabilidad de hosts
-                Linux.
-              </span>
-              <span data-lang="en">
-                Public panel for Linux host security signals, hardening and observability.
-              </span>
-            </p>
-            <div class="card-actions">
-              <a class="button compact" href="./panels/redwatch.html">
-                <span data-lang="es">Abrir panel</span>
-                <span data-lang="en">Open panel</span>
-              </a>
-            </div>
-          </article>
-          <article class="catalog-card reveal">
-            <span class="status local">
-              <span data-lang="es">Agentes + auditoría</span>
-              <span data-lang="en">Agents + audit</span>
-            </span>
-            <h3>100Hires Workflow Sandbox</h3>
-            <p>
-              <span data-lang="es">
-                Sandbox en TypeScript para flujos de agentes con CLI demostrable y registro de
-                acciones.
-              </span>
-              <span data-lang="en">
-                TypeScript sandbox for agent workflows with a demonstrable CLI and action
-                audit trail.
-              </span>
-            </p>
-            <div class="card-actions">
-              <a
-                class="button compact"
-                href="https://github.com/Mattarzu/100hires-agent-workflow-sandbox"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GitHub ↗
-              </a>
-            </div>
-          </article>
         </div>
       </section>
 
-      <section id="contacto" class="section container">
-        <div class="contact-panel reveal">
+      <section id="capacidades" class="section section-tonal">
+        <div class="shell">
+          <header class="section-heading reveal">
+            <div>
+              <p class="overline">02 / <span data-lang="es">Capacidades</span><span data-lang="en">Capabilities</span></p>
+              <h2>
+                <span data-lang="es">Una sola visión sobre<br />todo el sistema.</span>
+                <span data-lang="en">One view across<br />the entire system.</span>
+              </h2>
+            </div>
+            <p class="section-intro">
+              <span data-lang="es">
+                El valor no está en apilar herramientas, sino en hacer que producto,
+                datos, IA e infraestructura funcionen como una unidad.
+              </span>
+              <span data-lang="en">
+                The value is not in stacking tools, but in making product, data,
+                AI and infrastructure work as one.
+              </span>
+            </p>
+          </header>
+
+          <div class="capability-grid">
+            <article class="capability-card capability-main reveal">
+              <span class="capability-number">01</span>
+              <div class="capability-icon">&lt;/&gt;</div>
+              <h3>
+                <span data-lang="es">Productos full stack</span>
+                <span data-lang="en">Full-stack products</span>
+              </h3>
+              <p>
+                <span data-lang="es">Interfaces, APIs, autenticación, tiempo real, datos y experiencia operativa.</span>
+                <span data-lang="en">Interfaces, APIs, authentication, real time, data and operational experience.</span>
+              </p>
+              <div class="tech-line">React · TypeScript · Node · Python · PostgreSQL</div>
+            </article>
+            <article class="capability-card reveal">
+              <span class="capability-number">02</span>
+              <div class="capability-icon">AI</div>
+              <h3>
+                <span data-lang="es">IA aplicada</span>
+                <span data-lang="en">Applied AI</span>
+              </h3>
+              <p>
+                <span data-lang="es">Asistentes, RAG, OCR, agentes y routing local/cloud con control de costo.</span>
+                <span data-lang="en">Assistants, RAG, OCR, agents and local/cloud routing with cost control.</span>
+              </p>
+            </article>
+            <article class="capability-card reveal">
+              <span class="capability-number">03</span>
+              <div class="capability-icon">OPS</div>
+              <h3>Cloud &amp; DevOps</h3>
+              <p>
+                <span data-lang="es">Contenedores, CI/CD, TLS, observabilidad, backups y rollback verificable.</span>
+                <span data-lang="en">Containers, CI/CD, TLS, observability, backups and verifiable rollback.</span>
+              </p>
+            </article>
+            <article class="capability-card reveal">
+              <span class="capability-number">04</span>
+              <div class="capability-icon">SEC</div>
+              <h3>
+                <span data-lang="es">Seguridad y resiliencia</span>
+                <span data-lang="en">Security and resilience</span>
+              </h3>
+              <p>
+                <span data-lang="es">Hardening, idempotencia, validación de límites y diseño para fallar con seguridad.</span>
+                <span data-lang="en">Hardening, idempotency, boundary validation and safe-failure design.</span>
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="metodo" class="section shell">
+        <header class="section-heading reveal">
           <div>
-            <p class="section-kicker">
-              <span data-lang="es">Contacto</span>
-              <span data-lang="en">Contact</span>
+            <p class="overline">03 / <span data-lang="es">Método</span><span data-lang="en">Method</span></p>
+            <h2>
+              <span data-lang="es">Menos promesas.<br />Más evidencia.</span>
+              <span data-lang="en">Fewer promises.<br />More evidence.</span>
+            </h2>
+          </div>
+          <p class="section-intro">
+            <span data-lang="es">
+              El proceso empieza recuperando el estado real y termina cuando la solución
+              puede demostrarse, medirse y operarse.
+            </span>
+            <span data-lang="en">
+              The process starts by recovering the real state and ends when the solution
+              can be demonstrated, measured and operated.
+            </span>
+          </p>
+        </header>
+
+        <div class="method-layout">
+          <ol class="method-steps reveal">
+            <li>
+              <span>01</span>
+              <div><strong><span data-lang="es">Entender</span><span data-lang="en">Understand</span></strong><p><span data-lang="es">Problema, usuario, restricciones y línea base.</span><span data-lang="en">Problem, user, constraints and baseline.</span></p></div>
+            </li>
+            <li>
+              <span>02</span>
+              <div><strong><span data-lang="es">Diseñar</span><span data-lang="en">Design</span></strong><p><span data-lang="es">Contratos, arquitectura, datos, riesgos y criterios.</span><span data-lang="en">Contracts, architecture, data, risks and criteria.</span></p></div>
+            </li>
+            <li>
+              <span>03</span>
+              <div><strong><span data-lang="es">Construir</span><span data-lang="en">Build</span></strong><p><span data-lang="es">Cortes pequeños, tests reproducibles y revisión.</span><span data-lang="en">Small slices, reproducible tests and review.</span></p></div>
+            </li>
+            <li>
+              <span>04</span>
+              <div><strong><span data-lang="es">Operar</span><span data-lang="en">Operate</span></strong><p><span data-lang="es">Deploy, healthchecks, observabilidad y rollback.</span><span data-lang="en">Deploy, health checks, observability and rollback.</span></p></div>
+            </li>
+          </ol>
+
+          <aside class="evidence-panel reveal" aria-label="Evidencia de entrega">
+            <div class="evidence-head">
+              <span>DELIVERY / EVIDENCE</span>
+              <i></i>
+            </div>
+            <blockquote>
+              <span data-lang="es">“Terminado” significa desplegado, verificable y con una ruta clara de recuperación.</span>
+              <span data-lang="en">“Done” means deployed, verifiable and backed by a clear recovery path.</span>
+            </blockquote>
+            <ul>
+              <li><span>Build</span><b>PASS</b></li>
+              <li><span>Static checks</span><b>PASS</b></li>
+              <li><span>Healthcheck</span><b>200 OK</b></li>
+              <li><span>Rollback</span><b>READY</b></li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section intelligence-section">
+        <div class="shell intelligence-card reveal">
+          <div class="intelligence-mark">
+            <span class="ai-orb large" aria-hidden="true"></span>
+            <small>AF / INTELLIGENCE</small>
+          </div>
+          <div class="intelligence-copy">
+            <p class="overline">
+              <span data-lang="es">Portfolio conversacional</span>
+              <span data-lang="en">Conversational portfolio</span>
             </p>
             <h2>
-              <span data-lang="es">¿Hay un problema concreto que convertir en software?</span>
-              <span data-lang="en">Is there a concrete problem to turn into software?</span>
+              <span data-lang="es">No recorras la página.<br />Preguntale.</span>
+              <span data-lang="en">Don’t browse the page.<br />Ask it.</span>
             </h2>
             <p>
               <span data-lang="es">
-                Conversemos sobre el objetivo, el contexto técnico y cómo llegar a una primera
-                entrega verificable.
+                AF Intelligence responde sobre proyectos, arquitectura, experiencia y
+                forma de trabajo usando información verificada de este portfolio.
               </span>
               <span data-lang="en">
-                Let’s discuss the goal, the technical context and how to reach a first
-                verifiable delivery.
+                AF Intelligence answers questions about projects, architecture, experience
+                and working style using verified information from this portfolio.
               </span>
             </p>
+            <button class="button button-primary" type="button" data-ai-open>
+              <span data-lang="es">Iniciar conversación</span>
+              <span data-lang="en">Start conversation</span>
+              <span aria-hidden="true">↗</span>
+            </button>
           </div>
-          <div class="contact-actions">
-            <a class="button primary" href="mailto:matiasezequielarzu@gmail.com">Email</a>
-            <a
-              class="button"
-              href="https://www.linkedin.com/in/mattmercado77/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn ↗
-            </a>
-            <a
-              class="button"
-              href="https://github.com/Mattarzu"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub ↗
-            </a>
+          <div class="intelligence-prompts">
+            <button type="button" data-ai-question="¿Qué proyecto demuestra mejor experiencia backend?">
+              <span data-lang="es">¿Qué demuestra experiencia backend?</span>
+              <span data-lang="en">What proves backend experience?</span>
+            </button>
+            <button type="button" data-ai-question="¿Cómo integra ALLFICTION inteligencia artificial?">
+              <span data-lang="es">¿Cómo integra IA?</span>
+              <span data-lang="en">How is AI integrated?</span>
+            </button>
+            <button type="button" data-ai-question="¿Qué sistemas están hoy en producción?">
+              <span data-lang="es">¿Qué está en producción?</span>
+              <span data-lang="en">What is in production?</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="contacto" class="section shell">
+        <div class="contact-card reveal">
+          <div>
+            <p class="overline">04 / <span data-lang="es">Contacto</span><span data-lang="en">Contact</span></p>
+            <h2>
+              <span data-lang="es">¿Hay un problema real<br />para convertir en software?</span>
+              <span data-lang="en">Is there a real problem<br />to turn into software?</span>
+            </h2>
+          </div>
+          <div class="contact-side">
+            <p>
+              <span data-lang="es">Contame el objetivo, el contexto y la restricción principal. El primer paso es convertir ambigüedad en un plan verificable.</span>
+              <span data-lang="en">Tell me the goal, context and main constraint. The first step is turning ambiguity into a verifiable plan.</span>
+            </p>
+            <div class="contact-actions">
+              <a class="button button-primary" href="mailto:matiasezequielarzu@gmail.com">
+                <span data-lang="es">Escribir por email</span><span data-lang="en">Send an email</span> ↗
+              </a>
+              <a class="button button-ghost" href="https://www.linkedin.com/in/mattmercado77/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+              <a class="button button-ghost" href="https://github.com/Mattarzu" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="container footer-inner">
-        <span>© <span data-current-year></span> ALLFICTION Software · Córdoba, Argentina</span>
-        <nav class="footer-links" aria-label="Enlaces externos">
-          <a href="./projects/">
-            <span data-lang="es">Proyectos</span>
-            <span data-lang="en">Projects</span>
-          </a>
+      <div class="shell footer-inner">
+        <a class="brand footer-brand" href="#inicio">
+          <img src="./favicon.svg" width="34" height="34" alt="" aria-hidden="true" />
+          <span class="brand-copy"><strong>ALLFICTION</strong><small>SOFTWARE</small></span>
+        </a>
+        <p>© <span data-current-year></span> · Córdoba, Argentina</p>
+        <nav aria-label="Enlaces externos">
+          <a href="./projects/"><span data-lang="es">Proyectos</span><span data-lang="en">Projects</span></a>
           <a href="https://github.com/Mattarzu" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a
-            href="https://www.linkedin.com/in/mattmercado77/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn
-          </a>
+          <a href="https://www.linkedin.com/in/mattmercado77/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </nav>
       </div>
     </footer>
 
-    <button
-      class="assistant-launcher"
-      type="button"
-      aria-label="Abrir asistente de ALLFICTION"
-      aria-expanded="false"
-      data-assistant-launcher
-    >
-      AF
+    <button class="ai-launcher" type="button" aria-label="Abrir AF Intelligence" aria-expanded="false" data-ai-launcher>
+      <span class="ai-orb" aria-hidden="true"></span>
+      <span class="launcher-copy"><small>AF</small><strong>Intelligence</strong></span>
+      <span class="launcher-arrow" aria-hidden="true">↗</span>
     </button>
-    <aside class="assistant-panel" aria-label="Matías, asistente de ALLFICTION" data-assistant-panel>
-      <div class="assistant-head">
-        <div>
-          <strong>Matías · ALLFICTION</strong>
-          <span>
-            <span data-lang="es">Guía del portfolio</span>
-            <span data-lang="en">Portfolio guide</span>
-          </span>
+
+    <div class="ai-backdrop" data-ai-backdrop></div>
+    <aside class="ai-panel" aria-label="AF Intelligence" aria-hidden="true" inert data-ai-panel>
+      <header class="ai-panel-head">
+        <div class="ai-identity">
+          <span class="ai-orb" aria-hidden="true"></span>
+          <span><strong>AF Intelligence</strong><small><i></i> <span data-ai-mode-label>Portfolio assistant</span></small></span>
         </div>
-        <button class="assistant-close" type="button" aria-label="Cerrar" data-assistant-close>×</button>
+        <button type="button" aria-label="Cerrar AF Intelligence" data-ai-close>×</button>
+      </header>
+
+      <div class="ai-context">
+        <span data-lang="es">Responde con información verificada del portfolio.</span>
+        <span data-lang="en">Answers with verified portfolio information.</span>
+        <button type="button" data-ai-clear>
+          <span data-lang="es">Nueva charla</span><span data-lang="en">New chat</span>
+        </button>
       </div>
-      <p>
-        <span data-lang="es">
-          Te llevo directo a los proyectos, la evidencia técnica o el contacto.
-        </span>
-        <span data-lang="en">
-          I can take you directly to projects, technical evidence or contact.
-        </span>
+
+      <div class="ai-messages" role="log" aria-live="polite" aria-relevant="additions" data-ai-messages></div>
+
+      <div class="ai-suggestions" data-ai-suggestions>
+        <button type="button" data-ai-question="¿Qué proyecto demuestra mejor experiencia backend?">
+          <span data-lang="es">Backend</span><span data-lang="en">Backend</span>
+        </button>
+        <button type="button" data-ai-question="¿Cómo trabaja ALLFICTION con inteligencia artificial?">
+          <span data-lang="es">IA aplicada</span><span data-lang="en">Applied AI</span>
+        </button>
+        <button type="button" data-ai-question="¿Qué sistemas están en producción?">
+          <span data-lang="es">Producción</span><span data-lang="en">Production</span>
+        </button>
+        <button type="button" data-ai-question="Tengo un proceso manual, ¿cómo podría ayudarme Matt?">
+          <span data-lang="es">Evaluar una idea</span><span data-lang="en">Evaluate an idea</span>
+        </button>
+      </div>
+
+      <form class="ai-composer" data-ai-form>
+        <label class="sr-only" for="ai-message">
+          <span data-lang="es">Pregunta para AF Intelligence</span>
+          <span data-lang="en">Question for AF Intelligence</span>
+        </label>
+        <textarea
+          id="ai-message"
+          rows="1"
+          maxlength="800"
+          autocomplete="off"
+          placeholder="Preguntá por proyectos, arquitectura o experiencia…"
+          data-ai-input
+        ></textarea>
+        <button type="submit" aria-label="Enviar pregunta" data-ai-submit>
+          <span aria-hidden="true">↑</span>
+        </button>
+      </form>
+      <p class="ai-privacy">
+        <span data-lang="es">No compartas datos sensibles. Las respuestas pueden usar IA generativa.</span>
+        <span data-lang="en">Do not share sensitive data. Answers may use generative AI.</span>
       </p>
-      <nav class="assistant-links" aria-label="Accesos del asistente">
-        <a href="#proyectos">
-          <span data-lang="es">Proyectos</span>
-          <span data-lang="en">Projects</span>
-        </a>
-        <a href="#evidencia">
-          <span data-lang="es">Evidencia</span>
-          <span data-lang="en">Evidence</span>
-        </a>
-        <a href="#proceso">
-          <span data-lang="es">Proceso</span>
-          <span data-lang="en">Process</span>
-        </a>
-        <a href="#contacto">
-          <span data-lang="es">Contacto</span>
-          <span data-lang="en">Contact</span>
-        </a>
-      </nav>
     </aside>
 
-    <script src="./assets/js/home-v2.js" defer></script>
+    <script src="./assets/js/home-v3.js" defer></script>
   </body>
 </html>

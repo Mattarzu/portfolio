@@ -1,151 +1,60 @@
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="1200"
-  height="630"
-  viewBox="0 0 1200 630"
->
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <defs>
-    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#050505" />
-      <stop offset="0.58" stop-color="#0b0b0b" />
-      <stop offset="1" stop-color="#161006" />
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#10130f" />
+      <stop offset=".55" stop-color="#080908" />
+      <stop offset="1" stop-color="#050605" />
     </linearGradient>
-    <radialGradient id="glow" cx="0.2" cy="0.2" r="0.9">
-      <stop offset="0" stop-color="#facc15" stop-opacity="0.2" />
-      <stop offset="0.45" stop-color="#a16207" stop-opacity="0.07" />
-      <stop offset="1" stop-color="#050505" stop-opacity="0" />
+    <radialGradient id="halo" cx=".25" cy=".46" r=".5">
+      <stop offset="0" stop-color="#d6ae62" stop-opacity=".18" />
+      <stop offset=".65" stop-color="#d6ae62" stop-opacity=".025" />
+      <stop offset="1" stop-color="#d6ae62" stop-opacity="0" />
     </radialGradient>
     <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#fde68a" />
-      <stop offset="1" stop-color="#facc15" />
+      <stop offset="0" stop-color="#f0cf8d" />
+      <stop offset="1" stop-color="#d6ae62" />
     </linearGradient>
-    <pattern id="grid" width="52" height="52" patternUnits="userSpaceOnUse">
-      <path d="M52 0H0V52" fill="none" stroke="#facc15" stroke-opacity="0.045" />
+    <pattern id="grid" width="62" height="62" patternUnits="userSpaceOnUse">
+      <path d="M62 0H0V62" fill="none" stroke="#d6ae62" stroke-opacity=".045" />
     </pattern>
-    <clipPath id="logoClip">
-      <rect x="58" y="58" width="444" height="514" rx="32" />
-    </clipPath>
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#000000" flood-opacity="0.58" />
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="28" stdDeviation="28" flood-color="#000" flood-opacity=".5" />
     </filter>
   </defs>
 
-  <rect width="1200" height="630" fill="url(#background)" />
-  <rect width="1200" height="630" fill="url(#glow)" />
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#halo)" />
   <rect width="1200" height="630" fill="url(#grid)" />
 
-  <rect
-    x="34"
-    y="34"
-    width="1132"
-    height="562"
-    rx="38"
-    fill="#090909"
-    fill-opacity="0.72"
-    stroke="#facc15"
-    stroke-opacity="0.22"
-  />
-  <path d="M34 148V72Q34 34 72 34H218" fill="none" stroke="#facc15" stroke-width="3" />
-  <path d="M982 596H1128Q1166 596 1166 558V482" fill="none" stroke="#facc15" stroke-width="3" />
+  <rect x="34" y="34" width="1132" height="562" rx="38" fill="#080a08" fill-opacity=".64" stroke="#d6ae62" stroke-opacity=".2" />
+  <path d="M34 151V74Q34 34 74 34H219" fill="none" stroke="#d6ae62" stroke-width="3" />
+  <path d="M981 596h145q40 0 40-40v-77" fill="none" stroke="#d6ae62" stroke-width="3" />
 
-  <g clip-path="url(#logoClip)" filter="url(#shadow)">
-    <image
-      xlink:href="allfiction-software-hero.png"
-      x="-234"
-      y="57"
-      width="914"
-      height="514"
-      preserveAspectRatio="xMidYMid slice"
-    />
-  </g>
-  <rect
-    x="58"
-    y="58"
-    width="444"
-    height="514"
-    rx="32"
-    fill="none"
-    stroke="#facc15"
-    stroke-opacity="0.24"
-  />
-
-  <text
-    x="558"
-    y="114"
-    fill="#fde68a"
-    font-family="DejaVu Sans, sans-serif"
-    font-size="22"
-    font-weight="700"
-    letter-spacing="3"
-  >
-    SOFTWARE · IA APLICADA · CLOUD
-  </text>
-  <text
-    x="552"
-    y="232"
-    fill="#fafaf9"
-    font-family="DejaVu Sans, sans-serif"
-    font-size="76"
-    font-weight="900"
-    letter-spacing="-4"
-  >
-    ALLFICTION
-  </text>
-  <text
-    x="552"
-    y="312"
-    fill="url(#gold)"
-    font-family="DejaVu Sans, sans-serif"
-    font-size="76"
-    font-weight="900"
-    letter-spacing="-4"
-  >
-    SOFTWARE
-  </text>
-
-  <line x1="558" y1="356" x2="646" y2="356" stroke="#facc15" stroke-width="3" />
-  <text
-    x="558"
-    y="406"
-    fill="#e7e5e4"
-    font-family="DejaVu Sans, sans-serif"
-    font-size="29"
-    font-weight="600"
-  >
-    Sistemas completos.
-  </text>
-  <text
-    x="558"
-    y="446"
-    fill="#e7e5e4"
-    font-family="DejaVu Sans, sans-serif"
-    font-size="29"
-    font-weight="600"
-  >
-    Evidencia real.
-  </text>
-
-  <g font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="700">
-    <rect x="558" y="492" width="166" height="48" rx="24" fill="#facc15" fill-opacity="0.08" stroke="#facc15" stroke-opacity="0.34" />
-    <text x="641" y="522" fill="#fde68a" text-anchor="middle">CRYPTO RISK</text>
-
-    <rect x="740" y="492" width="128" height="48" rx="24" fill="#facc15" fill-opacity="0.08" stroke="#facc15" stroke-opacity="0.34" />
-    <text x="804" y="522" fill="#fde68a" text-anchor="middle">QIVOX</text>
-
-    <rect x="884" y="492" width="202" height="48" rx="24" fill="#facc15" fill-opacity="0.08" stroke="#facc15" stroke-opacity="0.34" />
-    <text x="985" y="522" fill="#fde68a" text-anchor="middle">POLYLLM ROUTER</text>
+  <g filter="url(#shadow)">
+    <rect x="102" y="112" width="312" height="312" rx="76" fill="#0d0f0d" stroke="#d6ae62" stroke-opacity=".32" />
+    <rect x="119" y="129" width="278" height="278" rx="65" fill="none" stroke="#d6ae62" stroke-opacity=".08" />
+    <path d="M158 351 224 184l67 167M180 300h88" fill="none" stroke="#f4f1e9" stroke-width="27" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M287 351V184h112M287 266h91" fill="none" stroke="url(#gold)" stroke-width="27" stroke-linecap="round" stroke-linejoin="round" />
   </g>
 
-  <text
-    x="558"
-    y="572"
-    fill="#78716c"
-    font-family="DejaVu Sans, sans-serif"
-    font-size="15"
-    font-weight="700"
-    letter-spacing="2"
-  >
-    CÓRDOBA · ARGENTINA
-  </text>
+  <text x="102" y="481" fill="#d6ae62" font-family="DejaVu Sans Mono, monospace" font-size="17" font-weight="700" letter-spacing="3">AF / SYSTEMS STUDIO</text>
+  <circle cx="108" cy="522" r="5" fill="#7dd3a7" />
+  <text x="125" y="528" fill="#7b7e77" font-family="DejaVu Sans Mono, monospace" font-size="14" letter-spacing="1">CÓRDOBA · ARGENTINA</text>
+
+  <text x="505" y="125" fill="#d6ae62" font-family="DejaVu Sans Mono, monospace" font-size="18" font-weight="700" letter-spacing="3">FULL STACK · APPLIED AI · CLOUD</text>
+  <text x="500" y="235" fill="#f4f1e9" font-family="DejaVu Sans, sans-serif" font-size="75" font-weight="700" letter-spacing="-4">ENGINEERING</text>
+  <text x="500" y="315" fill="#f4f1e9" font-family="DejaVu Sans, sans-serif" font-size="75" font-weight="700" letter-spacing="-4">THAT REACHES</text>
+  <text x="500" y="395" fill="url(#gold)" font-family="DejaVu Sans, sans-serif" font-size="75" font-weight="700" letter-spacing="-4">PRODUCTION.</text>
+
+  <line x1="505" y1="446" x2="599" y2="446" stroke="#d6ae62" stroke-width="3" />
+  <text x="505" y="490" fill="#c8c5bd" font-family="DejaVu Sans, sans-serif" font-size="24" font-weight="500">Products · AI systems · Infrastructure</text>
+
+  <g font-family="DejaVu Sans Mono, monospace" font-size="13" font-weight="700">
+    <rect x="505" y="524" width="156" height="43" rx="21.5" fill="#d6ae62" fill-opacity=".07" stroke="#d6ae62" stroke-opacity=".24" />
+    <text x="583" y="551" fill="#f0cf8d" text-anchor="middle">CRYPTO RISK</text>
+    <rect x="676" y="524" width="112" height="43" rx="21.5" fill="#8da9d5" fill-opacity=".06" stroke="#8da9d5" stroke-opacity=".23" />
+    <text x="732" y="551" fill="#bac9e1" text-anchor="middle">QIVOX</text>
+    <rect x="803" y="524" width="181" height="43" rx="21.5" fill="#7dd3a7" fill-opacity=".06" stroke="#7dd3a7" stroke-opacity=".22" />
+    <text x="893" y="551" fill="#a7dfc2" text-anchor="middle">POLYLLM ROUTER</text>
+  </g>
 </svg>

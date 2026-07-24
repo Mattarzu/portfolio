@@ -3,6 +3,10 @@
 Portfolio estático orientado a evidencia técnica: productos full stack, IA aplicada,
 automatización, infraestructura y sistemas reales en producción.
 
+La portada V3 incorpora AF Intelligence, un asistente de portfolio con conocimiento
+verificado y fallback guiado. La activación generativa requiere un endpoint de servidor
+con su credencial configurada; ninguna clave se expone en el navegador.
+
 ## Producción
 
 - URL: <https://allfiction.56-126-148-93.sslip.io/>
@@ -23,7 +27,7 @@ Abrir <http://127.0.0.1:8081/>.
 ## Validar
 
 ```bash
-node --check assets/js/home-v2.js
+node --check assets/js/home-v3.js
 node scripts/check-site.mjs
 git diff --check
 ```
@@ -33,11 +37,11 @@ branding, manifest y presupuestos básicos de tamaño.
 
 ## Estructura principal
 
-- `index.html`: portada V2.
+- `index.html`: portada V3.
 - `projects/index.html`: catálogo filtrable.
 - `projects/crypto-risk-engine.html`: caso de estudio principal.
-- `assets/css/home-v2.css`: sistema visual negro/dorado de la portada V2.
-- `assets/js/home-v2.js`: navegación, idioma, filtros, reveals y asistente.
+- `assets/css/home-v3.css`: sistema visual negro/dorado de la portada V3.
+- `assets/js/home-v3.js`: navegación, idioma, microinteracciones y AF Intelligence.
 - `.github/workflows/static-checks.yml`: quality gate.
 - `.github/workflows/deploy-lightsail.yml`: despliegue y smoke tests públicos.
 
