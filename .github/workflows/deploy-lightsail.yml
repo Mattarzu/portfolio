@@ -62,14 +62,26 @@ jobs:
           URL="https://allfiction.56-126-148-93.sslip.io"
 
           for attempt in {1..5}; do
-            if curl \
-              --fail \
-              --silent \
-              --show-error \
-              --location \
-              --max-time 20 \
-              "$URL/" \
-              | grep -qi '<title>Allfiction Software'
+            HOME_HTML="$(
+              curl \
+                --fail \
+                --silent \
+                --show-error \
+                --location \
+                --max-time 20 \
+                "$URL/" \
+                || true
+            )"
+
+            if grep -q 'Crypto Risk Engine' <<<"$HOME_HTML" \
+              && grep -q 'assets/js/home-v2.js' <<<"$HOME_HTML" \
+              && curl --fail --silent --show-error --max-time 20 \
+                "$URL/assets/css/home-v2.css" >/dev/null \
+              && curl --fail --silent --show-error --max-time 20 \
+                "$URL/assets/brand/allfiction-software-hero-960.webp" >/dev/null \
+              && curl --fail --silent --show-error --max-time 20 \
+                "$URL/projects/crypto-risk-engine.html" \
+                | grep -q 'Redis Streams'
             then
               echo "Deployment verified: $URL"
               exit 0

@@ -1,9 +1,10 @@
 {
-  "name": "Allfiction Software",
-  "short_name": "Allfiction",
-  "description": "Productos web, automatización, integraciones con APIs, herramientas internas e inteligencia artificial aplicada.",
-  "start_url": "/portfolio/",
-  "scope": "/portfolio/",
+  "name": "ALLFICTION Software",
+  "short_name": "ALLFICTION",
+  "description": "Productos full stack, IA aplicada, automatización e infraestructura demostrados con sistemas reales.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#050505",
   "theme_color": "#050505",
@@ -17,16 +18,16 @@
   ],
   "icons": [
     {
-      "src": "/portfolio/favicon.svg",
+      "src": "/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
     },
     {
-      "src": "/portfolio/assets/brand/allfiction-software-main.png",
-      "sizes": "1536x1024",
+      "src": "/assets/brand/allfiction-icon-512.png",
+      "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any"
+      "purpose": "any maskable"
     }
   ]
 }
