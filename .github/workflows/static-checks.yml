@@ -22,10 +22,23 @@ jobs:
       - name: Check JavaScript syntax
         run: |
           node --check main.js
+          node --check assets/js/home-v3.js
           node --check assets/js/panda-stable.js
           node --check mmlab-contact-worker/src/worker.js
           node --check assets/js/i18n.js
           node --check assets/js/redwatch-panel.js
+          node --check scripts/check-site.mjs
+
+      - name: Check site contracts
+        run: node scripts/check-site.mjs
+
+      - name: Validate V3 HTML
+        run: |
+          npx --yes html-validate@11.5.6 \
+            index.html \
+            projects/index.html \
+            projects/crypto-risk-engine.html \
+            404.html
 
       - name: Check whitespace
         run: git diff --check
@@ -60,12 +73,10 @@ jobs:
               raise SystemExit(1)
           PY
 
-      - name: Guard Panda ownership
+      - name: Guard V3 ownership
         run: |
-          if grep -nE 'panda|Panda|panda-ai|panda-contact|mm-panda|MMLAB_AI_ENABLED|ai-chat|roadmap' main.js; then
-            echo "ERROR: Panda legacy logic should not live in main.js"
-            exit 1
-          fi
-
-          grep -q 'panda-stable' index.html
-          grep -q 'assets/js/panda-stable.js' index.html
+          grep -q 'assets/css/home-v3.css' index.html
+          grep -q 'assets/js/home-v3.js' index.html
+          grep -q 'AF Intelligence' index.html
+          grep -q 'projects/crypto-risk-engine.html' index.html
+          ! grep -q 'mattarzu.github.io/portfolio' index.html

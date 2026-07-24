@@ -8,7 +8,7 @@
 
     "about.eyebrow": "关于我",
     "about.title": "面向网站产品、自动化与人工智能的实用工程",
-    "about.body": "我从事软件、自动化和应用型人工智能解决方案的设计与构建。M M LAB 是一个公开展示技术能力、项目、开发中产品和工作方式的空间。",
+    "about.body": "我从事软件、自动化和应用型人工智能解决方案的设计与构建。ALLFICTION Software 是一个公开展示技术能力、项目、开发中产品和工作方式的空间。",
     "about.focus.title": "重点方向",
     "about.focus.text": "我设计实用、可维护且可验证的解决方案。",
     "about.workflow.title": "工作方式",
@@ -30,7 +30,7 @@
 
     "services.eyebrow": "服务",
     "services.title": "我可以帮助你构建或改进系统的领域",
-    "services.body": "M M LAB 代表一种面向技术解决方案的工作方式：强调控制、文档、验证和持续改进。",
+    "services.body": "ALLFICTION Software 代表一种面向技术解决方案的工作方式：强调控制、文档、验证和持续改进。",
     "services.web.title": "软件与网站产品",
     "services.web.text": "我开发界面、流程、API、持久化和业务逻辑，将具体需求转化为可运行的产品。",
     "services.automation.title": "自动化与工具",
@@ -111,10 +111,10 @@
     "panda.submitSending": "发送中...",
 
     "panda.state.welcome.mode": "欢迎模式",
-    "panda.state.welcome.text": "你好，我是 M M Panda。我会带你了解 M M LAB：软件、自动化和应用型人工智能。",
+    "panda.state.welcome.text": "你好，我是 AF Assistant。我会带你了解 ALLFICTION Software：软件、自动化和应用型人工智能。",
     "panda.state.welcome.hint": "提示：这个网站展示能力、项目和工作方法，不暴露私人细节。",
     "panda.state.default.mode": "引导模式",
-    "panda.state.default.text": "我正在和你一起浏览 M M LAB。",
+    "panda.state.default.text": "我正在和你一起浏览 ALLFICTION Software。",
     "panda.state.default.hint": "提示：浏览卡片可以快速了解上下文。",
     "panda.state.hero.mode": "首页模式",
     "panda.state.hero.text": "这个首页概括了核心方向：软件、自动化和应用型人工智能。",

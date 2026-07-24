@@ -1,81 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://mattarzu.github.io/portfolio/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <loc>https://allfiction.56-126-148-93.sslip.io/</loc>
+    <lastmod>2026-07-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://mattarzu.github.io/portfolio/projects/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <loc>https://allfiction.56-126-148-93.sslip.io/projects/</loc>
+    <lastmod>2026-07-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://mattarzu.github.io/portfolio/projects/ergo-v2.html</loc>
-    <lastmod>2026-05-27</lastmod>
+    <loc>https://allfiction.56-126-148-93.sslip.io/projects/crypto-risk-engine.html</loc>
+    <lastmod>2026-07-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://mattarzu.github.io/portfolio/projects/router-llm.html</loc>
-    <lastmod>2026-05-27</lastmod>
+    <loc>https://allfiction.56-126-148-93.sslip.io/projects/ergo-v2.html</loc>
+    <lastmod>2026-07-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://mattarzu.github.io/portfolio/projects/local-translator.html</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://allfiction.56-126-148-93.sslip.io/projects/router-llm.html</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mattarzu.github.io/portfolio/projects/contact-worker.html</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://allfiction.56-126-148-93.sslip.io/projects/local-translator.html</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mattarzu.github.io/portfolio/projects/neuroos-lab.html</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mattarzu.github.io/portfolio/projects/asistente-codigo.html</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mattarzu.github.io/portfolio/projects/gymcontrol.html</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://allfiction.56-126-148-93.sslip.io/projects/contact-worker.html</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://mattarzu.github.io/portfolio/projects/hardening-linux.html</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://allfiction.56-126-148-93.sslip.io/projects/asistente-codigo.html</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://mattarzu.github.io/portfolio/projects/orquestador-entornos.html</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://allfiction.56-126-148-93.sslip.io/projects/hardening-linux.html</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://mattarzu.github.io/portfolio/projects/traductor-ia.html</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://allfiction.56-126-148-93.sslip.io/projects/orquestador-entornos.html</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://mattarzu.github.io/portfolio/panels/redwatch.html</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://allfiction.56-126-148-93.sslip.io/panels/redwatch.html</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 </urlset>

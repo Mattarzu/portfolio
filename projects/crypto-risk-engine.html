@@ -1,0 +1,621 @@
+<!doctype html>
+<html
+  lang="es-AR"
+  data-title-es="Crypto Risk Engine | Caso de estudio · ALLFICTION Software"
+  data-title-en="Crypto Risk Engine | Case study · ALLFICTION Software"
+  data-description-es="Caso de estudio de Crypto Risk Engine: motor de riesgo en tiempo real con Redis Streams, FastAPI, PostgreSQL, liquidaciones idempotentes y auditoría."
+  data-description-en="Crypto Risk Engine case study: real-time risk engine with Redis Streams, FastAPI, PostgreSQL, idempotent liquidations and auditability."
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Caso de estudio de Crypto Risk Engine: motor de riesgo en tiempo real con Redis Streams, FastAPI, PostgreSQL, liquidaciones idempotentes y auditoría."
+    />
+    <meta name="theme-color" content="#050505" />
+    <meta name="color-scheme" content="dark" />
+
+    <title>Crypto Risk Engine | Caso de estudio · ALLFICTION Software</title>
+    <link
+      rel="canonical"
+      href="https://allfiction.56-126-148-93.sslip.io/projects/crypto-risk-engine.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="es-AR"
+      href="https://allfiction.56-126-148-93.sslip.io/projects/crypto-risk-engine.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://allfiction.56-126-148-93.sslip.io/projects/crypto-risk-engine.html?lang=en"
+    />
+
+    <meta property="og:title" content="Crypto Risk Engine | ALLFICTION Software" />
+    <meta
+      property="og:description"
+      content="Arquitectura, decisiones, pruebas y operación de un motor de riesgo financiero en tiempo real."
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:url"
+      content="https://allfiction.56-126-148-93.sslip.io/projects/crypto-risk-engine.html"
+    />
+    <meta
+      property="og:image"
+      content="https://allfiction.56-126-148-93.sslip.io/preview.png"
+    />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content="ALLFICTION Software" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Crypto Risk Engine | ALLFICTION Software" />
+    <meta
+      name="twitter:description"
+      content="Arquitectura, decisiones, pruebas y operación de un motor de riesgo financiero en tiempo real."
+    />
+    <meta
+      name="twitter:image"
+      content="https://allfiction.56-126-148-93.sslip.io/preview.png"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Crypto Risk Engine",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Linux",
+        "description": "Motor de riesgo institucional para posiciones cripto colateralizadas, con procesamiento en tiempo real, liquidaciones idempotentes y ledger auditable.",
+        "url": "https://allfiction.56-126-148-93.sslip.io/projects/crypto-risk-engine.html",
+        "author": {
+          "@type": "Organization",
+          "name": "ALLFICTION Software",
+          "url": "https://allfiction.56-126-148-93.sslip.io/"
+        }
+      }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="stylesheet" href="../assets/css/home-v2.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">
+      <span data-lang="es">Saltar al contenido</span>
+      <span data-lang="en">Skip to content</span>
+    </a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="../index.html" aria-label="ALLFICTION Software — inicio">
+          <span class="brand-mark" aria-hidden="true">AF</span>
+          <span>ALLFICTION SOFTWARE</span>
+        </a>
+
+        <div class="nav-shell">
+          <nav class="nav-links" aria-label="Navegación principal" data-nav>
+            <a href="../index.html">
+              <span data-lang="es">Inicio</span>
+              <span data-lang="en">Home</span>
+            </a>
+            <a href="../index.html#proyectos">
+              <span data-lang="es">Proyectos</span>
+              <span data-lang="en">Projects</span>
+            </a>
+            <a href="../index.html#proceso">
+              <span data-lang="es">Proceso</span>
+              <span data-lang="en">Process</span>
+            </a>
+            <a href="../index.html#contacto">
+              <span data-lang="es">Contacto</span>
+              <span data-lang="en">Contact</span>
+            </a>
+          </nav>
+
+          <div class="language-switch" role="group" aria-label="Idioma">
+            <button type="button" data-language="es-AR" aria-pressed="true">ES</button>
+            <button type="button" data-language="en-GB" aria-pressed="false">EN</button>
+          </div>
+
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-label="Abrir navegación"
+            aria-expanded="false"
+            data-nav-toggle
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido">
+      <section class="container case-hero">
+        <div>
+          <span class="status">
+            <span data-lang="es">En producción · AWS Lightsail</span>
+            <span data-lang="en">In production · AWS Lightsail</span>
+          </span>
+          <p class="eyebrow">
+            <span data-lang="es">Caso de estudio · Sistemas distribuidos</span>
+            <span data-lang="en">Case study · Distributed systems</span>
+          </p>
+          <h1>Crypto Risk <span class="accent">Engine.</span></h1>
+          <p class="section-intro">
+            <span data-lang="es">
+              Motor institucional de riesgo para préstamos cripto colateralizados. Convierte
+              ticks de mercado en decisiones de seguridad determinísticas, recuperables y
+              auditables.
+            </span>
+            <span data-lang="en">
+              Institutional risk engine for collateralised crypto lending. It turns market
+              ticks into deterministic, recoverable and auditable safety decisions.
+            </span>
+          </p>
+          <div class="hero-actions">
+            <a
+              class="button primary"
+              href="https://crypto-risk.56-126-148-93.sslip.io/health/live"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Health live ↗
+            </a>
+            <a
+              class="button"
+              href="https://crypto-risk.56-126-148-93.sslip.io/health/ready"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Health ready ↗
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="case-signal"
+          role="img"
+          aria-label="Visualización conceptual del health factor"
+        >
+          <div class="case-signal-grid"></div>
+          <span class="signal-label">risk.signal / health_factor</span>
+          <div class="signal-line">
+            <svg viewBox="0 0 500 220" role="img" aria-label="Serie de riesgo con recuperación">
+              <defs>
+                <linearGradient id="signalGradient" x1="0" x2="1">
+                  <stop offset="0" stop-color="#fde68a" />
+                  <stop offset="1" stop-color="#facc15" />
+                </linearGradient>
+              </defs>
+              <path
+                d="M0 48 C45 42, 62 74, 100 66 S160 42, 198 82 S250 176, 296 158 S354 94, 392 105 S450 58, 500 78"
+                fill="none"
+                stroke="url(#signalGradient)"
+                stroke-width="5"
+                stroke-linecap="round"
+              />
+              <line
+                x1="0"
+                y1="168"
+                x2="500"
+                y2="168"
+                stroke="#fb7185"
+                stroke-width="2"
+                stroke-dasharray="8 8"
+                opacity="0.68"
+              />
+              <circle cx="296" cy="158" r="7" fill="#facc15" />
+            </svg>
+          </div>
+          <div class="signal-health">
+            <strong>HEALTHY</strong>
+            <span>live / ready · public checks</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="container case-metrics">
+        <div class="case-metric">
+          <strong>12 tests</strong>
+          <span data-lang="es">integración crítica</span>
+          <span data-lang="en">critical integration</span>
+        </div>
+        <div class="case-metric">
+          <strong>2 E2E</strong>
+          <span>flash crash + stale oracle</span>
+        </div>
+        <div class="case-metric">
+          <strong>≈320 MiB</strong>
+          <span data-lang="es">stack observado en reposo</span>
+          <span data-lang="en">observed idle stack</span>
+        </div>
+        <div class="case-metric">
+          <strong>6 servicios</strong>
+          <span data-lang="es">Docker Compose productivo</span>
+          <span data-lang="en">production Docker Compose</span>
+        </div>
+      </div>
+
+      <section class="case-section">
+        <div class="container case-grid">
+          <header>
+            <p class="section-kicker">
+              <span data-lang="es">01 · Problema</span>
+              <span data-lang="en">01 · Problem</span>
+            </p>
+            <h2>
+              <span data-lang="es">Riesgo en tiempo real sin decisiones opacas.</span>
+              <span data-lang="en">Real-time risk without opaque decisions.</span>
+            </h2>
+          </header>
+          <div class="case-content">
+            <p>
+              <span data-lang="es">
+                Un protocolo de préstamos recibe BTC o ETH como garantía y entrega deuda en
+                USDC. El precio del colateral cambia continuamente: si una posición pierde
+                cobertura, el sistema debe detectarlo, decidir una liquidación y registrar por
+                qué ocurrió.
+              </span>
+              <span data-lang="en">
+                A lending protocol accepts BTC or ETH as collateral and issues debt in USDC.
+                Collateral prices change continuously: if a position loses coverage, the
+                system must detect it, decide on liquidation and record why it happened.
+              </span>
+            </p>
+            <p>
+              <span data-lang="es">
+                El desafío no era solamente calcular rápido. La decisión crítica debía ser
+                determinística, idempotente, recuperable ante fallos de workers y auditable
+                después del evento.
+              </span>
+              <span data-lang="en">
+                The challenge was not only speed. The critical decision had to be
+                deterministic, idempotent, recoverable after worker failures and auditable
+                after the event.
+              </span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="container case-grid">
+          <header>
+            <p class="section-kicker">
+              <span data-lang="es">02 · Solución</span>
+              <span data-lang="en">02 · Solution</span>
+            </p>
+            <h2>
+              <span data-lang="es">Ruta rápida determinística, análisis profundo desacoplado.</span>
+              <span data-lang="en">Deterministic fast path, decoupled deep analysis.</span>
+            </h2>
+          </header>
+          <div class="case-content">
+            <p>
+              <span data-lang="es">
+                La arquitectura separa la seguridad por tick del análisis probabilístico
+                pesado. El worker rápido usa aritmética Decimal y reglas reproducibles; el
+                worker de Deep Risk queda rate-limited y fuera del perfil productivo actual.
+              </span>
+              <span data-lang="en">
+                The architecture separates per-tick safety from heavy probabilistic analysis.
+                The fast worker uses Decimal arithmetic and reproducible rules; Deep Risk is
+                rate-limited and outside the current production profile.
+              </span>
+            </p>
+
+            <div class="architecture-flow">
+              <div class="architecture-node">
+                <strong>1 · Ingestion</strong>
+                <span data-lang="es">WebSocket de mercado, normalización y estado del oracle.</span>
+                <span data-lang="en">Market WebSocket, normalisation and oracle state.</span>
+              </div>
+              <div class="architecture-node">
+                <strong>2 · Redis Streams</strong>
+                <span data-lang="es">Grupos de consumo, PEL, XAUTOCLAIM y dead letters.</span>
+                <span data-lang="en">Consumer groups, PEL, XAUTOCLAIM and dead letters.</span>
+              </div>
+              <div class="architecture-node">
+                <strong>3 · Risk worker</strong>
+                <span data-lang="es">Health factor determinístico por tick y posición.</span>
+                <span data-lang="en">Deterministic health factor per tick and position.</span>
+              </div>
+              <div class="architecture-node">
+                <strong>4 · Liquidator</strong>
+                <span data-lang="es">Decisión idempotente, rechazo explícito y ledger con hash.</span>
+                <span data-lang="en">Idempotent decision, explicit rejection and hashed ledger.</span>
+              </div>
+            </div>
+
+            <h3>
+              <span data-lang="es">Persistencia y API</span>
+              <span data-lang="en">Persistence and API</span>
+            </h3>
+            <p>
+              <span data-lang="es">
+                PostgreSQL/TimescaleDB conserva posiciones, resultados y trazas temporales.
+                FastAPI expone healthchecks separados para vida y disponibilidad, sin publicar
+                la base de datos ni Redis.
+              </span>
+              <span data-lang="en">
+                PostgreSQL/TimescaleDB stores positions, results and time-series traces.
+                FastAPI exposes separate liveness and readiness checks without exposing the
+                database or Redis.
+              </span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="container case-grid">
+          <header>
+            <p class="section-kicker">
+              <span data-lang="es">03 · Decisiones</span>
+              <span data-lang="en">03 · Decisions</span>
+            </p>
+            <h2>
+              <span data-lang="es">La seguridad está en los contratos.</span>
+              <span data-lang="en">Safety lives in the contracts.</span>
+            </h2>
+          </header>
+          <div class="case-content">
+            <h3>
+              <span data-lang="es">Idempotencia antes que velocidad aparente</span>
+              <span data-lang="en">Idempotency before apparent speed</span>
+            </h3>
+            <p>
+              <span data-lang="es">
+                Una entrega duplicada no puede producir una segunda liquidación. Las claves de
+                idempotencia y el ledger convierten reintentos en resultados repetibles.
+              </span>
+              <span data-lang="en">
+                A duplicate delivery cannot produce a second liquidation. Idempotency keys and
+                the ledger turn retries into repeatable outcomes.
+              </span>
+            </p>
+
+            <h3>
+              <span data-lang="es">Recuperación observable de mensajes</span>
+              <span data-lang="en">Observable message recovery</span>
+            </h3>
+            <p>
+              <span data-lang="es">
+                El sistema recupera pendientes mediante XAUTOCLAIM, conserva contadores reales
+                de entrega y deriva mensajes irrecuperables a dead letters sin crear bucles
+                infinitos.
+              </span>
+              <span data-lang="en">
+                The system recovers pending messages through XAUTOCLAIM, preserves real delivery
+                counters and moves unrecoverable messages to dead letters without infinite loops.
+              </span>
+            </p>
+
+            <h3>
+              <span data-lang="es">Producción conservadora</span>
+              <span data-lang="en">Conservative production</span>
+            </h3>
+            <p>
+              <span data-lang="es">
+                El perfil productivo no activa CuPy ni Deep Risk. El endpoint de stress test
+                está protegido y el servicio aborta si detecta credenciales por defecto en
+                producción.
+              </span>
+              <span data-lang="en">
+                The production profile does not enable CuPy or Deep Risk. The stress-test
+                endpoint is protected and the service aborts if it detects default credentials
+                in production.
+              </span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="container case-grid">
+          <header>
+            <p class="section-kicker">
+              <span data-lang="es">04 · Validación</span>
+              <span data-lang="en">04 · Validation</span>
+            </p>
+            <h2>
+              <span data-lang="es">Pruebas sobre los fallos importantes.</span>
+              <span data-lang="en">Tests for the failures that matter.</span>
+            </h2>
+          </header>
+          <div class="case-content">
+            <p>
+              <span data-lang="es">
+                La validación se concentra en concurrencia, recuperación y decisiones
+                financieras; no sólo en el camino feliz.
+              </span>
+              <span data-lang="en">
+                Validation focuses on concurrency, recovery and financial decisions, not only
+                the happy path.
+              </span>
+            </p>
+
+            <table class="validation-table">
+              <thead>
+                <tr>
+                  <th>
+                    <span data-lang="es">Nivel</span>
+                    <span data-lang="en">Level</span>
+                  </th>
+                  <th>
+                    <span data-lang="es">Cobertura</span>
+                    <span data-lang="en">Coverage</span>
+                  </th>
+                  <th>
+                    <span data-lang="es">Evidencia</span>
+                    <span data-lang="en">Evidence</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <span data-lang="es">Integración</span>
+                    <span data-lang="en">Integration</span>
+                  </td>
+                  <td>
+                    <span data-lang="es">
+                      Idempotencia concurrente, PEL recovery, dead letters, delivery counters
+                      y estados del oracle.
+                    </span>
+                    <span data-lang="en">
+                      Concurrent idempotency, PEL recovery, dead letters, delivery counters and
+                      oracle states.
+                    </span>
+                  </td>
+                  <td>12 passing</td>
+                </tr>
+                <tr>
+                  <td>E2E</td>
+                  <td>Flash crash flow</td>
+                  <td>passing</td>
+                </tr>
+                <tr>
+                  <td>E2E</td>
+                  <td>Stale oracle flow</td>
+                  <td>passing</td>
+                </tr>
+                <tr>
+                  <td>Production</td>
+                  <td>Live / ready public probes</td>
+                  <td>HTTP 200</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="container case-grid">
+          <header>
+            <p class="section-kicker">
+              <span data-lang="es">05 · Operación</span>
+              <span data-lang="en">05 · Operations</span>
+            </p>
+            <h2>
+              <span data-lang="es">Un stack pequeño, aislado y observable.</span>
+              <span data-lang="en">A small, isolated and observable stack.</span>
+            </h2>
+          </header>
+          <div class="case-content">
+            <ul>
+              <li>
+                <span data-lang="es">
+                  Docker Compose: API, ingestion, risk worker, liquidator, Redis y TimescaleDB.
+                </span>
+                <span data-lang="en">
+                  Docker Compose: API, ingestion, risk worker, liquidator, Redis and TimescaleDB.
+                </span>
+              </li>
+              <li>
+                <span data-lang="es">
+                  Sólo 22, 80 y 443 están expuestos; 5432, 6379 y 8000 permanecen en la red
+                  interna.
+                </span>
+                <span data-lang="en">
+                  Only 22, 80 and 443 are exposed; 5432, 6379 and 8000 remain on the internal
+                  network.
+                </span>
+              </li>
+              <li>
+                <span data-lang="es">
+                  Caddy gestiona TLS y el reverse proxy hacia la API.
+                </span>
+                <span data-lang="en">Caddy manages TLS and the reverse proxy to the API.</span>
+              </li>
+              <li>
+                <span data-lang="es">
+                  Migraciones Alembic idempotentes y backup PostgreSQL con permisos
+                  restringidos.
+                </span>
+                <span data-lang="en">
+                  Idempotent Alembic migrations and a PostgreSQL backup with restricted
+                  permissions.
+                </span>
+              </li>
+              <li>
+                <span data-lang="es">
+                  Consumo observado aproximado: 320 MiB de RAM y CPU en reposo cercana a 0%.
+                </span>
+                <span data-lang="en">
+                  Observed footprint: approximately 320 MiB RAM and near-zero idle CPU.
+                </span>
+              </li>
+            </ul>
+            <div class="card-actions">
+              <a
+                class="button primary compact"
+                href="https://crypto-risk.56-126-148-93.sslip.io/health/live"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span data-lang="es">Verificar servicio</span>
+                <span data-lang="en">Verify service</span>
+                ↗
+              </a>
+              <a class="button compact" href="../index.html#proyectos">
+                <span data-lang="es">Volver a proyectos</span>
+                <span data-lang="en">Back to projects</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container">
+        <div class="contact-panel reveal">
+          <div>
+            <p class="section-kicker">ALLFICTION Software</p>
+            <h2>
+              <span data-lang="es">Diseño técnico que puede demostrarse.</span>
+              <span data-lang="en">Technical design that can be demonstrated.</span>
+            </h2>
+            <p>
+              <span data-lang="es">
+                Arquitectura, código, validación y operación forman parte de la misma entrega.
+              </span>
+              <span data-lang="en">
+                Architecture, code, validation and operations are part of the same delivery.
+              </span>
+            </p>
+          </div>
+          <div class="contact-actions">
+            <a class="button primary" href="mailto:matiasezequielarzu@gmail.com">
+              <span data-lang="es">Contactar</span>
+              <span data-lang="en">Contact</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>© <span data-current-year></span> ALLFICTION Software · Córdoba, Argentina</span>
+        <nav class="footer-links" aria-label="Enlaces">
+          <a href="../index.html">
+            <span data-lang="es">Inicio</span>
+            <span data-lang="en">Home</span>
+          </a>
+          <a href="./index.html">
+            <span data-lang="es">Proyectos</span>
+            <span data-lang="en">Projects</span>
+          </a>
+          <a href="https://github.com/Mattarzu" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="../assets/js/home-v2.js" defer></script>
+  </body>
+</html>

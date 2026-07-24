@@ -1,8 +1,8 @@
 (function () {
   window.MMLAB_TRANSLATIONS = {
     "es-AR": {
-      "meta.title": "M M LAB | Software, automatización e IA aplicada",
-      "meta.description": "M M LAB: software, automatización, inteligencia artificial aplicada, backend, frontend y herramientas técnicas.",
+      "meta.title": "ALLFICTION Software | Software, automatización e IA aplicada",
+      "meta.description": "ALLFICTION Software: software, automatización, inteligencia artificial aplicada, backend, frontend y herramientas técnicas.",
       "meta.ogLocale": "es_AR",
 
       "language.name": "Español AR",
@@ -21,7 +21,7 @@
       "hero.eyebrow": "SOFTWARE · AUTOMATIZACIÓN · IA APLICADA",
       "hero.titleMain": "Software y automatización",
       "hero.titleAccent": "con IA aplicada",
-      "hero.mascotAria": "M M Panda: ver proyectos",
+      "hero.mascotAria": "AF Assistant: ver proyectos",
       "hero.lead": "",
       "hero.ctaPrimary": "Consultar una solución",
       "hero.ctaProjects": "Ver proyectos",
@@ -40,12 +40,12 @@
       "contact.openPanda": "Abrir Panda",
       "contact.github": "Ver GitHub",
 
-      "panda.assistantAria": "Asistente panda de M M LAB",
+      "panda.assistantAria": "Asistente panda de ALLFICTION Software",
       "panda.toggleAria": "Abrir asistente Panda",
       "panda.closeAria": "Cerrar asistente panda",
-      "panda.kicker": "M M PANDA",
+      "panda.kicker": "AF ASSISTANT",
       "panda.modeGuide": "Modo guía",
-      "panda.message": "Bienvenido a M M LAB. Te puedo guiar por los proyectos, el stack y las tecnologías.",
+      "panda.message": "Bienvenido a ALLFICTION Software. Te puedo guiar por los proyectos, el stack y las tecnologías.",
       "panda.hint": "Tip: pasá por los proyectos para ver una descripción rápida.",
       "panda.capabilities": "Capacidades",
       "panda.projects": "Proyectos",
@@ -67,8 +67,8 @@
     },
 
     "en-GB": {
-      "meta.title": "M M LAB | Software, automation and applied AI",
-      "meta.description": "M M LAB: software, automation, applied artificial intelligence, backend, frontend and technical tools.",
+      "meta.title": "ALLFICTION Software | Software, automation and applied AI",
+      "meta.description": "ALLFICTION Software: software, automation, applied artificial intelligence, backend, frontend and technical tools.",
       "meta.ogLocale": "en_GB",
 
       "language.name": "English UK",
@@ -87,7 +87,7 @@
       "hero.eyebrow": "SOFTWARE · AUTOMATION · APPLIED AI",
       "hero.titleMain": "Productos web",
       "hero.titleAccent": "automation and AI",
-      "hero.mascotAria": "M M Panda: view projects",
+      "hero.mascotAria": "AF Assistant: view projects",
       "hero.lead": "",
       "hero.ctaPrimary": "Discuss a solution",
       "hero.ctaProjects": "View projects",
@@ -106,12 +106,12 @@
       "contact.openPanda": "Open Panda",
       "contact.github": "View GitHub",
 
-      "panda.assistantAria": "M M LAB panda assistant",
+      "panda.assistantAria": "ALLFICTION Software panda assistant",
       "panda.toggleAria": "Open Panda assistant",
       "panda.closeAria": "Close Panda assistant",
-      "panda.kicker": "M M PANDA",
+      "panda.kicker": "AF ASSISTANT",
       "panda.modeGuide": "Guide mode",
-      "panda.message": "Welcome to M M LAB. I can guide you through the projects, stack and technologies.",
+      "panda.message": "Welcome to ALLFICTION Software. I can guide you through the projects, stack and technologies.",
       "panda.hint": "Tip: visit the projects section for a quick description.",
       "panda.capabilities": "Capabilities",
       "panda.projects": "Projects",
@@ -133,8 +133,8 @@
     },
 
     "es-ES": {
-      "meta.title": "M M LAB | Software, automatización e IA aplicada",
-      "meta.description": "M M LAB: software, automatización, inteligencia artificial aplicada, backend, frontend y herramientas técnicas.",
+      "meta.title": "ALLFICTION Software | Software, automatización e IA aplicada",
+      "meta.description": "ALLFICTION Software: software, automatización, inteligencia artificial aplicada, backend, frontend y herramientas técnicas.",
       "meta.ogLocale": "es_ES",
 
       "language.name": "Español ES",
@@ -153,7 +153,7 @@
       "hero.eyebrow": "SOFTWARE · AUTOMATIZACIÓN · IA APLICADA",
       "hero.titleMain": "Software y automatización",
       "hero.titleAccent": "con IA aplicada",
-      "hero.mascotAria": "M M Panda: ver proyectos",
+      "hero.mascotAria": "AF Assistant: ver proyectos",
       "hero.lead": "",
       "hero.ctaPrimary": "Consultar una solución",
       "hero.ctaProjects": "Ver proyectos",
@@ -172,12 +172,12 @@
       "contact.openPanda": "Abrir Panda",
       "contact.github": "Ver GitHub",
 
-      "panda.assistantAria": "Asistente panda de M M LAB",
+      "panda.assistantAria": "Asistente panda de ALLFICTION Software",
       "panda.toggleAria": "Abrir asistente Panda",
       "panda.closeAria": "Cerrar asistente panda",
-      "panda.kicker": "M M PANDA",
+      "panda.kicker": "AF ASSISTANT",
       "panda.modeGuide": "Modo guía",
-      "panda.message": "Bienvenido a M M LAB. Te puedo guiar por los proyectos, el stack y las tecnologías.",
+      "panda.message": "Bienvenido a ALLFICTION Software. Te puedo guiar por los proyectos, el stack y las tecnologías.",
       "panda.hint": "Tip: pasa por los proyectos para ver una descripción rápida.",
       "panda.capabilities": "Capacidades",
       "panda.projects": "Proyectos",
@@ -199,8 +199,8 @@
     },
 
     "ca": {
-      "meta.title": "M M LAB | Programari, automatització i IA aplicada",
-      "meta.description": "M M LAB: programari, automatització, intel·ligència artificial aplicada, backend, frontend i eines tècniques.",
+      "meta.title": "ALLFICTION Software | Programari, automatització i IA aplicada",
+      "meta.description": "ALLFICTION Software: programari, automatització, intel·ligència artificial aplicada, backend, frontend i eines tècniques.",
       "meta.ogLocale": "ca_ES",
 
       "language.name": "Català",
@@ -219,7 +219,7 @@
       "hero.eyebrow": "PROGRAMARI · AUTOMATITZACIÓ · IA",
       "hero.titleMain": "Programari",
       "hero.titleAccent": "i automatització",
-      "hero.mascotAria": "M M Panda: veure projectes",
+      "hero.mascotAria": "AF Assistant: veure projectes",
       "hero.lead": "",
       "hero.ctaPrimary": "Consultar una solució",
       "hero.ctaProjects": "Veure projectes",
@@ -238,12 +238,12 @@
       "contact.openPanda": "Obrir Panda",
       "contact.github": "Veure GitHub",
 
-      "panda.assistantAria": "Assistent panda de M M LAB",
+      "panda.assistantAria": "Assistent panda de ALLFICTION Software",
       "panda.toggleAria": "Obrir assistent Panda",
       "panda.closeAria": "Tancar assistent panda",
-      "panda.kicker": "M M PANDA",
+      "panda.kicker": "AF ASSISTANT",
       "panda.modeGuide": "Mode guia",
-      "panda.message": "Benvingut a M M LAB. Et puc guiar pels projectes, el stack i les tecnologies.",
+      "panda.message": "Benvingut a ALLFICTION Software. Et puc guiar pels projectes, el stack i les tecnologies.",
       "panda.hint": "Tip: passa pels projectes per veure una descripció ràpida.",
       "panda.capabilities": "Capacitats",
       "panda.projects": "Projectes",
@@ -265,8 +265,8 @@
     },
 
     "it": {
-      "meta.title": "M M LAB | Software, automazione e IA applicata",
-      "meta.description": "M M LAB: software, automazione, intelligenza artificiale applicata, backend, frontend e strumenti tecnici.",
+      "meta.title": "ALLFICTION Software | Software, automazione e IA applicata",
+      "meta.description": "ALLFICTION Software: software, automazione, intelligenza artificiale applicata, backend, frontend e strumenti tecnici.",
       "meta.ogLocale": "it_IT",
 
       "language.name": "Italiano",
@@ -285,7 +285,7 @@
       "hero.eyebrow": "SOFTWARE · AUTOMAZIONE · IA",
       "hero.titleMain": "Productos web",
       "hero.titleAccent": "e automazione",
-      "hero.mascotAria": "M M Panda: vedere progetti",
+      "hero.mascotAria": "AF Assistant: vedere progetti",
       "hero.lead": "",
       "hero.ctaPrimary": "Parlare di una soluzione",
       "hero.ctaProjects": "Vedere progetti",
@@ -304,12 +304,12 @@
       "contact.openPanda": "Apri Panda",
       "contact.github": "Vedi GitHub",
 
-      "panda.assistantAria": "Assistente panda di M M LAB",
+      "panda.assistantAria": "Assistente panda di ALLFICTION Software",
       "panda.toggleAria": "Apri assistente Panda",
       "panda.closeAria": "Chiudi assistente panda",
-      "panda.kicker": "M M PANDA",
+      "panda.kicker": "AF ASSISTANT",
       "panda.modeGuide": "Modalità guida",
-      "panda.message": "Benvenuto in M M LAB. Posso guidarti tra progetti, stack e tecnologie.",
+      "panda.message": "Benvenuto in ALLFICTION Software. Posso guidarti tra progetti, stack e tecnologie.",
       "panda.hint": "Tip: visita i progetti per vedere una descrizione rapida.",
       "panda.capabilities": "Capacità",
       "panda.projects": "Progetti",
@@ -331,8 +331,8 @@
     },
 
     "pt": {
-      "meta.title": "M M LAB | Software, automação e IA aplicada",
-      "meta.description": "M M LAB: software, automação, inteligência artificial aplicada, backend, frontend e ferramentas técnicas.",
+      "meta.title": "ALLFICTION Software | Software, automação e IA aplicada",
+      "meta.description": "ALLFICTION Software: software, automação, inteligência artificial aplicada, backend, frontend e ferramentas técnicas.",
       "meta.ogLocale": "pt_PT",
 
       "language.name": "Português",
@@ -351,7 +351,7 @@
       "hero.eyebrow": "SOFTWARE · AUTOMAÇÃO · IA",
       "hero.titleMain": "Productos web",
       "hero.titleAccent": "e automação",
-      "hero.mascotAria": "M M Panda: ver projetos",
+      "hero.mascotAria": "AF Assistant: ver projetos",
       "hero.lead": "",
       "hero.ctaPrimary": "Consultar uma solução",
       "hero.ctaProjects": "Ver projetos",
@@ -370,12 +370,12 @@
       "contact.openPanda": "Abrir Panda",
       "contact.github": "Ver GitHub",
 
-      "panda.assistantAria": "Assistente panda do M M LAB",
+      "panda.assistantAria": "Assistente panda do ALLFICTION Software",
       "panda.toggleAria": "Abrir assistente Panda",
       "panda.closeAria": "Fechar assistente panda",
-      "panda.kicker": "M M PANDA",
+      "panda.kicker": "AF ASSISTANT",
       "panda.modeGuide": "Modo guia",
-      "panda.message": "Bem-vindo ao M M LAB. Posso te guiar pelos projetos, stack e tecnologias.",
+      "panda.message": "Bem-vindo ao ALLFICTION Software. Posso te guiar pelos projetos, stack e tecnologias.",
       "panda.hint": "Dica: passe pelos projetos para ver uma descrição rápida.",
       "panda.capabilities": "Capacidades",
       "panda.projects": "Projetos",
@@ -397,8 +397,8 @@
     },
 
     "fr": {
-      "meta.title": "M M LAB | Logiciel, automatisation et IA appliquée",
-      "meta.description": "M M LAB : logiciel, automatisation, intelligence artificielle appliquée, backend, frontend et outils techniques.",
+      "meta.title": "ALLFICTION Software | Logiciel, automatisation et IA appliquée",
+      "meta.description": "ALLFICTION Software : logiciel, automatisation, intelligence artificielle appliquée, backend, frontend et outils techniques.",
       "meta.ogLocale": "fr_FR",
 
       "language.name": "Français",
@@ -417,7 +417,7 @@
       "hero.eyebrow": "LOGICIEL · AUTOMATISATION · IA",
       "hero.titleMain": "Logiciel",
       "hero.titleAccent": "et automatisation",
-      "hero.mascotAria": "M M Panda : voir les projets",
+      "hero.mascotAria": "AF Assistant : voir les projets",
       "hero.lead": "",
       "hero.ctaPrimary": "Discuter d’une solution",
       "hero.ctaProjects": "Voir les projets",
@@ -436,12 +436,12 @@
       "contact.openPanda": "Ouvrir Panda",
       "contact.github": "Voir GitHub",
 
-      "panda.assistantAria": "Assistant panda de M M LAB",
+      "panda.assistantAria": "Assistant panda de ALLFICTION Software",
       "panda.toggleAria": "Ouvrir l’assistant Panda",
       "panda.closeAria": "Fermer l’assistant panda",
-      "panda.kicker": "M M PANDA",
+      "panda.kicker": "AF ASSISTANT",
       "panda.modeGuide": "Mode guide",
-      "panda.message": "Bienvenue chez M M LAB. Je peux vous guider à travers les projets, le stack et les technologies.",
+      "panda.message": "Bienvenue chez ALLFICTION Software. Je peux vous guider à travers les projets, le stack et les technologies.",
       "panda.hint": "Astuce : passez par les projets pour voir une description rapide.",
       "panda.capabilities": "Capacités",
       "panda.projects": "Projets",
@@ -463,8 +463,8 @@
     },
 
     "ru": {
-      "meta.title": "M M LAB | ПО, автоматизация и прикладной ИИ",
-      "meta.description": "M M LAB: программное обеспечение, автоматизация, прикладной искусственный интеллект, backend, frontend и технические инструменты.",
+      "meta.title": "ALLFICTION Software | ПО, автоматизация и прикладной ИИ",
+      "meta.description": "ALLFICTION Software: программное обеспечение, автоматизация, прикладной искусственный интеллект, backend, frontend и технические инструменты.",
       "meta.ogLocale": "ru_RU",
 
       "language.name": "Русский",
@@ -483,7 +483,7 @@
       "hero.eyebrow": "ПО · АВТОМАТИЗАЦИЯ · ИИ",
       "hero.titleMain": "ПО",
       "hero.titleAccent": "и автоматизация",
-      "hero.mascotAria": "M M Panda: посмотреть проекты",
+      "hero.mascotAria": "AF Assistant: посмотреть проекты",
       "hero.lead": "",
       "hero.ctaPrimary": "Обсудить решение",
       "hero.ctaProjects": "Смотреть проекты",
@@ -502,12 +502,12 @@
       "contact.openPanda": "Открыть Panda",
       "contact.github": "Смотреть GitHub",
 
-      "panda.assistantAria": "Панда-ассистент M M LAB",
+      "panda.assistantAria": "Панда-ассистент ALLFICTION Software",
       "panda.toggleAria": "Открыть ассистента Panda",
       "panda.closeAria": "Закрыть панда-ассистента",
-      "panda.kicker": "M M PANDA",
+      "panda.kicker": "AF ASSISTANT",
       "panda.modeGuide": "Режим гида",
-      "panda.message": "Добро пожаловать в M M LAB. Я могу провести вас по проектам, стеку и технологиям.",
+      "panda.message": "Добро пожаловать в ALLFICTION Software. Я могу провести вас по проектам, стеку и технологиям.",
       "panda.hint": "Совет: перейдите в проекты, чтобы увидеть краткое описание.",
       "panda.capabilities": "Возможности",
       "panda.projects": "Проекты",
@@ -529,8 +529,8 @@
     },
 
     "zh-CN": {
-      "meta.title": "M M LAB | 软件、自动化与应用型人工智能",
-      "meta.description": "M M LAB：软件、自动化、应用型人工智能、后端、前端与技术工具。",
+      "meta.title": "ALLFICTION Software | 软件、自动化与应用型人工智能",
+      "meta.description": "ALLFICTION Software：软件、自动化、应用型人工智能、后端、前端与技术工具。",
       "meta.ogLocale": "zh_CN",
 
       "language.name": "中文",
@@ -549,7 +549,7 @@
       "hero.eyebrow": "软件 · 自动化 · 人工智能",
       "hero.titleMain": "软件",
       "hero.titleAccent": "与自动化",
-      "hero.mascotAria": "M M Panda：查看项目",
+      "hero.mascotAria": "AF Assistant：查看项目",
       "hero.lead": "",
       "hero.ctaPrimary": "咨询解决方案",
       "hero.ctaProjects": "查看项目",
@@ -568,12 +568,12 @@
       "contact.openPanda": "打开 Panda",
       "contact.github": "查看 GitHub",
 
-      "panda.assistantAria": "M M LAB 熊猫助手",
+      "panda.assistantAria": "ALLFICTION Software 熊猫助手",
       "panda.toggleAria": "打开 Panda 助手",
       "panda.closeAria": "关闭熊猫助手",
-      "panda.kicker": "M M PANDA",
+      "panda.kicker": "AF ASSISTANT",
       "panda.modeGuide": "引导模式",
-      "panda.message": "欢迎来到 M M LAB。我可以带你了解项目、技术栈和路线图。",
+      "panda.message": "欢迎来到 ALLFICTION Software。我可以带你了解项目、技术栈和路线图。",
       "panda.hint": "提示：进入项目部分可以查看快速说明。",
       "panda.capabilities": "能力",
       "panda.projects": "项目",

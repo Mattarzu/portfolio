@@ -1,34 +1,61 @@
 <!doctype html>
-<html lang="es-AR" data-i18n-page="error.404">
+<html
+  lang="es-AR"
+  data-title-es="Página no encontrada | ALLFICTION Software"
+  data-title-en="Page not found | ALLFICTION Software"
+  data-description-es="El recurso solicitado no existe o fue movido."
+  data-description-en="The requested resource does not exist or was moved."
+>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Página no encontrada | M M LAB</title>
-    <meta
-      name="description"
-      content="Página no encontrada en M M LAB."
-    />
+    <meta name="description" content="El recurso solicitado no existe o fue movido." />
+    <meta name="theme-color" content="#050505" />
+    <meta name="robots" content="noindex,follow" />
+    <title>Página no encontrada | ALLFICTION Software</title>
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./assets/css/home-v2.css" />
   </head>
-
   <body>
-    <main class="error-page container">
-      <p class="eyebrow">404</p>
-      <h1 data-i18n="error.404.title">Página no encontrada</h1>
-      <p class="lead" data-i18n="error.404.lead">
-        El recurso que buscás no existe, fue movido o todavía no está publicado.
-      </p>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="./index.html" aria-label="ALLFICTION Software — inicio">
+          <span class="brand-mark" aria-hidden="true">AF</span>
+          <span>ALLFICTION SOFTWARE</span>
+        </a>
+        <div class="language-switch" role="group" aria-label="Idioma">
+          <button type="button" data-language="es-AR" aria-pressed="true">ES</button>
+          <button type="button" data-language="en-GB" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </header>
 
+    <main class="container page-hero">
+      <p class="eyebrow">HTTP 404</p>
+      <h1>
+        <span data-lang="es">Esta ruta no <span class="accent">existe.</span></span>
+        <span data-lang="en">This route does not <span class="accent">exist.</span></span>
+      </h1>
+      <p class="section-intro">
+        <span data-lang="es">
+          El recurso fue movido, todavía no está publicado o la dirección no es correcta.
+        </span>
+        <span data-lang="en">
+          The resource was moved, is not published yet or the address is incorrect.
+        </span>
+      </p>
       <div class="hero-actions">
-        <a class="btn primary" href="./index.html" data-i18n="error.404.home">Volver al inicio</a>
-        <a class="btn secondary" href="./projects/index.html" data-i18n="error.404.projects">Ver proyectos</a>
+        <a class="button primary" href="./index.html">
+          <span data-lang="es">Volver al inicio</span>
+          <span data-lang="en">Back to home</span>
+        </a>
+        <a class="button" href="./projects/">
+          <span data-lang="es">Ver proyectos</span>
+          <span data-lang="en">View projects</span>
+        </a>
       </div>
     </main>
-    <script src="./assets/i18n/translations.js"></script>
-    <script src="./assets/i18n/landing-translations.js"></script>
-    <script src="./assets/i18n/project-pages-translations.js"></script>
-    <script src="./assets/i18n/zh-cn-overrides.js"></script>
-    <script src="./assets/js/i18n.js"></script>
+
+    <script src="./assets/js/home-v2.js" defer></script>
   </body>
 </html>

@@ -200,8 +200,8 @@
         if (controls) controls.hidden = false;
 
         setPanelText(
-          "M M Panda",
-          "Soy el asistente de M M LAB. Puedo mostrarte proyectos, recibir un mensaje para Matt o responder con IA local.",
+          "AF Assistant",
+          "Soy el asistente de ALLFICTION Software. Puedo mostrarte proyectos, recibir un mensaje para Matt o responder con IA local.",
           "Elegí una opción."
         );
         return;
