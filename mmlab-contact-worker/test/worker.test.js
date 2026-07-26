@@ -1,11 +1,8 @@
 import assert from "node:assert/strict";
 import { afterEach, beforeEach, test } from "node:test";
 
-import worker, {
-  extractResponseText,
-  resetStateForTests,
-  validateAiPayload,
-} from "../src/worker.js";
+import { extractGeminiText, extractOpenAiText } from "../src/ai-provider.js";
+import worker, { resetStateForTests, validateAiPayload } from "../src/worker.js";
 
 const originalFetch = globalThis.fetch;
 const allowedOrigin = "https://allfiction.56-126-148-93.sslip.io";
@@ -14,8 +11,9 @@ function environment(overrides = {}) {
   return {
     ALLOWED_ORIGIN: allowedOrigin,
     AI_ENABLED: "true",
-    OPENAI_API_KEY: "test-key",
-    OPENAI_MODEL: "gpt-5.4-nano-2026-03-17",
+    AI_PROVIDER: "gemini",
+    AI_MODEL: "gemini-3.5-flash-lite",
+    GEMINI_API_KEY: "test-key",
     AI_INPUT_LIMIT: "500",
     AI_MAX_OUTPUT_TOKENS: "220",
     AI_RATE_LIMIT: "5",
@@ -64,7 +62,34 @@ function contactRequest(extra = {}, origin = allowedOrigin) {
   });
 }
 
-function mockOpenAi(reply = "Crypto Risk usa FastAPI y Redis Streams. [1]") {
+function mockGemini(reply = "Crypto Risk usa FastAPI y Redis Streams. [1]") {
+  const calls = [];
+  globalThis.fetch = async (url, init) => {
+    calls.push({ url: String(url), init });
+    return new Response(
+      JSON.stringify({
+        candidates: [
+          {
+            content: {
+              role: "model",
+              parts: [{ text: reply }],
+            },
+          },
+        ],
+      }),
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+          "x-request-id": "req_test",
+        },
+      },
+    );
+  };
+  return calls;
+}
+
+function mockOpenAi(reply = "PolyLLM prioriza modelos locales. [1]") {
   const calls = [];
   globalThis.fetch = async (url, init) => {
     calls.push({ url: String(url), init });
@@ -81,7 +106,7 @@ function mockOpenAi(reply = "Crypto Risk usa FastAPI y Redis Streams. [1]") {
         status: 200,
         headers: {
           "Content-Type": "application/json",
-          "x-request-id": "req_test",
+          "x-request-id": "req_openai_test",
         },
       },
     );
@@ -107,6 +132,8 @@ test("health reports AI configuration without exposing the key", async () => {
   assert.equal(response.status, 200);
   assert.equal(body.ai.enabled, true);
   assert.equal(body.ai.configured, true);
+  assert.equal(body.ai.provider, "gemini");
+  assert.equal(body.ai.model, "gemini-3.5-flash-lite");
   assert.equal(JSON.stringify(body).includes("test-key"), false);
 });
 
@@ -147,8 +174,8 @@ test("preserves contact delivery and escapes Telegram HTML", async () => {
   assert.equal(telegramBody.text.includes("<script>"), false);
 });
 
-test("calls the Responses API with bounded, non-stored generation", async () => {
-  const calls = mockOpenAi();
+test("calls Gemini with bounded, non-stored generation", async () => {
+  const calls = mockGemini();
   const response = await worker.fetch(
     aiRequest("¿Qué proyecto demuestra mejor experiencia backend?"),
     environment(),
@@ -158,8 +185,45 @@ test("calls the Responses API with bounded, non-stored generation", async () => 
   assert.equal(response.status, 200);
   assert.equal(body.mode, "ai");
   assert.match(body.reply, /FastAPI/);
+  assert.equal(body.provider, "gemini");
   assert.equal(body.sources[0].id, "crypto-risk");
   assert.equal(calls.length, 1);
+  assert.equal(
+    calls[0].url,
+    "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent",
+  );
+
+  const providerBody = JSON.parse(calls[0].init.body);
+  assert.equal(providerBody.store, false);
+  assert.equal(providerBody.generationConfig.maxOutputTokens, 220);
+  assert.match(
+    providerBody.systemInstruction.parts[0].text,
+    /VERIFIED PORTFOLIO CONTEXT/,
+  );
+  assert.match(
+    providerBody.contents[0].parts[0].text,
+    /CURRENT VISITOR QUESTION/,
+  );
+  assert.equal(calls[0].init.headers["x-goog-api-key"], "test-key");
+  assert.equal(calls[0].url.includes("test-key"), false);
+});
+
+test("can switch to the OpenAI adapter without changing the endpoint", async () => {
+  const calls = mockOpenAi();
+  const response = await worker.fetch(
+    aiRequest("Contame sobre PolyLLM"),
+    environment({
+      AI_PROVIDER: "openai",
+      AI_MODEL: "gpt-5.4-nano-2026-03-17",
+      OPENAI_API_KEY: "openai-test-key",
+      GEMINI_API_KEY: "",
+    }),
+  );
+  const body = await response.json();
+
+  assert.equal(response.status, 200);
+  assert.equal(body.mode, "ai");
+  assert.equal(body.provider, "openai");
   assert.equal(calls[0].url, "https://api.openai.com/v1/responses");
 
   const providerBody = JSON.parse(calls[0].init.body);
@@ -167,9 +231,11 @@ test("calls the Responses API with bounded, non-stored generation", async () => 
   assert.equal(providerBody.max_output_tokens, 220);
   assert.deepEqual(providerBody.reasoning, { effort: "none" });
   assert.equal(providerBody.store, false);
-  assert.match(providerBody.instructions, /VERIFIED PORTFOLIO CONTEXT/);
   assert.match(providerBody.safety_identifier, /^af-[a-f0-9]{32}$/);
-  assert.equal(calls[0].init.headers.Authorization, "Bearer test-key");
+  assert.equal(
+    calls[0].init.headers.Authorization,
+    "Bearer openai-test-key",
+  );
 });
 
 test("uses guided mode without spending tokens for unrelated questions", async () => {
@@ -212,10 +278,10 @@ test("rejects prompt injection into guided mode without calling the model", asyn
   assert.equal(providerCalls, 0);
 });
 
-test("falls back safely when the OpenAI secret is absent", async () => {
+test("falls back safely when the selected provider secret is absent", async () => {
   const response = await worker.fetch(
     aiRequest("Contame sobre PolyLLM"),
-    environment({ OPENAI_API_KEY: "" }),
+    environment({ GEMINI_API_KEY: "" }),
   );
   const body = await response.json();
 
@@ -224,8 +290,34 @@ test("falls back safely when the OpenAI secret is absent", async () => {
   assert.equal(body.reason, "ai-not-configured");
 });
 
+test("does not send personal data or credentials to the provider", async () => {
+  let providerCalls = 0;
+  globalThis.fetch = async () => {
+    providerCalls += 1;
+    throw new Error("provider should not be called");
+  };
+
+  for (const [index, message] of [
+    "Crypto Risk: escribime a visitante@example.com",
+    "Qivox: llamame al +54 351 555 0101",
+    "PolyLLM api_key=secret-value-123",
+  ].entries()) {
+    const response = await worker.fetch(
+      aiRequest(message, `203.0.113.${30 + index}`),
+      environment(),
+    );
+    const body = await response.json();
+
+    assert.equal(response.status, 200);
+    assert.equal(body.mode, "guided");
+    assert.equal(body.reason, "sensitive-data-detected");
+  }
+
+  assert.equal(providerCalls, 0);
+});
+
 test("limits each visitor to the configured request window", async () => {
-  mockOpenAi();
+  mockGemini();
   const env = environment({ AI_RATE_LIMIT: "2" });
 
   assert.equal(
@@ -242,7 +334,7 @@ test("limits each visitor to the configured request window", async () => {
 });
 
 test("enforces the global daily provider-call budget", async () => {
-  const calls = mockOpenAi();
+  const calls = mockGemini();
   const env = environment({ AI_DAILY_LIMIT: "1" });
 
   const first = await worker.fetch(aiRequest("Crypto Risk backend", "203.0.113.1"), env);
@@ -266,9 +358,28 @@ test("validates the 500-character input boundary", () => {
   });
 });
 
-test("extracts text across multiple Responses API output items", () => {
+test("extracts text across multiple Gemini response parts", () => {
   assert.equal(
-    extractResponseText({
+    extractGeminiText({
+      candidates: [
+        {
+          content: {
+            parts: [
+              { thought: true, text: "internal reasoning" },
+              { text: "Parte uno." },
+              { text: "Parte dos." },
+            ],
+          },
+        },
+      ],
+    }),
+    "Parte uno.\nParte dos.",
+  );
+});
+
+test("keeps the OpenAI response extractor available", () => {
+  assert.equal(
+    extractOpenAiText({
       output: [
         { type: "reasoning", summary: [] },
         {

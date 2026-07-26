@@ -208,6 +208,14 @@ const INJECTION_PATTERNS = [
   /jailbreak/i,
 ];
 
+const SENSITIVE_PATTERNS = [
+  /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i,
+  /(?:\+?\d[\s().-]*){8,}/,
+  /-----BEGIN [A-Z ]*PRIVATE KEY-----/i,
+  /\b(?:AIza|sk-|ghp_|github_pat_|xox[baprs]-)[A-Za-z0-9_-]{8,}\b/i,
+  /\b(?:api[_ -]?key|token|secret|password|contrase(?:ñ|n)a|clave)\s*[:=]\s*\S+/i,
+];
+
 function normalize(value) {
   return String(value || "")
     .normalize("NFD")
@@ -241,6 +249,11 @@ function sourceScore(source, normalizedQuery, tokens) {
 
 export function looksLikePromptInjection(message) {
   return INJECTION_PATTERNS.some((pattern) => pattern.test(String(message || "")));
+}
+
+export function containsSensitiveData(message) {
+  const value = String(message || "").replace(/https?:\/\/\S+/gi, "");
+  return SENSITIVE_PATTERNS.some((pattern) => pattern.test(value));
 }
 
 export function retrievePortfolioContext(query, limit = 3) {
@@ -289,6 +302,18 @@ export function publicSources(sources) {
 
 export function guidedFallback(locale, reason = "unavailable") {
   const english = String(locale || "").toLowerCase().startsWith("en");
+
+  if (reason === "sensitive-data-detected") {
+    return {
+      reply: english
+        ? "I did not send that message to the AI provider because it appears to contain an email address, phone number or credential. Remove personal or secret data and ask again."
+        : "No envié ese mensaje al proveedor de IA porque parece contener un correo, teléfono o credencial. Quitá los datos personales o secretos y volvé a preguntar.",
+      cta: {
+        label: english ? "View privacy-safe topics" : "Ver temas seguros",
+        href: "https://allfiction.56-126-148-93.sslip.io/#trabajo",
+      },
+    };
+  }
 
   if (reason === "out-of-scope" || reason === "prompt-injection") {
     return {

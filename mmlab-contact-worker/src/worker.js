@@ -1,13 +1,17 @@
 import {
+  containsSensitiveData,
   formatVerifiedContext,
   guidedFallback,
   looksLikePromptInjection,
   publicSources,
   retrievePortfolioContext,
 } from "./portfolio-context.js";
+import {
+  generateWithProvider,
+  publicProviderState,
+  resolveProvider,
+} from "./ai-provider.js";
 
-const OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses";
-const DEFAULT_MODEL = "gpt-5.4-nano-2026-03-17";
 const DEFAULT_INPUT_LIMIT = 500;
 const DEFAULT_OUTPUT_LIMIT = 220;
 const DEFAULT_AI_RATE_LIMIT = 5;
@@ -275,21 +279,6 @@ function conversationInput(payload) {
     .join("\n\n");
 }
 
-function extractResponseText(data) {
-  const chunks = [];
-
-  for (const item of data?.output || []) {
-    if (item?.type !== "message") continue;
-    for (const content of item.content || []) {
-      if (content?.type === "output_text" && typeof content.text === "string") {
-        chunks.push(content.text);
-      }
-    }
-  }
-
-  return cleanText(chunks.join("\n")).slice(0, 1200);
-}
-
 async function safetyIdentifier(request, payload) {
   const raw = `${clientKey(request)}:${payload.sessionId || "anonymous"}`;
   const bytes = new TextEncoder().encode(raw);
@@ -300,9 +289,17 @@ async function safetyIdentifier(request, payload) {
   return `af-${hex.slice(0, 32)}`;
 }
 
-async function askOpenAi(payload, sources, request, env) {
-  const apiKey = cleanText(env.OPENAI_API_KEY);
-  if (!isEnabled(env.AI_ENABLED) || !apiKey) {
+async function askAiProvider(payload, sources, request, env) {
+  const provider = resolveProvider(env);
+  if (!isEnabled(env.AI_ENABLED)) {
+    return { ok: false, reason: "ai-not-configured" };
+  }
+
+  if (!provider.supported) {
+    return { ok: false, reason: "unsupported-ai-provider" };
+  }
+
+  if (!provider.configured) {
     return { ok: false, reason: "ai-not-configured" };
   }
 
@@ -320,39 +317,14 @@ async function askOpenAi(payload, sources, request, env) {
   const timeout = setTimeout(() => controller.abort(), 12_000);
 
   try {
-    const response = await fetch(OPENAI_RESPONSES_URL, {
-      method: "POST",
+    return await generateWithProvider({
+      env,
+      instructions: buildAiInstructions(payload, sources),
+      input: conversationInput(payload),
+      maxOutputTokens: outputLimit,
+      safetyIdentifier: await safetyIdentifier(request, payload),
       signal: controller.signal,
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: cleanText(env.OPENAI_MODEL) || DEFAULT_MODEL,
-        instructions: buildAiInstructions(payload, sources),
-        input: conversationInput(payload),
-        reasoning: { effort: "none" },
-        max_output_tokens: outputLimit,
-        safety_identifier: await safetyIdentifier(request, payload),
-        store: false,
-      }),
     });
-
-    if (!response.ok) {
-      return { ok: false, reason: `provider-http-${response.status}` };
-    }
-
-    const data = await response.json().catch(() => null);
-    const reply = extractResponseText(data);
-    if (!reply) return { ok: false, reason: "empty-ai-response" };
-
-    return {
-      ok: true,
-      reply,
-      requestId: response.headers.get("x-request-id") || undefined,
-    };
-  } catch {
-    return { ok: false, reason: "ai-request-failed" };
   } finally {
     clearTimeout(timeout);
   }
@@ -424,12 +396,22 @@ async function handleAiChat(request, env, cors) {
     return guidedResponse(result.payload.locale, "prompt-injection", cors);
   }
 
+  const sensitiveInput = [
+    result.payload.message,
+    ...result.payload.history
+      .filter((item) => item.role === "user")
+      .map((item) => item.content),
+  ].some(containsSensitiveData);
+  if (sensitiveInput) {
+    return guidedResponse(result.payload.locale, "sensitive-data-detected", cors);
+  }
+
   const sources = retrievePortfolioContext(result.payload.message);
   if (!sources.length) {
     return guidedResponse(result.payload.locale, "out-of-scope", cors);
   }
 
-  const ai = await askOpenAi(result.payload, sources, request, env);
+  const ai = await askAiProvider(result.payload, sources, request, env);
   if (!ai.ok) return guidedResponse(result.payload.locale, ai.reason, cors);
 
   const sourceLinks = publicSources(sources);
@@ -437,6 +419,7 @@ async function handleAiChat(request, env, cors) {
     {
       ok: true,
       mode: "ai",
+      provider: ai.provider,
       reply: ai.reply,
       sources: sourceLinks,
       requestId: ai.requestId,
@@ -447,14 +430,14 @@ async function handleAiChat(request, env, cors) {
 }
 
 function health(env, cors) {
+  const provider = publicProviderState(env);
   return json(
     {
       ok: true,
       service: "allfiction-portfolio-api",
       ai: {
         enabled: isEnabled(env.AI_ENABLED),
-        configured: Boolean(cleanText(env.OPENAI_API_KEY)),
-        model: cleanText(env.OPENAI_MODEL) || DEFAULT_MODEL,
+        ...provider,
       },
     },
     200,
@@ -471,7 +454,6 @@ export function resetStateForTests() {
 export {
   buildAiInstructions,
   consumeDailyBudget,
-  extractResponseText,
   validateAiPayload,
 };
 

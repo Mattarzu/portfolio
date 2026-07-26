@@ -14,7 +14,7 @@ La credencial del proveedor existe únicamente en el Worker; nunca se expone al 
 - HTTPS y reverse proxy: Caddy
 - Despliegue: GitHub Actions desde `main`
 - API dinámica: Cloudflare Worker
-- IA: OpenAI Responses API con límites y fallback
+- IA: adaptador multi-proveedor, Gemini Free Tier por defecto y fallback
 
 ## Ejecutar localmente
 

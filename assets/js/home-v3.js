@@ -384,6 +384,12 @@
     return null;
   }
 
+  function providerLabel(value) {
+    if (value === "gemini") return "Gemini";
+    if (value === "openai") return "OpenAI";
+    return "AI";
+  }
+
   function addMessage(role, text, options = {}) {
     const item = document.createElement("article");
     item.className = `ai-message ${role}`;
@@ -394,7 +400,7 @@
       role === "user"
         ? localized("Vos", "You")
         : options.mode === "ai"
-          ? "AF Intelligence · AI"
+          ? `AF Intelligence · ${providerLabel(options.provider)}`
           : "AF Intelligence";
 
     const bubble = document.createElement("div");
@@ -537,6 +543,10 @@
           result = {
             reply: payload.reply,
             mode: payload.mode === "ai" ? "ai" : "guided",
+            provider:
+              payload.provider === "gemini" || payload.provider === "openai"
+                ? payload.provider
+                : undefined,
             cta: payload.cta,
             sources: Array.isArray(payload.sources) ? payload.sources : [],
           };
@@ -557,13 +567,17 @@
     conversation.push({ role: "assistant", content: result.reply });
     addMessage("assistant", result.reply, {
       mode: result.mode,
+      provider: result.provider,
       cta: result.cta,
       sources: result.sources,
     });
 
     aiModeLabel.textContent =
       result.mode === "ai"
-        ? localized("IA generativa · evidencia enlazada", "Generative AI · linked evidence")
+        ? localized(
+            `${providerLabel(result.provider)} · evidencia enlazada`,
+            `${providerLabel(result.provider)} · linked evidence`,
+          )
         : localized("Modo guiado · contexto verificado", "Guided mode · verified context");
     aiInput.focus({ preventScroll: true });
   }
@@ -579,8 +593,8 @@
   aiClear?.addEventListener("click", () => {
     addWelcome(true);
     aiModeLabel.textContent = localized(
-      "Modo híbrido · límites activos",
-      "Hybrid mode · limits active",
+      "Modo híbrido · Gemini + fallback",
+      "Hybrid mode · Gemini + fallback",
     );
     aiInput.focus({ preventScroll: true });
   });
@@ -625,8 +639,8 @@
     );
     if (!conversation.length) {
       aiModeLabel.textContent = localized(
-        "Modo híbrido · límites activos",
-        "Hybrid mode · limits active",
+        "Modo híbrido · Gemini + fallback",
+        "Hybrid mode · Gemini + fallback",
       );
     }
     if (!conversation.length && aiMessages.childElementCount) addWelcome(true);
@@ -637,7 +651,7 @@
     "Ask about projects, architecture or experience…",
   );
   aiModeLabel.textContent = localized(
-    "Modo híbrido · límites activos",
-    "Hybrid mode · limits active",
+    "Modo híbrido · Gemini + fallback",
+    "Hybrid mode · Gemini + fallback",
   );
 })();
