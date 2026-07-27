@@ -85,6 +85,7 @@ for (const marker of [
   "Qivox Gym",
   "PolyLLM Router",
   "AF Intelligence",
+  "contact-config.js",
   "home-v3.js"
 ]) {
   if (!home.includes(marker)) report(`index.html: falta marcador requerido "${marker}"`);

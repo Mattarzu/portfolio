@@ -6,5 +6,13 @@ preview_urls = false
 
 [vars]
 TELEGRAM_CHAT_ID = "1463839709"
-ALLOWED_ORIGIN = "https://mattarzu.github.io,http://127.0.0.1:3000,http://localhost:3000,http://127.0.0.1:3001,http://localhost:3001"
+ALLOWED_ORIGIN = "https://allfiction.56-126-148-93.sslip.io,https://mattarzu.github.io,http://127.0.0.1:8081,http://localhost:8081"
 RATE_LIMIT_PER_MINUTE = "5"
+AI_ENABLED = "true"
+AI_PROVIDER = "gemini"
+AI_MODEL = "gemini-3.5-flash-lite"
+AI_INPUT_LIMIT = "500"
+AI_MAX_OUTPUT_TOKENS = "220"
+AI_RATE_LIMIT = "5"
+AI_RATE_WINDOW_SECONDS = "900"
+AI_DAILY_LIMIT = "50"

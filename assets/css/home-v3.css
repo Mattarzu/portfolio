@@ -2044,6 +2044,37 @@ svg {
   text-decoration: none;
 }
 
+.ai-message-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 3px;
+}
+
+.ai-message-sources small {
+  flex-basis: 100%;
+  color: var(--muted-dark);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ai-message-sources a {
+  border: 1px solid rgba(214, 174, 98, 0.14);
+  border-radius: 999px;
+  padding: 5px 8px;
+  background: rgba(214, 174, 98, 0.045);
+  color: var(--gold-high);
+  font-size: 0.56rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.ai-message-sources a:hover {
+  border-color: rgba(214, 174, 98, 0.34);
+  background: rgba(214, 174, 98, 0.08);
+}
+
 .ai-suggestions {
   display: flex;
   overflow-x: auto;

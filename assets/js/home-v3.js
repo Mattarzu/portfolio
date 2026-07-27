@@ -158,6 +158,8 @@
   const aiSubmit = document.querySelector("[data-ai-submit]");
   const aiModeLabel = document.querySelector("[data-ai-mode-label]");
   const questionButtons = Array.from(document.querySelectorAll("[data-ai-question]"));
+  const configuredAiEndpoint = String(window.ALLFICTION_AI_ENDPOINT || "/api/ai").trim();
+  const generativeAiEnabled = window.ALLFICTION_AI_ENABLED !== false;
 
   if (
     !aiPanel ||
@@ -382,6 +384,12 @@
     return null;
   }
 
+  function providerLabel(value) {
+    if (value === "gemini") return "Gemini";
+    if (value === "openai") return "OpenAI";
+    return "AI";
+  }
+
   function addMessage(role, text, options = {}) {
     const item = document.createElement("article");
     item.className = `ai-message ${role}`;
@@ -392,7 +400,7 @@
       role === "user"
         ? localized("Vos", "You")
         : options.mode === "ai"
-          ? "AF Intelligence · AI"
+          ? `AF Intelligence · ${providerLabel(options.provider)}`
           : "AF Intelligence";
 
     const bubble = document.createElement("div");
@@ -418,6 +426,30 @@
         link.rel = "noopener noreferrer";
       }
       item.appendChild(link);
+    }
+
+    const sources = Array.isArray(options.sources) ? options.sources.slice(0, 3) : [];
+    if (sources.length) {
+      const sourceList = document.createElement("div");
+      sourceList.className = "ai-message-sources";
+      const sourceLabel = document.createElement("small");
+      sourceLabel.textContent = localized("Evidencia", "Evidence");
+      sourceList.appendChild(sourceLabel);
+
+      sources.forEach((source, index) => {
+        const sourceHref = safeHref(source?.href);
+        if (!sourceHref || !source?.label) return;
+        const link = document.createElement("a");
+        link.href = sourceHref;
+        link.textContent = `[${index + 1}] ${source.label}`;
+        if (sourceHref.startsWith("https://")) {
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+        }
+        sourceList.appendChild(link);
+      });
+
+      if (sourceList.childElementCount > 1) item.appendChild(sourceList);
     }
 
     aiMessages.appendChild(item);
@@ -488,28 +520,42 @@
 
     let result = null;
 
-    try {
-      const response = await fetch("/api/ai", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          message: question,
-          locale: currentLanguage(),
-          history: conversation.slice(-6),
-          sessionId: sessionId(),
-        }),
-      });
+    if (generativeAiEnabled && configuredAiEndpoint) {
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 14_000);
 
-      const payload = await response.json().catch(() => null);
-      if (response.ok && payload && typeof payload.reply === "string") {
-        result = {
-          reply: payload.reply,
-          mode: payload.mode === "ai" ? "ai" : "guided",
-          cta: payload.cta,
-        };
+      try {
+        const response = await fetch(configuredAiEndpoint, {
+          method: "POST",
+          signal: controller.signal,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            message: question,
+            locale: currentLanguage(),
+            history: conversation.slice(-4),
+            sessionId: sessionId(),
+            website: "",
+          }),
+        });
+
+        const payload = await response.json().catch(() => null);
+        if (response.ok && payload && typeof payload.reply === "string") {
+          result = {
+            reply: payload.reply,
+            mode: payload.mode === "ai" ? "ai" : "guided",
+            provider:
+              payload.provider === "gemini" || payload.provider === "openai"
+                ? payload.provider
+                : undefined,
+            cta: payload.cta,
+            sources: Array.isArray(payload.sources) ? payload.sources : [],
+          };
+        }
+      } catch {
+        result = null;
+      } finally {
+        window.clearTimeout(timeout);
       }
-    } catch {
-      result = null;
     }
 
     if (!result) {
@@ -519,11 +565,19 @@
     thinking.remove();
     setBusy(false);
     conversation.push({ role: "assistant", content: result.reply });
-    addMessage("assistant", result.reply, { mode: result.mode, cta: result.cta });
+    addMessage("assistant", result.reply, {
+      mode: result.mode,
+      provider: result.provider,
+      cta: result.cta,
+      sources: result.sources,
+    });
 
     aiModeLabel.textContent =
       result.mode === "ai"
-        ? localized("IA generativa · contexto verificado", "Generative AI · verified context")
+        ? localized(
+            `${providerLabel(result.provider)} · evidencia enlazada`,
+            `${providerLabel(result.provider)} · linked evidence`,
+          )
         : localized("Modo guiado · contexto verificado", "Guided mode · verified context");
     aiInput.focus({ preventScroll: true });
   }
@@ -538,7 +592,10 @@
 
   aiClear?.addEventListener("click", () => {
     addWelcome(true);
-    aiModeLabel.textContent = "Portfolio assistant";
+    aiModeLabel.textContent = localized(
+      "Modo híbrido · Gemini + fallback",
+      "Hybrid mode · Gemini + fallback",
+    );
     aiInput.focus({ preventScroll: true });
   });
 
@@ -580,11 +637,21 @@
       "Preguntá por proyectos, arquitectura o experiencia…",
       "Ask about projects, architecture or experience…",
     );
+    if (!conversation.length) {
+      aiModeLabel.textContent = localized(
+        "Modo híbrido · Gemini + fallback",
+        "Hybrid mode · Gemini + fallback",
+      );
+    }
     if (!conversation.length && aiMessages.childElementCount) addWelcome(true);
   });
 
   aiInput.placeholder = localized(
     "Preguntá por proyectos, arquitectura o experiencia…",
     "Ask about projects, architecture or experience…",
+  );
+  aiModeLabel.textContent = localized(
+    "Modo híbrido · Gemini + fallback",
+    "Hybrid mode · Gemini + fallback",
   );
 })();

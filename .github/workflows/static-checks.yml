@@ -22,15 +22,21 @@ jobs:
       - name: Check JavaScript syntax
         run: |
           node --check main.js
+          node --check contact-config.js
           node --check assets/js/home-v3.js
           node --check assets/js/panda-stable.js
           node --check mmlab-contact-worker/src/worker.js
+          node --check mmlab-contact-worker/src/ai-provider.js
+          node --check mmlab-contact-worker/src/portfolio-context.js
           node --check assets/js/i18n.js
           node --check assets/js/redwatch-panel.js
           node --check scripts/check-site.mjs
 
       - name: Check site contracts
         run: node scripts/check-site.mjs
+
+      - name: Test AF Intelligence
+        run: npm test --prefix mmlab-contact-worker
 
       - name: Validate V3 HTML
         run: |
@@ -77,6 +83,10 @@ jobs:
         run: |
           grep -q 'assets/css/home-v3.css' index.html
           grep -q 'assets/js/home-v3.js' index.html
+          grep -q 'contact-config.js' index.html
           grep -q 'AF Intelligence' index.html
+          grep -q 'Gemini Free Tier' index.html
           grep -q 'projects/crypto-risk-engine.html' index.html
+          grep -q 'AI_PROVIDER = "gemini"' mmlab-contact-worker/wrangler.toml
+          grep -q 'AI_MODEL = "gemini-3.5-flash-lite"' mmlab-contact-worker/wrangler.toml
           ! grep -q 'mattarzu.github.io/portfolio' index.html
