@@ -17,6 +17,19 @@ html {
   scroll-padding-top: 92px;
 }
 
+[data-lang="en"] {
+  display: none !important;
+}
+
+html[lang="en-GB"] [data-lang="es"] {
+  display: none !important;
+}
+
+html[lang="en-GB"] [data-lang="en"],
+html[lang="es-AR"] [data-lang="es"] {
+  display: revert !important;
+}
+
 body.af-shell-ready {
   min-height: 100vh;
   background:
