@@ -24,6 +24,42 @@
     if (node && value) node.setAttribute("content", value);
   }
 
+  function syncAccessibleLanguage(language) {
+    const english = language === "en-GB";
+    const navToggleNode = document.querySelector("[data-nav-toggle]");
+    const navOpen = navToggleNode?.getAttribute("aria-expanded") === "true";
+    const localizedAttributes = [
+      [".brand", "aria-label", "ALLFICTION Software — inicio", "ALLFICTION Software — home"],
+      ["[data-nav]", "aria-label", "Navegación principal", "Main navigation"],
+      [".language-switch", "aria-label", "Idioma", "Language"],
+      ["[data-nav-toggle]", "aria-label", navOpen ? "Cerrar navegación" : "Abrir navegación", navOpen ? "Close navigation" : "Open navigation"],
+      [".hero-stage", "aria-label", "Sistema visual de ALLFICTION", "ALLFICTION visual system"],
+      [".risk-console", "aria-label", "Vista conceptual del motor de riesgo", "Conceptual risk-engine view"],
+      [".product-preview", "aria-label", "Vistas de Qivox Gym", "Qivox Gym product views"],
+      [".router-console", "aria-label", "Consola conceptual de PolyLLM Router", "Conceptual PolyLLM Router console"],
+      [".evidence-panel", "aria-label", "Evidencia de entrega", "Delivery evidence"],
+      [".contact-links", "aria-label", "Perfiles profesionales", "Professional profiles"],
+      [".site-footer nav", "aria-label", "Enlaces externos", "External links"],
+      ["[data-ai-launcher]", "aria-label", "Abrir AF Intelligence", "Open AF Intelligence"],
+      ["[data-ai-panel]", "aria-label", "AF Intelligence", "AF Intelligence"],
+      ["[data-ai-close]", "aria-label", "Cerrar AF Intelligence", "Close AF Intelligence"],
+      ["[data-ai-submit]", "aria-label", "Enviar pregunta", "Send question"],
+    ];
+
+    localizedAttributes.forEach(([selector, attribute, es, en]) => {
+      document.querySelectorAll(selector).forEach((node) => {
+        node.setAttribute(attribute, english ? en : es);
+      });
+    });
+
+    document.querySelectorAll("[data-placeholder-es][data-placeholder-en]").forEach((node) => {
+      node.setAttribute(
+        "placeholder",
+        english ? node.dataset.placeholderEn : node.dataset.placeholderEs,
+      );
+    });
+  }
+
   function setLanguage(value, syncUrl = true) {
     const language = normalizeLanguage(value);
     root.lang = language;
@@ -53,6 +89,7 @@
       window.history.replaceState({}, "", url);
     }
 
+    syncAccessibleLanguage(language);
     document.dispatchEvent(new CustomEvent("allfiction:language", { detail: { language } }));
   }
 
@@ -80,6 +117,7 @@
     if (!navToggle || !nav) return;
     navToggle.setAttribute("aria-expanded", "false");
     nav.classList.remove("is-open");
+    syncAccessibleLanguage(currentLanguage());
   }
 
   if (navToggle && nav) {
@@ -87,6 +125,7 @@
       const open = navToggle.getAttribute("aria-expanded") !== "true";
       navToggle.setAttribute("aria-expanded", String(open));
       nav.classList.toggle("is-open", open);
+      syncAccessibleLanguage(currentLanguage());
     });
 
     nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeNav));
@@ -144,6 +183,104 @@
       { rootMargin: "-24% 0px -62% 0px", threshold: [0.08, 0.3, 0.6] },
     );
     observedSections.forEach((item) => sectionObserver.observe(item.section));
+  }
+
+  const contactForm = document.querySelector("[data-contact-form]");
+  const contactSubmit = document.querySelector("[data-contact-submit]");
+  const contactStatus = document.querySelector("[data-contact-status]");
+  const contactEndpoint = String(window.MMLAB_CONTACT_ENDPOINT || "").trim();
+  let contactBusy = false;
+
+  function setContactStatus(type, es, en) {
+    if (!contactStatus) return;
+    contactStatus.textContent = currentLanguage() === "en-GB" ? en : es;
+    contactStatus.classList.toggle("is-success", type === "success");
+    contactStatus.classList.toggle("is-error", type === "error");
+  }
+
+  if (contactForm && contactSubmit) {
+    contactForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (contactBusy) return;
+
+      contactForm.querySelectorAll("[required]").forEach((field) => {
+        field.setAttribute("aria-invalid", String(!field.checkValidity()));
+      });
+
+      if (!contactForm.reportValidity()) {
+        setContactStatus(
+          "error",
+          "Revisá los campos obligatorios.",
+          "Please review the required fields.",
+        );
+        return;
+      }
+
+      if (!contactEndpoint) {
+        setContactStatus(
+          "error",
+          "El canal directo no está disponible. Usá email o LinkedIn.",
+          "The direct channel is unavailable. Please use email or LinkedIn.",
+        );
+        return;
+      }
+
+      const formData = new FormData(contactForm);
+      const payload = {
+        name: String(formData.get("name") || "").trim(),
+        contact: String(formData.get("contact") || "").trim(),
+        message: String(formData.get("message") || "").trim(),
+        page: window.location.href,
+        createdAt: new Date().toISOString(),
+        website: String(formData.get("website") || "").trim(),
+      };
+
+      contactBusy = true;
+      contactSubmit.disabled = true;
+      contactForm.setAttribute("aria-busy", "true");
+      setContactStatus("busy", "Enviando consulta…", "Sending enquiry…");
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 14_000);
+
+      try {
+        const response = await fetch(contactEndpoint, {
+          method: "POST",
+          signal: controller.signal,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const result = await response.json().catch(() => null);
+        if (!response.ok || result?.ok !== true) throw new Error(result?.detail || "send-failed");
+
+        contactForm.reset();
+        contactForm.querySelectorAll("[aria-invalid]").forEach((field) => {
+          field.removeAttribute("aria-invalid");
+        });
+        setContactStatus(
+          "success",
+          "Mensaje enviado. Matt recibió la notificación.",
+          "Message sent. Matt received the notification.",
+        );
+      } catch {
+        setContactStatus(
+          "error",
+          "No se pudo enviar ahora. Probá por email o LinkedIn.",
+          "It could not be sent right now. Please try email or LinkedIn.",
+        );
+      } finally {
+        window.clearTimeout(timeout);
+        contactBusy = false;
+        contactSubmit.disabled = false;
+        contactForm.removeAttribute("aria-busy");
+      }
+    });
+
+    contactForm.addEventListener("input", (event) => {
+      const field = event.target;
+      if (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement) {
+        field.removeAttribute("aria-invalid");
+      }
+    });
   }
 
   const aiPanel = document.querySelector("[data-ai-panel]");
