@@ -85,10 +85,26 @@ for (const marker of [
   "Qivox Gym",
   "PolyLLM Router",
   "AF Intelligence",
+  "data-contact-form",
   "contact-config.js",
+  "contact-form.js",
   "home-v3.js"
 ]) {
   if (!home.includes(marker)) report(`index.html: falta marcador requerido "${marker}"`);
+}
+
+const cohesivePages = [
+  "projects/index.html",
+  "projects/crypto-risk-engine.html",
+  "projects/ergo-v2.html",
+  "projects/router-llm.html"
+];
+
+for (const path of cohesivePages) {
+  const html = readFileSync(join(root, path), "utf8");
+  for (const marker of ["portfolio-shell.css", "portfolio-shell.js"]) {
+    if (!html.includes(marker)) report(\`scripts/check-site.mjs: falta capa V3 compartida "\${marker}"\`);
+  }
 }
 
 const manifest = JSON.parse(readFileSync(join(root, "site.webmanifest"), "utf8"));
@@ -100,6 +116,9 @@ const budgets = [
   ["index.html", 80_000],
   ["assets/css/home-v3.css", 60_000],
   ["assets/js/home-v3.js", 30_000],
+  ["assets/js/contact-form.js", 8_000],
+  ["assets/css/portfolio-shell.css", 20_000],
+  ["assets/js/portfolio-shell.js", 28_000],
   ["assets/brand/allfiction-software-hero-960.webp", 100_000],
   ["assets/brand/allfiction-icon-512.png", 120_000],
   ["preview.png", 250_000]
