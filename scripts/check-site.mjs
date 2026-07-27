@@ -103,7 +103,7 @@ const cohesivePages = [
 for (const path of cohesivePages) {
   const html = readFileSync(join(root, path), "utf8");
   for (const marker of ["portfolio-shell.css", "portfolio-shell.js"]) {
-    if (!html.includes(marker)) report(\`scripts/check-site.mjs: falta capa V3 compartida "\${marker}"\`);
+    if (!html.includes(marker)) report(`${path}: falta capa V3 compartida "${marker}"`);
   }
 }
 
