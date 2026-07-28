@@ -81,6 +81,8 @@
     "Activo": "Active",
     "Backend/API": "Backend/API",
     "API publicada para contenido público, leads, usuarios, staff, operaciones y administración.": "Published API for public content, leads, users, staff, operations and administration.",
+    "Cloudflare": "Cloudflare",
+    "Frontend en Pages y API operativa en Worker.": "Frontend on Pages and operational API on Worker.",
     "MVP funcional": "Functional MVP",
     "Estado general": "Overall status",
     "Producto funcional en evolución, integrado al ecosistema de proyectos ALLFICTION Software.": "A functional product in active evolution within the ALLFICTION Software project ecosystem.",
@@ -186,8 +188,9 @@
       if (!originalText.has(node)) originalText.set(node, node.nodeValue);
       const source = originalText.get(node);
       const trimmed = source.trim();
-      if (language === "en-GB" && ergoTranslations.has(trimmed)) {
-        node.nodeValue = source.replace(trimmed, ergoTranslations.get(trimmed));
+      const translationKey = trimmed.replace(/\s+/g, " ");
+      if (language === "en-GB" && ergoTranslations.has(translationKey)) {
+        node.nodeValue = source.replace(trimmed, ergoTranslations.get(translationKey));
       } else {
         node.nodeValue = source;
       }
