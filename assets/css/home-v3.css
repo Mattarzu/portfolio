@@ -30,13 +30,19 @@
 }
 
 html {
+  width: 100%;
+  max-width: 100%;
   overflow-x: clip;
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header) + 24px);
 }
 
 body {
-  min-width: 320px;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
   margin: 0;
   background:
     radial-gradient(circle at 76% 3%, rgba(214, 174, 98, 0.055), transparent 29rem),
@@ -2293,6 +2299,37 @@ html[lang="es-AR"] [data-lang="es"] {
 @media (max-width: 780px) {
   :root {
     --header: 68px;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body::before {
+    display: none;
+  }
+
+  .site-header,
+  .ai-launcher {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .site-header {
+    background: rgba(7, 8, 7, 0.97);
+  }
+
+  .ai-launcher {
+    box-shadow:
+      0 12px 28px rgba(0, 0, 0, 0.4),
+      inset 0 1px rgba(255, 255, 255, 0.04);
+  }
+
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 
   .shell {
