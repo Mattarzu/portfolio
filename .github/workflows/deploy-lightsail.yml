@@ -73,6 +73,17 @@ jobs:
                 || true
             )"
 
+            CRYPTO_HTML="$(
+              curl \
+                --fail \
+                --silent \
+                --show-error \
+                --location \
+                --max-time 20 \
+                "$URL/projects/crypto-risk-engine.html" \
+                || true
+            )"
+
             if grep -q 'Crypto Risk Engine' <<<"$HOME_HTML" \
               && grep -q 'AF Intelligence' <<<"$HOME_HTML" \
               && grep -q 'assets/js/home-v3.js' <<<"$HOME_HTML" \
@@ -82,9 +93,7 @@ jobs:
                 "$URL/assets/js/home-v3.js" >/dev/null \
               && curl --fail --silent --show-error --max-time 20 \
                 "$URL/assets/brand/allfiction-software-hero-960.webp" >/dev/null \
-              && curl --fail --silent --show-error --max-time 20 \
-                "$URL/projects/crypto-risk-engine.html" \
-                | grep -q 'Redis Streams'
+              && grep -q 'Redis Streams' <<<"$CRYPTO_HTML"
             then
               echo "Deployment verified: $URL"
               exit 0
