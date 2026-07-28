@@ -88,9 +88,41 @@ for (const marker of [
   "data-contact-form",
   "contact-config.js",
   "contact-form.js",
-  "home-v3.js"
+  "home-v3.js",
+  "Multi-site",
+  "5 routes"
 ]) {
   if (!home.includes(marker)) report(`index.html: falta marcador requerido "${marker}"`);
+}
+
+const homeV3Js = readFileSync(join(root, "assets/js/home-v3.js"), "utf8");
+const portfolioShellJs = readFileSync(join(root, "assets/js/portfolio-shell.js"), "utf8");
+const homeV3Css = readFileSync(join(root, "assets/css/home-v3.css"), "utf8");
+
+for (const [path, source, markers] of [
+  [
+    "assets/js/home-v3.js",
+    homeV3Js,
+    ['const languageKey = "allfiction_language"', 'const legacyLanguageKey = "mmlab_language"']
+  ],
+  [
+    "assets/js/portfolio-shell.js",
+    portfolioShellJs,
+    [
+      'const languageKey = "allfiction_language"',
+      'const legacyLanguageKey = "mmlab_language"',
+      'const translationKey = trimmed.replace(/\\s+/g, " ")'
+    ]
+  ]
+]) {
+  for (const marker of markers) {
+    if (!source.includes(marker)) report(`${path}: falta contrato bilingüe "${marker}"`);
+  }
+}
+
+if (!homeV3Css.includes('@media (max-width: 420px)') ||
+    !homeV3Css.includes('.language-switch {\n    display: flex;\n    padding: 2px;')) {
+  report("assets/css/home-v3.css: el selector ES/EN debe permanecer visible en móvil");
 }
 
 const cohesivePages = [
