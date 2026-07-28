@@ -408,7 +408,7 @@
                 </span>
               </p>
               <ul class="outcomes">
-                <li><b>Multi-sede</b><span>Colón + Bv. Illia</span></li>
+                <li><b><span data-lang="es">Multi-sede</span><span data-lang="en">Multi-site</span></b><span>Colón + Bv. Illia</span></li>
                 <li><b>Full stack</b><span>React · Express · PostgreSQL</span></li>
                 <li><b>Realtime</b><span>Socket.IO + Prisma</span></li>
               </ul>
@@ -470,7 +470,7 @@
                 </span>
               </p>
               <ul class="outcomes">
-                <li><b>5 rutas</b><span>local · dqwen · kqwen · cloud · auto</span></li>
+                <li><b><span data-lang="es">5 rutas</span><span data-lang="en">5 routes</span></b><span>local · dqwen · kqwen · cloud · auto</span></li>
                 <li><b>Local-first</b><span data-lang="es">sin API por defecto</span><span data-lang="en">no API by default</span></li>
                 <li><b>Budget</b><span data-lang="es">control diario explícito</span><span data-lang="en">explicit daily control</span></li>
               </ul>
@@ -713,16 +713,75 @@
           </div>
           <div class="contact-side">
             <p>
-              <span data-lang="es">Contame el objetivo, el contexto y la restricción principal. El primer paso es convertir ambigüedad en un plan verificable.</span>
-              <span data-lang="en">Tell me the goal, context and main constraint. The first step is turning ambiguity into a verifiable plan.</span>
+              <span data-lang="es">Contame el objetivo, el contexto y la restricción principal. El mensaje llega directo y el primer paso es convertir ambigüedad en un plan verificable.</span>
+              <span data-lang="en">Share the goal, context and main constraint. Your message arrives directly, and the first step is turning ambiguity into a verifiable plan.</span>
             </p>
-            <div class="contact-actions">
-              <a class="button button-primary" href="mailto:matiasezequielarzu@gmail.com">
-                <span data-lang="es">Escribir por email</span><span data-lang="en">Send an email</span> ↗
-              </a>
-              <a class="button button-ghost" href="https://www.linkedin.com/in/mattmercado77/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-              <a class="button button-ghost" href="https://github.com/Mattarzu" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-            </div>
+
+            <form class="contact-form" data-contact-form novalidate>
+              <div class="contact-form-grid">
+                <label>
+                  <span data-lang="es">Nombre</span><span data-lang="en">Name</span>
+                  <input
+                    type="text"
+                    name="name"
+                    maxlength="80"
+                    autocomplete="name"
+                    required
+                    data-placeholder-es="Tu nombre"
+                    data-placeholder-en="Your name"
+                    placeholder="Tu nombre"
+                  />
+                </label>
+                <label>
+                  <span data-lang="es">Email o vía de contacto</span><span data-lang="en">Email or contact channel</span>
+                  <input
+                    type="text"
+                    name="contact"
+                    maxlength="160"
+                    autocomplete="email"
+                    required
+                    data-placeholder-es="nombre@email.com"
+                    data-placeholder-en="name@email.com"
+                    placeholder="nombre@email.com"
+                  />
+                </label>
+              </div>
+
+              <label>
+                <span data-lang="es">Contexto del proyecto</span><span data-lang="en">Project context</span>
+                <textarea
+                  name="message"
+                  rows="5"
+                  maxlength="2000"
+                  required
+                  data-placeholder-es="Objetivo, situación actual y restricción principal…"
+                  data-placeholder-en="Goal, current situation and main constraint…"
+                  placeholder="Objetivo, situación actual y restricción principal…"
+                ></textarea>
+              </label>
+
+              <label class="contact-honeypot" aria-hidden="true">
+                Website
+                <input type="text" name="website" tabindex="-1" autocomplete="off" />
+              </label>
+
+              <div class="contact-form-footer">
+                <button class="button button-primary" type="submit" data-contact-submit>
+                  <span data-lang="es">Enviar consulta</span><span data-lang="en">Send enquiry</span>
+                  <span aria-hidden="true">↗</span>
+                </button>
+                <p class="contact-status" role="status" aria-live="polite" data-contact-status>
+                  <span data-lang="es">Envío protegido por validación y rate limiting.</span>
+                  <span data-lang="en">Protected by validation and rate limiting.</span>
+                </p>
+              </div>
+            </form>
+
+            <nav class="contact-links" aria-label="Perfiles profesionales">
+              <a href="mailto:matiasezequielarzu@gmail.com">Email ↗</a>
+              <a href="https://www.linkedin.com/in/mattmercado77/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+              <a href="https://github.com/Mattarzu" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </nav>
           </div>
         </div>
       </section>
@@ -808,6 +867,7 @@
     </aside>
 
     <script src="./contact-config.js" defer></script>
+    <script src="./assets/js/contact-form.js" defer></script>
     <script src="./assets/js/home-v3.js" defer></script>
   </body>
 </html>

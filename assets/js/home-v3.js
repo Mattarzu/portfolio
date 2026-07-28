@@ -1,6 +1,7 @@
 (() => {
   const root = document.documentElement;
   const languageKey = "allfiction_language";
+  const legacyLanguageKey = "mmlab_language";
   const languageButtons = Array.from(document.querySelectorAll("[data-language]"));
   const pageTitle = {
     "es-AR": root.dataset.titleEs,
@@ -24,6 +25,47 @@
     if (node && value) node.setAttribute("content", value);
   }
 
+  function syncAccessibleLanguage(language) {
+    const english = language === "en-GB";
+    const navToggleNode = document.querySelector("[data-nav-toggle]");
+    const navOpen = navToggleNode?.getAttribute("aria-expanded") === "true";
+    const localizedAttributes = [
+      [".brand", "aria-label", "ALLFICTION Software — inicio", "ALLFICTION Software — home"],
+      ["[data-nav]", "aria-label", "Navegación principal", "Main navigation"],
+      [".language-switch", "aria-label", "Idioma", "Language"],
+      ["[data-nav-toggle]", "aria-label", navOpen ? "Cerrar navegación" : "Abrir navegación", navOpen ? "Close navigation" : "Open navigation"],
+      [".hero-stage", "aria-label", "Sistema visual de ALLFICTION", "ALLFICTION visual system"],
+      [".hero-trust", "aria-label", "Especialidades", "Expertise"],
+      [".monogram img[alt]", "alt", "Monograma AF", "AF monogram"],
+      [".signal-bar", "aria-label", "Evidencia resumida", "Evidence summary"],
+      [".risk-console", "aria-label", "Vista conceptual del motor de riesgo", "Conceptual risk-engine view"],
+      [".risk-chart svg[aria-label]", "aria-label", "Tendencia estable de health factor", "Stable health-factor trend"],
+      [".product-preview", "aria-label", "Vistas de Qivox Gym", "Qivox Gym product views"],
+      [".product-preview img[alt]", "alt", "Aplicación móvil de Qivox Gym", "Qivox Gym mobile application"],
+      [".router-console", "aria-label", "Consola conceptual de PolyLLM Router", "Conceptual PolyLLM Router console"],
+      [".evidence-panel", "aria-label", "Evidencia de entrega", "Delivery evidence"],
+      [".contact-links", "aria-label", "Perfiles profesionales", "Professional profiles"],
+      [".site-footer nav", "aria-label", "Enlaces externos", "External links"],
+      ["[data-ai-launcher]", "aria-label", "Abrir AF Intelligence", "Open AF Intelligence"],
+      ["[data-ai-panel]", "aria-label", "AF Intelligence", "AF Intelligence"],
+      ["[data-ai-close]", "aria-label", "Cerrar AF Intelligence", "Close AF Intelligence"],
+      ["[data-ai-submit]", "aria-label", "Enviar pregunta", "Send question"],
+    ];
+
+    localizedAttributes.forEach(([selector, attribute, es, en]) => {
+      document.querySelectorAll(selector).forEach((node) => {
+        node.setAttribute(attribute, english ? en : es);
+      });
+    });
+
+    document.querySelectorAll("[data-placeholder-es][data-placeholder-en]").forEach((node) => {
+      node.setAttribute(
+        "placeholder",
+        english ? node.dataset.placeholderEn : node.dataset.placeholderEs,
+      );
+    });
+  }
+
   function setLanguage(value, syncUrl = true) {
     const language = normalizeLanguage(value);
     root.lang = language;
@@ -45,6 +87,7 @@
     }
 
     localStorage.setItem(languageKey, language);
+    localStorage.setItem(legacyLanguageKey, language);
 
     if (syncUrl) {
       const url = new URL(window.location.href);
@@ -53,6 +96,7 @@
       window.history.replaceState({}, "", url);
     }
 
+    syncAccessibleLanguage(language);
     document.dispatchEvent(new CustomEvent("allfiction:language", { detail: { language } }));
   }
 
@@ -61,7 +105,7 @@
   });
 
   const requestedLanguage = new URLSearchParams(window.location.search).get("lang");
-  const savedLanguage = localStorage.getItem(languageKey);
+  const savedLanguage = localStorage.getItem(languageKey) || localStorage.getItem(legacyLanguageKey);
   setLanguage(requestedLanguage || savedLanguage || navigator.language, false);
 
   document.querySelectorAll("[data-current-year]").forEach((node) => {
@@ -80,6 +124,7 @@
     if (!navToggle || !nav) return;
     navToggle.setAttribute("aria-expanded", "false");
     nav.classList.remove("is-open");
+    syncAccessibleLanguage(currentLanguage());
   }
 
   if (navToggle && nav) {
@@ -87,6 +132,7 @@
       const open = navToggle.getAttribute("aria-expanded") !== "true";
       navToggle.setAttribute("aria-expanded", String(open));
       nav.classList.toggle("is-open", open);
+      syncAccessibleLanguage(currentLanguage());
     });
 
     nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeNav));
