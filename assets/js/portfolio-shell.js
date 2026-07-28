@@ -2,6 +2,7 @@
   const root = document.documentElement;
   const body = document.body;
   const languageKey = "allfiction_language";
+  const legacyLanguageKey = "mmlab_language";
   const pageName = window.location.pathname.split("/").pop() || "index.html";
   const isCatalog = /\/projects\/?$/.test(window.location.pathname) || pageName === "index.html";
   const isErgo = pageName === "ergo-v2.html";
@@ -112,7 +113,57 @@
     "Superficies del producto ERGO CLUB": "ERGO CLUB product surfaces",
     "Estado del producto ERGO CLUB": "ERGO CLUB product status",
     "Arquitectura técnica de ERGO CLUB": "ERGO CLUB technical architecture",
+    "Plataforma web/PWA para administrar socios, membresías, pagos, staff, sedes,": "A web/PWA platform for managing members, memberships, payments, staff and locations,",
+    "actividades y experiencia mobile. El proyecto separa web pública, app mobile": "activities and the mobile experience. The product separates the public site, mobile app",
+    "y modo admin/staff para operación desde escritorio.": "and admin/staff mode for desktop operations.",
+    "Landing comercial de ERGO CLUB para presentar el gimnasio, sus sedes,": "ERGO CLUB commercial landing page presenting the gym and its locations,",
+    "actividades, planes y accesos principales.": "activities, plans and main access points.",
+    "Experiencia enfocada en socios desde celular, con navegación tipo app": "A member-focused mobile experience with app-like navigation",
+    "y acceso rápido a las funciones principales.": "and quick access to core features.",
+    "Panel separado para administración operativa desde PC: staff, gestión": "A separate desktop operations panel for staff and internal management,",
+    "interna, control de socios, membresías y operaciones del gimnasio.": "covering members, memberships and gym workflows.",
+    "Socios": "Members",
+    "Operaciones": "Operations",
+    "Frontend en Cloudflare Pages y backend/API en Cloudflare Worker.": "Frontend on Cloudflare Pages and backend/API on Cloudflare Worker.",
+    "ERGO CLUB está separado por superficies de producto y capas técnicas para mantener": "ERGO CLUB separates product surfaces and technical layers to keep",
+    "web pública, app privada, administración, API y datos desacoplados.": "the public site, private app, administration, API and data decoupled.",
+    "La web pública vive en": "The public site lives at",
+    ", la app privada en": ", the private app at",
+    "y el panel administrativo en": "and the admin panel at",
+    ". Esto evita mezclar landing,": ". This prevents mixing the landing page,",
+    "login y operación interna.": "login and internal operations.",
+    "El sistema está preparado para seguir creciendo con más módulos de gestión,": "The system is ready to grow with more management modules,",
+    "reportes, automatizaciones, métricas y administración multi-sede.": "reports, automation, metrics and multi-site administration.",
+    "ERGO CLUB se mantiene aislado del portfolio para conservar deploy, base de datos,": "ERGO CLUB remains isolated from the portfolio so deployment and database,",
+    "backend, secretos y evolución técnica independientes.": "backend, secrets and technical evolution remain independent.",
   }));
+
+
+  const accessibleTranslations = new Map([
+    ["Navegación principal", "Main navigation"],
+    ["Idioma", "Language"],
+    ["Abrir navegación", "Open navigation"],
+    ["Cerrar navegación", "Close navigation"],
+    ["Filtrar proyectos", "Filter projects"],
+    ["Enlaces", "Links"],
+    ["Visualización conceptual del health factor", "Conceptual health-factor visualisation"],
+    ["Serie de riesgo con recuperación", "Risk series with recovery"],
+    ["Navegación", "Navigation"],
+    ["Resumen técnico", "Technical summary"],
+    ["Vista previa de ERGO CLUB", "ERGO CLUB preview"],
+    ["Captura de la web pública de ERGO CLUB", "Public ERGO CLUB website screenshot"],
+    ["Superficies del producto ERGO CLUB", "ERGO CLUB product surfaces"],
+    ["Estado del producto ERGO CLUB", "ERGO CLUB product status"],
+    ["Arquitectura técnica de ERGO CLUB", "ERGO CLUB technical architecture"],
+    ["Tecnologías", "Technologies"],
+    ["Seleccionar idioma", "Select language"],
+    ["Estado público del proyecto", "Public project status"],
+    ["Navegación entre proyectos", "Project navigation"],
+    ["Evidencia del proyecto", "Project evidence"],
+  ]);
+  const accessibleTranslationsReverse = new Map(
+    Array.from(accessibleTranslations, ([es, en]) => [en, es]),
+  );
 
   const originalText = new WeakMap();
 
@@ -147,10 +198,17 @@
     const title = language === "en-GB" ? root.dataset.titleEn : root.dataset.titleEs;
     const description =
       language === "en-GB" ? root.dataset.descriptionEn : root.dataset.descriptionEs;
+    const setMeta = (selector, value) => {
+      if (value) document.querySelector(selector)?.setAttribute("content", value);
+    };
+
     if (title) document.title = title;
-    if (description) {
-      document.querySelector('meta[name="description"]')?.setAttribute("content", description);
-    }
+    setMeta('meta[name="description"]', description);
+    setMeta('meta[property="og:title"]', title);
+    setMeta('meta[name="twitter:title"]', title);
+    setMeta('meta[property="og:description"]', description);
+    setMeta('meta[name="twitter:description"]', description);
+    setMeta('meta[property="og:locale"]', language === "en-GB" ? "en_GB" : "es_AR");
   }
 
   function syncLanguageButtons(language) {
@@ -161,21 +219,20 @@
 
   function setLanguage(value, syncUrl = true) {
     const language = normalizeLanguage(value);
+    root.lang = language;
+    localStorage.setItem(languageKey, language);
+    localStorage.setItem(legacyLanguageKey, language);
 
     if (isRouter && window.MMLAB_I18N?.setLanguage) {
       window.MMLAB_I18N.setLanguage(language, { syncUrl });
-    } else {
-      root.lang = language;
-      localStorage.setItem(languageKey, language);
-      updateMetadata(language);
-      if (syncUrl) {
-        const url = new URL(window.location.href);
-        if (language === "es-AR") url.searchParams.delete("lang");
-        else url.searchParams.set("lang", "en");
-        window.history.replaceState({}, "", url);
-      }
+    } else if (syncUrl) {
+      const url = new URL(window.location.href);
+      if (language === "es-AR") url.searchParams.delete("lang");
+      else url.searchParams.set("lang", "en");
+      window.history.replaceState({}, "", url);
     }
 
+    updateMetadata(language);
     translateErgo(language);
     syncLanguageButtons(language);
     updateAccessibleCopy(language);
@@ -183,6 +240,15 @@
 
   function updateAccessibleCopy(language) {
     const english = language === "en-GB";
+    const attributeMap = english ? accessibleTranslations : accessibleTranslationsReverse;
+    document.querySelectorAll("[aria-label], [alt], [title], [placeholder]").forEach((node) => {
+      ["aria-label", "alt", "title", "placeholder"].forEach((attribute) => {
+        const current = node.getAttribute(attribute);
+        const translated = current ? attributeMap.get(current) : null;
+        if (translated) node.setAttribute(attribute, translated);
+      });
+    });
+
     const header = document.querySelector("[data-af-shell-header]");
     const nav = document.querySelector("[data-af-shell-nav]");
     const languageGroup = document.querySelector("[data-af-language-group]");
@@ -316,6 +382,17 @@
     });
   }
 
+  window.addEventListener("mmlab:languagechange", (event) => {
+    const language = normalizeLanguage(event.detail?.language || root.lang);
+    root.lang = language;
+    localStorage.setItem(languageKey, language);
+    localStorage.setItem(legacyLanguageKey, language);
+    updateMetadata(language);
+    translateErgo(language);
+    syncLanguageButtons(language);
+    updateAccessibleCopy(language);
+  });
+
   buildHeader();
   buildProofStrip();
   buildConversion();
@@ -324,6 +401,6 @@
   body.dataset.afPage = isCatalog ? "catalog" : pageName.replace(/\.html$/, "");
 
   const requested = new URLSearchParams(window.location.search).get("lang");
-  const saved = localStorage.getItem(languageKey) || localStorage.getItem("mmlab_language");
+  const saved = localStorage.getItem(languageKey) || localStorage.getItem(legacyLanguageKey);
   setLanguage(requested || saved || navigator.language, false);
 })();
