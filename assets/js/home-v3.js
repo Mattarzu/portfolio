@@ -1,6 +1,7 @@
 (() => {
   const root = document.documentElement;
   const languageKey = "allfiction_language";
+  const legacyLanguageKey = "mmlab_language";
   const languageButtons = Array.from(document.querySelectorAll("[data-language]"));
   const pageTitle = {
     "es-AR": root.dataset.titleEs,
@@ -34,8 +35,10 @@
       [".language-switch", "aria-label", "Idioma", "Language"],
       ["[data-nav-toggle]", "aria-label", navOpen ? "Cerrar navegación" : "Abrir navegación", navOpen ? "Close navigation" : "Open navigation"],
       [".hero-stage", "aria-label", "Sistema visual de ALLFICTION", "ALLFICTION visual system"],
+      [".signal-bar", "aria-label", "Evidencia resumida", "Evidence summary"],
       [".risk-console", "aria-label", "Vista conceptual del motor de riesgo", "Conceptual risk-engine view"],
       [".product-preview", "aria-label", "Vistas de Qivox Gym", "Qivox Gym product views"],
+      [".product-preview img[alt]", "alt", "Aplicación móvil de Qivox Gym", "Qivox Gym mobile application"],
       [".router-console", "aria-label", "Consola conceptual de PolyLLM Router", "Conceptual PolyLLM Router console"],
       [".evidence-panel", "aria-label", "Evidencia de entrega", "Delivery evidence"],
       [".contact-links", "aria-label", "Perfiles profesionales", "Professional profiles"],
@@ -81,6 +84,7 @@
     }
 
     localStorage.setItem(languageKey, language);
+    localStorage.setItem(legacyLanguageKey, language);
 
     if (syncUrl) {
       const url = new URL(window.location.href);
@@ -98,7 +102,7 @@
   });
 
   const requestedLanguage = new URLSearchParams(window.location.search).get("lang");
-  const savedLanguage = localStorage.getItem(languageKey);
+  const savedLanguage = localStorage.getItem(languageKey) || localStorage.getItem(legacyLanguageKey);
   setLanguage(requestedLanguage || savedLanguage || navigator.language, false);
 
   document.querySelectorAll("[data-current-year]").forEach((node) => {
