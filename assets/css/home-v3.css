@@ -2643,8 +2643,18 @@ html[lang="es-AR"] [data-lang="es"] {
 }
 
 @media (max-width: 420px) {
+  .nav-cluster {
+    gap: 5px;
+  }
+
   .language-switch {
-    display: none;
+    display: flex;
+    padding: 2px;
+  }
+
+  .language-switch button {
+    min-width: 29px;
+    padding: 5px 6px;
   }
 
   .hero h1 {
