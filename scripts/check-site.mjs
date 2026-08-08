@@ -81,6 +81,10 @@ for (const htmlPath of collectFiles(root, ".html")) {
 
 const home = readFileSync(join(root, "index.html"), "utf8");
 for (const marker of [
+  "MollChef",
+  "MotorAtlas 3D",
+  "MattMesh",
+  "5/5",
   "Crypto Risk Engine",
   "Qivox Gym",
   "PolyLLM Router",
@@ -146,7 +150,7 @@ if (manifest.start_url !== "/" || manifest.scope !== "/") {
 
 const budgets = [
   ["index.html", 80_000],
-  ["assets/css/home-v3.css", 60_000],
+  ["assets/css/home-v3.css", 64_000],
   ["assets/js/home-v3.js", 30_000],
   ["assets/js/contact-form.js", 8_000],
   ["assets/css/portfolio-shell.css", 20_000],

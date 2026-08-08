@@ -38,6 +38,8 @@
       [".hero-trust", "aria-label", "Especialidades", "Expertise"],
       [".monogram img[alt]", "alt", "Monograma AF", "AF monogram"],
       [".signal-bar", "aria-label", "Evidencia resumida", "Evidence summary"],
+      [".mollchef-visual", "aria-label", "Vista conceptual de MollChef en modo cocina", "Conceptual MollChef cooking-mode view"],
+      [".mesh-visual", "aria-label", "Topología conceptual de MattMesh con tres nodos", "Conceptual three-node MattMesh topology"],
       [".risk-console", "aria-label", "Vista conceptual del motor de riesgo", "Conceptual risk-engine view"],
       [".risk-chart svg[aria-label]", "aria-label", "Tendencia estable de health factor", "Stable health-factor trend"],
       [".product-preview", "aria-label", "Vistas de Qivox Gym", "Qivox Gym product views"],

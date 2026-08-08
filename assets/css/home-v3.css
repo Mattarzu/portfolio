@@ -2854,3 +2854,473 @@ html[lang="es-AR"] [data-lang="es"] {
     width: 100%;
   }
 }
+
+/* Recent engineering — recruiter-facing evidence */
+.recent-work {
+  padding-top: 132px;
+}
+
+.recent-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.recent-card {
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+  padding: clamp(24px, 3vw, 38px);
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.025), transparent 46%),
+    var(--surface);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.19);
+}
+
+.recent-card::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle at top right, rgba(214, 174, 98, 0.1), transparent 70%);
+  content: "";
+  pointer-events: none;
+}
+
+.recent-card-featured {
+  grid-column: 1 / -1;
+  padding: clamp(28px, 4vw, 52px);
+  border-color: rgba(214, 174, 98, 0.23);
+  background:
+    radial-gradient(circle at 82% 15%, rgba(214, 174, 98, 0.09), transparent 28%),
+    linear-gradient(135deg, #12140f, #0b0d0c 62%);
+}
+
+.recent-card-head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 34px;
+}
+
+.recent-number,
+.recent-date,
+.recent-domain,
+.visual-label {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.recent-number {
+  color: var(--gold-high);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.recent-date {
+  margin-left: auto;
+  color: var(--muted-dark);
+  font-size: 0.63rem;
+  font-weight: 750;
+}
+
+.status-build {
+  border-color: rgba(141, 169, 213, 0.22);
+  background: rgba(141, 169, 213, 0.075);
+  color: #b6cae9;
+}
+
+.status-build i {
+  background: var(--blue);
+}
+
+.recent-featured-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(330px, 0.72fr);
+  align-items: center;
+  gap: clamp(38px, 7vw, 90px);
+}
+
+.recent-domain {
+  margin: 0 0 13px;
+  color: var(--gold);
+  font-size: 0.65rem;
+  font-weight: 800;
+}
+
+.recent-card h3 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.35rem);
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.recent-card:not(.recent-card-featured) h3 {
+  font-size: clamp(1.9rem, 3vw, 2.55rem);
+}
+
+.recent-card h3 em {
+  color: var(--muted);
+  font-size: 0.48em;
+  font-style: normal;
+  font-weight: 520;
+  letter-spacing: -0.02em;
+}
+
+.recent-summary {
+  max-width: 680px;
+  margin: 20px 0 0;
+  color: var(--text-soft);
+  font-size: 1.02rem;
+  line-height: 1.72;
+}
+
+.recent-proof {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 27px;
+}
+
+.recent-proof > span {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+  padding: 13px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.065);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.recent-proof b {
+  color: var(--gold-high);
+  font-size: 0.76rem;
+}
+
+.recent-proof small {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.67rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.engineering-signal {
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin: 23px 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+.engineering-signal b {
+  color: var(--text-soft);
+}
+
+.recent-visual {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+}
+
+.mobile-product-frame {
+  width: min(100%, 318px);
+  padding: 11px;
+  border: 1px solid rgba(214, 174, 98, 0.24);
+  border-radius: 31px;
+  background: #080907;
+  box-shadow: 0 34px 80px rgba(0, 0, 0, 0.58), 0 0 0 7px rgba(255, 255, 255, 0.018);
+  transform: rotate(1.5deg);
+}
+
+.mobile-product-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 6px 11px;
+}
+
+.mobile-product-top > span {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--gold-high);
+  color: #11120f;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.mobile-product-top small {
+  color: var(--muted);
+  font-family: monospace;
+  font-size: 0.59rem;
+  letter-spacing: 0.08em;
+}
+
+.mobile-product-top i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-left: auto;
+  background: var(--green);
+  box-shadow: 0 0 10px var(--green);
+}
+
+.recipe-cover {
+  display: flex;
+  min-height: 142px;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 17px;
+  border-radius: 20px;
+  background:
+    linear-gradient(to top, rgba(7, 8, 7, 0.96), rgba(7, 8, 7, 0.08)),
+    radial-gradient(circle at 68% 30%, #c68b48, transparent 26%),
+    linear-gradient(135deg, #57452c, #171910);
+}
+
+.recipe-cover span,
+.recipe-cover small,
+.cooking-step small,
+.cleo-tip small {
+  color: var(--gold-high);
+  font-family: monospace;
+  font-size: 0.57rem;
+  letter-spacing: 0.1em;
+}
+
+.recipe-cover strong {
+  margin-top: 4px;
+  font-size: 1.27rem;
+}
+
+.recipe-cover small {
+  margin-top: 3px;
+  color: var(--muted);
+}
+
+.cooking-progress {
+  overflow: hidden;
+  height: 3px;
+  border-radius: 9px;
+  margin: 14px 3px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.cooking-progress i {
+  display: block;
+  width: 44%;
+  height: 100%;
+  background: var(--gold);
+}
+
+.cooking-step,
+.cooking-timer,
+.cleo-tip {
+  padding: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  background: var(--surface-soft);
+}
+
+.cooking-step p,
+.cleo-tip p {
+  margin: 5px 0 0;
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.cooking-timer {
+  display: flex;
+  align-items: center;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+
+.cooking-timer b {
+  margin-left: auto;
+  color: var(--text);
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+.cooking-timer i {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  border-radius: 50%;
+  margin-left: 9px;
+  background: var(--gold);
+  color: #090a08;
+  font-size: 0.58rem;
+  font-style: normal;
+}
+
+.cleo-tip {
+  display: flex;
+  gap: 9px;
+  margin-top: 7px;
+  border-color: rgba(214, 174, 98, 0.13);
+}
+
+.cleo-tip > b {
+  display: grid;
+  width: 27px;
+  height: 27px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 9px;
+  background: rgba(214, 174, 98, 0.14);
+  color: var(--gold-high);
+}
+
+.visual-label {
+  color: var(--muted-dark);
+  font-size: 0.58rem;
+}
+
+.atlas-diagram,
+.mesh-visual {
+  position: relative;
+  min-height: 154px;
+  margin: 28px 0 24px;
+  border: 1px solid rgba(255, 255, 255, 0.055);
+  border-radius: 17px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    rgba(0, 0, 0, 0.16);
+  background-size: 24px 24px;
+}
+
+.atlas-diagram > span {
+  position: absolute;
+  padding: 7px 9px;
+  border: 1px solid rgba(141, 169, 213, 0.22);
+  border-radius: 8px;
+  background: #11151a;
+  color: #b6cae9;
+  font-family: monospace;
+  font-size: 0.59rem;
+}
+
+.atlas-diagram .atlas-core {
+  top: 52px;
+  left: 50%;
+  border-color: rgba(214, 174, 98, 0.35);
+  background: #1b1811;
+  color: var(--gold-high);
+  transform: translateX(-50%);
+}
+
+.atlas-diagram span:nth-of-type(2) { top: 18px; left: 8%; }
+.atlas-diagram span:nth-of-type(3) { right: 7%; bottom: 19px; }
+.atlas-diagram span:nth-of-type(4) { bottom: 14px; left: 10%; }
+
+.recent-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.recent-metrics li {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 3px;
+  padding-right: 10px;
+  border-right: 1px solid rgba(255, 255, 255, 0.065);
+}
+
+.recent-metrics li:last-child { border: 0; padding-left: 10px; }
+.recent-metrics li:nth-child(2) { padding-left: 10px; }
+.recent-metrics b { color: var(--gold-high); font-family: monospace; font-size: 1rem; }
+.recent-metrics span { overflow-wrap: anywhere; color: var(--muted); font-size: 0.66rem; }
+
+.mesh-visual {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: center;
+  gap: 7px;
+  padding: 20px 14px 45px;
+}
+
+.mesh-node {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 5px;
+  border: 1px solid rgba(125, 211, 167, 0.14);
+  border-radius: 10px;
+  background: rgba(12, 19, 16, 0.8);
+  text-align: center;
+}
+
+.mesh-node i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-bottom: 6px;
+  background: var(--green);
+  box-shadow: 0 0 9px var(--green);
+}
+
+.mesh-node b { font-family: monospace; font-size: 0.68rem; }
+.mesh-node small { overflow: hidden; max-width: 100%; color: var(--muted-dark); font-size: 0.56rem; text-overflow: ellipsis; white-space: nowrap; }
+.mesh-node-main { border-color: rgba(214, 174, 98, 0.23); transform: translateY(-8px); }
+
+.mesh-bus {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(125, 211, 167, 0.16);
+}
+
+.mesh-bus span { color: var(--green); font-family: monospace; font-size: 0.54rem; letter-spacing: 0.08em; }
+
+@media (max-width: 900px) {
+  .recent-featured-layout { grid-template-columns: 1fr; }
+  .recent-visual { margin-top: 10px; }
+}
+
+@media (max-width: 780px) {
+  .recent-work { padding-top: 92px; }
+  .recent-grid { grid-template-columns: 1fr; }
+  .recent-card-featured { grid-column: auto; }
+  .recent-card { padding: 24px; }
+  .recent-card-head { margin-bottom: 26px; }
+  .recent-proof { grid-template-columns: 1fr; }
+  .recent-proof small { white-space: normal; }
+  .mobile-product-frame { transform: none; }
+}
+
+@media (max-width: 420px) {
+  .recent-card { padding: 20px; border-radius: 20px; }
+  .recent-card-head { align-items: flex-start; flex-wrap: wrap; gap: 8px; }
+  .recent-date { width: 100%; margin-left: 0; }
+  .recent-card h3,
+  .recent-card:not(.recent-card-featured) h3 { font-size: 2rem; }
+  .recent-summary { font-size: 0.93rem; }
+  .recent-metrics b { font-size: 0.86rem; }
+  .recent-metrics span { font-size: 0.58rem; }
+}

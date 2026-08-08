@@ -25,6 +25,26 @@ test("retrieves applied AI evidence", () => {
   assert.equal(sources[0].id, "polyllm");
 });
 
+test("retrieves recent product and mobile engineering evidence", () => {
+  const sources = retrievePortfolioContext(
+    "¿Qué hiciste en MollChef con Cooking Mode, Cleo y la PWA mobile?",
+  );
+
+  assert.equal(sources[0].id, "mollchef");
+});
+
+test("retrieves recent 3D and distributed-systems evidence", () => {
+  const motorAtlas = retrievePortfolioContext(
+    "Contame sobre MotorAtlas 3D, sus procedimientos y MinIO",
+  );
+  const mattMesh = retrievePortfolioContext(
+    "¿Cómo funciona MattMesh con AgentBridge, Tailscale y Whisper?",
+  );
+
+  assert.equal(motorAtlas[0].id, "motoratlas");
+  assert.equal(mattMesh[0].id, "mattmesh");
+});
+
 test("does not manufacture context for an unrelated question", () => {
   assert.deepEqual(
     retrievePortfolioContext("¿Cuál es la capital de Francia?"),

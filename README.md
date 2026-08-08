@@ -7,6 +7,11 @@ La portada V3 incorpora AF Intelligence, un asistente híbrido con recuperación
 contexto verificado, IA generativa real, enlaces de evidencia y fallback guiado.
 La credencial del proveedor existe únicamente en el Worker; nunca se expone al navegador.
 
+La sección de ingeniería reciente presenta MollChef, MotorAtlas 3D y
+MattMesh/AgentBridge con evidencia de producto, modelado de dominio, pruebas,
+rendimiento e infraestructura. Los casos anteriores permanecen como evidencia
+complementaria en otros dominios.
+
 ## Producción
 
 - URL: <https://allfiction.56-126-148-93.sslip.io/>
