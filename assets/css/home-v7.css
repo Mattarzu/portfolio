@@ -1,0 +1,441 @@
+/* ALLFICTION V7 — contextual navigation, system-map identity and adaptive motion. */
+
+html.design-v7 {
+  --af7-orange: #ff6b16;
+  --af7-cream: #efe7dc;
+  --af7-ink: #15110e;
+  --af7-line: rgba(255, 122, 43, 0.22);
+}
+
+/* Header readout: tells the visitor where they are without adding another nav bar. */
+html.design-v7 .af-section-readout {
+  display: none;
+  min-width: 178px;
+  align-items: center;
+  gap: 9px;
+  color: rgba(245, 240, 231, 0.58);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+html.design-v7 .af-section-readout::before {
+  width: 22px;
+  height: 1px;
+  background: var(--af7-orange);
+  content: "";
+}
+
+html.design-v7 .af-section-readout strong {
+  color: var(--af7-orange);
+  font-weight: 800;
+}
+
+@media (min-width: 1180px) {
+  html.design-v7 .af-section-readout {
+    display: flex;
+  }
+}
+
+/* Context rail — a compact location map, desktop only. */
+html.design-v7 .af-context-rail {
+  position: fixed;
+  z-index: 125;
+  top: 50%;
+  left: clamp(12px, 1.6vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transform: translateY(-50%);
+}
+
+html.design-v7 .af-context-rail::before {
+  position: absolute;
+  top: 9px;
+  bottom: 9px;
+  left: 4px;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.09);
+  content: "";
+}
+
+html.design-v7 .af-context-link {
+  position: relative;
+  display: grid;
+  min-height: 26px;
+  grid-template-columns: 9px 1fr;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  color: rgba(244, 237, 228, 0.28);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.49rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 180ms ease;
+}
+
+html.design-v7 .af-context-link i {
+  position: relative;
+  z-index: 2;
+  width: 9px;
+  height: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+  background: #0a0807;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+html.design-v7 .af-context-link span {
+  overflow: hidden;
+  max-width: 0;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition:
+    max-width 220ms ease,
+    opacity 180ms ease,
+    transform 180ms ease;
+  white-space: nowrap;
+}
+
+html.design-v7 .af-context-rail:hover .af-context-link span,
+html.design-v7 .af-context-link.is-active span,
+html.design-v7 .af-context-link:focus-visible span {
+  max-width: 130px;
+  opacity: 1;
+  transform: none;
+}
+
+html.design-v7 .af-context-link.is-active {
+  color: rgba(255, 145, 78, 0.96);
+}
+
+html.design-v7 .af-context-link.is-active i {
+  border-color: var(--af7-orange);
+  background: var(--af7-orange);
+  box-shadow: 0 0 17px rgba(255, 107, 22, 0.46);
+  transform: scale(1.08);
+}
+
+html.design-v7 .af-context-link:focus-visible {
+  outline: none;
+  color: #fff;
+}
+
+@media (max-width: 1179px), (pointer: coarse) {
+  html.design-v7 .af-context-rail {
+    display: none;
+  }
+}
+
+/* ALLFICTION system map — recurring visual grammar rather than a generic services strip. */
+html.design-v7 .af-system-map-section {
+  position: relative;
+  overflow: clip;
+  padding: clamp(88px, 10vw, 150px) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.055);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+  background:
+    radial-gradient(circle at 50% 48%, rgba(255, 107, 22, 0.11), transparent 31rem),
+    #090706;
+}
+
+html.design-v7 .af-system-map-section::before,
+html.design-v7 .af-system-map-section::after {
+  position: absolute;
+  width: 38vw;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 107, 22, 0.16), transparent);
+  content: "";
+  pointer-events: none;
+}
+
+html.design-v7 .af-system-map-section::before {
+  top: 24%;
+  left: -6vw;
+  transform: rotate(17deg);
+}
+
+html.design-v7 .af-system-map-section::after {
+  right: -4vw;
+  bottom: 21%;
+  transform: rotate(-16deg);
+}
+
+html.design-v7 .af-system-map-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(280px, 0.42fr);
+  align-items: end;
+  gap: 60px;
+}
+
+html.design-v7 .af-system-map-head h2 {
+  max-width: 860px;
+  margin: 20px 0 0;
+  color: #f5eee5;
+  font-size: clamp(3rem, 6.2vw, 6.5rem);
+  font-weight: 610;
+  letter-spacing: -0.068em;
+  line-height: 0.92;
+}
+
+html.design-v7 .af-system-map-head h2 em {
+  color: var(--af7-orange);
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+html.design-v7 .af-system-map-head > p {
+  max-width: 430px;
+  margin: 0;
+  color: #9e958d;
+  font-size: 0.88rem;
+  line-height: 1.75;
+}
+
+html.design-v7 .af-system-map {
+  position: relative;
+  width: min(100%, 980px);
+  aspect-ratio: 1.95 / 1;
+  margin: clamp(54px, 7vw, 94px) auto 0;
+}
+
+html.design-v7 .af-system-map svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+html.design-v7 .af-system-map path {
+  fill: none;
+  stroke: rgba(255, 132, 63, 0.19);
+  stroke-dasharray: 5 8;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+html.design-v7 .af-system-core,
+html.design-v7 .af-system-node {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 128, 55, 0.21);
+  background: rgba(14, 11, 9, 0.9);
+  box-shadow: 0 22px 58px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(12px);
+}
+
+html.design-v7 .af-system-core {
+  top: 50%;
+  left: 50%;
+  width: clamp(112px, 13vw, 154px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  color: #fff8f0;
+  font-size: clamp(2rem, 4vw, 3.7rem);
+  font-weight: 800;
+  letter-spacing: -0.08em;
+  transform: translate(-50%, -50%);
+}
+
+html.design-v7 .af-system-core::after {
+  position: absolute;
+  inset: -18px;
+  border: 1px solid rgba(255, 107, 22, 0.12);
+  border-radius: 50%;
+  content: "";
+}
+
+html.design-v7 .af-system-node {
+  min-width: 132px;
+  min-height: 64px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 13px 16px;
+  border-radius: 13px;
+}
+
+html.design-v7 .af-system-node b {
+  color: #f3ebe1;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+}
+
+html.design-v7 .af-system-node small {
+  margin-top: 6px;
+  color: #766e67;
+  font-size: 0.58rem;
+}
+
+html.design-v7 .af-node-ui { top: 2%; left: 8%; }
+html.design-v7 .af-node-api { top: 7%; right: 7%; }
+html.design-v7 .af-node-ai { top: 43%; right: 0; }
+html.design-v7 .af-node-data { right: 12%; bottom: 1%; }
+html.design-v7 .af-node-jobs { bottom: 1%; left: 13%; }
+html.design-v7 .af-node-deploy { top: 43%; left: 0; }
+
+html.design-v7 .af-system-map-foot {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 22px;
+  color: rgba(244, 237, 228, 0.42);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.54rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+html.design-v7 .af-system-map-foot i {
+  width: 24px;
+  height: 1px;
+  align-self: center;
+  background: var(--af7-orange);
+}
+
+/* Subtle cursor treatment; only enabled by JS on the full desktop tier. */
+html.design-v7 .af-cursor {
+  position: fixed;
+  z-index: 240;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  border: 1px solid rgba(255, 133, 67, 0.72);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(-100px, -100px, 0);
+  transition:
+    width 150ms ease,
+    height 150ms ease,
+    border-color 150ms ease,
+    background 150ms ease,
+    opacity 150ms ease;
+}
+
+html.design-v7 .af-cursor.is-visible { opacity: 1; }
+html.design-v7 .af-cursor.is-interactive {
+  width: 34px;
+  height: 34px;
+  border-color: rgba(255, 107, 22, 0.95);
+  background: rgba(255, 107, 22, 0.08);
+}
+
+/* Adaptive rendering tiers. Existing V5 motion remains the source of truth;
+   these rules only reduce expensive depth when hardware signals are weaker. */
+html.design-v7[data-af-motion="lite"] .v5-cinema::before,
+html.design-v7[data-af-motion="lite"] .v5-cinema-visual::before {
+  filter: blur(16px);
+  opacity: 0.62;
+}
+
+html.design-v7[data-af-motion="lite"] [data-v5-tilt] {
+  --v5-tilt-x: 0deg !important;
+  --v5-tilt-y: 0deg !important;
+}
+
+html.design-v7[data-af-motion="lite"] .v5-build-card,
+html.design-v7[data-af-motion="lite"] .v5-cinema-visual {
+  transition-duration: 220ms;
+}
+
+html.design-v7[data-af-motion="static"] .v5-scroll-meter,
+html.design-v7[data-af-motion="static"] .af-cursor {
+  display: none !important;
+}
+
+html.design-v7[data-af-motion="static"] [data-v5-parallax],
+html.design-v7[data-af-motion="static"] [data-v5-tilt],
+html.design-v7[data-af-motion="static"] .v5-cinema-visual,
+html.design-v7[data-af-motion="static"] .v5-magnetic {
+  transform: none !important;
+  transition: none !important;
+}
+
+html.design-v7[data-af-motion="static"] .v5-cinema::before,
+html.design-v7[data-af-motion="static"] .v5-cinema-visual::before,
+html.design-v7[data-af-motion="static"] .hero-stage::before,
+html.design-v7[data-af-motion="static"] .hero-stage::after {
+  filter: none !important;
+  opacity: 0.32;
+}
+
+html.design-v7[data-af-motion="static"] .af-system-core,
+html.design-v7[data-af-motion="static"] .af-system-node {
+  backdrop-filter: none;
+}
+
+@media (max-width: 900px) {
+  html.design-v7 .af-system-map-section {
+    padding: 82px 0 88px;
+  }
+
+  html.design-v7 .af-system-map-head {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  html.design-v7 .af-system-map-head h2 {
+    font-size: clamp(2.8rem, 13vw, 4.7rem);
+  }
+
+  html.design-v7 .af-system-map {
+    display: grid;
+    width: 100%;
+    aspect-ratio: auto;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 42px;
+  }
+
+  html.design-v7 .af-system-map svg,
+  html.design-v7 .af-system-core {
+    display: none;
+  }
+
+  html.design-v7 .af-system-node {
+    position: static;
+    min-width: 0;
+    min-height: 76px;
+    transform: none;
+  }
+
+  html.design-v7 .af-system-map-foot {
+    justify-content: flex-start;
+    margin-top: 18px;
+  }
+}
+
+@media (max-width: 520px) {
+  html.design-v7 .af-system-map {
+    grid-template-columns: 1fr;
+  }
+
+  html.design-v7 .af-system-node {
+    min-height: 68px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.design-v7 .af-context-link,
+  html.design-v7 .af-context-link i,
+  html.design-v7 .af-context-link span,
+  html.design-v7 .af-cursor {
+    transition: none !important;
+  }
+}
