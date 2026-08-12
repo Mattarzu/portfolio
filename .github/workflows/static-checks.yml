@@ -24,6 +24,7 @@ jobs:
           node --check main.js
           node --check contact-config.js
           node --check assets/js/home-v3.js
+          node --check assets/js/home-v4.js
           node --check assets/js/panda-stable.js
           node --check mmlab-contact-worker/src/worker.js
           node --check mmlab-contact-worker/src/ai-provider.js
