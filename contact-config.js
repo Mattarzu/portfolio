@@ -8,11 +8,13 @@ window.ALLFICTION_AI_ENABLED = true;
 
 // Visual layers are isolated from the production contact/AI/i18n behaviour.
 // V4 establishes the editorial identity; V5 adds progressive enhancement;
-// V6 owns the human, concrete copy and deliberately avoids generic AI marketing language.
+// V6 owns the concrete copy; V7 adds contextual navigation, a reusable
+// ALLFICTION system-map language and device-aware motion tiers.
 (() => {
   const v4Revision = "20260812-v4";
   const v5Revision = "20260812-v5";
   const v6Revision = "20260812-v6";
+  const v7Revision = "20260812-v7";
 
   const ensureStylesheet = (selector, href, datasetKey) => {
     if (document.querySelector(selector)) return;
@@ -45,11 +47,25 @@ window.ALLFICTION_AI_ENABLED = true;
     "allfictionV4",
   );
 
+  const loadV7 = () => {
+    ensureStylesheet(
+      "link[data-allfiction-v7]",
+      `./assets/css/home-v7.css?v=${v7Revision}`,
+      "allfictionV7",
+    );
+    ensureScript(
+      "script[data-allfiction-v7]",
+      `./assets/js/home-v7.js?v=${v7Revision}`,
+      "allfictionV7",
+    );
+  };
+
   const loadV6 = () => {
     ensureScript(
       "script[data-allfiction-v6]",
       `./assets/js/home-v6.js?v=${v6Revision}`,
       "allfictionV6",
+      loadV7,
     );
   };
 
