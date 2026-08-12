@@ -27,6 +27,7 @@ jobs:
           node --check assets/js/home-v4.js
           node --check assets/js/home-v5.js
           node --check assets/js/home-v6.js
+          node --check assets/js/home-v7.js
           node --check assets/js/panda-stable.js
           node --check mmlab-contact-worker/src/worker.js
           node --check mmlab-contact-worker/src/ai-provider.js
