@@ -7,11 +7,12 @@ window.ALLFICTION_AI_ENDPOINT = window.MMLAB_AI_CHAT_ENDPOINT;
 window.ALLFICTION_AI_ENABLED = true;
 
 // Visual layers are isolated from the production contact/AI/i18n behaviour.
-// V4 establishes the editorial identity; V5 progressively enhances it with
-// native sticky scenes, responsive product cinema and fine-pointer depth.
+// V4 establishes the editorial identity; V5 adds progressive enhancement;
+// V6 owns the human, concrete copy and deliberately avoids generic AI marketing language.
 (() => {
   const v4Revision = "20260812-v4";
   const v5Revision = "20260812-v5";
+  const v6Revision = "20260812-v6";
 
   const ensureStylesheet = (selector, href, datasetKey) => {
     if (document.querySelector(selector)) return;
@@ -44,6 +45,14 @@ window.ALLFICTION_AI_ENABLED = true;
     "allfictionV4",
   );
 
+  const loadV6 = () => {
+    ensureScript(
+      "script[data-allfiction-v6]",
+      `./assets/js/home-v6.js?v=${v6Revision}`,
+      "allfictionV6",
+    );
+  };
+
   const loadV5 = () => {
     ensureStylesheet(
       "link[data-allfiction-v5]",
@@ -54,6 +63,7 @@ window.ALLFICTION_AI_ENABLED = true;
       "script[data-allfiction-v5]",
       `./assets/js/home-v5.js?v=${v5Revision}`,
       "allfictionV5",
+      loadV6,
     );
   };
 
