@@ -6,23 +6,61 @@ window.MMLAB_AI_ENABLED = true;
 window.ALLFICTION_AI_ENDPOINT = window.MMLAB_AI_CHAT_ENDPOINT;
 window.ALLFICTION_AI_ENABLED = true;
 
-// V4 is intentionally loaded as an isolated visual/content layer so the existing
-// portfolio behaviour can be reverted without touching contact, AI or i18n logic.
+// Visual layers are isolated from the production contact/AI/i18n behaviour.
+// V4 establishes the editorial identity; V5 progressively enhances it with
+// native sticky scenes, responsive product cinema and fine-pointer depth.
 (() => {
-  const revision = "20260812-v4";
+  const v4Revision = "20260812-v4";
+  const v5Revision = "20260812-v5";
 
-  if (!document.querySelector("link[data-allfiction-v4]")) {
+  const ensureStylesheet = (selector, href, datasetKey) => {
+    if (document.querySelector(selector)) return;
     const stylesheet = document.createElement("link");
     stylesheet.rel = "stylesheet";
-    stylesheet.href = `./assets/css/home-v4.css?v=${revision}`;
-    stylesheet.dataset.allfictionV4 = "true";
+    stylesheet.href = href;
+    stylesheet.dataset[datasetKey] = "true";
     document.head.appendChild(stylesheet);
-  }
+  };
 
-  if (!document.querySelector("script[data-allfiction-v4]")) {
+  const ensureScript = (selector, src, datasetKey, onload) => {
+    const existing = document.querySelector(selector);
+    if (existing) {
+      if (typeof onload === "function") onload();
+      return existing;
+    }
+
     const script = document.createElement("script");
-    script.src = `./assets/js/home-v4.js?v=${revision}`;
-    script.dataset.allfictionV4 = "true";
+    script.src = src;
+    script.async = false;
+    script.dataset[datasetKey] = "true";
+    if (typeof onload === "function") script.addEventListener("load", onload, { once: true });
     document.head.appendChild(script);
-  }
+    return script;
+  };
+
+  ensureStylesheet(
+    "link[data-allfiction-v4]",
+    `./assets/css/home-v4.css?v=${v4Revision}`,
+    "allfictionV4",
+  );
+
+  const loadV5 = () => {
+    ensureStylesheet(
+      "link[data-allfiction-v5]",
+      `./assets/css/home-v5.css?v=${v5Revision}`,
+      "allfictionV5",
+    );
+    ensureScript(
+      "script[data-allfiction-v5]",
+      `./assets/js/home-v5.js?v=${v5Revision}`,
+      "allfictionV5",
+    );
+  };
+
+  ensureScript(
+    "script[data-allfiction-v4]",
+    `./assets/js/home-v4.js?v=${v4Revision}`,
+    "allfictionV4",
+    loadV5,
+  );
 })();
