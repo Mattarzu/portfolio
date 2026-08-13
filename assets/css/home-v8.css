@@ -1,0 +1,392 @@
+/* ALLFICTION V8 — warm yellow accent system.
+   Loaded after V4/V5/V7 so the visual identity changes without touching layout,
+   motion, copy, contact, AI or i18n behaviour. */
+
+:root {
+  --af-yellow: #e7c65a;
+  --af-yellow-high: #f0d97a;
+  --af-yellow-deep: #8d701b;
+  --af-yellow-deeper: #6f5713;
+  --af-yellow-wash: #f6f0d8;
+  --af-yellow-rgb: 231, 198, 90;
+
+  --gold: var(--af-yellow);
+  --gold-high: var(--af-yellow-high);
+  --gold-low: var(--af-yellow-deep);
+  --line: rgba(var(--af-yellow-rgb), 0.18);
+  --line-strong: rgba(var(--af-yellow-rgb), 0.42);
+  --orange-wash: var(--af-yellow-wash);
+}
+
+html.design-v5 {
+  --v5-orange: var(--af-yellow);
+  --v5-orange-soft: var(--af-yellow-high);
+}
+
+html.design-v7 {
+  --af7-orange: var(--af-yellow);
+  --af7-line: rgba(var(--af-yellow-rgb), 0.24);
+}
+
+/* Global atmosphere */
+html.design-v4 body,
+html.design-v5 body {
+  background:
+    radial-gradient(circle at 82% 8%, rgba(var(--af-yellow-rgb), 0.105), transparent 29rem),
+    radial-gradient(circle at 11% 33%, rgba(var(--af-yellow-rgb), 0.045), transparent 25rem),
+    linear-gradient(180deg, #0b0a09 0%, #090706 100%);
+}
+
+html.design-v4 ::selection {
+  background: var(--af-yellow);
+  color: #171208;
+}
+
+/* Header and navigation */
+html.design-v4 .site-header.is-scrolled {
+  border-color: rgba(var(--af-yellow-rgb), 0.18);
+}
+
+html.design-v4 .brand-copy small {
+  color: var(--af-yellow-high);
+}
+
+html.design-v4 .main-nav a:hover,
+html.design-v4 .main-nav a.is-active {
+  background: rgba(var(--af-yellow-rgb), 0.09);
+}
+
+html.design-v4 .ai-nav-button {
+  border-color: rgba(var(--af-yellow-rgb), 0.30);
+  background: rgba(var(--af-yellow-rgb), 0.08);
+  color: var(--af-yellow-high);
+}
+
+/* Hero */
+html.design-v4 .hero::before {
+  background: radial-gradient(circle, rgba(var(--af-yellow-rgb), 0.14), rgba(var(--af-yellow-rgb), 0.025) 38%, transparent 68%);
+}
+
+html.design-v4 .overline,
+html.design-v4 .hero h1 em {
+  color: var(--af-yellow);
+}
+
+html.design-v4 .live-dot {
+  background: var(--af-yellow);
+  box-shadow: 0 0 0 5px rgba(var(--af-yellow-rgb), 0.11);
+}
+
+html.design-v4 .live-dot::after {
+  border-color: rgba(var(--af-yellow-rgb), 0.44);
+}
+
+html.design-v4 .button-primary {
+  border-color: var(--af-yellow);
+  background: var(--af-yellow);
+  color: #171208;
+  box-shadow: 0 16px 42px rgba(var(--af-yellow-rgb), 0.18);
+}
+
+html.design-v4 .button-primary:hover {
+  border-color: var(--af-yellow-high);
+  background: var(--af-yellow-high);
+  box-shadow: 0 19px 50px rgba(var(--af-yellow-rgb), 0.24);
+}
+
+html.design-v4 .hero-trust li:not(:last-child)::after {
+  background: rgba(var(--af-yellow-rgb), 0.24);
+}
+
+html.design-v4 .hero-stage::before {
+  background: radial-gradient(circle at 52% 45%, rgba(var(--af-yellow-rgb), 0.20), rgba(var(--af-yellow-rgb), 0.05) 34%, transparent 69%);
+}
+
+html.design-v4 .hero-stage::after {
+  border-color: rgba(var(--af-yellow-rgb), 0.13);
+  box-shadow:
+    0 0 0 70px rgba(var(--af-yellow-rgb), 0.020),
+    0 0 0 145px rgba(var(--af-yellow-rgb), 0.012);
+}
+
+html.design-v4 .monogram {
+  border-color: rgba(var(--af-yellow-rgb), 0.28);
+  box-shadow:
+    0 0 0 17px rgba(var(--af-yellow-rgb), 0.035),
+    0 0 100px rgba(var(--af-yellow-rgb), 0.18),
+    inset 0 1px rgba(255, 255, 255, 0.035);
+}
+
+html.design-v4 .stage-modules > div:nth-child(2),
+html.design-v4 .stage-ai-card {
+  border-color: rgba(var(--af-yellow-rgb), 0.29);
+}
+
+html.design-v4 .stage-modules > div:nth-child(2) small {
+  color: var(--af-yellow-deep);
+}
+
+html.design-v4 .stage-ai-card small,
+html.design-v4 .stage-ai-card b {
+  color: var(--af-yellow-high);
+}
+
+html.design-v4 .ai-orb {
+  border-color: rgba(var(--af-yellow-rgb), 0.52);
+  background: radial-gradient(circle at 37% 32%, #fff0b8 0 5%, var(--af-yellow) 18%, var(--af-yellow-deep) 45%, #15100d 72%);
+  box-shadow:
+    inset -5px -6px 11px rgba(0, 0, 0, 0.45),
+    0 0 21px rgba(var(--af-yellow-rgb), 0.24);
+}
+
+/* Evidence strip */
+html.design-v4 .signal-bar {
+  border-block-color: rgba(var(--af-yellow-rgb), 0.22);
+  background: var(--af-yellow);
+  color: #171208;
+}
+
+html.design-v4 .signal-grid strong {
+  color: #171208;
+}
+
+html.design-v4 .signal-grid span {
+  color: rgba(23, 18, 8, 0.76);
+}
+
+/* Light editorial project area: use deeper yellow for text contrast. */
+html.design-v4 .recent-work::before {
+  background:
+    radial-gradient(circle at 86% 11%, rgba(var(--af-yellow-rgb), 0.17), transparent 23rem),
+    linear-gradient(180deg, #f3eee3 0%, #ebe4d7 100%);
+}
+
+html.design-v4 .recent-work .overline,
+html.design-v4 .recent-card:not(.recent-card-featured) .recent-date,
+html.design-v4 .recent-card:not(.recent-card-featured) .recent-number,
+html.design-v4 .recent-card:not(.recent-card-featured) .recent-domain,
+html.design-v4 .recent-card:not(.recent-card-featured) .recent-metrics b,
+html.design-v4 .recent-work .section-heading h2 em {
+  color: var(--af-yellow-deep);
+}
+
+html.design-v4 .recent-card::before {
+  background: radial-gradient(circle at top right, rgba(var(--af-yellow-rgb), 0.17), transparent 72%);
+}
+
+html.design-v4 .recent-card:hover,
+html.design-v4 .recent-card-featured {
+  border-color: rgba(var(--af-yellow-rgb), 0.32);
+}
+
+html.design-v4 .recent-card-featured {
+  background:
+    radial-gradient(circle at 82% 16%, rgba(var(--af-yellow-rgb), 0.18), transparent 30%),
+    linear-gradient(135deg, #15110e 0%, #090807 72%);
+}
+
+html.design-v4 .recent-card-featured .recent-domain,
+html.design-v4 .recent-card-featured .recent-number,
+html.design-v4 .recent-card-featured .recent-proof b {
+  color: var(--af-yellow-high);
+}
+
+html.design-v4 .mobile-product-frame,
+html.design-v4 .atlas-diagram .atlas-core,
+html.design-v4 .mesh-node-main {
+  border-color: rgba(var(--af-yellow-rgb), 0.36);
+}
+
+html.design-v4 .mobile-product-frame {
+  box-shadow:
+    0 40px 95px rgba(0, 0, 0, 0.55),
+    0 0 0 9px rgba(var(--af-yellow-rgb), 0.028);
+}
+
+html.design-v4 .atlas-diagram .atlas-core {
+  color: var(--af-yellow-high);
+}
+
+html.design-v4 .section-tonal {
+  background:
+    linear-gradient(90deg, rgba(var(--af-yellow-rgb), 0.032), transparent 42%),
+    #0d0b09;
+}
+
+html.design-v4 .capability-card:hover,
+html.design-v4 .intelligence-card,
+html.design-v4 .evidence-panel {
+  border-color: rgba(var(--af-yellow-rgb), 0.20);
+}
+
+html.design-v4 .intelligence-card {
+  background:
+    radial-gradient(circle at 12% 50%, rgba(var(--af-yellow-rgb), 0.16), transparent 17rem),
+    linear-gradient(135deg, #18120e, #090807 58%);
+}
+
+html.design-v4 .contact-card {
+  border-top-color: rgba(var(--af-yellow-rgb), 0.26);
+}
+
+html.design-v4 .ai-launcher {
+  border-color: rgba(var(--af-yellow-rgb), 0.40);
+}
+
+html.design-v4 .ai-panel {
+  border-color: rgba(var(--af-yellow-rgb), 0.26);
+}
+
+/* V5 cinematic layer */
+html.design-v5 .v5-scene-boundary::after {
+  background: linear-gradient(to bottom, transparent, rgba(var(--af-yellow-rgb), 0.05));
+}
+
+html.design-v5 .v5-scroll-meter i {
+  background: var(--af-yellow);
+  box-shadow: 0 0 18px rgba(var(--af-yellow-rgb), 0.46);
+}
+
+html.design-v5 .v5-cinema {
+  background:
+    radial-gradient(circle at 12% 20%, rgba(var(--af-yellow-rgb), 0.075), transparent 28rem),
+    radial-gradient(circle at 86% 67%, rgba(var(--af-yellow-rgb), 0.10), transparent 28rem),
+    #090706;
+}
+
+html.design-v5 .v5-cinema::before {
+  background: rgba(var(--af-yellow-rgb), 0.07);
+}
+
+html.design-v5 .v5-kicker,
+html.design-v5 .v5-cinema-copy .text-link,
+html.design-v5 .v5-browser-bar b {
+  color: var(--af-yellow-high);
+}
+
+html.design-v5 .v5-cinema-visual::before {
+  background:
+    radial-gradient(circle at var(--v5-pointer-x, 62%) var(--v5-pointer-y, 35%), rgba(var(--af-yellow-rgb), 0.23), transparent 24%),
+    radial-gradient(circle, rgba(var(--af-yellow-rgb), 0.085), transparent 58%);
+}
+
+html.design-v5 .v5-browser-frame,
+html.design-v5 .v5-cinema-badge {
+  border-color: rgba(var(--af-yellow-rgb), 0.24);
+}
+
+html.design-v5 .v5-build-section::after {
+  background:
+    radial-gradient(circle at 90% 9%, rgba(var(--af-yellow-rgb), 0.18), transparent 24rem),
+    linear-gradient(rgba(23, 18, 15, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 18, 15, 0.035) 1px, transparent 1px);
+  background-size: auto, 86px 86px, 86px 86px;
+}
+
+html.design-v5 .v5-build-intro .overline,
+html.design-v5 .v5-build-intro h2 em,
+html.design-v5 .v5-build-number,
+html.design-v5 .v5-build-arrow {
+  color: var(--af-yellow-deep);
+}
+
+html.design-v5 .v5-build-card::before {
+  background: rgba(var(--af-yellow-rgb), 0.085);
+}
+
+html.design-v5 .v5-build-card:hover {
+  border-color: rgba(var(--af-yellow-rgb), 0.36);
+}
+
+/* The former salmon manifesto becomes warm butter-yellow. */
+html.design-v5 .v5-statement {
+  background: var(--af-yellow);
+  color: #1a160a;
+}
+
+html.design-v5 .v5-statement h2 em {
+  color: var(--af-yellow-deeper);
+}
+
+html.design-v5 .v5-statement .overline,
+html.design-v5 .v5-statement-inner > p:last-child {
+  color: rgba(26, 22, 10, 0.74);
+}
+
+html.design-v5 .v5-depth-section {
+  background:
+    radial-gradient(circle at 7% 24%, rgba(var(--af-yellow-rgb), 0.075), transparent 24rem),
+    #0d0a08;
+}
+
+html.design-v5 .v5-depth-section .capability-card:hover {
+  background: rgba(var(--af-yellow-rgb), 0.04);
+}
+
+html.design-v5 .v5-contact::before {
+  background: radial-gradient(circle, rgba(var(--af-yellow-rgb), 0.15), transparent 66%);
+}
+
+html.design-v5 .v5-contact .contact-card {
+  border-top-color: rgba(var(--af-yellow-rgb), 0.32);
+}
+
+@media (max-width: 900px), (pointer: coarse) {
+  html.design-v5 .v5-cinema-visual::before {
+    background: radial-gradient(circle at 70% 35%, rgba(var(--af-yellow-rgb), 0.14), transparent 40%);
+  }
+}
+
+/* V7 ALLFICTION system-map identity */
+html.design-v7 .af-context-link.is-active {
+  color: var(--af-yellow-high);
+}
+
+html.design-v7 .af-context-link.is-active i {
+  border-color: var(--af-yellow);
+  background: var(--af-yellow);
+  box-shadow: 0 0 17px rgba(var(--af-yellow-rgb), 0.46);
+}
+
+html.design-v7 .af-system-map-section {
+  background:
+    radial-gradient(circle at 50% 48%, rgba(var(--af-yellow-rgb), 0.105), transparent 31rem),
+    #090706;
+}
+
+html.design-v7 .af-system-map-section::before,
+html.design-v7 .af-system-map-section::after {
+  background: linear-gradient(90deg, transparent, rgba(var(--af-yellow-rgb), 0.17), transparent);
+}
+
+html.design-v7 .af-system-map-head h2 em,
+html.design-v7 .af-section-readout strong {
+  color: var(--af-yellow);
+}
+
+html.design-v7 .af-system-map path {
+  stroke: rgba(var(--af-yellow-rgb), 0.20);
+}
+
+html.design-v7 .af-system-core,
+html.design-v7 .af-system-node {
+  border-color: rgba(var(--af-yellow-rgb), 0.23);
+}
+
+html.design-v7 .af-system-core::after {
+  border-color: rgba(var(--af-yellow-rgb), 0.14);
+}
+
+html.design-v7 .af-system-map-foot i,
+html.design-v7 .af-section-readout::before {
+  background: var(--af-yellow);
+}
+
+html.design-v7 .af-cursor {
+  border-color: rgba(var(--af-yellow-rgb), 0.74);
+}
+
+html.design-v7 .af-cursor.is-interactive {
+  border-color: rgba(var(--af-yellow-rgb), 0.96);
+  background: rgba(var(--af-yellow-rgb), 0.09);
+}
