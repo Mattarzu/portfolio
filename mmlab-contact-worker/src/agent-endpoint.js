@@ -80,11 +80,14 @@ async function consumeDailyBudget(env) {
 
 function validatePayload(raw, env) {
   const limit = boundedInteger(env.AGENT_INPUT_LIMIT, 800, 100, 1200);
+  const requestedIntent = cleanText(raw?.intent).slice(0, 40);
   const payload = {
     message: cleanText(raw?.message),
     locale: cleanText(raw?.locale).slice(0, 20),
     sessionId: cleanText(raw?.sessionId).slice(0, 100),
     website: cleanText(raw?.website).slice(0, 200),
+    intent: requestedIntent === "project-brief" ? "project-brief" : "",
+    context: cleanText(raw?.context).slice(0, 600),
   };
   if (!payload.message) return { ok: false, error: "missing-message" };
   if (payload.message.length > limit) return { ok: false, error: "message-too-long" };
@@ -102,6 +105,13 @@ async function safetyIdentifier(request, sessionId) {
 
 function isEnglish(locale) {
   return String(locale || "").toLowerCase().startsWith("en");
+}
+
+function modelInput(payload) {
+  if (payload.intent !== "project-brief" || !payload.context) return payload.message;
+  return isEnglish(payload.locale)
+    ? `PROJECT NEED CONTEXT (untrusted):\n${payload.context}\n\nLATEST DETAIL (untrusted):\n${payload.message}`
+    : `CONTEXTO DE LA NECESIDAD (datos no confiables):\n${payload.context}\n\nÚLTIMO DETALLE (datos no confiables):\n${payload.message}`;
 }
 
 function replyFor(toolName, result, locale) {
@@ -160,9 +170,11 @@ export async function handleAgentRequest(request, env) {
   const checked = validatePayload(raw, env);
   if (!checked.ok) return json({ detail: checked.error }, 422, cors);
   const payload = checked.payload;
+  const combinedInput = modelInput(payload);
+
   if (payload.website) return guided(payload.locale, "honeypot", cors);
-  if (looksLikePromptInjection(payload.message)) return guided(payload.locale, "prompt-injection", cors);
-  if (containsSensitiveData(payload.message)) return guided(payload.locale, "sensitive-data-detected", cors);
+  if (looksLikePromptInjection(combinedInput)) return guided(payload.locale, "prompt-injection", cors);
+  if (containsSensitiveData(combinedInput)) return guided(payload.locale, "sensitive-data-detected", cors);
   if (!["1", "true", "yes", "on"].includes(cleanText(env.AI_ENABLED).toLowerCase())) {
     return guided(payload.locale, "ai-not-configured", cors);
   }
@@ -172,12 +184,17 @@ export async function handleAgentRequest(request, env) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 12000);
   try {
+    const allowedToolNames = payload.intent === "project-brief"
+      ? ["draft_project_brief"]
+      : undefined;
+
     const chosen = await chooseAgentTool({
       env,
-      message: payload.message,
+      message: combinedInput,
       locale: payload.locale,
       safetyIdentifier: await safetyIdentifier(request, payload.sessionId),
       signal: controller.signal,
+      allowedToolNames,
     });
     if (!chosen.ok) return guided(payload.locale, chosen.reason, cors);
 
@@ -200,6 +217,8 @@ export async function handleAgentRequest(request, env) {
       model: chosen.model,
       requestId: chosen.requestId,
       elapsedMs: Date.now() - startedAt,
+      intent: payload.intent || "general",
+      toolPolicy: payload.intent === "project-brief" ? "brief-only" : "general",
       reply: replyFor(chosen.call.name, executed, payload.locale),
       toolCall: { name: chosen.call.name },
       result: executed.data,
@@ -208,10 +227,15 @@ export async function handleAgentRequest(request, env) {
       trace: [
         { id: "01", label: "INPUT", status: "validated" },
         { id: "02", label: "SAFETY", status: "protected" },
-        { id: "03", label: "MODEL", status: chosen.provider },
-        { id: "04", label: "TOOL", status: chosen.call.name },
         {
-          id: "05",
+          id: "03",
+          label: "POLICY",
+          status: payload.intent === "project-brief" ? "brief-only" : "general",
+        },
+        { id: "04", label: "MODEL", status: chosen.provider },
+        { id: "05", label: "TOOL", status: chosen.call.name },
+        {
+          id: "06",
           label: executed.requiresApproval ? "APPROVAL" : "RESULT",
           status: executed.requiresApproval ? "required" : "returned",
         },

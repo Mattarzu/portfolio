@@ -61,6 +61,8 @@
 
     let awaitingIdea = false;
     let busy = false;
+    let briefMode = false;
+    const briefContext = [];
 
     const english = () => String(root.lang || "").toLowerCase().startsWith("en");
     const copy = (es, en) => english() ? en : es;
@@ -246,6 +248,7 @@
     function promptForIdea() {
       openPanel();
       awaitingIdea = true;
+      briefMode = true;
       appendMessage(
         "assistant",
         copy(
@@ -266,6 +269,13 @@
       if (!question || busy) return;
 
       openPanel();
+      const projectBrief = briefMode || isProjectIntent(question);
+      if (projectBrief) briefMode = true;
+      const previousContext = briefContext.join("\n").slice(0, 600);
+      if (projectBrief && !briefContext.includes(question)) {
+        briefContext.push(question);
+        while (briefContext.join("\n").length > 600) briefContext.shift();
+      }
       awaitingIdea = false;
       appendMessage("user", question);
       input.value = "";
@@ -290,6 +300,8 @@
               message: question,
               locale: root.lang || "es-AR",
               sessionId: sessionId(),
+              intent: projectBrief ? "project-brief" : "",
+              context: projectBrief ? previousContext : "",
               website: "",
             }),
           });
@@ -345,7 +357,11 @@
       const evaluateIdea = label.includes("evaluar una idea")
         || label.includes("evaluate an idea");
 
-      if (!evaluateIdea) return;
+      if (!evaluateIdea) {
+        briefMode = false;
+        briefContext.length = 0;
+        return;
+      }
 
       event.preventDefault();
       event.stopImmediatePropagation();
@@ -356,12 +372,19 @@
       const question = String(input.value || "").trim();
       if (!question) return;
 
-      if (!awaitingIdea && !isProjectIntent(question)) return;
+      if (!briefMode && !awaitingIdea && !isProjectIntent(question)) return;
 
       event.preventDefault();
       event.stopImmediatePropagation();
       runAgent(question);
     }, true);
+
+    document.querySelector("[data-ai-clear]")?.addEventListener("click", () => {
+      awaitingIdea = false;
+      briefMode = false;
+      briefContext.length = 0;
+      restorePlaceholder();
+    });
 
     document.addEventListener("allfiction:language", () => {
       if (awaitingIdea) {

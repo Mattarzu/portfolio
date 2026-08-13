@@ -15,7 +15,7 @@ window.ALLFICTION_AI_ENABLED = true;
 // Visual layers are isolated from the production contact/AI/i18n behaviour.
 // V4 establishes the editorial identity; V5 adds progressive enhancement;
 // V6 owns the concrete copy; V7 adds contextual navigation and adaptive motion;
-// V8 owns warm yellow; V9 Automation Lab; V10 AF Agent; V11 intent routing.
+// V8 warm yellow; V9 Automation Lab; V10 AF Agent; V11 intent routing; V12 scoped tool policy + brief context.
 (() => {
   const v4Revision = "20260812-v4";
   const v5Revision = "20260812-v5";
@@ -24,7 +24,7 @@ window.ALLFICTION_AI_ENABLED = true;
   const v8Revision = "20260813-v8";
   const v9Revision = "20260813-v9";
   const v10Revision = "20260813-v10";
-  const v11Revision = "20260813-v11";
+  const v11Revision = "20260813-v12";
 
   const ensureStylesheet = (selector, href, datasetKey) => {
     if (document.querySelector(selector)) return;
