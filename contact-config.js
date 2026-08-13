@@ -3,11 +3,13 @@
 window.MMLAB_CONTACT_ENDPOINT = "https://mmlab-contact-api.mattm2.workers.dev/contact";
 window.MMLAB_AI_CHAT_ENDPOINT = "https://mmlab-contact-api.mattm2.workers.dev/ai-chat";
 window.MMLAB_AUTOMATION_ANALYZE_ENDPOINT = "https://mmlab-contact-api.mattm2.workers.dev/automation-analyze";
+window.MMLAB_AUTOMATION_HEALTH_ENDPOINT = "https://mmlab-contact-api.mattm2.workers.dev/automation-health";
 window.MMLAB_AGENT_RUN_ENDPOINT = "https://mmlab-contact-api.mattm2.workers.dev/agent-run";
 window.MMLAB_AGENT_HEALTH_ENDPOINT = "https://mmlab-contact-api.mattm2.workers.dev/agent-health";
 window.MMLAB_AI_ENABLED = true;
 window.ALLFICTION_AI_ENDPOINT = window.MMLAB_AI_CHAT_ENDPOINT;
 window.ALLFICTION_AUTOMATION_ENDPOINT = window.MMLAB_AUTOMATION_ANALYZE_ENDPOINT;
+window.ALLFICTION_AUTOMATION_HEALTH_ENDPOINT = window.MMLAB_AUTOMATION_HEALTH_ENDPOINT;
 window.ALLFICTION_AGENT_ENDPOINT = window.MMLAB_AGENT_RUN_ENDPOINT;
 window.ALLFICTION_AGENT_HEALTH_ENDPOINT = window.MMLAB_AGENT_HEALTH_ENDPOINT;
 window.ALLFICTION_AI_ENABLED = true;
@@ -22,11 +24,11 @@ window.ALLFICTION_AI_ENABLED = true;
   const v6Revision = "20260812-v6";
   const v7Revision = "20260812-v7";
   const v8Revision = "20260813-v8";
-  const v9Revision = "20260813-v9";
+  const v9Revision = "20260813-v15b1";
   const v10Revision = "20260813-v10";
   const v11Revision = "20260813-v14";
   const v13Revision = "20260813-v14";
-  const v15Revision = "20260813-v15";
+  const v15Revision = "20260813-v15b1";
 
   const ensureStylesheet = (selector, href, datasetKey) => {
     if (document.querySelector(selector)) return;
