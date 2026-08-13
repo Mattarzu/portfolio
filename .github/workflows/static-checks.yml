@@ -32,6 +32,7 @@ jobs:
           node --check assets/js/home-v10.js
           node --check assets/js/home-v11.js
           node --check assets/js/home-v13.js
+          node --check assets/js/home-v15.js
           node --check assets/js/panda-stable.js
           node --check mmlab-contact-worker/src/worker.js
           node --check mmlab-contact-worker/src/worker-v2.js
@@ -50,12 +51,18 @@ jobs:
           node --check scripts/check-site.mjs
           node --check scripts/check-v13.mjs
           node --check scripts/check-v14.mjs
+          node --check scripts/check-v15.mjs
+          node --check scripts/run-af-evals.mjs
 
       - name: Check site contracts
         run: |
           node scripts/check-site.mjs
           node scripts/check-v13.mjs
           node scripts/check-v14.mjs
+          node scripts/check-v15.mjs
+
+      - name: Run AF reliability evals
+        run: node scripts/run-af-evals.mjs --verify
 
       - name: Test AF Intelligence
         run: npm test --prefix mmlab-contact-worker
@@ -114,4 +121,6 @@ jobs:
           grep -q 'main = "src/worker-v2.js"' mmlab-contact-worker/wrangler.toml
           grep -q 'home-v11.js' contact-config.js
           grep -q 'home-v13.js' contact-config.js
+          grep -q 'home-v15.js' contact-config.js
+          grep -q 'deterministic-regression' assets/data/af-reliability.json
           ! grep -q 'mattarzu.github.io/portfolio' index.html

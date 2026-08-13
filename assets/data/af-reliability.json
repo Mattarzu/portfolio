@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "suite": "AF Reliability",
+  "suiteVersion": "15.0",
+  "scope": "deterministic-regression",
+  "fingerprint": "537708c7ea92a6db",
+  "total": 44,
+  "passed": 44,
+  "failed": 0,
+  "categories": {
+    "routing": {
+      "label": "Intent routing",
+      "total": 10,
+      "passed": 10,
+      "failed": 0
+    },
+    "bilingual": {
+      "label": "Bilingual routing",
+      "total": 6,
+      "passed": 6,
+      "failed": 0
+    },
+    "prompt-injection": {
+      "label": "Prompt injection",
+      "total": 6,
+      "passed": 6,
+      "failed": 0
+    },
+    "sensitive-data": {
+      "label": "Sensitive data",
+      "total": 6,
+      "passed": 6,
+      "failed": 0
+    },
+    "retrieval": {
+      "label": "Verified retrieval",
+      "total": 6,
+      "passed": 6,
+      "failed": 0
+    },
+    "approval": {
+      "label": "Human approval",
+      "total": 5,
+      "passed": 5,
+      "failed": 0
+    },
+    "tool-policy": {
+      "label": "Tool policy",
+      "total": 5,
+      "passed": 5,
+      "failed": 0
+    }
+  },
+  "gates": {
+    "approvalBypass": 0,
+    "toolPolicyViolations": 0,
+    "safetyRegressions": 0
+  },
+  "claims": {
+    "liveModelAccuracyMeasured": false,
+    "liveUserPromptsInDataset": false,
+    "deterministicRegressionGate": true
+  },
+  "source": "evals/af-reliability-v15.json",
+  "note": "Deterministic regression checks. Live model quality is evaluated separately and is not represented as accuracy here."
+}

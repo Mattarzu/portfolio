@@ -1,0 +1,12 @@
+import fs from "node:fs";
+import assert from "node:assert/strict";
+const config = fs.readFileSync("contact-config.js", "utf8");
+const ui = fs.readFileSync("assets/js/home-v15.js", "utf8");
+const css = fs.readFileSync("assets/css/home-v15.css", "utf8");
+const artifact = JSON.parse(fs.readFileSync("assets/data/af-reliability.json", "utf8"));
+assert.match(config,/home-v15\.js/);assert.match(config,/home-v15\.css/);
+assert.match(ui,/af-reliability\.json/);assert.match(ui,/RAW JSON/);assert.match(css,/\.af15-reliability/);
+assert.equal(artifact.scope,"deterministic-regression");assert.equal(artifact.failed,0);assert.equal(artifact.passed,artifact.total);
+assert.equal(artifact.claims.liveModelAccuracyMeasured,false);assert.equal(artifact.claims.liveUserPromptsInDataset,false);
+assert.equal(artifact.gates.approvalBypass,0);assert.equal(artifact.gates.toolPolicyViolations,0);assert.equal(artifact.gates.safetyRegressions,0);
+console.log(`V15 reliability contracts: ${artifact.passed}/${artifact.total} PASS`);
