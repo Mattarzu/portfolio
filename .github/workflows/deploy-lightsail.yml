@@ -84,18 +84,49 @@ jobs:
                 || true
             )"
 
+            CONFIG_JS="$(
+              curl \
+                --fail \
+                --silent \
+                --show-error \
+                --location \
+                --max-time 20 \
+                "$URL/contact-config.js?v=20260813-v15" \
+                || true
+            )"
+
+            RELIABILITY_JSON="$(
+              curl \
+                --fail \
+                --silent \
+                --show-error \
+                --location \
+                --max-time 20 \
+                "$URL/assets/data/af-reliability.json?v=20260813-v15" \
+                || true
+            )"
+
             if grep -q 'Crypto Risk Engine' <<<"$HOME_HTML" \
               && grep -q 'AF Intelligence' <<<"$HOME_HTML" \
               && grep -q 'assets/js/home-v3.js' <<<"$HOME_HTML" \
+              && grep -q 'home-v15.js' <<<"$CONFIG_JS" \
+              && grep -q 'deterministic-regression' <<<"$RELIABILITY_JSON" \
+              && grep -q '"failed": 0' <<<"$RELIABILITY_JSON" \
+              && grep -q '"deterministicRegressionGate": true' <<<"$RELIABILITY_JSON" \
               && curl --fail --silent --show-error --max-time 20 \
                 "$URL/assets/css/home-v3.css" >/dev/null \
               && curl --fail --silent --show-error --max-time 20 \
                 "$URL/assets/js/home-v3.js" >/dev/null \
               && curl --fail --silent --show-error --max-time 20 \
+                "$URL/assets/js/home-v15.js?v=20260813-v15" >/dev/null \
+              && curl --fail --silent --show-error --max-time 20 \
+                "$URL/assets/css/home-v15.css?v=20260813-v15" >/dev/null \
+              && curl --fail --silent --show-error --max-time 20 \
                 "$URL/assets/brand/allfiction-software-hero-960.webp" >/dev/null \
               && grep -q 'Redis Streams' <<<"$CRYPTO_HTML"
             then
               echo "Deployment verified: $URL"
+              echo "AF Reliability public artifact verified."
               exit 0
             fi
 
