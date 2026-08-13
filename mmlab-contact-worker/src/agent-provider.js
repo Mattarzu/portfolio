@@ -8,15 +8,25 @@ function isEnglish(locale) {
   return String(locale || "").toLowerCase().startsWith("en");
 }
 
-export function buildAgentInstructions(locale = "es-AR") {
+function allowedTools(names) {
+  if (!Array.isArray(names) || names.length === 0) return [...AGENT_TOOL_DECLARATIONS];
+  const requested = new Set(names.map((name) => String(name || "").trim()).filter(Boolean));
+  const selected = AGENT_TOOL_DECLARATIONS.filter((tool) => requested.has(tool.name));
+  return selected.length ? selected : [...AGENT_TOOL_DECLARATIONS];
+}
+
+export function buildAgentInstructions(locale = "es-AR", toolNames = []) {
   const languageRule = isEnglish(locale)
     ? "Interpret the visitor request in English."
     : "Interpretá la solicitud del visitante en español rioplatense.";
+  const policyRule = toolNames.length === 1
+    ? `The application has selected ${toolNames[0]} as the only valid tool for this intent. Use that function.`
+    : "Choose exactly one declared function that best serves the visitor request.";
 
   return [
     "You are AF Agent, a tool-routing assistant for the public ALLFICTION Software portfolio.",
     languageRule,
-    "Choose exactly one declared function that best serves the visitor request.",
+    policyRule,
     "Use read-only evidence tools for project or capability questions.",
     "Use draft_project_brief when the visitor asks to turn a need, process or idea into a project brief.",
     "No declared function can send messages, change external systems, log in, purchase, deploy or perform irreversible actions.",
@@ -24,8 +34,8 @@ export function buildAgentInstructions(locale = "es-AR") {
   ].join("\n");
 }
 
-function geminiTools() {
-  return AGENT_TOOL_DECLARATIONS.map((tool) => ({
+function geminiTools(toolList) {
+  return toolList.map((tool) => ({
     type: "function",
     name: tool.name,
     description: tool.description,
@@ -36,28 +46,30 @@ function geminiTools() {
   }));
 }
 
-function geminiBody(config, message, locale) {
+function geminiBody(config, message, locale, toolList) {
+  const names = toolList.map((tool) => tool.name);
   return {
     model: config.model,
     store: false,
-    system_instruction: buildAgentInstructions(locale),
+    system_instruction: buildAgentInstructions(locale, names),
     input: message,
-    tools: geminiTools(),
+    tools: geminiTools(toolList),
     generation_config: {
       tool_choice: {
         allowed_tools: {
           mode: "any",
-          tools: AGENT_TOOL_DECLARATIONS.map((tool) => tool.name),
+          tools: names,
         },
       },
     },
   };
 }
 
-function openAiBody(config, message, locale, safetyIdentifier) {
+function openAiBody(config, message, locale, safetyIdentifier, toolList) {
+  const names = toolList.map((tool) => tool.name);
   return {
     model: config.model,
-    instructions: buildAgentInstructions(locale),
+    instructions: buildAgentInstructions(locale, names),
     input: message,
     reasoning: { effort: "none" },
     max_output_tokens: 300,
@@ -65,7 +77,7 @@ function openAiBody(config, message, locale, safetyIdentifier) {
     store: false,
     parallel_tool_calls: false,
     tool_choice: "required",
-    tools: AGENT_TOOL_DECLARATIONS.map((tool) => ({
+    tools: toolList.map((tool) => ({
       type: "function",
       name: tool.name,
       description: tool.description,
@@ -103,19 +115,21 @@ export async function chooseAgentTool({
   locale,
   safetyIdentifier,
   signal,
+  allowedToolNames,
 }) {
   const config = resolveProvider(env);
   if (!config.supported) return { ok: false, reason: "unsupported-ai-provider" };
   if (!config.configured) return { ok: false, reason: "ai-not-configured" };
 
+  const toolList = allowedTools(allowedToolNames);
   const gemini = config.provider === "gemini";
   const url = gemini ? GEMINI_INTERACTIONS_URL : OPENAI_RESPONSES_URL;
   const headers = gemini
     ? { "Content-Type": "application/json", "x-goog-api-key": config.apiKey }
     : { "Content-Type": "application/json", Authorization: `Bearer ${config.apiKey}` };
   const body = gemini
-    ? geminiBody(config, message, locale)
-    : openAiBody(config, message, locale, safetyIdentifier);
+    ? geminiBody(config, message, locale, toolList)
+    : openAiBody(config, message, locale, safetyIdentifier, toolList);
 
   try {
     const response = await fetch(url, {
@@ -128,8 +142,8 @@ export async function chooseAgentTool({
     const data = await response.json().catch(() => null);
     const call = gemini ? parseGeminiCall(data) : parseOpenAiCall(data);
     if (!call) return { ok: false, reason: "missing-tool-call" };
-    if (!AGENT_TOOL_DECLARATIONS.some((tool) => tool.name === call.name)) {
-      return { ok: false, reason: "unknown-tool-call" };
+    if (!toolList.some((tool) => tool.name === call.name)) {
+      return { ok: false, reason: "disallowed-tool-call" };
     }
     return {
       ok: true,
