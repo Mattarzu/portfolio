@@ -107,6 +107,38 @@ test("Gemini automation analysis uses JSON schema output", async () => {
   assert.equal(providerBody.generationConfig.responseSchema.type, "object");
 });
 
+test("automation health exposes provider diagnostics without secrets", async () => {
+  const response = await worker.fetch(new Request("https://worker.test/automation-health", { headers: { Origin: allowedOrigin } }), environment());
+  const body = await response.json();
+  assert.equal(response.status, 200);
+  assert.equal(body.ai.provider, "gemini");
+  assert.equal(body.ai.model, "gemini-3.5-flash-lite");
+  assert.equal(body.ai.configured, true);
+  assert.equal(body.diagnostics.fallbackReasonExposed, true);
+  assert.equal(body.diagnostics.transientRetryMaxAttempts, 2);
+  assert.equal(body.diagnostics.promptLoggedByWorker, false);
+  assert.equal(response.headers.get("Access-Control-Allow-Origin"), allowedOrigin);
+  assert.equal(JSON.stringify(body).includes("test-key"), false);
+});
+
+test("automation analysis retries once after a transient provider failure", async () => {
+  let calls = 0;
+  globalThis.fetch = async () => {
+    calls += 1;
+    if (calls === 1) return new Response(JSON.stringify({ error: "temporary" }), { status: 503, headers: { "Content-Type": "application/json" } });
+    return new Response(JSON.stringify({ candidates: [{ content: { parts: [{ text: JSON.stringify(sampleAnalysis) }] } }] }), { status: 200, headers: { "Content-Type": "application/json", "x-request-id": "auto_retry_ok" } });
+  };
+  const response = await worker.fetch(request("Recibo consultas, reviso cada pedido manualmente, copio los datos y luego notifico al equipo para continuar el proceso."), environment());
+  const body = await response.json();
+  assert.equal(response.status, 200);
+  assert.equal(body.mode, "ai");
+  assert.equal(calls, 2);
+  assert.equal(body.runtime.attempts, 2);
+  assert.equal(body.runtime.status, "ok");
+  assert.equal(body.runtime.promptLoggedByWorker, false);
+  assert.equal(body.runtime.responseLoggedByWorker, false);
+});
+
 test("OpenAI adapter requests strict structured output", async () => {
   const calls = [];
   globalThis.fetch = async (url, init) => {

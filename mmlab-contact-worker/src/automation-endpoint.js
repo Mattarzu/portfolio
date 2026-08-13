@@ -3,6 +3,7 @@ import {
   looksLikePromptInjection,
 } from "./portfolio-context.js";
 import { analyzeAutomationProcess } from "./automation-analysis.js";
+import { publicProviderState } from "./ai-provider.js";
 
 const buckets = new Map();
 const dailyUsage = new Map();
@@ -28,7 +29,7 @@ function json(data, status = 200, headers = {}) {
   });
 }
 
-function corsHeaders(origin, env) {
+export function automationCorsHeaders(origin, env) {
   const allowed = String(env.ALLOWED_ORIGIN || "")
     .split(",")
     .map((item) => item.trim())
@@ -171,17 +172,34 @@ function guidedAnalysis(locale) {
   };
 }
 
-function guided(locale, reason, cors, status = 200) {
+function runtimeState(env, status, reason, elapsedMs = 0, attempts = 0) {
+  const provider = publicProviderState(env);
+  return {
+    feature: "automation-lab",
+    status,
+    reason: reason || null,
+    provider: provider.provider,
+    model: provider.model,
+    configured: provider.configured,
+    elapsedMs: Math.max(0, Number(elapsedMs) || 0),
+    attempts: Math.max(0, Number(attempts) || 0),
+    promptLoggedByWorker: false,
+    responseLoggedByWorker: false,
+  };
+}
+
+function guided(locale, reason, cors, env, status = 200, elapsedMs = 0, attempts = 0) {
   return json(
     {
       ok: true,
       mode: "guided",
       reason,
+      runtime: runtimeState(env, "fallback", reason, elapsedMs, attempts),
       analysis: guidedAnalysis(locale),
       trace: [
         { id: "01", label: "INPUT", status: "validated" },
         { id: "02", label: "PRIVACY", status: "protected" },
-        { id: "03", label: "MODEL", status: "fallback" },
+        { id: "03", label: "MODEL", status: reason || "fallback" },
       ],
     },
     status,
@@ -191,7 +209,7 @@ function guided(locale, reason, cors, status = 200) {
 
 export async function handleAutomationRequest(request, env) {
   const origin = request.headers.get("Origin");
-  const cors = corsHeaders(origin, env);
+  const cors = automationCorsHeaders(origin, env);
 
   if (request.method === "OPTIONS") {
     return new Response(null, { status: 204, headers: cors });
@@ -201,7 +219,7 @@ export async function handleAutomationRequest(request, env) {
     return json({ detail: "origin-not-allowed" }, 403);
   }
   if (!withinRateLimit(request, env)) {
-    return guided("es-AR", "rate-limit-exceeded", cors, 429);
+    return guided("es-AR", "rate-limit-exceeded", cors, env, 429);
   }
 
   let raw;
@@ -215,18 +233,18 @@ export async function handleAutomationRequest(request, env) {
   if (!result.ok) return json({ detail: result.error }, 422, cors);
   const payload = result.payload;
 
-  if (payload.website) return guided(payload.locale, "honeypot", cors);
+  if (payload.website) return guided(payload.locale, "honeypot", cors, env);
   if (looksLikePromptInjection(payload.process)) {
-    return guided(payload.locale, "prompt-injection", cors);
+    return guided(payload.locale, "prompt-injection", cors, env);
   }
   if (containsSensitiveData(payload.process)) {
-    return guided(payload.locale, "sensitive-data-detected", cors);
+    return guided(payload.locale, "sensitive-data-detected", cors, env);
   }
   if (!["1", "true", "yes", "on"].includes(cleanText(env.AI_ENABLED).toLowerCase())) {
-    return guided(payload.locale, "ai-not-configured", cors);
+    return guided(payload.locale, "ai-not-configured", cors, env);
   }
   if (!(await consumeDailyBudget(env))) {
-    return guided(payload.locale, "daily-limit-reached", cors);
+    return guided(payload.locale, "daily-limit-reached", cors, env);
   }
 
   const startedAt = Date.now();
@@ -242,7 +260,10 @@ export async function handleAutomationRequest(request, env) {
       signal: controller.signal,
     });
 
-    if (!resultAi.ok) return guided(payload.locale, resultAi.reason, cors);
+    const elapsedMs = Date.now() - startedAt;
+    if (!resultAi.ok) {
+      return guided(payload.locale, resultAi.reason, cors, env, 200, elapsedMs, resultAi.attempts);
+    }
 
     return json(
       {
@@ -251,7 +272,8 @@ export async function handleAutomationRequest(request, env) {
         provider: resultAi.provider,
         model: resultAi.model,
         requestId: resultAi.requestId,
-        elapsedMs: Date.now() - startedAt,
+        elapsedMs,
+        runtime: runtimeState(env, "ok", null, elapsedMs, resultAi.attempts),
         analysis: resultAi.analysis,
         trace: [
           { id: "01", label: "INPUT", status: "validated" },

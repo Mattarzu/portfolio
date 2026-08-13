@@ -1,5 +1,6 @@
 import baseWorker from "./worker.js";
-import { handleAutomationRequest } from "./automation-endpoint.js";
+import { automationCorsHeaders, handleAutomationRequest } from "./automation-endpoint.js";
+import { publicProviderState } from "./ai-provider.js";
 import { agentCorsHeaders, handleAgentRequest } from "./agent-endpoint.js";
 import { detectProjectIntent, projectHandoffCopy } from "./intent-router.js";
 
@@ -14,14 +15,30 @@ function json(data, status = 200, headers = {}) {
   });
 }
 
-function automationHealth() {
+function automationHealth(request, env) {
+  const cors = automationCorsHeaders(request.headers.get("Origin"), env);
+  const provider = publicProviderState(env);
+  const aiEnabled = ["1", "true", "yes", "on"].includes(String(env.AI_ENABLED || "").trim().toLowerCase());
   return json({
     ok: true,
     service: "allfiction-portfolio-api",
     capability: "automation-analysis-v1",
     structuredOutput: true,
     externalActions: false,
-  });
+    ai: {
+      enabled: aiEnabled,
+      provider: provider.provider,
+      model: provider.model,
+      supported: provider.supported,
+      configured: provider.configured,
+    },
+    diagnostics: {
+      fallbackReasonExposed: true,
+      transientRetryMaxAttempts: 2,
+      promptLoggedByWorker: false,
+      responseLoggedByWorker: false,
+    },
+  }, 200, cors);
 }
 
 function agentHealth(request, env) {
@@ -75,7 +92,7 @@ export default {
     const url = new URL(request.url);
 
     if (url.pathname === "/automation-health" && request.method === "GET") {
-      return automationHealth();
+      return automationHealth(request, env);
     }
     if (url.pathname === "/automation-analyze") {
       return handleAutomationRequest(request, env);

@@ -214,6 +214,30 @@ function geminiBody({ instructions, input, maxOutputTokens }) {
   };
 }
 
+const RETRYABLE_AUTOMATION_REASONS = new Set([
+  "provider-http-408", "provider-http-425", "provider-http-429",
+  "provider-http-500", "provider-http-502", "provider-http-503", "provider-http-504",
+  "empty-ai-response", "invalid-structured-output", "ai-request-failed",
+]);
+
+function shouldRetryAutomation(reason) {
+  return RETRYABLE_AUTOMATION_REASONS.has(String(reason || ""));
+}
+
+function retryDelay(signal, milliseconds = 250) {
+  return new Promise((resolve, reject) => {
+    if (signal?.aborted) {
+      reject(new DOMException("Aborted", "AbortError"));
+      return;
+    }
+    const timer = setTimeout(resolve, milliseconds);
+    signal?.addEventListener("abort", () => {
+      clearTimeout(timer);
+      reject(new DOMException("Aborted", "AbortError"));
+    }, { once: true });
+  });
+}
+
 function openAiBody({ model, instructions, input, maxOutputTokens, safetyIdentifier }) {
   return {
     model,
@@ -281,40 +305,45 @@ export async function analyzeAutomationProcess({
     });
   }
 
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      signal,
-      headers,
-      body: JSON.stringify(body),
-    });
-
-    if (!response.ok) {
-      return { ok: false, reason: `provider-http-${response.status}` };
-    }
-
-    const data = await response.json().catch(() => null);
-    const rawText = extractProviderText(config.provider, data);
-    if (!rawText) return { ok: false, reason: "empty-ai-response" };
-
-    let parsed;
+  async function attempt() {
     try {
-      parsed = JSON.parse(rawText);
+      const response = await fetch(url, {
+        method: "POST",
+        signal,
+        headers,
+        body: JSON.stringify(body),
+      });
+      if (!response.ok) return { ok: false, reason: `provider-http-${response.status}` };
+      const data = await response.json().catch(() => null);
+      const rawText = extractProviderText(config.provider, data);
+      if (!rawText) return { ok: false, reason: "empty-ai-response" };
+      let parsed;
+      try { parsed = JSON.parse(rawText); }
+      catch { return { ok: false, reason: "invalid-structured-output" }; }
+      const analysis = normalizeAutomationAnalysis(parsed);
+      if (!analysis) return { ok: false, reason: "invalid-structured-output" };
+      return {
+        ok: true,
+        provider: config.provider,
+        model: config.model,
+        analysis,
+        requestId: response.headers.get("x-request-id") || undefined,
+      };
     } catch {
-      return { ok: false, reason: "invalid-structured-output" };
+      return { ok: false, reason: "ai-request-failed" };
     }
-
-    const analysis = normalizeAutomationAnalysis(parsed);
-    if (!analysis) return { ok: false, reason: "invalid-structured-output" };
-
-    return {
-      ok: true,
-      provider: config.provider,
-      model: config.model,
-      analysis,
-      requestId: response.headers.get("x-request-id") || undefined,
-    };
-  } catch {
-    return { ok: false, reason: "ai-request-failed" };
   }
+
+  let result = await attempt();
+  let attempts = 1;
+  if (!result.ok && shouldRetryAutomation(result.reason) && !signal?.aborted) {
+    try {
+      await retryDelay(signal, 250);
+      result = await attempt();
+      attempts = 2;
+    } catch {
+      return { ok: false, reason: "ai-request-failed", attempts };
+    }
+  }
+  return { ...result, attempts };
 }
