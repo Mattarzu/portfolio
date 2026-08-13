@@ -2,8 +2,10 @@
 // No secrets here. Provider and Telegram credentials live only in the backend.
 window.MMLAB_CONTACT_ENDPOINT = "https://mmlab-contact-api.mattm2.workers.dev/contact";
 window.MMLAB_AI_CHAT_ENDPOINT = "https://mmlab-contact-api.mattm2.workers.dev/ai-chat";
+window.MMLAB_AUTOMATION_ANALYZE_ENDPOINT = "https://mmlab-contact-api.mattm2.workers.dev/automation-analyze";
 window.MMLAB_AI_ENABLED = true;
 window.ALLFICTION_AI_ENDPOINT = window.MMLAB_AI_CHAT_ENDPOINT;
+window.ALLFICTION_AUTOMATION_ENDPOINT = window.MMLAB_AUTOMATION_ANALYZE_ENDPOINT;
 window.ALLFICTION_AI_ENABLED = true;
 
 // Visual layers are isolated from the production contact/AI/i18n behaviour.
