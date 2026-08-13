@@ -380,6 +380,15 @@
       restorePlaceholder();
     });
 
+    document.addEventListener("allfiction:contact-sent", (event) => {
+      if (event.detail?.source !== "af-agent-brief") return;
+      awaitingIdea = false;
+      briefMode = false;
+      briefContext.length = 0;
+      restorePlaceholder();
+      modeLabel.textContent = copy("AF Intelligence · listo", "AF Intelligence · ready");
+    });
+
     document.addEventListener("allfiction:language", () => {
       if (awaitingIdea) {
         input.placeholder = copy(

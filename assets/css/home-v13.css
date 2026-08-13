@@ -45,3 +45,13 @@
   .af13-contact-brief{padding:12px}
   .af13-contact-brief__actions,.af13-contact-brief button{width:100%}
 }
+
+.ai-v11-approval.is-sent{
+  border-color:rgba(231,198,90,.52);
+  background:rgba(231,198,90,.075);
+}
+.ai-v11-approval.is-sent>b{color:#f0d97a}
+.ai-v11-approval.is-sent button{
+  background:transparent;
+  color:#e7c65a;
+}
