@@ -180,10 +180,40 @@
     document.querySelector("[data-af13-contact-brief]")?.remove();
   }
 
+  let contactSent = false;
+
+  function renderContactSent() {
+    const card = Array.from(document.querySelectorAll(".ai-v11-approval")).at(-1);
+    if (!card) return;
+
+    card.classList.add("is-approved", "is-sent");
+    card.replaceChildren();
+
+    const title = document.createElement("b");
+    title.textContent = copy("CONTACTO ENVIADO", "CONTACT SENT");
+
+    const description = document.createElement("p");
+    description.textContent = copy(
+      "La consulta fue recibida correctamente. El brief de sesión ya fue limpiado.",
+      "The enquiry was received successfully. The session brief has been cleared.",
+    );
+
+    const controls = document.createElement("div");
+    const restart = document.createElement("button");
+    restart.type = "button";
+    restart.className = "is-primary";
+    restart.dataset.af14NewEnquiry = "true";
+    restart.textContent = copy("Crear otra consulta", "Start another enquiry");
+
+    controls.appendChild(restart);
+    card.append(title, description, controls);
+  }
+
   ready(() => {
     const form = getContactForm();
 
     document.addEventListener("allfiction:brief-approved", (event) => {
+      contactSent = false;
       const preview = String(event.detail?.preview || "").trim();
       if (!preview) return;
 
@@ -197,9 +227,31 @@
       const target = event.target instanceof Element
         ? event.target.closest("[data-af13-review-form]")
         : null;
-      if (!target) return;
+      if (target) {
+        event.preventDefault();
+        focusPreparedForm({ smooth: true });
+        return;
+      }
+
+      const restart = event.target instanceof Element
+        ? event.target.closest("[data-af14-new-enquiry]")
+        : null;
+      if (!restart) return;
+
       event.preventDefault();
-      focusPreparedForm({ smooth: true });
+      contactSent = false;
+      document.querySelector("[data-ai-clear]")?.click();
+      window.setTimeout(() => {
+        document.querySelector("[data-ai-input]")?.focus({ preventScroll: true });
+      }, 40);
+    });
+
+    document.addEventListener("allfiction:contact-sent", (event) => {
+      if (event.detail?.source !== "af-agent-brief") return;
+
+      contactSent = true;
+      clearPreparedState();
+      renderContactSent();
     });
 
     form?.addEventListener("reset", () => {
@@ -207,6 +259,10 @@
     });
 
     document.addEventListener("allfiction:language", () => {
+      if (contactSent) {
+        renderContactSent();
+        return;
+      }
       const preview = preparedBrief();
       if (preview) ensureContactBanner(preview);
     });

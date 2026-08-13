@@ -49,11 +49,13 @@ jobs:
           node --check assets/js/redwatch-panel.js
           node --check scripts/check-site.mjs
           node --check scripts/check-v13.mjs
+          node --check scripts/check-v14.mjs
 
       - name: Check site contracts
         run: |
           node scripts/check-site.mjs
           node scripts/check-v13.mjs
+          node scripts/check-v14.mjs
 
       - name: Test AF Intelligence
         run: npm test --prefix mmlab-contact-worker

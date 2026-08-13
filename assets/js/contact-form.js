@@ -64,6 +64,10 @@
       const result = await response.json().catch(() => null);
       if (!response.ok || result?.ok !== true) throw new Error(result?.detail || "send-failed");
 
+      const contactSource = form.dataset.aiBriefReady === "true"
+        ? "af-agent-brief"
+        : "contact-form";
+
       form.reset();
       form.querySelectorAll("[aria-invalid]").forEach((field) => {
         field.removeAttribute("aria-invalid");
@@ -73,6 +77,10 @@
         "Mensaje enviado. Matt recibió la notificación.",
         "Message sent. Matt received the notification.",
       );
+
+      document.dispatchEvent(new CustomEvent("allfiction:contact-sent", {
+        detail: { source: contactSource },
+      }));
     } catch {
       setStatus(
         "error",
