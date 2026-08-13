@@ -3,15 +3,19 @@
 window.MMLAB_CONTACT_ENDPOINT = "https://mmlab-contact-api.mattm2.workers.dev/contact";
 window.MMLAB_AI_CHAT_ENDPOINT = "https://mmlab-contact-api.mattm2.workers.dev/ai-chat";
 window.MMLAB_AUTOMATION_ANALYZE_ENDPOINT = "https://mmlab-contact-api.mattm2.workers.dev/automation-analyze";
+window.MMLAB_AGENT_RUN_ENDPOINT = "https://mmlab-contact-api.mattm2.workers.dev/agent-run";
+window.MMLAB_AGENT_HEALTH_ENDPOINT = "https://mmlab-contact-api.mattm2.workers.dev/agent-health";
 window.MMLAB_AI_ENABLED = true;
 window.ALLFICTION_AI_ENDPOINT = window.MMLAB_AI_CHAT_ENDPOINT;
 window.ALLFICTION_AUTOMATION_ENDPOINT = window.MMLAB_AUTOMATION_ANALYZE_ENDPOINT;
+window.ALLFICTION_AGENT_ENDPOINT = window.MMLAB_AGENT_RUN_ENDPOINT;
+window.ALLFICTION_AGENT_HEALTH_ENDPOINT = window.MMLAB_AGENT_HEALTH_ENDPOINT;
 window.ALLFICTION_AI_ENABLED = true;
 
 // Visual layers are isolated from the production contact/AI/i18n behaviour.
 // V4 establishes the editorial identity; V5 adds progressive enhancement;
 // V6 owns the concrete copy; V7 adds contextual navigation and adaptive motion;
-// V8 owns the warm yellow palette; V9 adds the Automation Lab.
+// V8 owns the warm yellow palette; V9 adds Automation Lab; V10 adds AF Agent.
 (() => {
   const v4Revision = "20260812-v4";
   const v5Revision = "20260812-v5";
@@ -19,6 +23,7 @@ window.ALLFICTION_AI_ENABLED = true;
   const v7Revision = "20260812-v7";
   const v8Revision = "20260813-v8";
   const v9Revision = "20260813-v9";
+  const v10Revision = "20260813-v10";
 
   const ensureStylesheet = (selector, href, datasetKey) => {
     if (document.querySelector(selector)) return;
@@ -51,13 +56,31 @@ window.ALLFICTION_AI_ENABLED = true;
     "allfictionV4",
   );
 
+  const loadV10 = () => {
+    ensureStylesheet(
+      "link[data-allfiction-v10]",
+      `./assets/css/home-v10.css?v=${v10Revision}`,
+      "allfictionV10",
+    );
+    ensureScript(
+      "script[data-allfiction-v10]",
+      `./assets/js/home-v10.js?v=${v10Revision}`,
+      "allfictionV10",
+    );
+  };
+
   const loadV9 = () => {
     ensureStylesheet("link[data-allfiction-v9]", `./assets/css/home-v9.css?v=${v9Revision}`, "allfictionV9");
     ensureStylesheet("link[data-allfiction-v9-grid]", `./assets/css/af9.css?v=${v9Revision}`, "allfictionV9Grid");
     ensureStylesheet("link[data-allfiction-v9-core]", `./assets/css/af9-core.css?v=${v9Revision}`, "allfictionV9Core");
     ensureStylesheet("link[data-allfiction-v9-controls]", `./assets/css/af9-controls.css?v=${v9Revision}`, "allfictionV9Controls");
     ensureStylesheet("link[data-allfiction-v9-output]", `./assets/css/af9-output.css?v=${v9Revision}`, "allfictionV9Output");
-    ensureScript("script[data-allfiction-v9]", `./assets/js/home-v9.js?v=${v9Revision}`, "allfictionV9");
+    ensureScript(
+      "script[data-allfiction-v9]",
+      `./assets/js/home-v9.js?v=${v9Revision}`,
+      "allfictionV9",
+      loadV10,
+    );
   };
 
   const loadV8 = () => {
