@@ -31,6 +31,7 @@ jobs:
           node --check assets/js/home-v9.js
           node --check assets/js/home-v10.js
           node --check assets/js/home-v11.js
+          node --check assets/js/home-v13.js
           node --check assets/js/panda-stable.js
           node --check mmlab-contact-worker/src/worker.js
           node --check mmlab-contact-worker/src/worker-v2.js
@@ -47,9 +48,12 @@ jobs:
           node --check assets/js/i18n.js
           node --check assets/js/redwatch-panel.js
           node --check scripts/check-site.mjs
+          node --check scripts/check-v13.mjs
 
       - name: Check site contracts
-        run: node scripts/check-site.mjs
+        run: |
+          node scripts/check-site.mjs
+          node scripts/check-v13.mjs
 
       - name: Test AF Intelligence
         run: npm test --prefix mmlab-contact-worker
@@ -107,4 +111,5 @@ jobs:
           grep -q 'AI_MODEL = "gemini-3.5-flash-lite"' mmlab-contact-worker/wrangler.toml
           grep -q 'main = "src/worker-v2.js"' mmlab-contact-worker/wrangler.toml
           grep -q 'home-v11.js' contact-config.js
+          grep -q 'home-v13.js' contact-config.js
           ! grep -q 'mattarzu.github.io/portfolio' index.html
