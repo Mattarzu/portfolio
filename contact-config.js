@@ -15,7 +15,7 @@ window.ALLFICTION_AI_ENABLED = true;
 // Visual layers are isolated from the production contact/AI/i18n behaviour.
 // V4 establishes the editorial identity; V5 adds progressive enhancement;
 // V6 owns the concrete copy; V7 adds contextual navigation and adaptive motion;
-// V8 owns the warm yellow palette; V9 adds Automation Lab; V10 adds AF Agent.
+// V8 owns warm yellow; V9 Automation Lab; V10 AF Agent; V11 intent routing.
 (() => {
   const v4Revision = "20260812-v4";
   const v5Revision = "20260812-v5";
@@ -24,6 +24,7 @@ window.ALLFICTION_AI_ENABLED = true;
   const v8Revision = "20260813-v8";
   const v9Revision = "20260813-v9";
   const v10Revision = "20260813-v10";
+  const v11Revision = "20260813-v11";
 
   const ensureStylesheet = (selector, href, datasetKey) => {
     if (document.querySelector(selector)) return;
@@ -56,6 +57,20 @@ window.ALLFICTION_AI_ENABLED = true;
     "allfictionV4",
   );
 
+  const loadV11 = () => {
+    ensureStylesheet(
+      "link[data-allfiction-v11]",
+      `./assets/css/home-v11.css?v=${v11Revision}`,
+      "allfictionV11",
+    );
+    ensureScript(
+      "script[data-allfiction-v11]",
+      `./assets/js/home-v11.js?v=${v11Revision}`,
+      "allfictionV11",
+      () => document.documentElement.classList.add("design-v11"),
+    );
+  };
+
   const loadV10 = () => {
     ensureStylesheet(
       "link[data-allfiction-v10]",
@@ -66,6 +81,7 @@ window.ALLFICTION_AI_ENABLED = true;
       "script[data-allfiction-v10]",
       `./assets/js/home-v10.js?v=${v10Revision}`,
       "allfictionV10",
+      loadV11,
     );
   };
 
