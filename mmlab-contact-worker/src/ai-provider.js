@@ -9,6 +9,7 @@ export const DEFAULT_AI_MODELS = Object.freeze({
 });
 
 const SUPPORTED_PROVIDERS = new Set(Object.keys(DEFAULT_AI_MODELS));
+const PROVIDER_TEXT_LIMIT = 12_000;
 
 function cleanText(value) {
   return typeof value === "string" ? value.trim() : "";
@@ -108,7 +109,7 @@ export function extractGeminiText(data) {
     }
   }
 
-  return cleanText(chunks.join("\n")).slice(0, 1200);
+  return cleanText(chunks.join("\n")).slice(0, PROVIDER_TEXT_LIMIT);
 }
 
 export function extractOpenAiText(data) {
@@ -123,7 +124,7 @@ export function extractOpenAiText(data) {
     }
   }
 
-  return cleanText(chunks.join("\n")).slice(0, 1200);
+  return cleanText(chunks.join("\n")).slice(0, PROVIDER_TEXT_LIMIT);
 }
 
 export function extractProviderText(provider, data) {
