@@ -232,16 +232,10 @@
 
         message.value = request.preview;
         message.dispatchEvent(new Event("input", { bubbles: true }));
-        controls.textContent = copy(
-          "Aprobado. El formulario quedó preparado localmente; todavía no fue enviado.",
-          "Approved. The form was prepared locally; it has not been sent.",
-        );
 
-        close?.click();
-        window.setTimeout(() => {
-          document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth", block: "start" });
-          contact.querySelector("input[name='name']")?.focus({ preventScroll: true });
-        }, 120);
+        document.dispatchEvent(new CustomEvent("allfiction:brief-approved", {
+          detail: { preview: request.preview },
+        }));
       });
     }
 
