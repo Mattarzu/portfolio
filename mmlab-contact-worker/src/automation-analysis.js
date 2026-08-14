@@ -209,7 +209,7 @@ function geminiBody({ instructions, input, maxOutputTokens }) {
       candidateCount: 1,
       maxOutputTokens,
       responseMimeType: "application/json",
-      responseSchema: AUTOMATION_ANALYSIS_SCHEMA,
+      responseJsonSchema: AUTOMATION_ANALYSIS_SCHEMA,
     },
   };
 }

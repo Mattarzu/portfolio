@@ -104,7 +104,8 @@ test("Gemini automation analysis uses JSON schema output", async () => {
   const providerBody = JSON.parse(calls[0].init.body);
   assert.equal(providerBody.generationConfig.responseMimeType, "application/json");
   assert.equal(providerBody.generationConfig.maxOutputTokens, 900);
-  assert.equal(providerBody.generationConfig.responseSchema.type, "object");
+  assert.equal(providerBody.generationConfig.responseJsonSchema.type, "object");
+  assert.equal("responseSchema" in providerBody.generationConfig, false);
 });
 
 test("automation health exposes provider diagnostics without secrets", async () => {
