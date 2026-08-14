@@ -18,6 +18,10 @@ function boundedInteger(value, fallback, minimum, maximum) {
   return Math.max(minimum, Math.min(parsed, maximum));
 }
 
+export function automationTimeoutMs(env = {}) {
+  return boundedInteger(env.AI_AUTOMATION_TIMEOUT_MS, 24000, 8000, 30000);
+}
+
 function json(data, status = 200, headers = {}) {
   return new Response(JSON.stringify(data), {
     status,
@@ -249,7 +253,8 @@ export async function handleAutomationRequest(request, env) {
 
   const startedAt = Date.now();
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 14000);
+  const timeoutMs = automationTimeoutMs(env);
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
 
   try {
     const resultAi = await analyzeAutomationProcess({

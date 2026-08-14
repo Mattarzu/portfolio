@@ -7,7 +7,7 @@ const tests = fs.readFileSync("mmlab-contact-worker/test/automation-analysis.tes
 
 assert.match(analysis, /responseJsonSchema: AUTOMATION_ANALYSIS_SCHEMA/);
 assert.doesNotMatch(analysis, /responseSchema: AUTOMATION_ANALYSIS_SCHEMA/);
-assert.match(worker, /runtimeVersion: "v15b2"/);
+assert.match(worker, /runtimeVersion: "[^"]+"/);
 assert.match(tests, /generationConfig\.responseJsonSchema\.type/);
 
 console.log("V15B.2 Gemini JSON Schema contracts: OK");

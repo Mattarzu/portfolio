@@ -1,5 +1,9 @@
 import baseWorker from "./worker.js";
-import { automationCorsHeaders, handleAutomationRequest } from "./automation-endpoint.js";
+import {
+  automationCorsHeaders,
+  automationTimeoutMs,
+  handleAutomationRequest,
+} from "./automation-endpoint.js";
 import { publicProviderState } from "./ai-provider.js";
 import { agentCorsHeaders, handleAgentRequest } from "./agent-endpoint.js";
 import { detectProjectIntent, projectHandoffCopy } from "./intent-router.js";
@@ -23,7 +27,7 @@ function automationHealth(request, env) {
     ok: true,
     service: "allfiction-portfolio-api",
     capability: "automation-analysis-v1",
-    runtimeVersion: "v15b2",
+    runtimeVersion: "v15b3",
     structuredOutput: true,
     externalActions: false,
     ai: {
@@ -36,6 +40,7 @@ function automationHealth(request, env) {
     diagnostics: {
       fallbackReasonExposed: true,
       transientRetryMaxAttempts: 2,
+      automationTimeoutMs: automationTimeoutMs(env),
       promptLoggedByWorker: false,
       responseLoggedByWorker: false,
     },

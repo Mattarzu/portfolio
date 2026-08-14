@@ -3,6 +3,7 @@ import { afterEach, beforeEach, test } from "node:test";
 
 import worker from "../src/worker-v2.js";
 import {
+  analyzeAutomationProcess,
   AUTOMATION_ANALYSIS_SCHEMA,
   normalizeAutomationAnalysis,
 } from "../src/automation-analysis.js";
@@ -116,7 +117,9 @@ test("automation health exposes provider diagnostics without secrets", async () 
   assert.equal(body.ai.model, "gemini-3.5-flash-lite");
   assert.equal(body.ai.configured, true);
   assert.equal(body.diagnostics.fallbackReasonExposed, true);
+  assert.equal(body.runtimeVersion, "v15b3");
   assert.equal(body.diagnostics.transientRetryMaxAttempts, 2);
+  assert.equal(body.diagnostics.automationTimeoutMs, 24000);
   assert.equal(body.diagnostics.promptLoggedByWorker, false);
   assert.equal(response.headers.get("Access-Control-Allow-Origin"), allowedOrigin);
   assert.equal(JSON.stringify(body).includes("test-key"), false);
@@ -138,6 +141,28 @@ test("automation analysis retries once after a transient provider failure", asyn
   assert.equal(body.runtime.status, "ok");
   assert.equal(body.runtime.promptLoggedByWorker, false);
   assert.equal(body.runtime.responseLoggedByWorker, false);
+});
+
+test("automation provider abort is reported as provider-timeout", async () => {
+  let calls = 0;
+  globalThis.fetch = async () => {
+    calls += 1;
+    throw new DOMException("Aborted", "AbortError");
+  };
+
+  const controller = new AbortController();
+  const result = await analyzeAutomationProcess({
+    env: environment(),
+    description: "Recibo consultas, clasifico solicitudes y registro manualmente el resultado para luego notificar al equipo.",
+    locale: "es-AR",
+    safetyIdentifier: "af-timeout-test",
+    signal: controller.signal,
+  });
+
+  assert.equal(result.ok, false);
+  assert.equal(result.reason, "provider-timeout");
+  assert.equal(result.attempts, 1);
+  assert.equal(calls, 1);
 });
 
 test("OpenAI adapter requests strict structured output", async () => {

@@ -329,7 +329,10 @@ export async function analyzeAutomationProcess({
         analysis,
         requestId: response.headers.get("x-request-id") || undefined,
       };
-    } catch {
+    } catch (error) {
+      if (error?.name === "AbortError" || signal?.aborted) {
+        return { ok: false, reason: "provider-timeout" };
+      }
       return { ok: false, reason: "ai-request-failed" };
     }
   }
@@ -341,7 +344,10 @@ export async function analyzeAutomationProcess({
       await retryDelay(signal, 250);
       result = await attempt();
       attempts = 2;
-    } catch {
+    } catch (error) {
+      if (error?.name === "AbortError" || signal?.aborted) {
+        return { ok: false, reason: "provider-timeout", attempts };
+      }
       return { ok: false, reason: "ai-request-failed", attempts };
     }
   }
