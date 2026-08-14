@@ -23,6 +23,7 @@ function automationHealth(request, env) {
     ok: true,
     service: "allfiction-portfolio-api",
     capability: "automation-analysis-v1",
+    runtimeVersion: "v15b2",
     structuredOutput: true,
     externalActions: false,
     ai: {
