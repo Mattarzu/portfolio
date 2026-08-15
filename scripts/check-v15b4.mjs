@@ -23,6 +23,8 @@ assert.match(worker, /runtimeMetadataLogging: automationRuntimeLoggingEnabled\(e
 assert.match(worker, /runtimeLogPayloads: false/);
 assert.match(wrangler, /AI_RUNTIME_LOGS = "true"/);
 assert.match(wrangler, /\[observability\]/);
+assert.match(wrangler, /\[observability\.logs\]/);
+assert.match(wrangler, /invocation_logs = false/);
 assert.match(wrangler, /head_sampling_rate = 1/);
 assert.match(frontend, /totalTokens/);
 assert.match(frontend, /PROVIDER TIMEOUT/);
