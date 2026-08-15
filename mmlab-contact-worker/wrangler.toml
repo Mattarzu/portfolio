@@ -25,4 +25,7 @@ AI_AGENT_DAILY_LIMIT = "20"
 
 [observability]
 enabled = true
+
+[observability.logs]
+invocation_logs = false
 head_sampling_rate = 1
