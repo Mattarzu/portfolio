@@ -176,7 +176,50 @@ function guidedAnalysis(locale) {
   };
 }
 
-function runtimeState(env, status, reason, elapsedMs = 0, attempts = 0) {
+function telemetryState(value) {
+  if (!value || typeof value !== "object") return null;
+  const usage = value.usage && typeof value.usage === "object" ? value.usage : {};
+  return {
+    finishReason: cleanText(value.finishReason).slice(0, 64) || null,
+    usage: {
+      inputTokens: boundedInteger(usage.inputTokens, 0, 0, 10_000_000),
+      outputTokens: boundedInteger(usage.outputTokens, 0, 0, 10_000_000),
+      thoughtsTokens: boundedInteger(usage.thoughtsTokens, 0, 0, 10_000_000),
+      totalTokens: boundedInteger(usage.totalTokens, 0, 0, 10_000_000),
+    },
+  };
+}
+
+export function automationRuntimeLoggingEnabled(env = {}) {
+  return ["1", "true", "yes", "on"].includes(
+    cleanText(env.AI_RUNTIME_LOGS).toLowerCase(),
+  );
+}
+
+function logAutomationRuntime(env, runtime) {
+  if (!automationRuntimeLoggingEnabled(env)) return;
+  const usage = runtime.telemetry?.usage || {};
+  console.log({
+    event: "af_automation_runtime",
+    runtimeVersion: "v15b4",
+    feature: runtime.feature,
+    status: runtime.status,
+    reason: runtime.reason,
+    provider: runtime.provider,
+    model: runtime.model,
+    elapsedMs: runtime.elapsedMs,
+    attempts: runtime.attempts,
+    finishReason: runtime.telemetry?.finishReason || null,
+    inputTokens: usage.inputTokens || 0,
+    outputTokens: usage.outputTokens || 0,
+    thoughtsTokens: usage.thoughtsTokens || 0,
+    totalTokens: usage.totalTokens || 0,
+    promptLogged: false,
+    responseLogged: false,
+  });
+}
+
+function runtimeState(env, status, reason, elapsedMs = 0, attempts = 0, telemetry = null) {
   const provider = publicProviderState(env);
   return {
     feature: "automation-lab",
@@ -187,18 +230,31 @@ function runtimeState(env, status, reason, elapsedMs = 0, attempts = 0) {
     configured: provider.configured,
     elapsedMs: Math.max(0, Number(elapsedMs) || 0),
     attempts: Math.max(0, Number(attempts) || 0),
+    telemetry: telemetryState(telemetry),
     promptLoggedByWorker: false,
     responseLoggedByWorker: false,
   };
 }
 
-function guided(locale, reason, cors, env, status = 200, elapsedMs = 0, attempts = 0) {
+function guided(
+  locale,
+  reason,
+  cors,
+  env,
+  status = 200,
+  elapsedMs = 0,
+  attempts = 0,
+  telemetry = null,
+  logProviderRuntime = false,
+) {
+  const runtime = runtimeState(env, "fallback", reason, elapsedMs, attempts, telemetry);
+  if (logProviderRuntime) logAutomationRuntime(env, runtime);
   return json(
     {
       ok: true,
       mode: "guided",
       reason,
-      runtime: runtimeState(env, "fallback", reason, elapsedMs, attempts),
+      runtime,
       analysis: guidedAnalysis(locale),
       trace: [
         { id: "01", label: "INPUT", status: "validated" },
@@ -267,8 +323,28 @@ export async function handleAutomationRequest(request, env) {
 
     const elapsedMs = Date.now() - startedAt;
     if (!resultAi.ok) {
-      return guided(payload.locale, resultAi.reason, cors, env, 200, elapsedMs, resultAi.attempts);
+      return guided(
+        payload.locale,
+        resultAi.reason,
+        cors,
+        env,
+        200,
+        elapsedMs,
+        resultAi.attempts,
+        resultAi.telemetry,
+        true,
+      );
     }
+
+    const runtime = runtimeState(
+      env,
+      "ok",
+      null,
+      elapsedMs,
+      resultAi.attempts,
+      resultAi.telemetry,
+    );
+    logAutomationRuntime(env, runtime);
 
     return json(
       {
@@ -278,7 +354,7 @@ export async function handleAutomationRequest(request, env) {
         model: resultAi.model,
         requestId: resultAi.requestId,
         elapsedMs,
-        runtime: runtimeState(env, "ok", null, elapsedMs, resultAi.attempts),
+        runtime,
         analysis: resultAi.analysis,
         trace: [
           { id: "01", label: "INPUT", status: "validated" },

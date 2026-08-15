@@ -55,6 +55,8 @@ jobs:
           node --check scripts/check-v15b1.mjs
           node --check scripts/check-v15b2.mjs
           node --check scripts/check-v15b3.mjs
+          node --check scripts/check-v15b4.mjs
+          node --check scripts/benchmark-automation-v15b4.mjs
           node --check scripts/run-af-evals.mjs
 
       - name: Check site contracts
@@ -66,6 +68,7 @@ jobs:
           node scripts/check-v15b1.mjs
           node scripts/check-v15b2.mjs
           node scripts/check-v15b3.mjs
+          node scripts/check-v15b4.mjs
 
       - name: Run AF reliability evals
         run: node scripts/run-af-evals.mjs --verify

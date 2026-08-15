@@ -10,7 +10,7 @@ const tests = fs.readFileSync("mmlab-contact-worker/test/automation-analysis.tes
 assert.match(endpoint, /AI_AUTOMATION_TIMEOUT_MS, 24000, 8000, 30000/);
 assert.doesNotMatch(endpoint, /controller\.abort\(\), 14000/);
 assert.match(analysis, /reason: "provider-timeout"/);
-assert.match(worker, /runtimeVersion: "v15b3"/);
+assert.match(worker, /runtimeVersion: "[^"]+"/);
 assert.match(worker, /automationTimeoutMs: automationTimeoutMs\(env\)/);
 assert.match(wrangler, /AI_AUTOMATION_TIMEOUT_MS = "24000"/);
 assert.match(tests, /automation provider abort is reported as provider-timeout/);
