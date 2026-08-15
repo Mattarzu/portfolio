@@ -1,6 +1,7 @@
 import baseWorker from "./worker.js";
 import {
   automationCorsHeaders,
+  automationRuntimeLoggingEnabled,
   automationTimeoutMs,
   handleAutomationRequest,
 } from "./automation-endpoint.js";
@@ -27,7 +28,7 @@ function automationHealth(request, env) {
     ok: true,
     service: "allfiction-portfolio-api",
     capability: "automation-analysis-v1",
-    runtimeVersion: "v15b3",
+    runtimeVersion: "v15b4",
     structuredOutput: true,
     externalActions: false,
     ai: {
@@ -41,6 +42,9 @@ function automationHealth(request, env) {
       fallbackReasonExposed: true,
       transientRetryMaxAttempts: 2,
       automationTimeoutMs: automationTimeoutMs(env),
+      providerUsageExposed: true,
+      runtimeMetadataLogging: automationRuntimeLoggingEnabled(env),
+      runtimeLogPayloads: false,
       promptLoggedByWorker: false,
       responseLoggedByWorker: false,
     },

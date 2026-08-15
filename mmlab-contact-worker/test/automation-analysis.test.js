@@ -83,7 +83,16 @@ test("Gemini automation analysis uses JSON schema output", async () => {
     calls.push({ url: String(url), init });
     return new Response(
       JSON.stringify({
-        candidates: [{ content: { parts: [{ text: JSON.stringify(sampleAnalysis) }] } }],
+        candidates: [{
+          finishReason: "STOP",
+          content: { parts: [{ text: JSON.stringify(sampleAnalysis) }] },
+        }],
+        usageMetadata: {
+          promptTokenCount: 184,
+          candidatesTokenCount: 226,
+          thoughtsTokenCount: 12,
+          totalTokenCount: 422,
+        },
       }),
       { status: 200, headers: { "Content-Type": "application/json", "x-request-id": "auto_req" } },
     );
@@ -100,6 +109,13 @@ test("Gemini automation analysis uses JSON schema output", async () => {
   assert.equal(body.provider, "gemini");
   assert.equal(body.analysis.workflow[1].kind, "ai");
   assert.equal(body.trace.at(-1).label, "SCHEMA");
+  assert.equal(body.runtime.telemetry.finishReason, "STOP");
+  assert.deepEqual(body.runtime.telemetry.usage, {
+    inputTokens: 184,
+    outputTokens: 226,
+    thoughtsTokens: 12,
+    totalTokens: 422,
+  });
   assert.equal(calls.length, 1);
 
   const providerBody = JSON.parse(calls[0].init.body);
@@ -117,9 +133,12 @@ test("automation health exposes provider diagnostics without secrets", async () 
   assert.equal(body.ai.model, "gemini-3.5-flash-lite");
   assert.equal(body.ai.configured, true);
   assert.equal(body.diagnostics.fallbackReasonExposed, true);
-  assert.equal(body.runtimeVersion, "v15b3");
+  assert.equal(body.runtimeVersion, "v15b4");
   assert.equal(body.diagnostics.transientRetryMaxAttempts, 2);
   assert.equal(body.diagnostics.automationTimeoutMs, 24000);
+  assert.equal(body.diagnostics.providerUsageExposed, true);
+  assert.equal(body.diagnostics.runtimeMetadataLogging, false);
+  assert.equal(body.diagnostics.runtimeLogPayloads, false);
   assert.equal(body.diagnostics.promptLoggedByWorker, false);
   assert.equal(response.headers.get("Access-Control-Allow-Origin"), allowedOrigin);
   assert.equal(JSON.stringify(body).includes("test-key"), false);
@@ -171,7 +190,14 @@ test("OpenAI adapter requests strict structured output", async () => {
     calls.push({ url: String(url), init });
     return new Response(
       JSON.stringify({
+        status: "completed",
         output: [{ type: "message", content: [{ type: "output_text", text: JSON.stringify(sampleAnalysis) }] }],
+        usage: {
+          input_tokens: 140,
+          output_tokens: 210,
+          output_tokens_details: { reasoning_tokens: 0 },
+          total_tokens: 350,
+        },
       }),
       { status: 200, headers: { "Content-Type": "application/json" } },
     );
@@ -190,6 +216,13 @@ test("OpenAI adapter requests strict structured output", async () => {
 
   assert.equal(body.mode, "ai");
   assert.equal(body.provider, "openai");
+  assert.equal(body.runtime.telemetry.finishReason, "completed");
+  assert.deepEqual(body.runtime.telemetry.usage, {
+    inputTokens: 140,
+    outputTokens: 210,
+    thoughtsTokens: 0,
+    totalTokens: 350,
+  });
   const providerBody = JSON.parse(calls[0].init.body);
   assert.equal(providerBody.text.format.type, "json_schema");
   assert.equal(providerBody.text.format.strict, true);

@@ -59,6 +59,7 @@
       if (value === "invalid-structured-output") return "STRUCTURED OUTPUT INVALID";
       if (value === "empty-ai-response") return "EMPTY PROVIDER RESPONSE";
       if (value === "ai-request-failed") return "PROVIDER REQUEST FAILED";
+      if (value === "provider-timeout") return "PROVIDER TIMEOUT";
       if (value === "daily-limit-reached") return "DAILY AI BUDGET LIMIT";
       if (value === "rate-limit-exceeded") return "VISITOR RATE LIMIT";
       if (value === "ai-not-configured") return "AI NOT CONFIGURED";
@@ -72,6 +73,10 @@
       const parts = [String(info.provider || "").toUpperCase(), String(info.model || "")].filter(Boolean);
       if (Number(info.attempts || 0) > 1) parts.push(`${info.attempts} ATTEMPTS`);
       if (Number(info.elapsedMs || 0) > 0) parts.push(`${info.elapsedMs} MS`);
+      const telemetry = info.telemetry || {};
+      const usage = telemetry.usage || {};
+      if (Number(usage.totalTokens || 0) > 0) parts.push(`${usage.totalTokens} TOK`);
+      if (telemetry.finishReason) parts.push(String(telemetry.finishReason).toUpperCase());
       runtime.querySelector("b").textContent = parts.join(" · ") || "UNVERIFIED";
       runtime.classList.toggle("is-ok", info.status === "ok" || info.configured === true);
       runtime.classList.toggle("is-fallback", info.status === "fallback");
@@ -115,7 +120,10 @@
       if (payload.mode === "ai") {
         const elapsed = Number(payload.elapsedMs || payload.runtime?.elapsedMs || 0);
         const attempts = Number(payload.runtime?.attempts || 1);
-        state.textContent = elapsed > 0 ? `SCHEMA OK · ${elapsed} MS${attempts > 1 ? ` · ${attempts} ATTEMPTS` : ""}` : "SCHEMA OK";
+        const totalTokens = Number(payload.runtime?.telemetry?.usage?.totalTokens || 0);
+        state.textContent = elapsed > 0
+          ? `SCHEMA OK · ${elapsed} MS${totalTokens > 0 ? ` · ${totalTokens} TOK` : ""}${attempts > 1 ? ` · ${attempts} ATTEMPTS` : ""}`
+          : "SCHEMA OK";
       } else {
         const reason = el("div", "af9-fallback-reason");
         reason.append(el("span", "", "FALLBACK REASON"), el("b", "", humanReason(payload.reason)), el("code", "", String(payload.reason || "unknown")));

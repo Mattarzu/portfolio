@@ -101,6 +101,46 @@ function boundedInteger(value, fallback, minimum, maximum) {
   return Math.max(minimum, Math.min(parsed, maximum));
 }
 
+function safeTokenCount(value) {
+  const parsed = Number.parseInt(String(value ?? ""), 10);
+  if (!Number.isFinite(parsed) || parsed < 0) return 0;
+  return Math.min(parsed, 10_000_000);
+}
+
+export function extractAutomationTelemetry(provider, data) {
+  if (!data || typeof data !== "object") {
+    return {
+      finishReason: null,
+      usage: { inputTokens: 0, outputTokens: 0, thoughtsTokens: 0, totalTokens: 0 },
+    };
+  }
+
+  if (provider === "gemini") {
+    const usage = data.usageMetadata || {};
+    const candidate = Array.isArray(data.candidates) ? data.candidates[0] : null;
+    return {
+      finishReason: cleanText(candidate?.finishReason, 64) || null,
+      usage: {
+        inputTokens: safeTokenCount(usage.promptTokenCount),
+        outputTokens: safeTokenCount(usage.candidatesTokenCount),
+        thoughtsTokens: safeTokenCount(usage.thoughtsTokenCount),
+        totalTokens: safeTokenCount(usage.totalTokenCount),
+      },
+    };
+  }
+
+  const usage = data.usage || {};
+  return {
+    finishReason: cleanText(data.status, 64) || null,
+    usage: {
+      inputTokens: safeTokenCount(usage.input_tokens),
+      outputTokens: safeTokenCount(usage.output_tokens),
+      thoughtsTokens: safeTokenCount(usage.output_tokens_details?.reasoning_tokens),
+      totalTokens: safeTokenCount(usage.total_tokens),
+    },
+  };
+}
+
 function cleanStringList(value, maximum) {
   if (!Array.isArray(value)) return [];
   return value
@@ -315,18 +355,20 @@ export async function analyzeAutomationProcess({
       });
       if (!response.ok) return { ok: false, reason: `provider-http-${response.status}` };
       const data = await response.json().catch(() => null);
+      const telemetry = extractAutomationTelemetry(config.provider, data);
       const rawText = extractProviderText(config.provider, data);
-      if (!rawText) return { ok: false, reason: "empty-ai-response" };
+      if (!rawText) return { ok: false, reason: "empty-ai-response", telemetry };
       let parsed;
       try { parsed = JSON.parse(rawText); }
-      catch { return { ok: false, reason: "invalid-structured-output" }; }
+      catch { return { ok: false, reason: "invalid-structured-output", telemetry }; }
       const analysis = normalizeAutomationAnalysis(parsed);
-      if (!analysis) return { ok: false, reason: "invalid-structured-output" };
+      if (!analysis) return { ok: false, reason: "invalid-structured-output", telemetry };
       return {
         ok: true,
         provider: config.provider,
         model: config.model,
         analysis,
+        telemetry,
         requestId: response.headers.get("x-request-id") || undefined,
       };
     } catch (error) {
