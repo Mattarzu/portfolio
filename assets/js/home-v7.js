@@ -46,6 +46,7 @@
       ["Cómo trabajamos", "How we work"],
       ["Contacto", "Contact"],
     ];
+    const whatWeBuildSection = document.getElementById("what-we-build");
     document.querySelectorAll(".main-nav > a").forEach((link, index) => {
       const copy = navCopy[index];
       if (!copy) return;
@@ -53,6 +54,9 @@
       const en = link.querySelector("[data-lang='en']");
       if (es) es.textContent = copy[0];
       if (en) en.textContent = copy[1];
+      if (index === 1 && whatWeBuildSection) {
+        link.setAttribute("href", "#what-we-build");
+      }
     });
 
     const headerInner = document.querySelector(".header-inner");

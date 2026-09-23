@@ -141,7 +141,7 @@ html.design-v7 .af-context-link:focus-visible {
 html.design-v7 .af-system-map-section {
   position: relative;
   overflow: clip;
-  padding: clamp(88px, 10vw, 150px) 0;
+  padding: clamp(52px, 5vw, 80px) 0;
   border-top: 1px solid rgba(255, 255, 255, 0.055);
   border-bottom: 1px solid rgba(255, 255, 255, 0.055);
   background:
@@ -175,17 +175,17 @@ html.design-v7 .af-system-map-head {
   display: grid;
   grid-template-columns: minmax(0, 0.8fr) minmax(280px, 0.42fr);
   align-items: end;
-  gap: 60px;
+  gap: 48px;
 }
 
 html.design-v7 .af-system-map-head h2 {
   max-width: 860px;
-  margin: 20px 0 0;
+  margin: 16px 0 0;
   color: #f5eee5;
-  font-size: clamp(3rem, 6.2vw, 6.5rem);
+  font-size: clamp(2.4rem, 4.4vw, 4.6rem);
   font-weight: 610;
-  letter-spacing: -0.068em;
-  line-height: 0.92;
+  letter-spacing: -0.06em;
+  line-height: 0.94;
 }
 
 html.design-v7 .af-system-map-head h2 em {
@@ -205,9 +205,9 @@ html.design-v7 .af-system-map-head > p {
 
 html.design-v7 .af-system-map {
   position: relative;
-  width: min(100%, 980px);
+  width: min(100%, 820px);
   aspect-ratio: 1.95 / 1;
-  margin: clamp(54px, 7vw, 94px) auto 0;
+  margin: clamp(32px, 4vw, 54px) auto 0;
 }
 
 html.design-v7 .af-system-map svg {
@@ -241,11 +241,11 @@ html.design-v7 .af-system-node {
 html.design-v7 .af-system-core {
   top: 50%;
   left: 50%;
-  width: clamp(112px, 13vw, 154px);
+  width: clamp(96px, 10vw, 130px);
   aspect-ratio: 1;
   border-radius: 50%;
   color: #fff8f0;
-  font-size: clamp(2rem, 4vw, 3.7rem);
+  font-size: clamp(1.8rem, 3.2vw, 3rem);
   font-weight: 800;
   letter-spacing: -0.08em;
   transform: translate(-50%, -50%);
@@ -253,32 +253,34 @@ html.design-v7 .af-system-core {
 
 html.design-v7 .af-system-core::after {
   position: absolute;
-  inset: -18px;
+  inset: -14px;
   border: 1px solid rgba(255, 107, 22, 0.12);
   border-radius: 50%;
   content: "";
 }
 
 html.design-v7 .af-system-node {
-  min-width: 132px;
-  min-height: 64px;
+  min-width: 120px;
+  min-height: 56px;
   flex-direction: column;
   align-items: flex-start;
-  padding: 13px 16px;
-  border-radius: 13px;
+  padding: 10px 14px;
+  border-radius: 12px;
 }
 
 html.design-v7 .af-system-node b {
   color: #f3ebe1;
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 0.64rem;
+  font-size: 0.74rem;
+  font-weight: 700;
   letter-spacing: 0.1em;
 }
 
 html.design-v7 .af-system-node small {
-  margin-top: 6px;
-  color: #766e67;
-  font-size: 0.58rem;
+  margin-top: 4px;
+  color: #b0a89f;
+  font-size: 0.69rem;
+  line-height: 1.35;
 }
 
 html.design-v7 .af-node-ui { top: 2%; left: 8%; }
@@ -292,10 +294,10 @@ html.design-v7 .af-system-map-foot {
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-top: 22px;
-  color: rgba(244, 237, 228, 0.42);
+  margin-top: 20px;
+  color: rgba(244, 237, 228, 0.66);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 0.54rem;
+  font-size: 0.65rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -382,16 +384,17 @@ html.design-v7[data-af-motion="static"] .af-system-node {
 
 @media (max-width: 900px) {
   html.design-v7 .af-system-map-section {
-    padding: 82px 0 88px;
+    padding: 52px 0 56px;
   }
 
   html.design-v7 .af-system-map-head {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 18px;
   }
 
   html.design-v7 .af-system-map-head h2 {
-    font-size: clamp(2.8rem, 13vw, 4.7rem);
+    font-size: clamp(2.2rem, 9.5vw, 3.8rem);
+    margin-top: 12px;
   }
 
   html.design-v7 .af-system-map {
@@ -399,8 +402,8 @@ html.design-v7[data-af-motion="static"] .af-system-node {
     width: 100%;
     aspect-ratio: auto;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 42px;
+    gap: 8px;
+    margin-top: 28px;
   }
 
   html.design-v7 .af-system-map svg,
@@ -411,23 +414,20 @@ html.design-v7[data-af-motion="static"] .af-system-node {
   html.design-v7 .af-system-node {
     position: static;
     min-width: 0;
-    min-height: 76px;
+    min-height: 60px;
+    padding: 10px 12px;
     transform: none;
   }
 
   html.design-v7 .af-system-map-foot {
     justify-content: flex-start;
-    margin-top: 18px;
+    margin-top: 16px;
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 330px) {
   html.design-v7 .af-system-map {
     grid-template-columns: 1fr;
-  }
-
-  html.design-v7 .af-system-node {
-    min-height: 68px;
   }
 }
 
