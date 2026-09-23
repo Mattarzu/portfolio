@@ -13,7 +13,7 @@
   <meta name="description" content="ERGO CLUB es una plataforma web/PWA para gestión de gimnasio, socios, staff, membresías, pagos y experiencia mobile. Proyecto desarrollado por ALLFICTION Software.">
   <meta name="robots" content="index, follow">
   <meta property="og:title" content="ERGO CLUB — Proyecto ALLFICTION Software">
-  <meta property="og:description" content="App web/PWA para gestión integral de gimnasio: landing pública, app mobile, staff/admin y backend API.">
+  <meta property="og:description" content="App web/PWA para gestión integral de gimnasio: experiencia de socios, staff/admin, flujos multi-sede y backend API.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://allfiction.56-126-148-93.sslip.io/projects/ergo-v2.html">
   <meta property="og:image" content="https://allfiction.56-126-148-93.sslip.io/preview.png">
@@ -854,19 +854,13 @@
         <h1>Gestión integral para gimnasios.</h1>
         <p class="lead">
           Plataforma web/PWA para administrar socios, membresías, pagos, staff, sedes,
-          actividades y experiencia mobile. El proyecto separa web pública, app mobile
-          y modo admin/staff para operación desde escritorio.
+          actividades y operaciones en tiempo real. La aplicación integra experiencia mobile
+          para socios, panel de gestión para staff y flujos operativos multi-sede.
         </p>
 
         <div class="actions">
-          <a class="btn btn-primary" href="https://ergo.56-126-148-93.sslip.io/web" target="_blank" rel="noopener noreferrer">
-            Abrir web pública
-          </a>
-          <a class="btn btn-secondary" href="https://ergo.56-126-148-93.sslip.io/app" target="_blank" rel="noopener noreferrer">
-            Abrir app/PWA
-          </a>
-          <a class="btn btn-secondary" href="https://ergo.56-126-148-93.sslip.io/admin" target="_blank" rel="noopener noreferrer">
-            Abrir admin
+          <a class="btn btn-primary" href="https://ergo.56-126-148-93.sslip.io/" target="_blank" rel="noopener noreferrer">
+            Abrir demo
           </a>
         </div>
       </div>
@@ -874,15 +868,15 @@
       <aside class="card hero-side" aria-label="Resumen técnico">
         <div class="metric">
           <strong>Producto</strong>
-          <span>Web pública + app mobile/PWA + staff/admin desktop.</span>
+          <span>Experiencia de socios + staff/admin + flujos multi-sede.</span>
         </div>
         <div class="metric">
           <strong>Backend</strong>
-          <span>API para socios, planes, actividades, sedes, pagos y operación interna.</span>
+          <span>API Node/Express para socios, planes, actividades, sedes, pagos y operaciones.</span>
         </div>
         <div class="metric">
           <strong>Deploy</strong>
-          <span>Frontend en Cloudflare Pages y API en Cloudflare Worker.</span>
+          <span>Frontend y API desplegados bajo infraestructura ALLFICTION con HTTPS y reverse proxy. El frontend se sirve con nginx y la API Node/Express opera bajo un endpoint independiente.</span>
         </div>
       </aside>
     </section>
@@ -903,7 +897,7 @@
         <img
           class="project-shot"
           src="../assets/projects/ergo-v2/ergo-club-web.png"
-          alt="Captura de la web pública de ERGO CLUB"
+          alt="Captura de la aplicación ERGO CLUB"
           loading="lazy"
         >
       </div>
@@ -920,18 +914,18 @@
 
       <div class="grid">
         <article class="item">
-          <h3>Landing comercial</h3>
-          <p>Presenta ERGO CLUB, sedes, actividades, planes y acceso directo a la app.</p>
+          <h3>Experiencia de socios</h3>
+          <p>Acceso para socios desde celular vía PWA con consulta de planes, actividades y navegación responsive.</p>
         </article>
 
         <article class="item">
-          <h3>App mobile/PWA</h3>
-          <p>Experiencia pensada para socios desde celular, con acceso rápido y navegación responsive.</p>
+          <h3>Gestión de staff</h3>
+          <p>Panel operativo para administración interna de socios, membresías, asistencias y roles de equipo.</p>
         </article>
 
         <article class="item">
-          <h3>Admin desktop</h3>
-          <p>Modo de administración separado para staff y responsables del gimnasio desde PC.</p>
+          <h3>Operación multi-sede</h3>
+          <p>Control centralizado de múltiples sedes, actividades, pagos y sincronización en tiempo real.</p>
         </article>
       </div>
     </section>
@@ -943,57 +937,42 @@
 
       <div class="surface-grid">
         <article class="surface-card">
-          <h3>Web pública</h3>
+          <h3>Experiencia de socios</h3>
           <p>
-            Landing comercial de ERGO CLUB para presentar el gimnasio, sus sedes,
-            actividades, planes y accesos principales.
+            Interfaz adaptada para socios desde celular vía PWA con consulta de actividades, planes vigentes y acceso rápido a su estado de membresía.
           </p>
 
           <div class="surface-meta">
-            <span class="pill">Landing</span>
-            <span class="pill">SEO</span>
-            <span class="pill">Responsive</span>
-          </div>
-
-          <a class="surface-link" href="https://ergo.56-126-148-93.sslip.io/web" target="_blank" rel="noopener noreferrer">
-            Abrir web
-          </a>
-        </article>
-
-        <article class="surface-card">
-          <h3>App mobile / PWA</h3>
-          <p>
-            Experiencia enfocada en socios desde celular, con navegación tipo app
-            y acceso rápido a las funciones principales.
-          </p>
-
-          <div class="surface-meta">
-            <span class="pill">Mobile-first</span>
-            <span class="pill">PWA</span>
             <span class="pill">Socios</span>
+            <span class="pill">PWA</span>
+            <span class="pill">Mobile</span>
           </div>
-
-          <a class="surface-link" href="https://ergo.56-126-148-93.sslip.io/app" target="_blank" rel="noopener noreferrer">
-            Abrir app
-          </a>
         </article>
 
         <article class="surface-card">
-          <h3>Admin desktop / Staff</h3>
+          <h3>Gestión de staff y administración</h3>
           <p>
-            Panel separado para administración operativa desde PC: staff, gestión
-            interna, control de socios, membresías y operaciones del gimnasio.
+            Panel operativo para gestión de personal, control de socios, cobros, seguimiento de membresías y administración del gimnasio.
           </p>
 
           <div class="surface-meta">
-            <span class="pill">Desktop</span>
             <span class="pill">Staff</span>
+            <span class="pill">Admin</span>
             <span class="pill">Operaciones</span>
           </div>
+        </article>
 
-          <a class="surface-link" href="https://ergo.56-126-148-93.sslip.io/admin" target="_blank" rel="noopener noreferrer">
-            Abrir admin
-          </a>
+        <article class="surface-card">
+          <h3>Flujos operativos multi-sede</h3>
+          <p>
+            Módulos para coordinar actividades, sedes, membresías y métricas operativas centralizadas en tiempo real sobre la misma plataforma.
+          </p>
+
+          <div class="surface-meta">
+            <span class="pill">Multi-sede</span>
+            <span class="pill">Sincronización</span>
+            <span class="pill">Tiempo real</span>
+          </div>
         </article>
       </div>
     </section>
@@ -1008,38 +987,38 @@
       <div class="status-grid">
         <article class="status-card">
           <span>Online</span>
-          <h3>Web pública</h3>
-          <p>Landing real desplegada en Cloudflare Pages bajo la ruta pública <strong>/web</strong>.</p>
-        </article>
-
-        <article class="status-card">
-          <span>Online</span>
-          <h3>App mobile / PWA</h3>
-          <p>Superficie privada para socios y operación mobile, separada de la landing pública.</p>
-        </article>
-
-        <article class="status-card">
-          <span>Online</span>
-          <h3>Admin desktop</h3>
-          <p>Panel operativo para staff y administración, orientado a escritorio.</p>
+          <h3>Demo pública</h3>
+          <p>Aplicación online desplegada y accesible en ergo.56-126-148-93.sslip.io con HTTPS.</p>
         </article>
 
         <article class="status-card">
           <span>Activo</span>
-          <h3>Backend/API</h3>
-          <p>API publicada para contenido público, leads, usuarios, staff, operaciones y administración.</p>
+          <h3>Backend / API</h3>
+          <p>API Node/Express activa bajo endpoint independiente en api-ergo.56-126-148-93.sslip.io.</p>
         </article>
 
         <article class="status-card">
-          <span>Cloudflare</span>
-          <h3>Deploy</h3>
-          <p>Frontend en Cloudflare Pages y backend/API en Cloudflare Worker.</p>
+          <span>Disponible</span>
+          <h3>Healthcheck API</h3>
+          <p>Verificación de salud disponible en <a href="https://api-ergo.56-126-148-93.sslip.io/api/health" target="_blank" rel="noopener noreferrer">api/health ↗</a> con respuesta JSON de estado operativo.</p>
         </article>
 
         <article class="status-card">
-          <span>MVP funcional</span>
-          <h3>Estado general</h3>
-          <p>Producto funcional en evolución, integrado al ecosistema de proyectos ALLFICTION Software.</p>
+          <span>nginx</span>
+          <h3>Frontend runtime</h3>
+          <p>Bundle SPA servido mediante nginx detrás de reverse proxy con terminación TLS.</p>
+        </article>
+
+        <article class="status-card">
+          <span>Node / Express</span>
+          <h3>Backend runtime</h3>
+          <p>Servicio backend en Node.js y Express con PostgreSQL, Prisma y comunicación en tiempo real.</p>
+        </article>
+
+        <article class="status-card">
+          <span>Caddy · HTTPS</span>
+          <h3>Infraestructura</h3>
+          <p>Reverse proxy Caddy con certificados HTTPS sobre infraestructura ALLFICTION.</p>
         </article>
       </div>
     </section>
@@ -1052,45 +1031,45 @@
       <h2>Arquitectura técnica</h2>
 
       <p class="lead" style="font-size:1rem;max-width:860px;">
-        ERGO CLUB está separado por superficies de producto y capas técnicas para mantener
-        web pública, app privada, administración, API y datos desacoplados.
+        ERGO CLUB organiza superficies de producto y capas técnicas para mantener
+        experiencia de socios, administración, API y persistencia desacopladas.
       </p>
 
       <div class="arch-flow">
         <article class="arch-node">
-          <span>Frontend</span>
-          <h3>Web pública</h3>
-          <p>Landing comercial y contenido visible para visitantes.</p>
+          <span>Socios</span>
+          <h3>Experiencia mobile</h3>
+          <p>Acceso para socios y experiencia PWA desde dispositivos móviles.</p>
         </article>
 
         <article class="arch-node">
-          <span>PWA</span>
-          <h3>App mobile</h3>
-          <p>Experiencia privada para socios y operación desde celular.</p>
+          <span>Staff</span>
+          <h3>Admin / staff</h3>
+          <p>Panel operativo para gestión interna y administración del gimnasio.</p>
         </article>
 
         <article class="arch-node">
-          <span>Desktop</span>
-          <h3>Admin/staff</h3>
-          <p>Panel operativo para gestión interna del gimnasio.</p>
+          <span>Operación</span>
+          <h3>Flujos multi-sede</h3>
+          <p>Coordinación centralizada de actividades, membresías y sedes.</p>
         </article>
 
         <article class="arch-node">
           <span>API</span>
-          <h3>Backend</h3>
-          <p>Endpoints para auth, socios, planes, leads, staff y operaciones.</p>
+          <h3>Node / Express</h3>
+          <p>Endpoints para auth, socios, planes, staff y operaciones.</p>
         </article>
 
         <article class="arch-node">
           <span>Data</span>
-          <h3>Base de datos</h3>
-          <p>Persistencia de usuarios, membresías, pagos y contenido público.</p>
+          <h3>PostgreSQL / Prisma</h3>
+          <p>Persistencia relacional de usuarios, membresías, pagos y sedes.</p>
         </article>
 
         <article class="arch-node">
           <span>Deploy</span>
-          <h3>Cloudflare</h3>
-          <p>Frontend en Pages y API operativa en Worker.</p>
+          <h3>Caddy · HTTPS</h3>
+          <p>Reverse proxy Caddy con HTTPS y frontend servido por nginx.</p>
         </article>
       </div>
 
@@ -1098,9 +1077,7 @@
         <article class="arch-note">
           <h3>Separación de superficies</h3>
           <p>
-            La web pública vive en <strong>/web</strong>, la app privada en <strong>/app</strong>
-            y el panel administrativo en <strong>/admin</strong>. Esto evita mezclar landing,
-            login y operación interna.
+            La plataforma organiza la experiencia de socios, la administración de staff y la operación multi-sede como roles dentro de una arquitectura modular desacoplada de la API y los datos.
           </p>
         </article>
 
@@ -1129,9 +1106,11 @@
         <span class="pill">Express</span>
         <span class="pill">PostgreSQL</span>
         <span class="pill">Prisma</span>
+        <span class="pill">Socket.IO</span>
+        <span class="pill">PWA</span>
+        <span class="pill">nginx</span>
+        <span class="pill">Caddy</span>
         <span class="pill">JWT</span>
-        <span class="pill">Cloudflare Pages</span>
-        <span class="pill">Cloudflare Worker</span>
       </div>
 
       <p class="note">
