@@ -164,7 +164,7 @@
             <button type="button" data-language="en-GB" aria-pressed="false">EN</button>
           </div>
 
-          <button class="ai-nav-button" type="button" data-ai-open>
+          <button class="ai-nav-button" type="button" aria-haspopup="dialog" data-ai-open>
             <span class="ai-spark" aria-hidden="true"></span>
             <span data-lang="es">Consultar IA</span>
             <span data-lang="en">Ask AI</span>
@@ -221,7 +221,7 @@
               <span data-lang="en">See engineering cases</span>
               <span aria-hidden="true">↘</span>
             </a>
-            <button class="button button-ghost" type="button" data-ai-open>
+            <button class="button button-ghost" type="button" aria-haspopup="dialog" data-ai-open>
               <span class="ai-spark" aria-hidden="true"></span>
               <span data-lang="es">Preguntarle a AF Intelligence</span>
               <span data-lang="en">Ask AF Intelligence</span>
@@ -274,7 +274,7 @@
             </div>
           </div>
 
-          <button class="stage-ai-card" type="button" data-ai-open>
+          <button class="stage-ai-card" type="button" aria-haspopup="dialog" data-ai-open>
             <span class="ai-orb" aria-hidden="true"></span>
             <span>
               <small>AF INTELLIGENCE</small>
@@ -814,22 +814,37 @@
                 and working style using verified information from this portfolio.
               </span>
             </p>
-            <button class="button button-primary" type="button" data-ai-open>
+            <button class="button button-primary" type="button" aria-haspopup="dialog" data-ai-open>
               <span data-lang="es">Iniciar conversación</span>
               <span data-lang="en">Start conversation</span>
               <span aria-hidden="true">↗</span>
             </button>
           </div>
           <div class="intelligence-prompts">
-            <button type="button" data-ai-question="¿Qué proyecto demuestra mejor experiencia backend?">
+            <button
+              type="button"
+              data-ai-question="¿Qué proyecto demuestra mejor experiencia backend?"
+              data-ai-question-es="¿Qué proyecto demuestra mejor experiencia backend?"
+              data-ai-question-en="Which project best demonstrates backend experience?"
+            >
               <span data-lang="es">¿Qué demuestra experiencia backend?</span>
               <span data-lang="en">What proves backend experience?</span>
             </button>
-            <button type="button" data-ai-question="¿Cómo integra ALLFICTION inteligencia artificial?">
+            <button
+              type="button"
+              data-ai-question="¿Cómo integra ALLFICTION inteligencia artificial?"
+              data-ai-question-es="¿Cómo integra ALLFICTION inteligencia artificial?"
+              data-ai-question-en="How does ALLFICTION integrate artificial intelligence?"
+            >
               <span data-lang="es">¿Cómo integra IA?</span>
               <span data-lang="en">How is AI integrated?</span>
             </button>
-            <button type="button" data-ai-question="¿Qué sistemas están hoy en producción?">
+            <button
+              type="button"
+              data-ai-question="¿Qué sistemas están hoy en producción?"
+              data-ai-question-es="¿Qué sistemas están hoy en producción?"
+              data-ai-question-en="Which systems are in production today?"
+            >
               <span data-lang="es">¿Qué está en producción?</span>
               <span data-lang="en">What is in production?</span>
             </button>
@@ -937,14 +952,14 @@
       </div>
     </footer>
 
-    <button class="ai-launcher" type="button" aria-label="Abrir AF Intelligence" aria-expanded="false" data-ai-launcher>
+    <button class="ai-launcher" type="button" aria-label="Abrir AF Intelligence" aria-expanded="false" aria-haspopup="dialog" data-ai-launcher>
       <span class="ai-orb" aria-hidden="true"></span>
       <span class="launcher-copy"><small>AF</small><strong>Intelligence</strong></span>
       <span class="launcher-arrow" aria-hidden="true">↗</span>
     </button>
 
     <div class="ai-backdrop" data-ai-backdrop></div>
-    <aside class="ai-panel" aria-label="AF Intelligence" aria-hidden="true" inert data-ai-panel>
+    <aside class="ai-panel" role="dialog" aria-modal="true" aria-label="AF Intelligence" aria-hidden="true" inert data-ai-panel>
       <header class="ai-panel-head">
         <div class="ai-identity">
           <span class="ai-orb" aria-hidden="true"></span>
@@ -964,16 +979,36 @@
       <div class="ai-messages" role="log" aria-live="polite" aria-relevant="additions" data-ai-messages></div>
 
       <div class="ai-suggestions" data-ai-suggestions>
-        <button type="button" data-ai-question="¿Qué proyecto demuestra mejor experiencia backend?">
+        <button
+          type="button"
+          data-ai-question="¿Qué proyecto demuestra mejor experiencia backend?"
+          data-ai-question-es="¿Qué proyecto demuestra mejor experiencia backend?"
+          data-ai-question-en="Which project best demonstrates backend experience?"
+        >
           <span data-lang="es">Backend</span><span data-lang="en">Backend</span>
         </button>
-        <button type="button" data-ai-question="¿Cómo trabaja ALLFICTION con inteligencia artificial?">
+        <button
+          type="button"
+          data-ai-question="¿Cómo trabaja ALLFICTION con inteligencia artificial?"
+          data-ai-question-es="¿Cómo trabaja ALLFICTION con inteligencia artificial?"
+          data-ai-question-en="How does ALLFICTION work with artificial intelligence?"
+        >
           <span data-lang="es">IA aplicada</span><span data-lang="en">Applied AI</span>
         </button>
-        <button type="button" data-ai-question="¿Qué sistemas están en producción?">
+        <button
+          type="button"
+          data-ai-question="¿Qué sistemas están en producción?"
+          data-ai-question-es="¿Qué sistemas están en producción?"
+          data-ai-question-en="Which systems are in production?"
+        >
           <span data-lang="es">Producción</span><span data-lang="en">Production</span>
         </button>
-        <button type="button" data-ai-question="Tengo un proceso manual, ¿cómo podría ayudarme Matt?">
+        <button
+          type="button"
+          data-ai-question="Tengo un proceso manual, ¿cómo podría ayudarme Matt?"
+          data-ai-question-es="Tengo un proceso manual, ¿cómo podría ayudarme Matt?"
+          data-ai-question-en="I have a manual process, how could Matt help me?"
+        >
           <span data-lang="es">Evaluar una idea</span><span data-lang="en">Evaluate an idea</span>
         </button>
       </div>

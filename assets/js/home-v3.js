@@ -516,26 +516,74 @@
     welcomedLanguage = language;
   }
 
-  function openAI() {
+  let lastActiveElement = null;
+
+  function updateBackgroundInert(active) {
+    for (const el of document.body.children) {
+      if (el === aiPanel || el === aiBackdrop || el.tagName === "SCRIPT") continue;
+      el.inert = active;
+      active ? el.setAttribute("aria-hidden", "true") : el.removeAttribute("aria-hidden");
+    }
+  }
+
+  function getFocusableElements(container) {
+    return Array.from(
+      container.querySelectorAll('a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])')
+    ).filter((el) => !el.disabled && el.getAttribute("aria-hidden") !== "true" && window.getComputedStyle(el).display !== "none" && window.getComputedStyle(el).visibility !== "hidden");
+  }
+
+  function getButtonQuestion(button) {
+    const isEn = currentLanguage() === "en-GB";
+    const d = button.dataset;
+    return String((isEn ? d.aiQuestionEn : d.aiQuestionEs) || d.aiQuestion || "").trim();
+  }
+
+  function openAI(trigger) {
+    if (!aiPanel.classList.contains("is-open")) {
+      lastActiveElement = (trigger instanceof HTMLElement ? trigger : null) || (document.activeElement instanceof HTMLElement ? document.activeElement : null);
+    }
     closeNav();
     document.body.classList.add("ai-open");
+    updateBackgroundInert(true);
     aiPanel.inert = false;
     aiPanel.classList.add("is-open");
     aiBackdrop.classList.add("is-visible");
     aiPanel.setAttribute("aria-hidden", "false");
     aiLauncher.setAttribute("aria-expanded", "true");
     addWelcome();
-    window.setTimeout(() => aiInput.focus({ preventScroll: true }), 80);
+    window.setTimeout(() => {
+      if (!aiPanel.classList.contains("is-open")) return;
+      (aiInput.disabled ? getFocusableElements(aiPanel)[0] : aiInput)?.focus({ preventScroll: true });
+    }, 80);
   }
 
-  function closeAI() {
+  function closeAI(options = {}) {
+    const shouldRestore = options.restoreFocus !== false;
+    const opener = lastActiveElement;
+    lastActiveElement = null;
     document.body.classList.remove("ai-open");
     aiPanel.classList.remove("is-open");
     aiBackdrop.classList.remove("is-visible");
     aiPanel.setAttribute("aria-hidden", "true");
     aiPanel.inert = true;
     aiLauncher.setAttribute("aria-expanded", "false");
+    updateBackgroundInert(false);
+    if (shouldRestore && opener?.focus) {
+      try { opener.focus({ preventScroll: true }); } catch {}
+    }
   }
+
+  const panelObserver = new MutationObserver(() => {
+    if (!aiPanel.classList.contains("is-open")) {
+      updateBackgroundInert(false);
+      lastActiveElement = null;
+    }
+  });
+  panelObserver.observe(aiPanel, { attributes: true, attributeFilter: ["class"] });
+
+  document.addEventListener("allfiction:brief-approved", () => {
+    closeAI({ restoreFocus: false });
+  });
 
   function setBusy(nextBusy) {
     busy = nextBusy;
@@ -554,11 +602,11 @@
     return value;
   }
 
-  async function askAI(rawQuestion) {
+  async function askAI(rawQuestion, trigger) {
     const question = String(rawQuestion || "").trim();
     if (!question || busy) return;
 
-    openAI();
+    openAI(trigger);
     addMessage("user", question);
     conversation.push({ role: "user", content: question });
     aiInput.value = "";
@@ -630,13 +678,13 @@
     aiInput.focus({ preventScroll: true });
   }
 
-  aiOpenButtons.forEach((button) => button.addEventListener("click", openAI));
+  aiOpenButtons.forEach((button) => button.addEventListener("click", () => openAI(button)));
   aiLauncher.addEventListener("click", () => {
     if (aiPanel.classList.contains("is-open")) closeAI();
-    else openAI();
+    else openAI(aiLauncher);
   });
-  aiClose?.addEventListener("click", closeAI);
-  aiBackdrop.addEventListener("click", closeAI);
+  aiClose?.addEventListener("click", () => closeAI());
+  aiBackdrop.addEventListener("click", () => closeAI());
 
   aiClear?.addEventListener("click", () => {
     addWelcome(true);
@@ -649,11 +697,7 @@
 
   questionButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      const question =
-        currentLanguage() === "en-GB"
-          ? button.textContent.trim()
-          : button.dataset.aiQuestion || button.textContent.trim();
-      askAI(question);
+      askAI(getButtonQuestion(button), button);
     });
   });
 
@@ -676,11 +720,30 @@
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       closeNav();
-      closeAI();
+      if (aiPanel.classList.contains("is-open")) closeAI();
+    } else if (event.key === "Tab" && aiPanel.classList.contains("is-open")) {
+      const list = getFocusableElements(aiPanel);
+      if (!list.length) return event.preventDefault();
+      const first = list[0];
+      const last = list[list.length - 1];
+      const active = document.activeElement;
+      if (event.shiftKey && (active === first || !aiPanel.contains(active))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && (active === last || !aiPanel.contains(active))) {
+        event.preventDefault();
+        first.focus();
+      }
     }
   });
 
-  document.addEventListener("allfiction:language", () => {
+  document.addEventListener("focusin", (event) => {
+    if (aiPanel.classList.contains("is-open") && !aiPanel.contains(event.target)) {
+      (aiInput.disabled ? getFocusableElements(aiPanel)[0] : aiInput)?.focus({ preventScroll: true });
+    }
+  });
+
+  function syncAiLanguage() {
     aiInput.placeholder = localized(
       "Preguntá por proyectos, arquitectura o experiencia…",
       "Ask about projects, architecture or experience…",
@@ -691,15 +754,12 @@
         "Hybrid mode · Gemini + fallback",
       );
     }
+  }
+
+  document.addEventListener("allfiction:language", () => {
+    syncAiLanguage();
     if (!conversation.length && aiMessages.childElementCount) addWelcome(true);
   });
 
-  aiInput.placeholder = localized(
-    "Preguntá por proyectos, arquitectura o experiencia…",
-    "Ask about projects, architecture or experience…",
-  );
-  aiModeLabel.textContent = localized(
-    "Modo híbrido · Gemini + fallback",
-    "Hybrid mode · Gemini + fallback",
-  );
+  syncAiLanguage();
 })();
