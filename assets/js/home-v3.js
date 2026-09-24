@@ -88,6 +88,8 @@
       setMeta("meta[name='twitter:description']", pageDescription[language]);
     }
 
+    setMeta("meta[property='og:locale']", language === "en-GB" ? "en_GB" : "es_AR");
+
     localStorage.setItem(languageKey, language);
     localStorage.setItem(legacyLanguageKey, language);
 

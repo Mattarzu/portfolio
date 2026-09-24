@@ -58,28 +58,40 @@
     setText(".hero-actions .button-ghost [data-lang='en']", "Ask AF");
 
     const trustItems = document.querySelectorAll(".hero-trust li");
-    const trustCopy = ["Apps en producción", "IA con un propósito", "Infraestructura propia"];
+    const trustCopy = [
+      ["Apps en producción", "Production apps"],
+      ["IA con un propósito", "AI with a purpose"],
+      ["Infraestructura propia", "Owned infrastructure"],
+    ];
     trustItems.forEach((item, index) => {
-      if (trustCopy[index]) item.textContent = trustCopy[index];
+      if (trustCopy[index]) {
+        item.innerHTML = bilingual(trustCopy[index][0], trustCopy[index][1]);
+      }
     });
 
-    setText(".stage-topbar > span:first-child", "ALLFICTION / PROYECTOS");
-    setText(".stage-label small", "SOFTWARE EN FUNCIONAMIENTO");
+    setHTML(
+      ".stage-topbar > span:first-child",
+      bilingual("ALLFICTION / PROYECTOS", "ALLFICTION / PROJECTS"),
+    );
+    setHTML(
+      ".stage-label small",
+      bilingual("SOFTWARE EN FUNCIONAMIENTO", "WORKING SOFTWARE"),
+    );
     setText(".stage-label strong [data-lang='es']", "Producto · IA · Sistemas");
     setText(".stage-label strong [data-lang='en']", "Product · AI · Systems");
 
     const modules = document.querySelectorAll(".stage-modules > div");
     const moduleCopy = [
-      ["01 / MOTORATLAS 3D", "Diagnóstico automotor · 2D/3D"],
-      ["02 / MOLLCHEF", "Recetas · escaneo · cocina guiada"],
-      ["03 / MATTMESH", "Nodos · voz · automatización"],
+      ["01 / MOTORATLAS 3D", "Diagnóstico automotor · 2D/3D", "Automotive diagnostics · 2D/3D"],
+      ["02 / MOLLCHEF", "Recetas · escaneo · cocina guiada", "Recipes · scanning · guided cooking"],
+      ["03 / MATTMESH", "Nodos · voz · automatización", "Nodes · voice · automation"],
     ];
     modules.forEach((module, index) => {
       if (!moduleCopy[index]) return;
       const small = module.querySelector("small");
       const strong = module.querySelector("strong");
       if (small) small.textContent = moduleCopy[index][0];
-      if (strong) strong.textContent = moduleCopy[index][1];
+      if (strong) strong.innerHTML = bilingual(moduleCopy[index][1], moduleCopy[index][2]);
     });
 
     setText(".stage-ai-card small", "AF INTELLIGENCE");
@@ -133,8 +145,11 @@
         "These are real Qivox screens. Web and phone share data and logic, but each interface is designed for the context in which it is used.",
       ),
     );
-    setText(".v5-browser-bar b", "PRODUCTO REAL");
-    setText(".v5-cinema-badge span", "WEB + MÓVIL / MISMO SISTEMA");
+    setHTML(".v5-browser-bar b", bilingual("PRODUCTO REAL", "REAL PRODUCT"));
+    setHTML(
+      ".v5-cinema-badge span",
+      bilingual("WEB + MÓVIL / MISMO SISTEMA", "WEB + MOBILE / SAME SYSTEM"),
+    );
     setHTML(
       ".v5-cinema-copy h3",
       bilingual("Web y móvil.<br>El mismo sistema.", "Web and mobile.<br>The same system."),
@@ -175,29 +190,91 @@
 
     const cards = document.querySelectorAll(".v5-build-card");
     const cardCopy = [
-      ["IA aplicada", "Applied AI", "Agentes · RAG · multimodal · routing", "MotorAtlas · MollChef · PolyLLM"],
-      ["Aplicaciones completas", "Full applications", "Frontend · APIs · realtime · auth", "Qivox · MollChef"],
-      ["Visión y extracción", "Vision and extraction", "OCR · imágenes · documentos", "Escaneo de recetas · flujos documentales"],
-      ["Interfaces 3D", "3D interfaces", "Three.js · visualización técnica · guía", "MotorAtlas 3D"],
-      ["Automatización", "Automation", "Agentes · workflows · colas · orquestación", "MattMesh · AgentBridge"],
-      ["Datos y estado", "Data and state", "PostgreSQL · Redis · modelos · auditoría", "Crypto Risk · MotorAtlas"],
-      ["Infraestructura", "Infrastructure", "Linux · contenedores · redes · CI/CD", "AWS · Tailscale · observabilidad"],
-      ["Mobile y PWA", "Mobile and PWA", "Touch · responsive · offline cuando hace falta", "MollChef · Qivox"],
+      {
+        esTitle: "IA aplicada",
+        enTitle: "Applied AI",
+        esDetail: "Agentes · RAG · multimodal · routing",
+        enDetail: "Agents · RAG · multimodal · routing",
+        esProjects: "MotorAtlas · MollChef · PolyLLM",
+        enProjects: "MotorAtlas · MollChef · PolyLLM",
+      },
+      {
+        esTitle: "Aplicaciones completas",
+        enTitle: "Full applications",
+        esDetail: "Frontend · APIs · realtime · auth",
+        enDetail: "Frontend · APIs · realtime · auth",
+        esProjects: "Qivox · MollChef",
+        enProjects: "Qivox · MollChef",
+      },
+      {
+        esTitle: "Visión y extracción",
+        enTitle: "Vision and extraction",
+        esDetail: "OCR · imágenes · documentos",
+        enDetail: "OCR · images · documents",
+        esProjects: "Escaneo de recetas · flujos documentales",
+        enProjects: "Recipe scanning · document workflows",
+      },
+      {
+        esTitle: "Interfaces 3D",
+        enTitle: "3D interfaces",
+        esDetail: "Three.js · visualización técnica · guía",
+        enDetail: "Three.js · technical visualization · guidance",
+        esProjects: "MotorAtlas 3D",
+        enProjects: "MotorAtlas 3D",
+      },
+      {
+        esTitle: "Automatización",
+        enTitle: "Automation",
+        esDetail: "Agentes · workflows · colas · orquestación",
+        enDetail: "Agents · workflows · queues · orchestration",
+        esProjects: "MattMesh · AgentBridge",
+        enProjects: "MattMesh · AgentBridge",
+      },
+      {
+        esTitle: "Datos y estado",
+        enTitle: "Data and state",
+        esDetail: "PostgreSQL · Redis · modelos · auditoría",
+        enDetail: "PostgreSQL · Redis · models · audit",
+        esProjects: "Crypto Risk · MotorAtlas",
+        enProjects: "Crypto Risk · MotorAtlas",
+      },
+      {
+        esTitle: "Infraestructura",
+        enTitle: "Infrastructure",
+        esDetail: "Linux · contenedores · redes · CI/CD",
+        enDetail: "Linux · containers · networks · CI/CD",
+        esProjects: "AWS · Tailscale · observabilidad",
+        enProjects: "AWS · Tailscale · observability",
+      },
+      {
+        esTitle: "Mobile y PWA",
+        enTitle: "Mobile and PWA",
+        esDetail: "Touch · responsive · offline cuando hace falta",
+        enDetail: "Touch · responsive · offline when needed",
+        esProjects: "MollChef · Qivox",
+        enProjects: "MollChef · Qivox",
+      },
     ];
     cards.forEach((card, index) => {
       const copy = cardCopy[index];
       if (!copy) return;
-      const [esTitle, enTitle, detail, projects] = copy;
       const title = card.querySelector("h3");
       const paragraph = card.querySelector("p");
       const small = card.querySelector("small");
-      if (title) title.innerHTML = bilingual(esTitle, enTitle);
-      if (paragraph) paragraph.textContent = detail;
-      if (small) small.textContent = projects;
+      if (title) title.innerHTML = bilingual(copy.esTitle, copy.enTitle);
+      if (paragraph) paragraph.innerHTML = bilingual(copy.esDetail, copy.enDetail);
+      if (small) {
+        small.innerHTML = copy.esProjects === copy.enProjects
+          ? copy.esProjects
+          : bilingual(copy.esProjects, copy.enProjects);
+      }
     });
 
     // Principle: specific enough that it could only belong to this portfolio.
-    setText(".v5-statement .overline", "ALLFICTION / CÓMO TRABAJAMOS");
+    setHTML(
+      ".v5-statement .overline",
+      bilingual("ALLFICTION / CÓMO TRABAJAMOS", "ALLFICTION / HOW WE WORK"),
+    );
     setHTML(
       ".v5-statement h2",
       bilingual(
