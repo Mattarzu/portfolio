@@ -32,6 +32,18 @@
       ["Budget", "Budget", "control diario explícito", "explicit daily control"],
       ["Trace", "Trace", "routing verificable", "verifiable routing"],
     ],
+    "local-translator.html": [
+      ["Local-first", "Local-first", "ejecución offline", "offline execution"],
+      ["EN ↔ ES", "EN ↔ ES", "traducción técnica", "technical translation"],
+      ["OCR", "OCR", "procesamiento de texto", "text processing"],
+      ["CLI", "CLI", "flujos reproducibles", "reproducible workflows"],
+    ],
+    "contact-worker.html": [
+      ["Producción", "Production", "Cloudflare Workers", "Cloudflare Workers"],
+      ["Contact + AI", "Contact + AI", "Telegram + gateway IA", "Telegram + AI gateway"],
+      ["Health", "Health", "endpoint público activo", "active public endpoint"],
+      ["Seguridad", "Security", "secretos fuera del frontend", "secrets outside frontend"],
+    ],
     "index.html": [
       ["9", "9", "proyectos documentados", "documented projects"],
       ["3", "3", "casos destacados", "featured case studies"],
