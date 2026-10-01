@@ -3,105 +3,114 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>NeuroOS Lab | Allfiction Software</title>
-    <meta name="description" content="Laboratorio experimental de arquitectura IA, sistemas cognitivos, sensores y modelos locales." />
+    <title>NeuroOS Lab — Archivo | ALLFICTION Software</title>
+    <meta name="description" content="Página archivada de un experimento histórico de ALLFICTION. Ya no forma parte del catálogo activo y no se publican claims técnicos sin evidencia verificable disponible." />
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#050505" />
+    <meta name="color-scheme" content="dark" />
+
     <link rel="canonical" href="https://allfiction.56-126-148-93.sslip.io/projects/neuroos-lab.html" />
     <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+
+    <meta property="og:title" content="NeuroOS Lab — Archivo | ALLFICTION Software" />
+    <meta property="og:description" content="Página archivada de un experimento histórico de ALLFICTION. Ya no forma parte del catálogo activo y no se publican claims técnicos sin evidencia verificable disponible." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://allfiction.56-126-148-93.sslip.io/projects/neuroos-lab.html" />
+    <meta property="og:image" content="https://allfiction.56-126-148-93.sslip.io/preview.png" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content="ALLFICTION Software" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="NeuroOS Lab — Archivo | ALLFICTION Software" />
+    <meta name="twitter:description" content="Página archivada de un experimento histórico de ALLFICTION. Ya no forma parte del catálogo activo y no se publican claims técnicos sin evidencia verificable disponible." />
+    <meta name="twitter:image" content="https://allfiction.56-126-148-93.sslip.io/preview.png" />
+
     <link rel="stylesheet" href="../styles.css" />
-<style>
+    <style>
       .project-detail-hero {
         padding: 96px 0 48px;
-      }
-
-      .project-detail-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
-        gap: 28px;
-        align-items: start;
       }
 
       .project-detail-card {
         border: 1px solid rgba(250, 204, 21, .16);
         border-radius: 28px;
-        padding: 26px;
+        padding: 36px;
         background:
           radial-gradient(circle at top right, rgba(250, 204, 21, .12), transparent 36%),
           linear-gradient(145deg, rgba(15, 23, 42, .90), rgba(2, 6, 23, .72));
         box-shadow: 0 24px 70px rgba(0, 0, 0, .34);
+        max-width: 820px;
       }
 
       .project-detail-card h1 {
         margin: 10px 0 18px;
-        font-size: clamp(2.4rem, 6vw, 5.4rem);
-        line-height: .95;
-        letter-spacing: -.065em;
+        font-size: clamp(2.4rem, 6vw, 4.2rem);
+        line-height: 1.05;
+        letter-spacing: -.05em;
       }
 
       .project-detail-card .lead {
-        max-width: 820px;
         color: #d6d3d1;
         line-height: 1.72;
+        font-size: 1.15rem;
+        margin: 0 0 20px;
       }
 
-      .project-detail-meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 22px;
-      }
-
-      .project-detail-meta span {
-        border: 1px solid rgba(250, 204, 21, .18);
-        border-radius: 999px;
-        padding: 8px 11px;
-        background: rgba(2, 6, 23, .58);
-        color: #f8fafc;
-        font-size: .82rem;
-        font-weight: 800;
-      }
-
-      .project-detail-section {
-        margin-top: 24px;
-      }
-
-      .project-detail-section h2 {
-        margin: 0 0 14px;
-        color: #f8fafc;
-        font-size: clamp(1.5rem, 3vw, 2.2rem);
-        letter-spacing: -.035em;
-      }
-
-      .project-detail-section p,
-      .project-detail-section li {
-        color: #cbd5e1;
-        line-height: 1.7;
-      }
-
-      .project-detail-section ul {
-        padding-left: 20px;
-      }
-
-      .project-detail-side {
+      .archive-body {
         display: grid;
         gap: 16px;
+        border-top: 1px solid rgba(250, 204, 21, .12);
+        padding-top: 22px;
       }
 
-      .project-mini-card {
-        border: 1px solid rgba(148, 163, 184, .18);
-        border-radius: 22px;
-        padding: 18px;
-        background: rgba(15, 23, 42, .62);
-      }
-
-      .project-mini-card strong {
-        display: block;
-        color: #facc15;
-        margin-bottom: 8px;
-      }
-
-      .project-mini-card span {
+      .archive-body p {
         color: #cbd5e1;
-        line-height: 1.6;
+        line-height: 1.7;
+        margin: 0;
+      }
+
+      .archive-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 32px;
+      }
+
+      .archive-actions .btn {
+        display: inline-flex;
+        min-height: 48px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        padding: 0 24px;
+        font-weight: 800;
+        text-decoration: none;
+        transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      }
+
+      .archive-actions .btn-primary {
+        background: #facc15 !important;
+        color: #020617 !important;
+        border: 1px solid #facc15;
+      }
+
+      .archive-actions .btn-primary:hover {
+        background: #fde68a !important;
+        color: #020617 !important;
+        transform: translateY(-1px);
+      }
+
+      .archive-actions .btn-secondary {
+        background: rgba(15, 23, 42, .62) !important;
+        color: #f8fafc !important;
+        border: 1px solid rgba(250, 204, 21, .24);
+      }
+
+      .archive-actions .btn-secondary:hover {
+        background: rgba(15, 23, 42, .88) !important;
+        color: #fde68a !important;
+        border-color: rgba(250, 204, 21, .45);
+        transform: translateY(-1px);
       }
 
       .back-link {
@@ -114,16 +123,16 @@
       }
 
       @media (max-width: 900px) {
-        .project-detail-grid {
-          grid-template-columns: 1fr;
-        }
-
         .project-detail-hero {
           padding-top: 76px;
         }
+
+        .project-detail-card {
+          padding: 24px;
+        }
       }
     </style>
-  <style id="ALLFICTION-PROJECT-PAGES-GOLD-POLISH-CSS">
+    <style id="ALLFICTION-PROJECT-PAGES-GOLD-POLISH-CSS">
 /*
       Neutralización de azules en páginas internas.
       Mantiene identidad Allfiction: negro, dorado, gris técnico.
@@ -282,9 +291,9 @@
       color: #fde68a !important;
     }
   </style>
-</head>
+  </head>
   <body>
-    <a class="skip-link" href="#inicio">Saltar al contenido</a>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
     <header class="site-header">
       <div class="container nav">
@@ -296,67 +305,32 @@
 
         <nav id="main-nav" class="nav-links" aria-label="Navegación principal">
           <a href="../index.html#inicio">Inicio</a>
-          <a href="../index.html#soluciones">Soluciones</a>
-          <a href="../index.html#productos-destacados">Productos</a>
-          <a href="../index.html#stack">Stack</a>
+          <a href="./index.html">Proyectos</a>
+          <a href="../index.html#metodo">Método</a>
           <a href="../index.html#contacto">Contacto</a>
-          <a href="https://github.com/Mattarzu" target="_blank" rel="noreferrer">GitHub</a>
         </nav>
       </div>
     </header>
 
-    <main id="inicio">
+    <main id="contenido">
       <section class="project-detail-hero container">
         <a class="back-link" href="./index.html">← Volver a proyectos</a>
 
-        <div class="project-detail-grid">
-          <article class="project-detail-card">
-            <p class="eyebrow">INVESTIGACIÓN · IA · ARQUITECTURA</p>
-            <h1>NeuroOS Lab</h1>
-            <p class="lead">Laboratorio experimental para explorar arquitectura de sistemas inteligentes, modelos locales, componentes cognitivos, sensores y formas de organizar capacidades de IA en módulos técnicos.</p>
+        <article class="project-detail-card">
+          <p class="eyebrow">ARCHIVO</p>
+          <h1>NeuroOS Lab</h1>
+          <p class="lead">Esta página corresponde a un experimento histórico que ya no forma parte del catálogo activo de ALLFICTION.</p>
 
-            <div class="project-detail-meta">
-              <span>IA local</span>
-              <span>Arquitectura</span>
-              <span>Python</span>
-              <span>Sistemas</span>
-              <span>Investigación</span>
-            </div>
+          <div class="archive-body">
+            <p>No hay una fuente pública verificable disponible en el repositorio actual para sostener los detalles técnicos que aparecían anteriormente en esta ficha. Por ese motivo, se conserva únicamente como referencia histórica, sin atribuir capacidades o resultados no verificables.</p>
+            <p>Los proyectos actualmente documentados y respaldados por evidencia pública están disponibles en el catálogo vigente.</p>
+          </div>
 
-
-          <section class="project-detail-section">
-            <h2>Objetivo</h2>
-            <p>NeuroOS funciona como línea de investigación técnica para pensar sistemas de IA más organizados, modulares y conectados a herramientas reales.</p>
-            <ul>
-              <li>Exploración de componentes cognitivos y módulos de ejecución.</li>\n              <li>Separación entre núcleo, capacidades y sensores.</li>\n              <li>Base para pruebas con modelos locales y flujos asistidos.</li>\n            </ul>
-          </section>
-
-          <section class="project-detail-section">
-            <h2>Enfoque</h2>
-            <p>El proyecto se presenta como laboratorio, no como producto cerrado. Su valor está en el diseño de arquitectura, experimentación y documentación progresiva.</p>
-            <ul>
-              <li>Inspección de repositorio y validación por pruebas.</li>\n              <li>Organización de módulos para futuras integraciones.</li>\n              <li>Investigación aplicada a IA, automatización y herramientas locales.</li>\n            </ul>
-          </section>
-          </article>
-
-          <aside class="project-detail-side" aria-label="Resumen técnico">
-
-            <article class="project-mini-card">
-              <strong>Tipo</strong>
-              <span>Laboratorio experimental de IA.</span>
-            </article>
-
-            <article class="project-mini-card">
-              <strong>Estado</strong>
-              <span>Exploración técnica y arquitectura en evolución.</span>
-            </article>
-
-            <article class="project-mini-card">
-              <strong>Valor</strong>
-              <span>Muestra capacidad de investigación, diseño de sistemas y pensamiento arquitectónico.</span>
-            </article>
-          </aside>
-        </div>
+          <div class="archive-actions">
+            <a class="btn btn-primary" href="./index.html">Ver proyectos actuales</a>
+            <a class="btn btn-secondary" href="../index.html">Volver al inicio</a>
+          </div>
+        </article>
       </section>
     </main>
 
