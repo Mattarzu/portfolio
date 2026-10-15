@@ -14,12 +14,34 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  checks:
+    uses: ./.github/workflows/static-checks.yml
+
   deploy:
+    needs: checks
+    if: github.ref == 'refs/heads/main'
     name: Deploy production
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
     steps:
+      - name: Checkout checked commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+
+      - name: Require remote SHA contract activation
+        env:
+          CONTRACT: ${{ vars.PORTFOLIO_DEPLOY_CONTRACT }}
+        run: test "$CONTRACT" = "sha-v1"
+
+      - name: Reject stale reruns
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          git fetch --no-tags origin main
+          test "$(git rev-parse FETCH_HEAD)" = "$GITHUB_SHA"
+
       - name: Configure restricted SSH key
         shell: bash
         env:
@@ -39,20 +61,10 @@ jobs:
           chmod 600 "$HOME/.ssh/portfolio-deploy" "$HOME/.ssh/known_hosts"
           ssh-keygen -y -f "$HOME/.ssh/portfolio-deploy" >/dev/null
 
-      - name: Deploy portfolio
-        shell: bash
-        run: |
-          set -Eeuo pipefail
-
-          ssh \
-            -i "$HOME/.ssh/portfolio-deploy" \
-            -o BatchMode=yes \
-            -o IdentitiesOnly=yes \
-            -o StrictHostKeyChecking=yes \
-            -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
-            -o ConnectTimeout=15 \
-            ubuntu@56.126.148.93 \
-            deploy
+      - name: Deploy checked SHA and verify version
+        env:
+          DEPLOY_SHA: ${{ github.sha }}
+        run: bash scripts/deploy-checked-sha.sh
 
       - name: Verify public deployment
         shell: bash
