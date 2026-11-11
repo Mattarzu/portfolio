@@ -1,5 +1,9 @@
 # M M LAB Contact System
 
+> El diagrama de GitHub Pages que sigue es histórico. El frontend vigente se
+> publica en Cloudflare Pages y Lightsail es legado pendiente de baja.
+> Procedimiento: `docs/operations/cloudflare-pages-cutover.md`.
+
 ## Estado
 
 Sistema productivo de contacto para el portfolio M M LAB.
@@ -145,20 +149,17 @@ Reglas operativas:
 
 ## Deploy frontend
 
-El frontend se publica desde `main`.
+Un push a `main` ya no publica el frontend. Lightsail salió del workflow.
+La publicación es manual, a Cloudflare Pages, y está descrita en
+`docs/operations/cloudflare-pages-cutover.md`.
 
-Validación sugerida antes de push:
+Validación sugerida antes de integrar:
 
 ```bash
 cd ~/Projects/portfolio
 git status --short
 git diff --check
-```
-
-Push:
-
-```bash
-git push origin main
+node scripts/check-pages-cutover.mjs
 ```
 
 ## Deploy Worker

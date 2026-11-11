@@ -6,8 +6,9 @@ Cloudflare Worker que protege las funciones dinámicas del portfolio:
 - `POST /ai-chat`: responde preguntas acotadas sobre ALLFICTION mediante el proveedor configurado.
 - `GET /health`: informa disponibilidad y estado de configuración sin revelar secretos.
 
-La web sigue alojada en AWS Lightsail. El Worker evita ejecutar un modelo o agregar
-otro proceso a la instancia, por lo que AF Intelligence no exige ampliar AWS.
+La web se publica en Cloudflare Pages. Lightsail queda como legado pendiente de
+baja. El Worker sigue siendo el único componente dinámico: el workflow de Pages
+no lo despliega, y AF Intelligence no vuelve a ejecutarse en la instancia.
 
 ## AF Intelligence
 
@@ -129,6 +130,11 @@ curl -fsS \
 ```
 
 ## Despliegue
+
+GitHub Actions no despliega este Worker. `ALLOWED_ORIGIN` ahora incluye el
+marcador `https://PAGES_PROJECT_NAME.pages.dev`. Sustituir `PAGES_PROJECT_NAME`
+por el slug real del proyecto de Pages y publicar a mano. Hasta ese momento el
+Worker en producción conserva la lista del último deploy.
 
 ```bash
 npx wrangler deploy

@@ -10,3 +10,6 @@ mmlab-contact-worker/.venv/
 
 # Cloudflare Worker local secrets
 mmlab-contact-worker/.dev.vars
+
+# Generated Cloudflare Pages output
+dist/

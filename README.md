@@ -14,12 +14,13 @@ complementaria en otros dominios.
 
 ## Producción
 
-- URL: <https://allfiction.56-126-148-93.sslip.io/>
-- Hosting: AWS Lightsail
-- HTTPS y reverse proxy: Caddy
-- Despliegue: GitHub Actions desde `main`
-- API dinámica: Cloudflare Worker
-- IA: adaptador multi-proveedor, Gemini Free Tier por defecto y fallback
+- Frontend: Cloudflare Pages, subida directa. Lightsail y Caddy quedan como legado pendiente de baja.
+- URL histórica, todavía referenciada por las canónicas: <https://allfiction.56-126-148-93.sslip.io/>. El host está caído y un merge a `main` ya no lo despliega.
+- URL de Pages: `https://PAGES_PROJECT_NAME.pages.dev` hasta crear el proyecto y sustituir el marcador. Procedimiento en `docs/operations/cloudflare-pages-cutover.md`.
+- Despliegue del frontend: `.github/workflows/deploy-pages.yml`, sólo `workflow_dispatch` desde `main`.
+- Build: `node scripts/prepare-pages-output.mjs`. Salida: `dist`.
+- API dinámica: el Cloudflare Worker existente, sin cambio de comportamiento en este corte.
+- IA: adaptador multi-proveedor, Gemini Free Tier por defecto y fallback.
 
 ## Ejecutar localmente
 
@@ -37,6 +38,7 @@ Abrir <http://127.0.0.1:8081/>.
 node --check assets/js/home-v3.js
 npm test --prefix mmlab-contact-worker
 node scripts/check-site.mjs
+node scripts/check-pages-cutover.mjs
 git diff --check
 ```
 
@@ -54,11 +56,17 @@ branding, manifest y presupuestos básicos de tamaño.
 - `mmlab-contact-worker/src/portfolio-context.js`: conocimiento verificable y recuperación.
 - `docs/operations/af-intelligence.md`: contrato operativo y control de costo.
 - `.github/workflows/static-checks.yml`: quality gate.
-- `.github/workflows/deploy-lightsail.yml`: despliegue y smoke tests públicos.
+- `.github/workflows/deploy-pages.yml`: publicación manual del frontend a Cloudflare Pages.
+- `docs/operations/cloudflare-pages-cutover.md`: secretos, CORS y baja de Lightsail.
 
 ## Publicación
 
-Los cambios en `main` activan el despliegue a Lightsail. Antes de integrar:
+Un merge a `main` corre los controles estáticos y no despliega. Lightsail ya no
+recibe ese push: el workflow de SSH se eliminó y el historial quedó en git.
+
+El frontend se publica a Cloudflare Pages sólo al lanzar a mano
+`deploy-pages.yml` desde `main`, con el proyecto y los secretos ya creados.
+Antes de integrar:
 
 1. Ejecutar las validaciones locales.
 2. Revisar el diff y los enlaces externos.

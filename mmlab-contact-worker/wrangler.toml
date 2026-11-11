@@ -6,7 +6,11 @@ preview_urls = false
 
 [vars]
 TELEGRAM_CHAT_ID = "1463839709"
-ALLOWED_ORIGIN = "https://allfiction.56-126-148-93.sslip.io,https://mattarzu.github.io,http://127.0.0.1:8081,http://localhost:8081"
+# PAGES_PROJECT_NAME is not a real project. Replace it with the Pages slug
+# before deploying this Worker. The live Worker is unchanged until then:
+# the Pages origin takes effect only after the next wrangler deploy.
+# Exact origins only. Preview hostnames and a future custom domain are not included.
+ALLOWED_ORIGIN = "https://allfiction.56-126-148-93.sslip.io,https://mattarzu.github.io,http://127.0.0.1:8081,http://localhost:8081,https://PAGES_PROJECT_NAME.pages.dev"
 RATE_LIMIT_PER_MINUTE = "5"
 AI_ENABLED = "true"
 AI_PROVIDER = "gemini"

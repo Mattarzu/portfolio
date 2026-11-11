@@ -9,7 +9,7 @@ PC encendida ni permitir consumo sin límites.
 
 ```text
 Visitante
-  -> frontend estático en AWS Lightsail
+  -> frontend estático en Cloudflare Pages
   -> Cloudflare Worker /ai-chat
   -> recuperación local de contexto verificado
   -> adaptador de proveedor
@@ -23,7 +23,9 @@ fallback local.
 
 ## Controles
 
-- Orígenes CORS explícitos.
+- Orígenes CORS explícitos. Lightsail queda como legado pendiente de baja.
+  El origen de Pages entra en la lista publicada sólo después de sustituir
+  `PAGES_PROJECT_NAME` y redesplegar el Worker a mano.
 - Entrada máxima de 500 caracteres.
 - Historial máximo de cuatro mensajes acotados.
 - Detección temprana de prompt injection.
