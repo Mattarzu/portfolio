@@ -16,7 +16,7 @@ complementaria en otros dominios.
 
 - Frontend: Cloudflare Pages, subida directa. Lightsail y Caddy quedan como legado pendiente de baja.
 - URL histórica, todavía referenciada por las canónicas: <https://allfiction.56-126-148-93.sslip.io/>. El host está caído y un merge a `main` ya no lo despliega.
-- URL de Pages: `https://PAGES_PROJECT_NAME.pages.dev` hasta crear el proyecto y sustituir el marcador. Procedimiento en `docs/operations/cloudflare-pages-cutover.md`.
+- URL de Pages: `https://mattarzu-portfolio.pages.dev`. Procedimiento en `docs/operations/cloudflare-pages-cutover.md`.
 - Despliegue del frontend: `.github/workflows/deploy-pages.yml`, sólo `workflow_dispatch` desde `main`.
 - Build: `node scripts/prepare-pages-output.mjs`. Salida: `dist`.
 - API dinámica: el Cloudflare Worker existente, sin cambio de comportamiento en este corte.
