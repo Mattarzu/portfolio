@@ -3,9 +3,11 @@
 ## Frontend
 
 - Portfolio V3 estático.
-- Producción en AWS Lightsail.
-- Caddy administra HTTPS y reverse proxy.
-- GitHub Actions despliega desde `main`.
+- Destino de publicación: Cloudflare Pages, subida directa desde GitHub Actions.
+- `.github/workflows/deploy-pages.yml` sólo corre con `workflow_dispatch` desde `main`, y sólo si existen los secretos `CLOUDFLARE_API_TOKEN` y `CLOUDFLARE_ACCOUNT_ID` más la variable `CLOUDFLARE_PAGES_PROJECT`.
+- Build: `node scripts/prepare-pages-output.mjs`. Directorio publicado: `dist`. El comando copia el sitio y excluye Worker, docs, tests y FastAPI.
+- AWS Lightsail y Caddy quedan como legado pendiente de baja. `deploy-lightsail.yml` se eliminó. Un merge a `main` no despliega a Lightsail.
+- El frontend sigue apuntando al Worker existente en `contact-config.js`.
 - No existen secretos en HTML, CSS ni JavaScript público.
 
 ## AF Intelligence
@@ -33,7 +35,7 @@
 ## Backend dinámico
 
 - Cloudflare Worker para `/contact`, `/ai-chat` y `/health`.
-- CORS limitado a orígenes explícitos.
+- CORS limitado a orígenes explícitos. `wrangler.toml` agrega el marcador `https://PAGES_PROJECT_NAME.pages.dev`. No rige en el Worker publicado hasta el próximo `wrangler deploy`.
 - Telegram Bot API como destino de contactos.
 - FastAPI en `mmlab-contact-api/` conservado únicamente como implementación legacy.
 
@@ -42,7 +44,7 @@
 - Tests unitarios de recuperación, CORS, límites, privacidad, fallback y adaptadores.
 - Validación de sintaxis JavaScript.
 - Contratos de HTML, assets, canonical y presupuestos de tamaño.
-- Smoke test público del frontend después de cada deploy.
+- Smoke test público del frontend dentro del workflow manual de Pages, con las mismas comprobaciones que el antiguo deploy de Lightsail.
 
 ## Reglas operativas
 

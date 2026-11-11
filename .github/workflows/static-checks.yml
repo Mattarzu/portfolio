@@ -58,6 +58,8 @@ jobs:
           node --check scripts/check-v15b4.mjs
           node --check scripts/benchmark-automation-v15b4.mjs
           node --check scripts/run-af-evals.mjs
+          node --check scripts/prepare-pages-output.mjs
+          node --check scripts/check-pages-cutover.mjs
 
       - name: Check site contracts
         run: |
@@ -69,6 +71,7 @@ jobs:
           node scripts/check-v15b2.mjs
           node scripts/check-v15b3.mjs
           node scripts/check-v15b4.mjs
+          node scripts/check-pages-cutover.mjs
 
       - name: Run AF reliability evals
         run: node scripts/run-af-evals.mjs --verify
@@ -97,6 +100,7 @@ jobs:
               Path("docs/operations/mmlab-backend-architecture.md"),
               Path("docs/operations/panda-ai-local-assistant.md"),
               Path("docs/operations/current-architecture-checklist.md"),
+              Path("docs/operations/cloudflare-pages-cutover.md"),
           ]
 
           ok = True

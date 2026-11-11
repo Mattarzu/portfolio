@@ -147,6 +147,33 @@ test("rejects browser writes from an origin outside the allowlist", async () => 
   assert.equal(response.headers.has("Access-Control-Allow-Origin"), false);
 });
 
+test("comma-separated allowlist accepts an explicit Pages origin only", async () => {
+  const pagesOrigin = "https://PAGES_PROJECT_NAME.pages.dev";
+  const env = environment({
+    ALLOWED_ORIGIN: `${allowedOrigin},${pagesOrigin}`,
+  });
+
+  const allowed = await worker.fetch(
+    new Request("https://worker.test/contact", {
+      method: "OPTIONS",
+      headers: {
+        Origin: pagesOrigin,
+        "Access-Control-Request-Method": "POST",
+      },
+    }),
+    env,
+  );
+  assert.equal(allowed.status, 204);
+  assert.equal(allowed.headers.get("Access-Control-Allow-Origin"), pagesOrigin);
+
+  const denied = await worker.fetch(
+    contactRequest({}, "https://not-the-project.pages.dev"),
+    env,
+  );
+  assert.equal(denied.status, 403);
+  assert.equal(denied.headers.has("Access-Control-Allow-Origin"), false);
+});
+
 test("preserves contact delivery and escapes Telegram HTML", async () => {
   let telegramBody = null;
   globalThis.fetch = async (_url, init) => {

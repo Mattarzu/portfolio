@@ -1,7 +1,9 @@
 
 > Documento histórico. La arquitectura productiva vigente está en
-> `docs/operations/af-intelligence.md` y
-> `docs/operations/current-architecture-checklist.md`.
+> `docs/operations/af-intelligence.md`,
+> `docs/operations/current-architecture-checklist.md` y
+> `docs/operations/cloudflare-pages-cutover.md`.
+> El frontend vigente apunta a Cloudflare Pages. Lightsail es legado.
 
 M M LAB backend architecture
 Resumen

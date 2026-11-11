@@ -7,7 +7,7 @@ const errors = [];
 
 function collectFiles(directory, extension, result = []) {
   for (const entry of readdirSync(directory, { withFileTypes: true })) {
-    if (entry.name === ".git") continue;
+    if (entry.name === ".git" || entry.name === "dist" || entry.name === "node_modules") continue;
     const path = join(directory, entry.name);
     if (entry.isDirectory()) collectFiles(path, extension, result);
     else if (extname(entry.name) === extension) result.push(path);
