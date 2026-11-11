@@ -3,7 +3,6 @@ import { join, relative } from "node:path";
 
 import {
   outputDirectory,
-  pagesOriginPlaceholder,
   preparePagesOutput,
   rootDirectories,
   rootFiles,
@@ -88,11 +87,11 @@ function assertWorkerConfig() {
     "https://mattarzu.github.io",
     "http://127.0.0.1:8081",
     "http://localhost:8081",
-    pagesOriginPlaceholder,
+    "https://mattarzu-portfolio.pages.dev",
   ];
 
   if (origins.join("\n") !== expected.join("\n")) {
-    report(`ALLOWED_ORIGIN must stay an exact list ending in the Pages placeholder.\n  actual: ${origins.join(", ")}`);
+    report(`ALLOWED_ORIGIN must stay an exact list ending in the Pages production origin.\n  actual: ${origins.join(", ")}`);
   }
 
   if (origins.some((origin) => origin.includes("*"))) {
