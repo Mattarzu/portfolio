@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://allfiction.56-126-148-93.sslip.io/sitemap.xml
+Sitemap: https://mattarzu-portfolio.pages.dev/sitemap.xml

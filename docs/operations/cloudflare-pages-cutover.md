@@ -47,10 +47,10 @@ para rutas desconocidas.
   `https://mmlab-contact-api.mattm2.workers.dev`.
 - El código del Worker no cambia. CORS sigue siendo una lista de orígenes
   exactos, separada por comas, sin comodines.
-- Las URLs canónicas, Open Graph y `sitemap.xml` siguen en
-  `https://allfiction.56-126-148-93.sslip.io`. No hay hostname real de Pages
-  todavía, y `scripts/check-site.mjs` exige ese origen. No reemplazarlas por
-  el marcador.
+
+Las URLs canónicas, Open Graph, Twitter, JSON-LD, `sitemap.xml` y la línea
+Sitemap de `robots.txt` apuntan a `https://mattarzu-portfolio.pages.dev`.
+`scripts/check-site.mjs` exige ese origen.
 
 ## CORS del Worker
 
@@ -181,30 +181,26 @@ conserva. El host `ubuntu@56.126.148.93` y
 `https://allfiction.56-126-148-93.sslip.io` estaban caídos. Un push a `main`
 ya no abre SSH ni despliega ahí.
 
-Lightsail queda como legado pendiente de baja. Caddy en esa instancia deja de
-ser el HTTPS del portfolio cuando Pages está verificado.
-
 ## Después del corte
 
-Hacerlo sólo cuando la URL de Pages pasó la verificación de arriba y el Worker
-ya acepta ese origen.
+El 2026-11-11, con Pages verificado y el Worker admitiendo ese origen, se
+completó la baja:
 
-1. Crear un snapshot de la instancia Lightsail.
-2. Confirmar que MollChef, Crypto Risk y Qivox/Ergo no siguen dependiendo de
-   esta instancia. El sitio enlaza
+1. Se creó el snapshot `matt-production-01-final-20261111`.
+2. Se confirmó que MollChef, Crypto Risk y Qivox/Ergo no debían seguir en
+   esa instancia. El sitio todavía enlaza, como evidencia histórica,
    `mollchef.56-126-148-93.sslip.io`,
    `crypto-risk.56-126-148-93.sslip.io`,
    `ergo.56-126-148-93.sslip.io` y
    `api-ergo.56-126-148-93.sslip.io`. Un hostname sslip.io apunta a la IP que
-   lleva escrita. Borrar la instancia o soltar la IP los corta si todavía
-   salen de ahí. Este corte sólo mueve el frontend del portfolio.
-3. Borrar la instancia.
-4. Soltar la IP estática `56.126.148.93` sólo después de que Pages esté
-   verificado en vivo.
-5. Soltar esa IP rompe para siempre
+   lleva escrita; al borrar la instancia y soltar la IP esos nombres dejaron
+   de resolver.
+3. Se borró la instancia.
+4. Se liberó la IP estática `56.126.148.93` después de verificar Pages en vivo.
+5. Liberar esa IP rompió para siempre
    `https://allfiction.56-126-148-93.sslip.io` y cualquier otro nombre sslip
    de esa misma IP. No se puede recuperar el nombre cuando la IP vuelve al
    pool.
-6. Las canónicas del repo siguen apuntando al sslip hasta un cambio posterior
-   con el hostname definitivo. Liberar la IP las deja rotas aunque Pages
-   funcione.
+6. Las canónicas del repo apuntan a `https://mattarzu-portfolio.pages.dev`.
+   Lightsail queda como legado: no hay instancia ni IP activas; sólo el
+   snapshot.
