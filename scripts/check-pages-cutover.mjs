@@ -1,3 +1,4 @@
+import "./check-portfolio-shell-routes.mjs";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 
