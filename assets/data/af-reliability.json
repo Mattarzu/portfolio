@@ -3,7 +3,7 @@
   "suite": "AF Reliability",
   "suiteVersion": "15.0",
   "scope": "deterministic-regression",
-  "fingerprint": "537708c7ea92a6db",
+  "fingerprint": "2f53748f134cf52c",
   "total": 44,
   "passed": 44,
   "failed": 0,

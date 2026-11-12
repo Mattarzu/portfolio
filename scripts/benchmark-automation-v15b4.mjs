@@ -1,7 +1,7 @@
 const endpoint = process.env.AF_AUTOMATION_ENDPOINT
   || "https://mmlab-contact-api.mattm2.workers.dev/automation-analyze";
 const origin = process.env.AF_AUTOMATION_ORIGIN
-  || "https://allfiction.56-126-148-93.sslip.io";
+  || "https://mattarzu-portfolio.pages.dev";
 
 const requested = Number.parseInt(process.env.AF_BENCH_SAMPLES || "4", 10);
 const sampleCount = Math.max(1, Math.min(Number.isFinite(requested) ? requested : 4, 4));

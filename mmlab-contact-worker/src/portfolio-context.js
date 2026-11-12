@@ -2,7 +2,7 @@ const SOURCES = [
   {
     id: "overview",
     title: "ALLFICTION Software",
-    href: "https://allfiction.56-126-148-93.sslip.io/",
+    href: "https://mattarzu-portfolio.pages.dev/",
     keywords: [
       "allfiction",
       "matt",
@@ -52,7 +52,7 @@ const SOURCES = [
   {
     id: "motoratlas",
     title: "MotorAtlas 3D",
-    href: "https://allfiction.56-126-148-93.sslip.io/#ingenieria-reciente",
+    href: "https://mattarzu-portfolio.pages.dev/#ingenieria-reciente",
     keywords: [
       "motoratlas",
       "automotor",
@@ -75,7 +75,7 @@ const SOURCES = [
   {
     id: "mattmesh",
     title: "MattMesh / AgentBridge",
-    href: "https://allfiction.56-126-148-93.sslip.io/#ingenieria-reciente",
+    href: "https://mattarzu-portfolio.pages.dev/#ingenieria-reciente",
     keywords: [
       "mattmesh",
       "agentbridge",
@@ -100,7 +100,7 @@ const SOURCES = [
   {
     id: "crypto-risk",
     title: "Crypto Risk Engine",
-    href: "https://allfiction.56-126-148-93.sslip.io/projects/crypto-risk-engine.html",
+    href: "https://mattarzu-portfolio.pages.dev/projects/crypto-risk-engine.html",
     keywords: [
       "crypto",
       "risk",
@@ -129,7 +129,7 @@ const SOURCES = [
   {
     id: "qivox",
     title: "Qivox Gym / ERGO V2",
-    href: "https://allfiction.56-126-148-93.sslip.io/projects/ergo-v2.html",
+    href: "https://mattarzu-portfolio.pages.dev/projects/ergo-v2.html",
     keywords: [
       "qivox",
       "ergo",
@@ -156,7 +156,7 @@ const SOURCES = [
   {
     id: "polyllm",
     title: "PolyLLM Router",
-    href: "https://allfiction.56-126-148-93.sslip.io/projects/router-llm.html",
+    href: "https://mattarzu-portfolio.pages.dev/projects/router-llm.html",
     keywords: [
       "polyllm",
       "llm",
@@ -187,7 +187,7 @@ const SOURCES = [
   {
     id: "production",
     title: "Infraestructura y producción",
-    href: "https://allfiction.56-126-148-93.sslip.io/#capacidades",
+    href: "https://mattarzu-portfolio.pages.dev/#capacidades",
     keywords: [
       "aws",
       "cloud",
@@ -217,7 +217,7 @@ const SOURCES = [
   {
     id: "method",
     title: "Método de ingeniería",
-    href: "https://allfiction.56-126-148-93.sslip.io/#metodo",
+    href: "https://mattarzu-portfolio.pages.dev/#metodo",
     keywords: [
       "proceso",
       "process",
@@ -383,7 +383,7 @@ export function guidedFallback(locale, reason = "unavailable") {
         : "No envié ese mensaje al proveedor de IA porque parece contener un correo, teléfono o credencial. Quitá los datos personales o secretos y volvé a preguntar.",
       cta: {
         label: english ? "View privacy-safe topics" : "Ver temas seguros",
-        href: "https://allfiction.56-126-148-93.sslip.io/#trabajo",
+        href: "https://mattarzu-portfolio.pages.dev/#trabajo",
       },
     };
   }
@@ -395,7 +395,7 @@ export function guidedFallback(locale, reason = "unavailable") {
         : "Sólo puedo responder sobre ALLFICTION, sus proyectos de ingeniería, decisiones técnicas y forma de trabajo. Probá preguntarme qué caso demuestra mejor una capacidad.",
       cta: {
         label: english ? "View engineering cases" : "Ver casos de ingeniería",
-        href: "https://allfiction.56-126-148-93.sslip.io/#trabajo",
+        href: "https://mattarzu-portfolio.pages.dev/#trabajo",
       },
     };
   }
@@ -406,7 +406,7 @@ export function guidedFallback(locale, reason = "unavailable") {
       : "El modo generativo no está disponible temporalmente, así que pasé al modo guiado verificado. Igual puedo ayudarte con Crypto Risk, Qivox, PolyLLM, infraestructura, IA aplicada o el método de ingeniería.",
     cta: {
       label: english ? "View projects" : "Ver proyectos",
-      href: "https://allfiction.56-126-148-93.sslip.io/#trabajo",
+      href: "https://mattarzu-portfolio.pages.dev/#trabajo",
     },
   };
 }

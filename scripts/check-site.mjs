@@ -2,7 +2,7 @@ import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { dirname, extname, join, relative, resolve } from "node:path";
 
 const root = process.cwd();
-const canonicalOrigin = "https://allfiction.56-126-148-93.sslip.io";
+const canonicalOrigin = "https://mattarzu-portfolio.pages.dev";
 const errors = [];
 
 function collectFiles(directory, extension, result = []) {
