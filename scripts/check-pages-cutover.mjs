@@ -84,7 +84,6 @@ function assertWorkerConfig() {
 
   const origins = match[1].split(",").map((origin) => origin.trim()).filter(Boolean);
   const expected = [
-    "https://allfiction.56-126-148-93.sslip.io",
     "https://mattarzu.github.io",
     "http://127.0.0.1:8081",
     "http://localhost:8081",

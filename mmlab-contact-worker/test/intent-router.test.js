@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import worker from "../src/worker-v2.js";
 import { detectProjectIntent } from "../src/intent-router.js";
 
-const ORIGIN = "https://allfiction.56-126-148-93.sslip.io";
+const ORIGIN = "https://mattarzu-portfolio.pages.dev";
 
 function request(message) {
   return new Request("https://worker.example/ai-chat", {

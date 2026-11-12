@@ -302,10 +302,10 @@
         "infraestructura",
       ],
       es:
-        "Hoy hay evidencia pública de tres sistemas operados en AWS: el portfolio, Qivox Gym y Crypto Risk Engine. El despliegue usa HTTPS, reverse proxy, contenedores y CI/CD; Crypto Risk además expone healthchecks live/ready y mantiene sus servicios de datos dentro de redes internas.",
+        "Hoy hay evidencia pública de tres sistemas operados en AWS: el portfolio, Qivox Gym y Crypto Risk Engine. El despliegue usa HTTPS, reverse proxy, contenedores y CI/CD; Crypto Risk incluía healthchecks live/ready y mantiene sus servicios de datos dentro de redes internas.",
       en:
-        "There is public evidence of three systems operated on AWS: this portfolio, Qivox Gym and Crypto Risk Engine. Deployment uses HTTPS, a reverse proxy, containers and CI/CD; Crypto Risk also exposes live/ready health checks and keeps data services inside private networks.",
-      cta: { es: "Comprobar healthcheck", en: "Check health status", href: "https://crypto-risk.56-126-148-93.sslip.io/health/ready" },
+        "There is public evidence of three systems operated on AWS: this portfolio, Qivox Gym and Crypto Risk Engine. Deployment uses HTTPS, a reverse proxy, containers and CI/CD; Crypto Risk included live/ready health checks and keeps data services inside private networks.",
+      cta: { es: "Abrir caso técnico", en: "Open technical case", href: "./projects/crypto-risk-engine.html" },
     },
     {
       keywords: [
@@ -338,10 +338,10 @@
         "membership",
       ],
       es:
-        "Qivox Gym / ERGO V2 es un producto full stack multi-sede para clubes y gimnasios. Integra experiencia pública, administración, membresías, PostgreSQL, Prisma y eventos en tiempo real con Socket.IO. Hay una demo pública desplegada en AWS.",
+        "Qivox Gym / ERGO V2 es un producto full stack multi-sede para clubes y gimnasios. Integra experiencia pública, administración, membresías, PostgreSQL, Prisma y eventos en tiempo real con Socket.IO. Una demo pública se desplegó en AWS.",
       en:
-        "Qivox Gym / ERGO V2 is a multi-site full-stack product for clubs and gyms. It integrates a public experience, administration, memberships, PostgreSQL, Prisma and real-time events with Socket.IO. A public demo is deployed on AWS.",
-      cta: { es: "Abrir demo de Qivox", en: "Open Qivox demo", href: "https://ergo.56-126-148-93.sslip.io" },
+        "Qivox Gym / ERGO V2 is a multi-site full-stack product for clubs and gyms. It integrates a public experience, administration, memberships, PostgreSQL, Prisma and real-time events with Socket.IO. A public demo was deployed on AWS.",
+      cta: { es: "Ver caso de Qivox", en: "View Qivox case", href: "./projects/ergo-v2.html" },
     },
     {
       keywords: [

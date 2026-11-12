@@ -10,7 +10,7 @@ import {
 import { resetAutomationStateForTests } from "../src/automation-endpoint.js";
 
 const originalFetch = globalThis.fetch;
-const allowedOrigin = "https://allfiction.56-126-148-93.sslip.io";
+const allowedOrigin = "https://mattarzu-portfolio.pages.dev";
 
 function environment(overrides = {}) {
   return {
