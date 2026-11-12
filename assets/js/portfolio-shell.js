@@ -3,7 +3,12 @@
   const body = document.body;
   const languageKey = "allfiction_language";
   const legacyLanguageKey = "mmlab_language";
-  const pageName = window.location.pathname.split("/").pop() || "index.html";
+  // Pages redirects .html URLs to clean paths; keep one key for both forms.
+  const pathname = window.location.pathname;
+  const basename = pathname.split("/").pop() || "index.html";
+  const pageName = /\/projects\/?$/.test(pathname)
+    ? "index.html"
+    : basename.includes(".") ? basename : `${basename}.html`;
   const isCatalog = /\/projects\/?$/.test(window.location.pathname) || pageName === "index.html";
   const isErgo = pageName === "ergo-v2.html";
   const isRouter = pageName === "router-llm.html";
