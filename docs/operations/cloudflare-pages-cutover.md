@@ -64,8 +64,9 @@ el Worker que está en producción conserva la lista anterior y el navegador en
 Pages recibirá un rechazo de origen en contacto, IA y las demás rutas
 dinámicas.
 
-Los orígenes que ya estaban siguen: el sslip de Lightsail, GitHub Pages,
-`http://127.0.0.1:8081` y `http://localhost:8081`. Las URLs de preview
+Los orígenes vigentes son GitHub Pages, `https://mattarzu-portfolio.pages.dev`,
+`http://127.0.0.1:8081` y `http://localhost:8081`. El origen sslip de Lightsail
+ya no forma parte de `ALLOWED_ORIGIN`. Las URLs de preview
 (`https://<hash>.<proyecto>.pages.dev` y
 `https://<rama>.<proyecto>.pages.dev`) no están permitidas. Un dominio propio
 tampoco, hasta agregarlo como origen exacto y redesplegar el Worker.
@@ -188,13 +189,13 @@ completó la baja:
 
 1. Se creó el snapshot `matt-production-01-final-20261111`.
 2. Se confirmó que MollChef, Crypto Risk y Qivox/Ergo no debían seguir en
-   esa instancia. El sitio todavía enlaza, como evidencia histórica,
+   esa instancia. Los hostnames
    `mollchef.56-126-148-93.sslip.io`,
    `crypto-risk.56-126-148-93.sslip.io`,
    `ergo.56-126-148-93.sslip.io` y
-   `api-ergo.56-126-148-93.sslip.io`. Un hostname sslip.io apunta a la IP que
-   lleva escrita; al borrar la instancia y soltar la IP esos nombres dejaron
-   de resolver.
+   `api-ergo.56-126-148-93.sslip.io` dejaron de resolver al borrar la
+   instancia y soltar la IP. Un hostname sslip.io apunta a la IP que lleva
+   escrita. El sitio ya no enlaza esas demos.
 3. Se borró la instancia.
 4. Se liberó la IP estática `56.126.148.93` después de verificar Pages en vivo.
 5. Liberar esa IP rompió para siempre
