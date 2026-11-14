@@ -7,6 +7,32 @@ import { test } from "node:test";
 const root = process.cwd();
 const PRIMARY = ["es-AR", "en-GB"];
 
+export function collectNavKeys(translations, referenceLanguage = "es-AR") {
+  const keys = new Set(
+    Object.keys(translations[referenceLanguage] || {}).filter((key) => key.startsWith("nav.")),
+  );
+  for (const dictionary of Object.values(translations)) {
+    for (const key of Object.keys(dictionary || {})) {
+      if (key.startsWith("nav.")) keys.add(key);
+    }
+  }
+  return [...keys].sort();
+}
+
+export function assertNavKeysForLanguages(translations, languages, navKeys) {
+  for (const language of languages) {
+    const dictionary = translations[language];
+    assert.ok(dictionary, `missing dictionary for ${language}`);
+    for (const key of navKeys) {
+      const value = dictionary[key];
+      assert.ok(
+        typeof value === "string" && value.trim(),
+        `${language} missing nav translation for "${key}"`,
+      );
+    }
+  }
+}
+
 function loadTranslations() {
   const sandbox = { window: {} };
   sandbox.window = sandbox;
@@ -35,6 +61,20 @@ function collectHtmlFiles(directory) {
 
 const translations = loadTranslations();
 const supportedLanguages = readSupportedLanguages();
+const navKeys = collectNavKeys(translations);
+
+test("every supported language exposes the full nav.* dictionary", () => {
+  assertNavKeysForLanguages(translations, supportedLanguages, navKeys);
+});
+
+test("nav parity guard fails when a localized key is missing", () => {
+  const mutated = JSON.parse(JSON.stringify(translations));
+  delete mutated.ca["nav.roadmap"];
+  assert.throws(
+    () => assertNavKeysForLanguages(mutated, supportedLanguages, navKeys),
+    /ca missing nav translation for "nav\.roadmap"/,
+  );
+});
 
 test("es-AR and en-GB dictionaries stay in sync", () => {
   const esKeys = Object.keys(translations["es-AR"]);
@@ -117,7 +157,8 @@ test("project pages load i18n runtime and cover data-i18n keys in ES/EN", () => 
 
     const i18nNodes = [...html.matchAll(/data-i18n="([^"]+)"/g)].map((item) => item[1]);
     for (const key of i18nNodes) {
-      for (const language of PRIMARY) {
+      const languages = key.startsWith("nav.") ? supportedLanguages : PRIMARY;
+      for (const language of languages) {
         assert.ok(
           translations[language]?.[key],
           `${rel}: missing ${language} translation for data-i18n="${key}"`,

@@ -6,7 +6,7 @@ const files = [
   "scripts/check-contact-form-local.mjs",
 ];
 
-const result = spawnSync(process.execPath, ["--test", ...files], {
+const result = spawnSync(process.execPath, ["--test", "--test-reporter=tap", ...files], {
   cwd: process.cwd(),
   encoding: "utf8",
 });
@@ -14,7 +14,8 @@ const result = spawnSync(process.execPath, ["--test", ...files], {
 if (result.stdout) process.stdout.write(result.stdout);
 if (result.stderr) process.stderr.write(result.stderr);
 
-const count = Number(result.stdout.match(/# tests (\d+)/)?.[1] || 0);
+const output = `${result.stdout || ""}\n${result.stderr || ""}`;
+const count = Number(output.match(/(?:#|ℹ)\s*tests\s+(\d+)/iu)?.[1] || 0);
 
 if (result.status !== 0) {
   console.error(`Portfolio local tests failed (${count} tests executed).`);

@@ -217,6 +217,7 @@
       "nav.services": "Serveis",
       "nav.projects": "Projectes",
       "nav.stack": "Stack",
+      "nav.roadmap": "Full de ruta",
       "nav.contact": "Contacte",
 
       "hero.eyebrow": "PROGRAMARI · AUTOMATITZACIÓ · IA",
@@ -283,6 +284,7 @@
       "nav.services": "Servizi",
       "nav.projects": "Progetti",
       "nav.stack": "Stack",
+      "nav.roadmap": "Roadmap",
       "nav.contact": "Contatto",
 
       "hero.eyebrow": "SOFTWARE · AUTOMAZIONE · IA",
@@ -349,6 +351,7 @@
       "nav.services": "Serviços",
       "nav.projects": "Projetos",
       "nav.stack": "Stack",
+      "nav.roadmap": "Roteiro",
       "nav.contact": "Contato",
 
       "hero.eyebrow": "SOFTWARE · AUTOMAÇÃO · IA",
@@ -415,6 +418,7 @@
       "nav.services": "Capabilities",
       "nav.projects": "Projets",
       "nav.stack": "Stack",
+      "nav.roadmap": "Feuille de route",
       "nav.contact": "Contact",
 
       "hero.eyebrow": "LOGICIEL · AUTOMATISATION · IA",
@@ -481,6 +485,7 @@
       "nav.services": "Услуги",
       "nav.projects": "Проекты",
       "nav.stack": "Стек",
+      "nav.roadmap": "Дорожная карта",
       "nav.contact": "Контакт",
 
       "hero.eyebrow": "ПО · АВТОМАТИЗАЦИЯ · ИИ",
@@ -547,6 +552,7 @@
       "nav.services": "服务",
       "nav.projects": "项目",
       "nav.stack": "技术栈",
+      "nav.roadmap": "路线图",
       "nav.contact": "联系",
 
       "hero.eyebrow": "软件 · 自动化 · 人工智能",
