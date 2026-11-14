@@ -67,6 +67,7 @@ jobs:
           node --check scripts/check-i18n-parity.mjs
           node --check scripts/check-contact-form-local.mjs
           node --check scripts/run-portfolio-local-tests.mjs
+          node --check scripts/check-public-urls.mjs
 
       - name: Portfolio local regression suite
         run: node scripts/run-portfolio-local-tests.mjs

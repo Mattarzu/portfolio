@@ -4,6 +4,7 @@ const files = [
   "scripts/check-dist-routes.mjs",
   "scripts/check-i18n-parity.mjs",
   "scripts/check-contact-form-local.mjs",
+  "scripts/check-public-urls.mjs",
 ];
 
 const result = spawnSync(process.execPath, ["--test", "--test-reporter=tap", ...files], {
