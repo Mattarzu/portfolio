@@ -16,6 +16,7 @@
       "nav.services": "Capacidades",
       "nav.projects": "Proyectos",
       "nav.stack": "Stack",
+      "nav.roadmap": "Roadmap",
       "nav.contact": "Contacto",
 
       "hero.eyebrow": "SOFTWARE · AUTOMATIZACIÓN · IA APLICADA",
@@ -82,6 +83,7 @@
       "nav.services": "Capabilities",
       "nav.projects": "Projects",
       "nav.stack": "Stack",
+      "nav.roadmap": "Roadmap",
       "nav.contact": "Contact",
 
       "hero.eyebrow": "SOFTWARE · AUTOMATION · APPLIED AI",
@@ -148,6 +150,7 @@
       "nav.services": "Capacidades",
       "nav.projects": "Proyectos",
       "nav.stack": "Stack",
+      "nav.roadmap": "Roadmap",
       "nav.contact": "Contacto",
 
       "hero.eyebrow": "SOFTWARE · AUTOMATIZACIÓN · IA APLICADA",

@@ -6,6 +6,9 @@ on:
       - main
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   static-checks:
     runs-on: ubuntu-latest
@@ -60,6 +63,13 @@ jobs:
           node --check scripts/run-af-evals.mjs
           node --check scripts/prepare-pages-output.mjs
           node --check scripts/check-pages-cutover.mjs
+          node --check scripts/check-dist-routes.mjs
+          node --check scripts/check-i18n-parity.mjs
+          node --check scripts/check-contact-form-local.mjs
+          node --check scripts/run-portfolio-local-tests.mjs
+
+      - name: Portfolio local regression suite
+        run: node scripts/run-portfolio-local-tests.mjs
 
       - name: Check site contracts
         run: |
