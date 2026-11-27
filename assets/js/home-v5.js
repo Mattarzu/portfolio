@@ -32,7 +32,7 @@
       cinema.dataset.v5ScrollScene = "";
       cinema.innerHTML = `
         <div class="shell v5-cinema-head reveal">
-          <p class="overline">02.5 / ${languageMarkup("Producto en uso", "Product in use")}</p>
+          <p class="overline">02.5 / ${languageMarkup("Qivox por dentro", "Inside Qivox")}</p>
           <div class="v5-cinema-title-row">
             <h2>${languageMarkup("La interfaz también<br><em>es ingeniería.</em>", "The interface is<br><em>engineering too.</em>")}</h2>
             <p>${languageMarkup(
@@ -54,14 +54,14 @@
             </div>
             <div class="v5-cinema-visual v5-spotlight" data-v5-tilt data-v5-parallax="18">
               <div class="v5-browser-frame">
-                <div class="v5-browser-bar"><span><i></i><i></i><i></i></span><small>qivox / club experience</small><b>LIVE PRODUCT</b></div>
+                <div class="v5-browser-bar"><span><i></i><i></i><i></i></span><small>qivox / club experience</small><b>CAPTURE</b></div>
                 <img src="./assets/projects/ergo-v2/ergo-club-web.webp" width="1440" height="1200" loading="lazy" decoding="async" fetchpriority="low" alt="Interfaz web real de Qivox Gym" />
               </div>
               <div class="v5-phone-frame">
                 <span aria-hidden="true"></span>
                 <img src="./assets/projects/ergo-v2/ergo-club-app.webp" width="430" height="932" loading="lazy" decoding="async" fetchpriority="low" alt="Interfaz móvil real de Qivox Gym" />
               </div>
-              <div class="v5-cinema-badge"><i></i><span>REAL UI / RESPONSIVE / PRODUCTION</span></div>
+              <div class="v5-cinema-badge"><i></i><span>WEB + MOBILE / SAME SYSTEM</span></div>
             </div>
           </div>
         </div>

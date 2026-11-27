@@ -26,7 +26,7 @@
       ["Auditable", "Auditable", "idempotencia + ledger", "idempotency + ledger"],
     ],
     "ergo-v2.html": [
-      ["Demo pública", "Public demo", "producto desplegado", "deployed product"],
+      ["Histórico", "Historical", "demo pública retirada", "public demo removed"],
       ["Multi-sede", "Multi-site", "operación para gimnasios", "gym operations"],
       ["Full stack", "Full stack", "React · Express · PostgreSQL", "React · Express · PostgreSQL"],
       ["Realtime", "Realtime", "Socket.IO + Prisma", "Socket.IO + Prisma"],
