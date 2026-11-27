@@ -20,7 +20,7 @@
 
   const proofByPage = {
     "crypto-risk-engine.html": [
-      ["Producción", "Production", "AWS · public healthchecks", "AWS · public health checks"],
+      ["Histórico", "Historical", "probes públicos retirados", "public probes removed"],
       ["12 + 2", "12 + 2", "tests de integración y E2E", "integration and E2E tests"],
       ["≈320 MiB", "≈320 MiB", "stack observado en reposo", "observed idle stack"],
       ["Auditable", "Auditable", "idempotencia + ledger", "idempotency + ledger"],
