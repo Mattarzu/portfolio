@@ -80,6 +80,7 @@
     <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
     <link rel="stylesheet" href="../assets/css/home-v2.css?v=20261127-historical" />
       <link rel="stylesheet" href="../assets/css/portfolio-shell.css?v=20261127-historical" />
+    <link rel="stylesheet" href="../assets/css/risk-factor-demo.css" />
   </head>
   <body>
     <a class="skip-link" href="#contenido">
@@ -319,6 +320,19 @@
                 <span data-lang="en">Idempotent decision, explicit rejection and hashed ledger.</span>
               </div>
             </div>
+
+            <p>
+              <span data-lang="es">
+                Esa regla cabe en el navegador:
+                <a href="#demo-factor">probar el health factor</a>
+                sin llamar al servicio.
+              </span>
+              <span data-lang="en">
+                That rule fits in the browser:
+                <a href="#demo-factor">try the health factor</a>
+                without calling the service.
+              </span>
+            </p>
 
             <h3>
               <span data-lang="es">Persistencia y API</span>
@@ -560,6 +574,170 @@
         </div>
       </section>
 
+      <section class="case-section" id="demo-factor">
+        <div class="container case-grid">
+          <header>
+            <p class="section-kicker">
+              <span data-lang="es">06 · Demostración local</span>
+              <span data-lang="en">06 · Local demo</span>
+            </p>
+            <h2>
+              <span data-lang="es">La misma regla, en el navegador.</span>
+              <span data-lang="en">The same rule, in the browser.</span>
+            </h2>
+          </header>
+          <div class="case-content">
+            <p id="risk-demo-note" class="risk-demo-note">
+              <span data-lang="es">
+                Ilustración de la ruta rápida: health factor = (colateral × umbral de
+                liquidación) / deuda. No consulta AWS ni el Worker. 1,50 o más queda en
+                SAFE, entre 1,00 y 1,50 en vigilancia, y por debajo de 1,00 se liquidaría.
+              </span>
+              <span data-lang="en">
+                Illustration of the fast path: health factor = (collateral × liquidation
+                threshold) / debt. It does not call AWS or the Worker. 1.50 or more stays
+                SAFE, 1.00 to 1.50 is watch, and below 1.00 would liquidate.
+              </span>
+            </p>
+
+            <form id="risk-factor-demo" class="risk-demo" action="#demo-factor" aria-describedby="risk-demo-note">
+              <fieldset class="risk-demo-presets">
+                <legend>
+                  <span data-lang="es">Escenarios</span>
+                  <span data-lang="en">Scenarios</span>
+                </legend>
+                <button
+                  class="button compact"
+                  type="button"
+                  data-preset="cover"
+                  data-collateral="9200"
+                  data-debt="4000"
+                  data-threshold="0.80"
+                  aria-pressed="true"
+                >
+                  <span data-lang="es">Portada · 1,84</span>
+                  <span data-lang="en">Cover · 1.84</span>
+                </button>
+                <button
+                  class="button compact"
+                  type="button"
+                  data-preset="watch"
+                  data-collateral="6000"
+                  data-debt="4000"
+                  data-threshold="0.80"
+                  aria-pressed="false"
+                >
+                  <span data-lang="es">Vigilancia · 1,20</span>
+                  <span data-lang="en">Watch · 1.20</span>
+                </button>
+                <button
+                  class="button compact"
+                  type="button"
+                  data-preset="liquidate"
+                  data-collateral="5000"
+                  data-debt="4200"
+                  data-threshold="0.80"
+                  aria-pressed="false"
+                >
+                  <span data-lang="es">Liquidar · 0,95</span>
+                  <span data-lang="en">Liquidate · 0.95</span>
+                </button>
+              </fieldset>
+
+              <fieldset class="risk-demo-fields">
+                <legend>
+                  <span data-lang="es">Parámetros de la posición</span>
+                  <span data-lang="en">Position parameters</span>
+                </legend>
+                <div class="risk-demo-field-grid">
+                <label>
+                  <span data-lang="es">Colateral (USD)</span>
+                  <span data-lang="en">Collateral (USD)</span>
+                  <input
+                    id="risk-demo-collateral"
+                    name="collateral"
+                    type="number"
+                    inputmode="decimal"
+                    min="0"
+                    max="1000000000"
+                    step="1"
+                    value="9200"
+                    autocomplete="off"
+                    required
+                  />
+                </label>
+                <label>
+                  <span data-lang="es">Deuda (USD)</span>
+                  <span data-lang="en">Debt (USD)</span>
+                  <input
+                    id="risk-demo-debt"
+                    name="debt"
+                    type="number"
+                    inputmode="decimal"
+                    min="0"
+                    max="1000000000"
+                    step="1"
+                    value="4000"
+                    autocomplete="off"
+                    required
+                  />
+                </label>
+                <label>
+                  <span data-lang="es">Umbral de liquidación</span>
+                  <span data-lang="en">Liquidation threshold</span>
+                  <input
+                    id="risk-demo-threshold"
+                    name="threshold"
+                    type="number"
+                    inputmode="decimal"
+                    min="0.01"
+                    max="1"
+                    step="0.01"
+                    value="0.80"
+                    autocomplete="off"
+                    required
+                  />
+                </label>
+                </div>
+              </fieldset>
+
+              <div class="risk-demo-result" aria-live="polite">
+                <p class="risk-demo-factor">
+                  <span class="risk-demo-kicker">
+                    <span data-lang="es">Health factor</span>
+                    <span data-lang="en">Health factor</span>
+                  </span>
+                  <strong data-factor-value>1.84</strong>
+                </p>
+                <p class="risk-demo-decision" data-state="safe" data-decision>
+                  <span data-lang="es">SAFE · por encima del margen de vigilancia (1,50).</span>
+                  <span data-lang="en">SAFE · above the watch margin (1.50).</span>
+                </p>
+                <p class="risk-demo-expression" data-expression>
+                  <span data-lang="es">(9.200 × 0,80) / 4.000 = 1,84</span>
+                  <span data-lang="en">(9,200 × 0.80) / 4,000 = 1.84</span>
+                </p>
+                <p class="risk-demo-replay" data-replay hidden>
+                  <span data-lang="es">Misma decisión al repetir el tick.</span>
+                  <span data-lang="en">Same decision when the tick is repeated.</span>
+                </p>
+              </div>
+
+              <div class="risk-demo-actions">
+                <button class="button primary compact" type="submit">
+                  <span data-lang="es">Evaluar posición</span>
+                  <span data-lang="en">Evaluate position</span>
+                </button>
+                <button class="button compact" type="button" data-replay-tick>
+                  <span data-lang="es">Repetir el mismo tick</span>
+                  <span data-lang="en">Repeat the same tick</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
       <section class="section container">
         <div class="contact-panel reveal">
           <div>
@@ -606,5 +784,6 @@
 
     <script src="../assets/js/home-v2.js" defer></script>
       <script src="../assets/js/portfolio-shell.js?v=20261127-historical" defer></script>
+    <script src="../assets/js/risk-factor-demo.js" defer></script>
   </body>
 </html>
