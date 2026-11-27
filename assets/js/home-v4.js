@@ -46,7 +46,7 @@
   });
 
   // Floating product signals inside the hero stage.
-  setText(".stage-topbar > span:first-child", "ALLFICTION / LIVE SYSTEMS");
+  setText(".stage-topbar > span:first-child", "ALLFICTION / SYSTEMS STUDIO");
   setText(".stage-label small", "ENGINEERING STUDIO");
   setText(".stage-label strong [data-lang='es']", "Engineering × AI × Product");
   setText(".stage-label strong [data-lang='en']", "Engineering × AI × Product");
@@ -67,7 +67,7 @@
     if (strong) strong.textContent = description;
   });
 
-  setText(".stage-ai-card small", "AF INTELLIGENCE / LIVE");
+  setText(".stage-ai-card small", "AF INTELLIGENCE");
   setText(
     ".stage-ai-card strong [data-lang='es']",
     "Preguntá por arquitectura, proyectos o experiencia",
@@ -108,7 +108,7 @@
     if (stage) {
       stage.setAttribute(
         "aria-label",
-        english ? "ALLFICTION live systems canvas" : "Canvas de sistemas activos de ALLFICTION",
+        english ? "ALLFICTION visual system" : "Sistema visual de ALLFICTION",
       );
     }
   }

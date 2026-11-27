@@ -59,7 +59,7 @@
 
     const trustItems = document.querySelectorAll(".hero-trust li");
     const trustCopy = [
-      ["Apps en producción", "Production apps"],
+      ["Casos documentados", "Documented cases"],
       ["IA con un propósito", "AI with a purpose"],
       ["Infraestructura propia", "Owned infrastructure"],
     ];
@@ -75,7 +75,7 @@
     );
     setHTML(
       ".stage-label small",
-      bilingual("SOFTWARE EN FUNCIONAMIENTO", "WORKING SOFTWARE"),
+      bilingual("ESTUDIO DE SOFTWARE", "SOFTWARE STUDIO"),
     );
     setText(".stage-label strong [data-lang='es']", "Producto · IA · Sistemas");
     setText(".stage-label strong [data-lang='en']", "Product · AI · Systems");
@@ -145,7 +145,7 @@
         "These are real Qivox screens. Web and phone share data and logic, but each interface is designed for the context in which it is used.",
       ),
     );
-    setHTML(".v5-browser-bar b", bilingual("PRODUCTO REAL", "REAL PRODUCT"));
+    setHTML(".v5-browser-bar b", bilingual("CAPTURA", "CAPTURE"));
     setHTML(
       ".v5-cinema-badge span",
       bilingual("WEB + MÓVIL / MISMO SISTEMA", "WEB + MOBILE / SAME SYSTEM"),

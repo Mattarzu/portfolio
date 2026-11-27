@@ -20,13 +20,13 @@
 
   const proofByPage = {
     "crypto-risk-engine.html": [
-      ["Producción", "Production", "AWS · public healthchecks", "AWS · public health checks"],
+      ["Histórico", "Historical", "probes públicos retirados", "public probes removed"],
       ["12 + 2", "12 + 2", "tests de integración y E2E", "integration and E2E tests"],
       ["≈320 MiB", "≈320 MiB", "stack observado en reposo", "observed idle stack"],
       ["Auditable", "Auditable", "idempotencia + ledger", "idempotency + ledger"],
     ],
     "ergo-v2.html": [
-      ["Demo pública", "Public demo", "producto desplegado", "deployed product"],
+      ["Histórico", "Historical", "demo pública retirada", "public demo removed"],
       ["Multi-sede", "Multi-site", "operación para gimnasios", "gym operations"],
       ["Full stack", "Full stack", "React · Express · PostgreSQL", "React · Express · PostgreSQL"],
       ["Realtime", "Realtime", "Socket.IO + Prisma", "Socket.IO + Prisma"],

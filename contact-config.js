@@ -19,9 +19,9 @@ window.ALLFICTION_AI_ENABLED = true;
 // V6 owns the concrete copy; V7 adds contextual navigation and adaptive motion;
 // V8 warm yellow; V9 Automation Lab; V10 AF Agent; V11 intent routing; V12 scoped tool policy + brief context; V13 conversion handoff; V14 conversion state sync. V15 reliability gate.
 (() => {
-  const v4Revision = "20260812-v4";
-  const v5Revision = "20260812-v5";
-  const v6Revision = "20260812-v6";
+  const v4Revision = "20261127-v4";
+  const v5Revision = "20261127-v5";
+  const v6Revision = "20261127-v6";
   const v7Revision = "20260812-v7";
   const v8Revision = "20260813-v8";
   const v9Revision = "20260815-v15b4";

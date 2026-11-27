@@ -78,8 +78,8 @@
     </script>
 
     <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-    <link rel="stylesheet" href="../assets/css/home-v2.css" />
-      <link rel="stylesheet" href="../assets/css/portfolio-shell.css" />
+    <link rel="stylesheet" href="../assets/css/home-v2.css?v=20261127-historical" />
+      <link rel="stylesheet" href="../assets/css/portfolio-shell.css?v=20261127-historical" />
     <link rel="stylesheet" href="../assets/css/risk-factor-demo.css" />
   </head>
   <body>
@@ -138,9 +138,9 @@
     <main id="contenido">
       <section class="container case-hero">
         <div>
-          <span class="status">
-            <span data-lang="es">En producción · AWS Lightsail</span>
-            <span data-lang="en">In production · AWS Lightsail</span>
+          <span class="status historical">
+            <span data-lang="es">Histórico · AWS Lightsail</span>
+            <span data-lang="en">Historical · AWS Lightsail</span>
           </span>
           <p class="eyebrow">
             <span data-lang="es">Caso de estudio · Sistemas distribuidos</span>
@@ -195,9 +195,15 @@
               <circle cx="296" cy="158" r="7" fill="#facc15" />
             </svg>
           </div>
-          <div class="signal-health">
-            <strong>HEALTHY</strong>
-            <span>live / ready · public checks</span>
+          <div class="signal-health is-historical">
+            <strong>
+              <span data-lang="es">Ilustración</span>
+              <span data-lang="en">Illustration</span>
+            </strong>
+            <span>
+              <span data-lang="es">sin probes públicos</span>
+              <span data-lang="en">no public probes</span>
+            </span>
           </div>
         </div>
       </section>
@@ -482,9 +488,18 @@
                   <td>passing</td>
                 </tr>
                 <tr>
-                  <td>Production</td>
-                  <td>Live / ready public probes</td>
-                  <td>HTTP 200</td>
+                  <td>
+                    <span data-lang="es">Producción</span>
+                    <span data-lang="en">Production</span>
+                  </td>
+                  <td>
+                    <span data-lang="es">Probes públicos live/ready, retirados</span>
+                    <span data-lang="en">Public live/ready probes, removed</span>
+                  </td>
+                  <td>
+                    <span data-lang="es">Sin servicio público</span>
+                    <span data-lang="en">No public service</span>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -768,7 +783,7 @@
     </footer>
 
     <script src="../assets/js/home-v2.js" defer></script>
-      <script src="../assets/js/portfolio-shell.js" defer></script>
+      <script src="../assets/js/portfolio-shell.js?v=20261127-historical" defer></script>
     <script src="../assets/js/risk-factor-demo.js" defer></script>
   </body>
 </html>

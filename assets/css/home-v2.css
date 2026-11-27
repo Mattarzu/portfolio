@@ -560,6 +560,22 @@ a {
   box-shadow: 0 0 12px rgba(250, 204, 21, 0.55);
 }
 
+.status.historical {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--af-muted);
+}
+
+.status.historical::before {
+  background: var(--af-muted);
+  box-shadow: none;
+}
+
+.signal-health.is-historical strong {
+  color: var(--af-muted-strong);
+  font-size: 1.05rem;
+}
+
 .featured-copy h3 {
   margin: 0;
   font-size: clamp(2rem, 4vw, 3.8rem);

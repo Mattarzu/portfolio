@@ -1062,6 +1062,10 @@ svg {
   letter-spacing: 0.08em;
 }
 
+.preview-toolbar b.is-historical {
+  color: var(--muted);
+}
+
 .risk-console {
   padding: 20px;
   background:

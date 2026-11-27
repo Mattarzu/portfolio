@@ -342,6 +342,17 @@ body.af-shell-ready .detail-status {
   color: var(--af-shell-gold-high) !important;
 }
 
+body.af-shell-ready .status.historical {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  color: var(--af-shell-muted) !important;
+}
+
+body.af-shell-ready .status.historical::before {
+  background: var(--af-shell-muted);
+  box-shadow: none;
+}
+
 .af-shell-footer-note {
   width: min(calc(100% - 40px), var(--af-shell-width));
   margin: 0 auto 30px;
