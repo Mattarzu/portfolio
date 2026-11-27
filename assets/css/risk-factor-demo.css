@@ -1,0 +1,144 @@
+.risk-demo {
+  display: grid;
+  gap: 16px;
+}
+
+.risk-demo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.risk-demo-presets .button {
+  margin: 0 8px 8px 0;
+}
+
+.risk-demo-presets,
+.risk-demo-fields {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.risk-demo legend {
+  margin-bottom: 8px;
+  padding: 0;
+  color: var(--af-text);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.risk-demo .button.is-selected {
+  border-color: var(--af-gold);
+  background: rgba(250, 204, 21, 0.12);
+}
+
+.risk-demo-fields,
+.risk-demo-presets {
+  min-inline-size: 0;
+}
+
+.risk-demo-field-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.risk-demo-fields label {
+  display: grid;
+  gap: 6px;
+  color: var(--af-muted-strong);
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.risk-demo input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--af-line);
+  border-radius: 12px;
+  padding: 8px 12px;
+  background: #0c0c0c;
+  color: var(--af-text);
+  font: inherit;
+  color-scheme: dark;
+}
+
+.risk-demo input[aria-invalid="true"] {
+  border-color: #fda4af;
+}
+
+.risk-demo-result {
+  display: grid;
+  gap: 6px;
+  border: 1px solid var(--af-line);
+  border-radius: 16px;
+  padding: 16px 18px;
+  background: rgba(15, 15, 15, 0.88);
+}
+
+.risk-demo-factor {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0;
+}
+
+.risk-demo-kicker {
+  color: var(--af-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.risk-demo-factor strong {
+  color: var(--af-text);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.risk-demo-decision,
+.risk-demo-expression,
+.risk-demo-replay {
+  margin: 0;
+}
+
+.risk-demo-decision {
+  font-weight: 700;
+}
+
+.risk-demo-decision[data-state="safe"],
+.risk-demo-decision[data-state="no-debt"] {
+  color: #86efac;
+}
+
+.risk-demo-decision[data-state="watch"] {
+  color: #fde68a;
+}
+
+.risk-demo-decision[data-state="liquidate"],
+.risk-demo-decision[data-state="invalid"] {
+  color: #fda4af;
+}
+
+.risk-demo-expression,
+.risk-demo-replay,
+.risk-demo-note {
+  color: var(--af-muted-strong);
+  font-size: 0.92rem;
+}
+
+@media (max-width: 720px) {
+  .risk-demo-field-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .risk-demo .button:hover {
+    transform: none;
+  }
+}
