@@ -32,3 +32,12 @@ enabled = true
 [observability.logs]
 invocation_logs = false
 head_sampling_rate = 1
+
+# Applied on the next wrangler deploy. This change does not include a deploy.
+[[migrations]]
+tag = "v1-daily-usage-counter"
+new_sqlite_classes = ["DailyUsageCounter"]
+
+[[durable_objects.bindings]]
+name = "AI_USAGE"
+class_name = "DailyUsageCounter"

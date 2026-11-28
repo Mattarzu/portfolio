@@ -4,6 +4,7 @@ import {
 } from "./portfolio-context.js";
 import { analyzeAutomationProcess } from "./automation-analysis.js";
 import { publicProviderState } from "./ai-provider.js";
+import { consumeDailyBudget as consumeSharedDailyBudget } from "./daily-budget.js";
 
 const buckets = new Map();
 const dailyUsage = new Map();
@@ -78,18 +79,7 @@ function withinRateLimit(request, env) {
 async function consumeDailyBudget(env) {
   const limit = boundedInteger(env.AI_DAILY_LIMIT, 50, 1, 500);
   const key = `af-ai-usage:${new Date().toISOString().slice(0, 10)}`;
-
-  if (env.AI_USAGE_KV?.get && env.AI_USAGE_KV?.put) {
-    const used = Number.parseInt((await env.AI_USAGE_KV.get(key)) || "0", 10) || 0;
-    if (used >= limit) return false;
-    await env.AI_USAGE_KV.put(key, String(used + 1), { expirationTtl: 172800 });
-    return true;
-  }
-
-  const used = dailyUsage.get(key) || 0;
-  if (used >= limit) return false;
-  dailyUsage.set(key, used + 1);
-  return true;
+  return consumeSharedDailyBudget(env, { key, limit, memoryStore: dailyUsage });
 }
 
 export function validateAutomationPayload(raw, env = {}) {

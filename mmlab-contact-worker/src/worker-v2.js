@@ -121,3 +121,5 @@ export default {
     return baseWorker.fetch(request, env);
   },
 };
+
+export { DailyUsageCounter } from "./daily-budget.js";

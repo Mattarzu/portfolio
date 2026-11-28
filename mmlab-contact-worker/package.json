@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "node --check src/worker.js && node --check src/ai-provider.js && node --check src/portfolio-context.js",
+    "check": "node --check src/worker.js && node --check src/worker-v2.js && node --check src/ai-provider.js && node --check src/portfolio-context.js && node --check src/daily-budget.js && node --check src/automation-endpoint.js && node --check src/agent-endpoint.js",
     "test": "node --test"
   }
 }
