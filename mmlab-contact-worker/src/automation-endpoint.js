@@ -293,10 +293,6 @@ export async function handleAutomationRequest(request, env) {
   if (!["1", "true", "yes", "on"].includes(cleanText(env.AI_ENABLED).toLowerCase())) {
     return guided(payload.locale, "ai-not-configured", cors, env);
   }
-  if (!(await consumeDailyBudget(env))) {
-    return guided(payload.locale, "daily-limit-reached", cors, env);
-  }
-
   const startedAt = Date.now();
   const controller = new AbortController();
   const timeoutMs = automationTimeoutMs(env);
@@ -309,6 +305,7 @@ export async function handleAutomationRequest(request, env) {
       locale: payload.locale,
       safetyIdentifier: await safetyIdentifier(request, payload.sessionId),
       signal: controller.signal,
+      consumeBudget: () => consumeDailyBudget(env),
     });
 
     const elapsedMs = Date.now() - startedAt;
