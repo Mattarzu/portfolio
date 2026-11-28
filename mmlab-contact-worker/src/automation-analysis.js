@@ -305,6 +305,7 @@ export async function analyzeAutomationProcess({
   locale,
   safetyIdentifier,
   signal,
+  consumeBudget,
 }) {
   const config = resolveProvider(env);
   if (!config.supported) return { ok: false, reason: "unsupported-ai-provider" };
@@ -379,13 +380,24 @@ export async function analyzeAutomationProcess({
     }
   }
 
+  async function reserveBudget() {
+    if (typeof consumeBudget !== "function") return true;
+    return consumeBudget();
+  }
+
+  if (!(await reserveBudget())) {
+    return { ok: false, reason: "daily-limit-reached", attempts: 0 };
+  }
+
   let result = await attempt();
   let attempts = 1;
   if (!result.ok && shouldRetryAutomation(result.reason) && !signal?.aborted) {
     try {
       await retryDelay(signal, 250);
-      result = await attempt();
-      attempts = 2;
+      if (await reserveBudget()) {
+        result = await attempt();
+        attempts = 2;
+      }
     } catch (error) {
       if (error?.name === "AbortError" || signal?.aborted) {
         return { ok: false, reason: "provider-timeout", attempts };

@@ -276,3 +276,83 @@ test("the previous health route is still delegated to the original worker", asyn
   assert.equal(body.service, "allfiction-portfolio-api");
   assert.equal(body.ai.provider, "gemini");
 });
+
+const processDescription =
+  "Recibimos pedidos por mail y los cargamos a mano en una planilla para seguimiento.";
+
+function usageKv(initial) {
+  const store = new Map(
+    initial === undefined
+      ? []
+      : [[`af-ai-usage:${new Date().toISOString().slice(0, 10)}`, String(initial)]],
+  );
+  return {
+    store,
+    get: async (key) => store.get(key) ?? null,
+    put: async (key, value) => {
+      store.set(key, value);
+    },
+  };
+}
+
+function stubProviderFailure() {
+  let providerCalls = 0;
+  globalThis.fetch = async () => {
+    providerCalls += 1;
+    return new Response("{}", { status: 500 });
+  };
+  return () => providerCalls;
+}
+
+test("automation daily budget counts provider calls, not HTTP requests (memory)", async () => {
+  const providerCalls = stubProviderFailure();
+  const env = environment({ AI_DAILY_LIMIT: "1", AI_RATE_LIMIT: "20" });
+
+  const first = await worker.fetch(request(processDescription), env);
+  const firstBody = await first.json();
+  const second = await worker.fetch(request(processDescription), env);
+  const secondBody = await second.json();
+
+  assert.equal(first.status, 200);
+  assert.equal(firstBody.mode, "guided");
+  assert.equal(firstBody.reason, "provider-http-500");
+  assert.equal(firstBody.runtime.attempts, 1);
+  assert.equal(second.status, 200);
+  assert.equal(secondBody.reason, "daily-limit-reached");
+  assert.equal(providerCalls(), 1);
+});
+
+test("automation daily budget counts provider calls, not HTTP requests (KV)", async () => {
+  const providerCalls = stubProviderFailure();
+  const kv = usageKv();
+  const env = environment({
+    AI_DAILY_LIMIT: "1",
+    AI_RATE_LIMIT: "20",
+    AI_USAGE_KV: kv,
+  });
+
+  const first = await worker.fetch(request(processDescription), env);
+  const second = await worker.fetch(request(processDescription), env);
+  const secondBody = await second.json();
+
+  assert.equal(first.status, 200);
+  assert.equal(secondBody.reason, "daily-limit-reached");
+  assert.equal(providerCalls(), 1);
+  assert.equal([...kv.store.values()][0], "1");
+});
+
+test("automation retry is allowed when daily budget still has a unit left", async () => {
+  const providerCalls = stubProviderFailure();
+  const env = environment({ AI_DAILY_LIMIT: "2", AI_RATE_LIMIT: "20" });
+
+  const first = await worker.fetch(request(processDescription), env);
+  const firstBody = await first.json();
+  const second = await worker.fetch(request(processDescription), env);
+  const secondBody = await second.json();
+
+  assert.equal(first.status, 200);
+  assert.equal(firstBody.reason, "provider-http-500");
+  assert.equal(firstBody.runtime.attempts, 2);
+  assert.equal(secondBody.reason, "daily-limit-reached");
+  assert.equal(providerCalls(), 2);
+});
