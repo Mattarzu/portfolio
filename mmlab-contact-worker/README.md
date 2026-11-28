@@ -45,9 +45,17 @@ Límites de aplicación:
 - 50 llamadas generativas globales por día.
 - Sin herramientas, navegación web ni agentes.
 
-La cuota diaria se mantiene en memoria cuando no existe un binding `AI_USAGE_KV`.
-Para persistirla entre instancias se puede agregar un namespace KV. La protección
-principal contra gasto es mantener desactivada la facturación del proyecto de Gemini.
+La cuota diaria se incrementa de forma atómica en el Durable Object
+`DailyUsageCounter` (binding `AI_USAGE`), compartido por el chat y la
+automatización (`AI_DAILY_LIMIT`) y, con otra clave, por el agente
+(`AI_AGENT_DAILY_LIMIT`). Si el binding no está presente, se usa memoria
+o, si existe, el namespace `AI_USAGE_KV`. El path de KV no es atómico
+entre instancias: no alcanza como protección de gasto.
+
+La migración `v1-daily-usage-counter` ya está en `wrangler.toml` y tiene
+efecto recién en el próximo `wrangler deploy`. Este cambio no incluye un
+deploy. La protección principal contra gasto sigue siendo mantener
+desactivada la facturación del proyecto de Gemini.
 
 ## Secretos
 
@@ -88,9 +96,28 @@ npx wrangler secret put OPENAI_API_KEY
 En ese caso debe configurarse un límite de gasto en el proyecto de OpenAI antes del
 despliegue.
 
-## KV opcional
+## Durable Object de cuota (recomendado)
 
-Crear un namespace:
+El binding y la migración ya están declarados en `wrangler.toml`:
+
+```toml
+[[migrations]]
+tag = "v1-daily-usage-counter"
+new_sqlite_classes = ["DailyUsageCounter"]
+
+[[durable_objects.bindings]]
+name = "AI_USAGE"
+class_name = "DailyUsageCounter"
+```
+
+No hace falta crear el objeto a mano: Wrangler lo aplica en el próximo
+deploy. Esa migración no se ejecutó en este cambio.
+
+## KV opcional (legado, no atómico)
+
+Si todavía no se desplegó el Durable Object, se puede seguir usando un
+namespace KV. Dos requests concurrentes pueden leer el mismo valor y
+dejar pasar más llamadas al proveedor que el cupo:
 
 ```bash
 npx wrangler kv namespace create AI_USAGE_KV
@@ -104,7 +131,7 @@ binding = "AI_USAGE_KV"
 id = "ID_REAL_DEL_NAMESPACE"
 ```
 
-No confirmar un ID inventado o de otra cuenta.
+No confirmar un ID inventado o de otra cuenta. Preferir `AI_USAGE`.
 
 ## Validación
 

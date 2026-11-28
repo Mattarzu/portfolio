@@ -11,6 +11,7 @@ import {
   publicProviderState,
   resolveProvider,
 } from "./ai-provider.js";
+import { consumeDailyBudget as consumeSharedDailyBudget } from "./daily-budget.js";
 
 const DEFAULT_INPUT_LIMIT = 500;
 const DEFAULT_OUTPUT_LIMIT = 220;
@@ -182,18 +183,7 @@ function usageDate() {
 async function consumeDailyBudget(env) {
   const limit = boundedInteger(env.AI_DAILY_LIMIT, DEFAULT_DAILY_LIMIT, 1, 500);
   const key = `af-ai-usage:${usageDate()}`;
-
-  if (env.AI_USAGE_KV?.get && env.AI_USAGE_KV?.put) {
-    const stored = Number.parseInt((await env.AI_USAGE_KV.get(key)) || "0", 10) || 0;
-    if (stored >= limit) return false;
-    await env.AI_USAGE_KV.put(key, String(stored + 1), { expirationTtl: 172_800 });
-    return true;
-  }
-
-  const used = dailyUsage.get(key) || 0;
-  if (used >= limit) return false;
-  dailyUsage.set(key, used + 1);
-  return true;
+  return consumeSharedDailyBudget(env, { key, limit, memoryStore: dailyUsage });
 }
 
 function buildTelegramMessage(payload) {

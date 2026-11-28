@@ -1,6 +1,7 @@
 import { containsSensitiveData, looksLikePromptInjection } from "./portfolio-context.js";
 import { chooseAgentTool } from "./agent-provider.js";
 import { executeAgentTool } from "./agent-tool-runtime.js";
+import { consumeDailyBudget as consumeSharedDailyBudget } from "./daily-budget.js";
 
 const buckets = new Map();
 const dailyUsage = new Map();
@@ -66,16 +67,7 @@ function withinRateLimit(request, env) {
 async function consumeDailyBudget(env) {
   const limit = boundedInteger(env.AI_AGENT_DAILY_LIMIT, 20, 1, 100);
   const key = `af-agent-usage:${new Date().toISOString().slice(0, 10)}`;
-  if (env.AI_USAGE_KV?.get && env.AI_USAGE_KV?.put) {
-    const used = Number.parseInt((await env.AI_USAGE_KV.get(key)) || "0", 10) || 0;
-    if (used >= limit) return false;
-    await env.AI_USAGE_KV.put(key, String(used + 1), { expirationTtl: 172800 });
-    return true;
-  }
-  const used = dailyUsage.get(key) || 0;
-  if (used >= limit) return false;
-  dailyUsage.set(key, used + 1);
-  return true;
+  return consumeSharedDailyBudget(env, { key, limit, memoryStore: dailyUsage });
 }
 
 function validatePayload(raw, env) {
