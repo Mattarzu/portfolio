@@ -5,12 +5,11 @@ import { afterEach, beforeEach, test } from "node:test";
 import worker, { consumeDailyBudget, resetStateForTests } from "../src/worker.js";
 import { handleAutomationRequest, resetAutomationStateForTests } from "../src/automation-endpoint.js";
 
-const originalFetch = globalThis.fetch;
 const originalNow = Date.now;
 const origin = "https://mattarzu-portfolio.pages.dev";
 
 beforeEach(() => { resetStateForTests(); resetAutomationStateForTests(); });
-afterEach(() => { globalThis.fetch = originalFetch; Date.now = originalNow; });
+afterEach(() => { Date.now = originalNow; });
 
 function kv(initial) {
   const store = new Map(initial === undefined ? [] : [[`af-ai-usage:${new Date().toISOString().slice(0, 10)}`, String(initial)]]);
@@ -71,28 +70,4 @@ test("automation rate limit: window edge is exclusive and the limit-th call is t
   assert.equal(await status(), 200);
 });
 
-function realAutoRequest(ip) {
-  return new Request("https://worker.test/automation-analyze", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Origin: origin, "CF-Connecting-IP": ip },
-    body: JSON.stringify({ process: "Recibimos pedidos por mail y los cargamos a mano en una planilla.", locale: "es-AR", sessionId: "s", website: "" }),
-  });
-}
-
-for (const [label, kvFactory] of [["memory", () => ({})], ["KV", () => ({ AI_USAGE_KV: kv() })]]) {
-  test(`automation daily budget (${label}): only the first AI_DAILY_LIMIT requests reach the provider`, async () => {
-    let providerCalls = 0;
-    globalThis.fetch = async () => { providerCalls += 1; return new Response("{}", { status: 500 }); };
-    const env = { ALLOWED_ORIGIN: origin, GEMINI_API_KEY: "test-key", AI_ENABLED: "true", AI_PROVIDER: "gemini",
-      AI_MODEL: "gemini-3.5-flash-lite", AI_RATE_LIMIT: "20", AI_DAILY_LIMIT: "2", ...kvFactory() };
-    // El analizador reintenta por dentro (varias llamadas por request): el tope cuenta REQUESTS, no llamadas.
-    const reachedProvider = [];
-    for (let i = 0; i < 4; i++) {
-      const before = providerCalls;
-      const res = await handleAutomationRequest(realAutoRequest(`203.0.113.${i + 1}`), env);
-      reachedProvider.push(providerCalls > before);
-      if (i >= 2) assert.equal((await res.json()).reason, "daily-limit-reached");
-    }
-    assert.deepEqual(reachedProvider, [true, true, false, false]);
-  });
-}
+// El tope diario de automation por llamadas al proveedor lo cubren MSI-93 / #35.
